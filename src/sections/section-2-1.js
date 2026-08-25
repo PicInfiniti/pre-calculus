@@ -300,7 +300,7 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({
     previous: { href: "pages/sections/1-9.html", label: "Section 1.9 · Coordinate plane" },
-    next: null,
+    next: { href: "pages/sections/2-2.html", label: "Section 2.2 · Graphs of functions" },
   })}
 `;
 

@@ -22,6 +22,9 @@ export default defineConfig({
         section21: fileURLToPath(
           new URL("./pages/sections/2-1.html", import.meta.url),
         ),
+        section22: fileURLToPath(
+          new URL("./pages/sections/2-2.html", import.meta.url),
+        ),
       },
     },
   },

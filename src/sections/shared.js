@@ -6,8 +6,11 @@ export function renderLessonHeader(activeSection) {
   let navigation;
   if (activeSection === "1.9") {
     navigation = `<a class="is-current" href="${sitePath("pages/sections/1-9.html")}">1.9 · Coordinate plane</a>`;
-  } else if (activeSection === "2.1") {
-    navigation = `<a class="is-current" href="${sitePath("pages/sections/2-1.html")}">2.1 · Functions</a>`;
+  } else if (["2.1", "2.2"].includes(activeSection)) {
+    navigation = `
+      <a class="${activeSection === "2.1" ? "is-current" : ""}" href="${sitePath("pages/sections/2-1.html")}">2.1 · Functions</a>
+      <a class="${activeSection === "2.2" ? "is-current" : ""}" href="${sitePath("pages/sections/2-2.html")}">2.2 · Graphs</a>
+    `;
   } else {
     navigation = `
         <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>

@@ -1,0 +1,715 @@
+.lesson-hero--graphs
+  --hero-accent: var(--green)
+
+.graph-language-art
+  position: relative
+  min-height: 470px
+
+  svg
+    position: absolute
+    inset: 0
+    z-index: 2
+    width: 100%
+    height: 100%
+
+    circle
+      fill: var(--gold)
+      stroke: var(--ink)
+      stroke-width: 4
+
+.graph-language-art__grid
+  position: absolute
+  inset: 2rem
+  border: 1px solid var(--line)
+  border-radius: 50%
+  background-color: rgba(255, 253, 248, .72)
+  background-image: linear-gradient(rgba(7, 29, 51, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 29, 51, .07) 1px, transparent 1px)
+  background-size: 32px 32px
+  box-shadow: inset 0 0 0 1rem rgba(244, 240, 230, .58), var(--shadow)
+
+.graph-language-art__axis
+  fill: none
+  stroke: rgba(7, 29, 51, .48)
+  stroke-width: 2
+
+.graph-language-art__curve
+  fill: none
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 7
+
+.graph-language-art__curve--parabola
+  stroke: var(--violet)
+
+.graph-language-art__curve--absolute
+  stroke: rgba(255, 107, 72, .64)
+  stroke-dasharray: 9 9
+
+.graph-language-art__scan
+  fill: none
+  stroke: var(--ink)
+  stroke-dasharray: 7 6
+  stroke-width: 3
+
+.graph-language-art__label
+  position: absolute
+  z-index: 4
+  padding: .65rem .8rem
+  border-radius: .3rem
+  font-size: .62rem
+  font-weight: 700
+  box-shadow: 0 12px 28px rgba(7, 29, 51, .12)
+
+.graph-language-art__label--domain
+  right: 3%
+  bottom: 14%
+  background: var(--gold)
+  transform: rotate(-3deg)
+
+.graph-language-art__label--range
+  top: 8%
+  left: 8%
+  background: var(--green)
+  transform: rotate(3deg)
+
+.graph-language-art__label--test
+  top: 11%
+  right: 4%
+  background: var(--white)
+  transform: rotate(-2deg)
+
+.family-library
+  margin-top: 3rem
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.family-library__tabs
+  padding: .7rem
+  display: flex
+  gap: .45rem
+  overflow-x: auto
+  border-bottom: 1px solid var(--line)
+  scrollbar-width: thin
+
+  button
+    flex: 0 0 auto
+    min-height: 2.55rem
+    padding: 0 .9rem
+    border: 1px solid transparent
+    border-radius: 999px
+    background: transparent
+    font-size: .63rem
+    font-weight: 700
+
+    &.is-active
+      background: var(--ink)
+      color: var(--white)
+
+.family-library__stage
+  min-height: 560px
+  display: grid
+  grid-template-columns: 1.25fr .75fr
+
+  > svg
+    width: 100%
+    height: 100%
+    min-height: 520px
+    padding: 1.5rem
+    background: var(--paper)
+
+.family-library__copy
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  h3
+    margin-top: .8rem
+    font-size: clamp(1.8rem, 3vw, 2.8rem)
+
+  dl
+    margin-top: 1.6rem
+    display: grid
+    gap: .65rem
+
+    div
+      padding: .8rem
+      border: 1px solid var(--line)
+      border-radius: .35rem
+
+    dt
+      color: var(--coral)
+      font-size: .56rem
+      font-weight: 700
+      letter-spacing: .08em
+      text-transform: uppercase
+
+    dd
+      margin-top: .35rem
+      font-family: Georgia, serif
+      font-size: .82rem
+
+  > p:last-child
+    margin-top: 1.2rem
+    color: var(--ink-soft)
+    font-size: .72rem
+    line-height: 1.6
+
+.graph-grid-line
+  stroke: rgba(7, 29, 51, .09)
+  stroke-width: 1
+
+.graph-axis-line
+  stroke: rgba(7, 29, 51, .55)
+  stroke-width: 2
+
+.graph-grid-label
+  fill: rgba(7, 29, 51, .48)
+  font-family: Arial, sans-serif
+  font-size: 12px
+
+.family-curve
+  fill: none
+  stroke: var(--violet)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 6
+
+.vertical-test-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.15fr .85fr
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: rgba(255, 255, 255, .06)
+
+.vertical-test-lab__graph
+  min-height: 590px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--paper)
+
+  svg
+    width: min(100%, 650px)
+
+.vertical-test-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  > label
+    margin-top: 1.6rem
+    display: flex
+    justify-content: space-between
+    font-size: .7rem
+    font-weight: 700
+
+  > input
+    width: 100%
+    margin-top: .7rem
+
+.vertical-test-options
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  button
+    min-height: 2.65rem
+    padding: .5rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .35rem
+    background: transparent
+    color: var(--white)
+    font-size: .62rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+.vertical-test-curve
+  fill: none
+  stroke: var(--violet)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 6
+
+.vertical-scan-line
+  stroke: var(--coral)
+  stroke-dasharray: 8 6
+  stroke-width: 4
+
+.vertical-intersection
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.vertical-test-result
+  min-height: 145px
+  margin-top: 1.2rem
+  padding: 1.15rem
+  border-radius: .4rem
+  background: rgba(255, 255, 255, .09)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--gold)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .7rem
+    font-size: 1.05rem
+
+  p
+    margin-top: .55rem
+    color: rgba(255, 255, 255, .68)
+    font-size: .68rem
+    line-height: 1.5
+
+.graph-reader
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.15fr .85fr
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.graph-reader__stage
+  min-height: 570px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--paper-deep)
+
+  svg
+    width: min(100%, 650px)
+
+.graph-reader__copy
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  h3
+    margin-top: .7rem
+    font-size: 1.65rem
+
+.reader-curve
+  fill: none
+  stroke: rgba(7, 29, 51, .32)
+  stroke-linecap: round
+  stroke-width: 6
+  transition: stroke .2s ease, stroke-width .2s ease
+
+  &.is-highlight
+    stroke: var(--coral)
+    stroke-width: 9
+
+.graph-endpoint
+  stroke: var(--ink)
+  stroke-width: 4
+
+  &.is-closed
+    fill: var(--green)
+
+  &.is-open
+    fill: var(--white)
+
+.reader-branches
+  margin-top: 1.2rem
+  display: grid
+  gap: .55rem
+
+  button
+    padding: .8rem 1rem
+    display: grid
+    grid-template-columns: 1fr auto
+    align-items: center
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--paper)
+    text-align: left
+
+    strong
+      font-family: Georgia, serif
+      font-size: .82rem
+
+    span
+      color: var(--ink-soft)
+      font-size: .6rem
+
+    &.is-active
+      border-color: var(--coral)
+      background: rgba(255, 107, 72, .12)
+
+.reader-facts
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  article
+    padding: .85rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .56rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-family: Georgia, serif
+    font-size: .76rem
+
+.reader-net-change
+  margin-top: .75rem
+  padding: 1rem
+  border-radius: .35rem
+  background: var(--gold)
+
+  span, strong
+    display: block
+
+  span
+    font-size: .57rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  strong
+    margin-top: .55rem
+    font-family: Georgia, serif
+    font-size: .82rem
+
+.circle-branch-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.15fr .85fr
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.circle-branch-lab__stage
+  min-height: 610px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--paper)
+
+  svg
+    width: min(100%, 650px)
+
+.circle-branch-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  ol
+    margin-top: 1.2rem
+    display: grid
+    gap: .6rem
+    list-style: none
+
+  li
+    display: grid
+    grid-template-columns: 1.6rem 1fr
+    align-items: center
+    gap: .65rem
+
+    span
+      width: 1.5rem
+      height: 1.5rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--green)
+      font-size: .56rem
+      font-weight: 700
+
+    p
+      color: var(--ink-soft)
+      font-size: .66rem
+      line-height: 1.45
+
+.quarter-options
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  button
+    min-height: 2.65rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--paper)
+    font-size: .63rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--ink)
+      color: var(--white)
+
+.quarter-circle-guide
+  fill: none
+  stroke: rgba(7, 29, 51, .15)
+  stroke-width: 5
+
+.quarter-circle-selected
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-width: 10
+
+.circle-branch-result
+  min-height: 145px
+  margin-top: 1rem
+  padding: 1.1rem
+  border-radius: .4rem
+  background: var(--ink)
+  color: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--green)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .06em
+    text-transform: uppercase
+
+  strong
+    margin-top: .75rem
+    font-family: Georgia, serif
+    font-size: 1.16rem
+
+  p
+    margin-top: .55rem
+    color: rgba(255, 255, 255, .68)
+    font-size: .68rem
+
+.reconstruction-studio
+  margin-top: 3rem
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.reconstruction-tabs
+  padding: .7rem
+  display: flex
+  gap: .5rem
+  border-bottom: 1px solid var(--line)
+
+  button
+    min-height: 2.65rem
+    padding: 0 1.1rem
+    border: 0
+    border-radius: 999px
+    background: transparent
+    font-size: .65rem
+    font-weight: 700
+
+    &.is-active
+      background: var(--ink)
+      color: var(--white)
+
+[data-reconstruction-panel]
+  display: grid
+  grid-template-columns: 1.12fr .88fr
+
+  &[hidden]
+    display: none
+
+.reconstruction-graph
+  min-height: 620px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--paper)
+
+  svg
+    width: min(100%, 700px)
+
+.reconstruction-copy
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  h3
+    margin-top: .7rem
+    font-size: 1.6rem
+
+  > label
+    margin-top: 1.4rem
+    display: flex
+    justify-content: space-between
+    font-size: .68rem
+    font-weight: 700
+
+  > input
+    width: 100%
+    margin-top: .65rem
+
+  dl
+    margin-top: .9rem
+    display: grid
+    gap: .45rem
+
+    div
+      padding: .7rem .8rem
+      display: grid
+      grid-template-columns: 1fr auto
+      gap: .7rem
+      border: 1px solid var(--line)
+      border-radius: .3rem
+
+    dt
+      color: var(--ink-soft)
+      font-size: .58rem
+
+    dd
+      font-family: Georgia, serif
+      font-size: .68rem
+      font-weight: 700
+
+.reconstruction-rules
+  margin-top: 1rem
+  display: grid
+  gap: .5rem
+
+  span
+    padding: .75rem .85rem
+    display: grid
+    grid-template-columns: 1fr auto
+    align-items: center
+    border-radius: .32rem
+    background: var(--paper-deep)
+
+  strong
+    font-family: Georgia, serif
+    font-size: .76rem
+
+  i
+    color: var(--ink-soft)
+    font-size: .58rem
+    font-style: normal
+
+.reconstruction-curve
+  fill: none
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 6
+
+.reconstruction-curve--one
+  stroke: var(--violet)
+
+.reconstruction-curve--two
+  stroke: var(--coral)
+
+.reconstruction-curve--three
+  stroke: var(--ink)
+
+.reconstruction-output
+  margin-top: .8rem
+  padding: .85rem
+  border-left: 4px solid var(--coral)
+  background: var(--paper)
+  font-family: Georgia, serif
+  font-size: .78rem
+
+.readiness--graphs
+  --hero-accent: var(--green)
+
+.graph-check-grid
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+  .check-card:last-child
+    grid-column: auto
+
+  .check-card label
+    display: grid
+    grid-template-columns: 1fr minmax(110px, .85fr)
+    align-items: center
+    gap: .7rem
+
+    input, select
+      margin-top: 0
+
+.ready-banner--graphs
+  background: var(--green)
+
+@media (max-width: 1000px)
+  .graph-language-art
+    width: min(100%, 620px)
+    margin: 0 auto
+
+  .family-library__stage, .vertical-test-lab, .graph-reader, .circle-branch-lab, [data-reconstruction-panel]
+    grid-template-columns: 1fr
+
+  .vertical-test-lab__graph, .graph-reader__stage, .circle-branch-lab__stage, .reconstruction-graph
+    min-height: 520px
+
+@media (max-width: 680px)
+  .graph-language-art
+    min-height: 360px
+
+  .graph-language-art__grid
+    inset: 1rem 0
+
+  .graph-language-art__label
+    font-size: .54rem
+
+  .family-library__stage > svg
+    min-height: 390px
+    padding: .5rem
+
+  .vertical-test-lab__graph, .graph-reader__stage, .circle-branch-lab__stage, .reconstruction-graph
+    min-height: 390px
+    padding: .55rem
+
+  .vertical-test-options, .quarter-options
+    grid-template-columns: 1fr
+
+  .reader-branches button, .reconstruction-rules span
+    grid-template-columns: 1fr
+    gap: .35rem
+
+  .reader-facts
+    grid-template-columns: 1fr
+
+  .reconstruction-tabs button
+    flex: 1
+
+  .reconstruction-copy dl div
+    grid-template-columns: 1fr
+
+  .graph-check-grid
+    grid-template-columns: 1fr
+
+    .check-card label
+      grid-template-columns: 1fr
+
+      input, select
+        margin-top: .45rem

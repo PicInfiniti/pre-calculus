@@ -78,6 +78,7 @@ const sectionPages = {
   "9.2": `${baseUrl}pages/sections/9-2.html`,
   "1.9": `${baseUrl}pages/sections/1-9.html`,
   "2.1": `${baseUrl}pages/sections/2-1.html`,
+  "2.2": `${baseUrl}pages/sections/2-2.html`,
 };
 
 function renderUnit(unit) {

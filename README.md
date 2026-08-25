@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -43,6 +43,13 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Net-change graph and difference-quotient secant explorer
 - Domain restriction visualizer and readiness practice
 
+### 2.2 · Graphs of Functions
+
+- Interactive parent-function shape library
+- Movable vertical-line test across four curve types
+- Domain, range, endpoint, and net-change graph reader
+- Quarter-circle selector and piecewise graph reconstruction
+
 ## Course roadmap
 
 Every textbook section will have its own standalone page.
@@ -51,7 +58,7 @@ Every textbook section will have its own standalone page.
 | --- | --- | --- |
 | Systems of linear equations | 9.1, 9.2 | Available |
 | The coordinate plane | 1.9 | Available |
-| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1 available; others planned |
+| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1–2.2 available; others planned |
 | Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 | Planned |
 | Exponential and logarithmic functions | 4.1–4.5 | Planned |
 | Right-triangle trigonometry | 6.1–6.4 | Planned |
