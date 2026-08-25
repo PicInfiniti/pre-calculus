@@ -1,22 +1,20 @@
-// vite.config.js
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
-import { resolve } from 'path';
 import wasm from "vite-plugin-wasm";
-import topLevelAwait from "vite-plugin-top-level-await";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 export default defineConfig({
   build: {
+    target: "esnext",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        test: resolve(__dirname, 'pages/test.html'),
-      }
-    }
+        main: fileURLToPath(new URL("./index.html", import.meta.url)),
+        test: fileURLToPath(new URL("./pages/test.html", import.meta.url)),
+      },
+    },
   },
   plugins: [
     wasm(),
-    topLevelAwait(),
     nodePolyfills({
       globals: { Buffer: true, global: true },
       protocolImports: true,

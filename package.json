@@ -5,6 +5,9 @@
   "type": "module",
   "license": "MIT",
   "author": "picinfiniti",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,11 +18,10 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "publint": "^0.2.0",
-    "vite": "^5.0.3",
-    "vite-plugin-node-polyfills": "^0.22.0",
-    "vite-plugin-top-level-await": "^1.4.4",
-    "vite-plugin-wasm": "^3.3.0",
-    "sass": "^1.87.0"
+    "publint": "^0.3.23",
+    "vite": "^8.2.2",
+    "vite-plugin-node-polyfills": "^0.28.0",
+    "vite-plugin-wasm": "^3.6.0",
+    "sass": "^1.103.1"
   }
 }
