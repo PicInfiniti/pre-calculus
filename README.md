@@ -124,7 +124,7 @@ This repository is an independent learning resource. It is not affiliated with o
 
 ## License
 
-The project source is available under the [MIT License](LICENSE). Third-party names, content, and artwork remain the property of their respective owners.
+The project source is available under the [Apache License 2.0](LICENSE). Third-party names, content, and artwork remain the property of their respective owners.
 
 ---
 
