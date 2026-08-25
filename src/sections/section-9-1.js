@@ -202,9 +202,9 @@ root.innerHTML = `
 
     <section class="lesson-section readiness" id="readiness">
       <div class="lesson-section__intro" data-reveal>
-        <p class="lesson-kicker"><span>04</span> Worksheet readiness</p>
+        <p class="lesson-kicker"><span>04</span> Final readiness</p>
         <h2>Prove you can<br>make the decisions.</h2>
-        <p>These checks target the reasoning behind Problems A, B, E, and F in the supplied notes.</p>
+        <p>Use these checks to connect classification, algebra, modeling, and parameter reasoning.</p>
       </div>
       <div class="readiness-grid">
         <article class="check-card" data-reveal>
@@ -401,7 +401,7 @@ function updateCoinLab() {
   const feedback = document.querySelector("#coin-feedback");
   if (nearlyEqual(value, 6.7)) {
     feedback.className = "tool-feedback is-success";
-    feedback.textContent = "Balanced! Now reproduce this result algebraically on the worksheet.";
+    feedback.textContent = "Balanced! Now reproduce this result algebraically in your own solution.";
   } else {
     feedback.className = "tool-feedback";
     feedback.textContent = value < 6.7 ? "The value is too low—replace a dime with a quarter." : "The value is too high—replace a quarter with a dime.";

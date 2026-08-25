@@ -20,7 +20,7 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Interactive line and solution explorer
 - Elimination studio with step-by-step reasoning
 - Word-problem modeling tools
-- Practice aligned with the course worksheet
+- Targeted practice with immediate feedback
 
 ### 9.2 · Systems of Linear Equations in Three Variables
 

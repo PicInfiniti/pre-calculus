@@ -1833,6 +1833,12 @@ input[type='range']
   circle
     fill: var(--green)
 
+  &[data-drag-point]
+    cursor: grab
+
+    &:active
+      cursor: grabbing
+
 .coordinate-controls, .diameter-controls
   padding: clamp(1.5rem, 3vw, 2.6rem)
   border-left: 1px solid var(--line)
@@ -1973,6 +1979,8 @@ input[type='range']
 
   svg
     width: min(100%, 590px)
+    touch-action: none
+    user-select: none
 
   .coordinate-grid-line
     stroke: rgba(7, 29, 51, .08)
@@ -2002,6 +2010,11 @@ input[type='range']
   h3
     margin-top: .7rem
     font-size: clamp(1.35rem, 2.3vw, 2rem)
+
+  .drag-hint
+    margin-top: .6rem
+    color: rgba(255, 255, 255, .72)
+    font-size: .68rem
 
   ol
     margin-top: 1.6rem
@@ -2056,7 +2069,7 @@ input[type='range']
     color: var(--white)
     text-align: center
 
-  .radical-answer
+  .coordinate-answer, .radical-answer
     grid-column: 1 / -1
     justify-content: flex-start
     font-family: Georgia, serif
@@ -2075,6 +2088,16 @@ input[type='range']
 
 .answer-feedback--dark
   color: rgba(255, 255, 255, .72)
+
+  &.is-incorrect
+    border: 1px solid rgba(255, 145, 119, .42)
+    background: rgba(255, 107, 72, .16)
+    color: #ffe9e3
+
+  &.is-correct
+    border: 1px solid rgba(169, 223, 114, .4)
+    background: rgba(169, 223, 114, .16)
+    color: #efffdf
 
 .diameter-lab__body
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr)

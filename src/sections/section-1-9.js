@@ -77,7 +77,7 @@ root.innerHTML = `
       <div class="interactive-shell coordinate-lab" data-reveal>
         <div class="interactive-shell__header">
           <div><span class="live-dot"></span><p>Draggable coordinate lab</p></div>
-          <span>Drag A or B · grid snaps to integers</span>
+          <span>Drag A, B, or M · endpoints snap to integers</span>
         </div>
         <div class="coordinate-lab__body">
           <div class="coordinate-stage">
@@ -98,7 +98,7 @@ root.innerHTML = `
               </fieldset>
             </div>
             <div class="preset-row">
-              <button type="button" class="is-active" data-coordinate-preset="endpoint">Class-example setup</button>
+              <button type="button" class="is-active" data-coordinate-preset="endpoint">Guided setup</button>
               <button type="button" data-coordinate-preset="free">New segment</button>
             </div>
             <div class="coordinate-metrics" aria-live="polite">
@@ -133,19 +133,19 @@ root.innerHTML = `
 
       <div class="median-workbench" data-reveal>
         <div class="median-graph">
-          <svg id="median-svg" viewBox="0 0 560 560" role="img" aria-label="Triangle with vertices A, B, C and median from B to midpoint M"></svg>
+            <svg id="median-svg" viewBox="0 0 560 560" role="img" aria-label="Triangle with vertices A, B, C and median from B to midpoint M. Drag M to move the whole triangle."></svg>
         </div>
         <div class="median-solution">
-          <p class="tool-label">Class-example triangle</p>
-          <h3>A(1, −1), B(4, 5), C(−9, 3)</h3>
+          <p class="tool-label">Median practice</p>
+          <h3 id="median-coordinates">A(1, −1), B(4, 5), C(−9, 3)</h3>
+          <p class="drag-hint">Drag the green M point to move the whole triangle.</p>
           <ol>
             <li><span>1</span><div><strong>Find midpoint M of AC.</strong><p>Average A and C—not A and B.</p></div></li>
             <li><span>2</span><div><strong>Measure BM.</strong><p>Use B and the midpoint you just found.</p></div></li>
             <li><span>3</span><div><strong>Simplify the radical.</strong><p>√80 = √(16 · 5) = 4√5.</p></div></li>
           </ol>
           <div class="median-answer-grid">
-            <label>Mₓ <input id="median-mx" type="number" /></label>
-            <label>Mᵧ <input id="median-my" type="number" /></label>
+            <label class="coordinate-answer">M = ( <input id="median-mx" type="number" aria-label="Midpoint x-coordinate" />, <input id="median-my" type="number" aria-label="Midpoint y-coordinate" /> )</label>
             <label class="radical-answer">BM = <input id="median-coefficient" type="number" aria-label="Coefficient outside the radical" />√<input id="median-radicand" type="number" aria-label="Number inside the radical" /></label>
           </div>
           <button class="lesson-control-button" type="button" id="check-median">Check the median</button>
@@ -164,7 +164,7 @@ root.innerHTML = `
       <div class="interactive-shell diameter-lab" data-reveal>
         <div class="interactive-shell__header">
           <div><span class="live-dot"></span><p>Circle-from-diameter studio</p></div>
-          <span>Drag either endpoint</span>
+          <span>Drag P, Q, or center C</span>
         </div>
         <div class="diameter-lab__body">
           <div class="coordinate-stage coordinate-stage--light">
@@ -244,7 +244,7 @@ root.innerHTML = `
 
       <div class="square-studio" data-reveal>
         <div class="square-studio__steps">
-          <p class="tool-label">Convert the class-example equation</p>
+          <p class="tool-label">Convert the general-form equation</p>
           <h3>x² + y² − 10x + 12y + 54 = 0</h3>
           <ol>
             <li class="is-visible"><span>1</span><p>(x² − 10x) + (y² + 12y) = −54</p></li>
@@ -292,7 +292,7 @@ root.innerHTML = `
 
     <section class="lesson-section readiness readiness--gold">
       <div class="lesson-section__intro" data-reveal>
-        <p class="lesson-kicker"><span>06</span> Class-example readiness</p>
+        <p class="lesson-kicker"><span>06</span> Section readiness</p>
         <h2>Know the first move<br>before doing arithmetic.</h2>
       </div>
       <div class="first-move-grid" data-reveal>
@@ -381,30 +381,65 @@ function pointMarkup(name, point, className, draggable = false) {
   `;
 }
 
-function bindDraggableSvg(svg, state, render) {
+function bindDraggableSvg(svg, state, render, translationHandles = {}) {
   let activePoint = null;
+  let translationStart = null;
+
+  function eventCoordinate(event) {
+    const rectangle = svg.getBoundingClientRect();
+    const x = ((event.clientX - rectangle.left) / rectangle.width) * GRAPH_SIZE;
+    const y = ((event.clientY - rectangle.top) / rectangle.height) * GRAPH_SIZE;
+    return {
+      x: x / graphScale - GRAPH_BOUND,
+      y: GRAPH_BOUND - y / graphScale,
+    };
+  }
 
   svg.addEventListener("pointerdown", (event) => {
     const target = event.target.closest("[data-drag-point]");
     if (!target) return;
     activePoint = target.dataset.dragPoint;
+    const translatedPoints = translationHandles[activePoint];
+    if (translatedPoints) {
+      translationStart = {
+        pointer: eventCoordinate(event),
+        points: Object.fromEntries(translatedPoints.map((name) => [name, { ...state[name] }])),
+      };
+    }
     svg.setPointerCapture(event.pointerId);
   });
 
   svg.addEventListener("pointermove", (event) => {
     if (!activePoint) return;
-    const rectangle = svg.getBoundingClientRect();
-    const x = ((event.clientX - rectangle.left) / rectangle.width) * GRAPH_SIZE;
-    const y = ((event.clientY - rectangle.top) / rectangle.height) * GRAPH_SIZE;
-    state[activePoint] = {
-      x: clampCoordinate(x / graphScale - GRAPH_BOUND),
-      y: clampCoordinate(GRAPH_BOUND - y / graphScale),
-    };
+    const coordinate = eventCoordinate(event);
+    const translatedPoints = translationHandles[activePoint];
+    if (translatedPoints && translationStart) {
+      const requestedX = Math.round(coordinate.x - translationStart.pointer.x);
+      const requestedY = Math.round(coordinate.y - translationStart.pointer.y);
+      const minimumX = Math.max(...translatedPoints.map((name) => -GRAPH_BOUND - translationStart.points[name].x));
+      const maximumX = Math.min(...translatedPoints.map((name) => GRAPH_BOUND - translationStart.points[name].x));
+      const minimumY = Math.max(...translatedPoints.map((name) => -GRAPH_BOUND - translationStart.points[name].y));
+      const maximumY = Math.min(...translatedPoints.map((name) => GRAPH_BOUND - translationStart.points[name].y));
+      const shiftX = Math.max(minimumX, Math.min(maximumX, requestedX));
+      const shiftY = Math.max(minimumY, Math.min(maximumY, requestedY));
+      translatedPoints.forEach((name) => {
+        state[name] = {
+          x: translationStart.points[name].x + shiftX,
+          y: translationStart.points[name].y + shiftY,
+        };
+      });
+    } else {
+      state[activePoint] = {
+        x: clampCoordinate(coordinate.x),
+        y: clampCoordinate(coordinate.y),
+      };
+    }
     render();
   });
 
   const stopDragging = () => {
     activePoint = null;
+    translationStart = null;
   };
   svg.addEventListener("pointerup", stopDragging);
   svg.addEventListener("pointercancel", stopDragging);
@@ -434,7 +469,7 @@ function renderCoordinateLab() {
     <line x1="${graphX(A.x)}" y1="${graphY(A.y)}" x2="${graphX(B.x)}" y2="${graphY(B.y)}" class="coordinate-segment" />
     ${pointMarkup("A", A, "coordinate-point--a", true)}
     ${pointMarkup("B", B, "coordinate-point--b", true)}
-    ${pointMarkup("M", midpoint, "coordinate-point--midpoint")}
+    ${pointMarkup("M", midpoint, "coordinate-point--midpoint", true)}
   `;
 
   Object.entries(coordinateInputs).forEach(([name, axes]) => {
@@ -466,7 +501,7 @@ document.querySelectorAll("[data-coordinate-preset]").forEach((button) => {
   });
 });
 
-bindDraggableSvg(coordinateSvg, coordinateState, renderCoordinateLab);
+bindDraggableSvg(coordinateSvg, coordinateState, renderCoordinateLab, { M: ["A", "B"] });
 renderCoordinateLab();
 
 document.querySelector("#check-missing-endpoint").addEventListener("click", () => {
@@ -488,28 +523,36 @@ const medianPoints = {
   C: { x: -9, y: 3 },
   M: { x: -4, y: 1 },
 };
-medianSvg.innerHTML = `
-  ${gridMarkup({ quadrants: false })}
-  <polygon points="${graphX(1)},${graphY(-1)} ${graphX(4)},${graphY(5)} ${graphX(-9)},${graphY(3)}" class="median-triangle" />
-  <line x1="${graphX(4)}" y1="${graphY(5)}" x2="${graphX(-4)}" y2="${graphY(1)}" class="median-line" />
-  ${pointMarkup("A", medianPoints.A, "coordinate-point--a")}
-  ${pointMarkup("B", medianPoints.B, "coordinate-point--b")}
-  ${pointMarkup("C", medianPoints.C, "coordinate-point--c")}
-  ${pointMarkup("M", medianPoints.M, "coordinate-point--midpoint")}
-`;
+
+function renderMedianLab() {
+  const { A, B, C, M } = medianPoints;
+  medianSvg.innerHTML = `
+    ${gridMarkup({ quadrants: false })}
+    <polygon points="${graphX(A.x)},${graphY(A.y)} ${graphX(B.x)},${graphY(B.y)} ${graphX(C.x)},${graphY(C.y)}" class="median-triangle" />
+    <line x1="${graphX(B.x)}" y1="${graphY(B.y)}" x2="${graphX(M.x)}" y2="${graphY(M.y)}" class="median-line" />
+    ${pointMarkup("A", A, "coordinate-point--a")}
+    ${pointMarkup("B", B, "coordinate-point--b")}
+    ${pointMarkup("C", C, "coordinate-point--c")}
+    ${pointMarkup("M", M, "coordinate-point--midpoint", true)}
+  `;
+  document.querySelector("#median-coordinates").textContent = `A${coordinateLabel(A)}, B${coordinateLabel(B)}, C${coordinateLabel(C)}`;
+}
+
+bindDraggableSvg(medianSvg, medianPoints, renderMedianLab, { M: ["A", "B", "C", "M"] });
+renderMedianLab();
 
 document.querySelector("#check-median").addEventListener("click", () => {
   const mx = Number(document.querySelector("#median-mx").value);
   const my = Number(document.querySelector("#median-my").value);
   const coefficient = Number(document.querySelector("#median-coefficient").value);
   const radicand = Number(document.querySelector("#median-radicand").value);
-  const correct = nearlyEqual(mx, -4) && nearlyEqual(my, 1) && nearlyEqual(coefficient, 4) && nearlyEqual(radicand, 5);
+  const correct = nearlyEqual(mx, medianPoints.M.x) && nearlyEqual(my, medianPoints.M.y) && nearlyEqual(coefficient, 4) && nearlyEqual(radicand, 5);
   setFeedback(
     document.querySelector("#feedback-median"),
     correct,
     correct
-      ? "Correct: M = (−4, 1), so BM = √[(−8)² + (−4)²] = √80 = 4√5."
-      : "First average A and C to get M. Then use B(4, 5) and M in the distance formula.",
+      ? `Correct: M = ${coordinateLabel(medianPoints.M)}, so BM = √[(−8)² + (−4)²] = √80 = 4√5.`
+      : `First average A and C to get M. Then use B${coordinateLabel(medianPoints.B)} and M in the distance formula.`,
   );
 });
 
@@ -540,7 +583,7 @@ function renderDiameterLab() {
     <line x1="${graphX(P.x)}" y1="${graphY(P.y)}" x2="${graphX(Q.x)}" y2="${graphY(Q.y)}" class="diameter-segment" />
     ${pointMarkup("P", P, "coordinate-point--a", true)}
     ${pointMarkup("Q", Q, "coordinate-point--b", true)}
-    ${pointMarkup("C", center, "coordinate-point--midpoint")}
+    ${pointMarkup("C", center, "coordinate-point--midpoint", true)}
   `;
 
   Object.entries(diameterInputs).forEach(([name, axes]) => {
@@ -560,7 +603,7 @@ Object.entries(diameterInputs).forEach(([name, axes]) => {
     });
   });
 });
-bindDraggableSvg(diameterSvg, diameterState, renderDiameterLab);
+bindDraggableSvg(diameterSvg, diameterState, renderDiameterLab, { C: ["P", "Q"] });
 renderDiameterLab();
 
 const circleAnalyzerState = { h: 3, k: -1, r2: 14 };

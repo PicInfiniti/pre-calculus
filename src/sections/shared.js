@@ -107,6 +107,7 @@ export function formatNumber(value) {
 }
 
 export function setFeedback(element, correct, message) {
-  element.className = `answer-feedback ${correct ? "is-correct" : "is-incorrect"}`;
+  element.classList.remove("is-correct", "is-incorrect");
+  element.classList.add(correct ? "is-correct" : "is-incorrect");
   element.textContent = message;
 }
