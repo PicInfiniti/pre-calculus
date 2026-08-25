@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-P2Xu9kJm.js";import{a as e,i as t,n,o as r,r as i,s as a}from"./shared-uJf8p8nG.js";var o=document.querySelector(`#app`);o.innerHTML=`
+import"./modulepreload-polyfill-P2Xu9kJm.js";import{a as e,i as t,n,o as r,r as i,s as a}from"./shared-SguRU4Ut.js";var o=document.querySelector(`#app`);o.innerHTML=`
   ${r(`9.2`)}
   <main>
     <section class="lesson-hero lesson-hero--blue">
@@ -109,13 +109,13 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";import{a as e,i as t,n,o as r,r as 
     <section class="lesson-section" id="problem-c-lab">
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker"><span>03</span> Practice the exact move</p>
-        <h2>Eliminate z from<br>the worksheet system.</h2>
+        <h2>Eliminate z from<br>the practice system.</h2>
         <p>Enter the coefficients of each new two-variable equation. The multipliers are shown; you perform the combination.</p>
       </div>
 
       <div class="elimination-studio" data-reveal>
         <div class="studio-source">
-          <div class="tool-label">Worksheet Problem C</div>
+          <div class="tool-label">Elimination practice</div>
           <div class="numbered-system numbered-system--large">
             <p><i class="eq-number">1</i> 3x − 2y + 9z = 2</p>
             <p><i class="eq-number">2</i> −2x − 5y − 4z = 3</p>
@@ -191,7 +191,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";import{a as e,i as t,n,o as r,r as 
 
       <div class="parameter-line" data-reveal>
         <div class="parameter-line__copy">
-          <div class="tool-label">Worksheet Problem D</div>
+          <div class="tool-label">Free-variable practice</div>
           <div class="numbered-system numbered-system--large">
             <p>5x + y − 2z = 10</p>
             <p>y + 3z = 5</p>
@@ -222,7 +222,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";import{a as e,i as t,n,o as r,r as 
         <span>3 equations · 3 variables</span><i>→</i><span>2 equations · 2 variables</span><i>→</i><span>1 equation · 1 variable</span><i>→</i><span>Back-substitute</span>
       </div>
       <aside class="ready-banner ready-banner--blue" data-reveal>
-        <span>You are worksheet-ready when</span>
+        <span>You are ready when</span>
         <p>You can choose multipliers, preserve every term, interpret a zero row, and write a free-variable answer with a parameter.</p>
         <a href="#problem-c-lab">Retry the elimination studio <span aria-hidden="true">↑</span></a>
       </aside>
