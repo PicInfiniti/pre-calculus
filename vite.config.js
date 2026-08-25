@@ -8,8 +8,7 @@ export default defineConfig({
     target: "esnext",
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL("./index.html", import.meta.url)),
-        test: fileURLToPath(new URL("./pages/test.html", import.meta.url)),
+        home: fileURLToPath(new URL("./index.html", import.meta.url)),
       },
     },
   },
