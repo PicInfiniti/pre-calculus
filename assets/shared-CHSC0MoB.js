@@ -3,7 +3,7 @@ function e(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}function t(t){ret
     <header class="lesson-header">
       <a class="lesson-brand" href="${e()}" aria-label="Back to the MATH 1280 course home">
         <span class="lesson-brand__mark" aria-hidden="true">ƒ</span>
-        <span><strong>Precalculus</strong><small>MATH 1280 · Fall 2026</small></span>
+        <span><strong>Precalculus</strong><small>MATH 1280</small></span>
       </a>
       <nav class="lesson-nav" aria-label="Systems lesson navigation">
         <a class="${t===`9.1`?`is-current`:``}" href="${e(`pages/sections/9-1.html`)}">9.1 · Two variables</a>

@@ -17,7 +17,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
           <span class="brand__mark" aria-hidden="true">ƒ</span>
           <span>
             <strong>Precalculus</strong>
-            <small>MATH 1280 · Fall 2026</small>
+            <small>MATH 1280</small>
           </span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
@@ -84,7 +84,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
 
         <section class="course-intro" id="course-map" aria-labelledby="course-map-title">
           <div>
-            <p class="section-kicker">Course map · Fall 2026</p>
+            <p class="section-kicker">Course map</p>
             <h2 id="course-map-title">Every idea has<br>a place in the story.</h2>
           </div>
           <div class="course-intro__copy">
@@ -136,7 +136,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
             <p>
               This site follows <cite>Precalculus: Mathematics for Calculus</cite>, eighth edition,
               by James Stewart, Lothar Redlin, and Saleem Watson. The course focuses only on the
-              sections shown in the Fall 2026 calendar.
+              sections shown in the course calendar.
             </p>
             <dl class="book-details">
               <div><dt>Edition</dt><dd>8th</dd></div>
@@ -152,7 +152,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
           <span class="brand__mark" aria-hidden="true">ƒ</span>
           <span><strong>Precalculus</strong><small>MATH 1280</small></span>
         </a>
-        <p>Built as a growing set of course notes for Fall 2026.</p>
+        <p>Built as a growing set of course notes for MATH 1280.</p>
         <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
       </footer>
     `}}({BASE_URL:`/pre-calculus/`,DEV:!1,MODE:`production`,PROD:!0,SSR:!1,VITE_SITE:`picinfiniti.net`}).init();
