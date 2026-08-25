@@ -72,9 +72,10 @@ const sectionCount = courseUnits.reduce(
   0,
 );
 
+const baseUrl = import.meta.env.BASE_URL;
 const sectionPages = {
-  "9.1": "/pages/sections/9-1.html",
-  "9.2": "/pages/sections/9-2.html",
+  "9.1": `${baseUrl}pages/sections/9-1.html`,
+  "9.2": `${baseUrl}pages/sections/9-2.html`,
 };
 
 function renderUnit(unit) {
@@ -120,7 +121,7 @@ export default class App {
           <span class="brand__mark" aria-hidden="true">ƒ</span>
           <span>
             <strong>Precalculus</strong>
-            <small>MATH 1280 · Fall 2026</small>
+            <small>MATH 1280</small>
           </span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
@@ -187,7 +188,7 @@ export default class App {
 
         <section class="course-intro" id="course-map" aria-labelledby="course-map-title">
           <div>
-            <p class="section-kicker">Course map · Fall 2026</p>
+            <p class="section-kicker">Course map</p>
             <h2 id="course-map-title">Every idea has<br>a place in the story.</h2>
           </div>
           <div class="course-intro__copy">
@@ -239,7 +240,7 @@ export default class App {
             <p>
               This site follows <cite>Precalculus: Mathematics for Calculus</cite>, eighth edition,
               by James Stewart, Lothar Redlin, and Saleem Watson. The course focuses only on the
-              sections shown in the Fall 2026 calendar.
+              sections shown in the course calendar.
             </p>
             <dl class="book-details">
               <div><dt>Edition</dt><dd>8th</dd></div>
@@ -255,8 +256,25 @@ export default class App {
           <span class="brand__mark" aria-hidden="true">ƒ</span>
           <span><strong>Precalculus</strong><small>MATH 1280</small></span>
         </a>
-        <p>Built as a growing set of course notes for Fall 2026.</p>
-        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        <p class="footer-credit">
+          Powered by
+          <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
+        </p>
+        <nav class="footer-links" aria-label="Project links">
+          <a
+            class="github-link"
+            href="https://github.com/PicInfiniti/pre-calculus"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="View the Precalculus project on GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.23.7-3.91-1.37-3.91-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.58-.29-5.29-1.29-5.29-5.68 0-1.26.45-2.28 1.2-3.09-.12-.29-.52-1.48.11-3.08 0 0 .98-.31 3.16 1.18a10.95 10.95 0 0 1 5.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.6.23 2.79.11 3.08.75.81 1.2 1.83 1.2 3.09 0 4.4-2.72 5.38-5.3 5.67.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </nav>
       </footer>
     `;
   }

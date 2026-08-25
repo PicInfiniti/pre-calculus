@@ -558,15 +558,41 @@
   gap: 2rem
   border-top: 1px solid var(--line)
 
-  > p
+  .footer-credit
     color: var(--ink-soft)
     font-size: .72rem
     text-align: center
 
-  > a:last-child
-    justify-self: end
+    a
+      color: var(--ink)
+      font-weight: 700
+      text-decoration: underline
+      text-decoration-color: var(--coral)
+      text-decoration-thickness: 2px
+      text-underline-offset: .25rem
+
+      &:hover
+        color: var(--coral)
+
+.footer-links
+  justify-self: end
+  display: flex
+  align-items: center
+  gap: 1.25rem
+
+  > a
     font-size: .76rem
     font-weight: 700
+
+.github-link
+  display: inline-flex
+  align-items: center
+  gap: .42rem
+
+  svg
+    width: 1.1rem
+    height: 1.1rem
+    fill: currentColor
 
 .brand--footer .brand__mark
   width: 2.1rem
@@ -609,7 +635,7 @@
   .site-footer
     grid-template-columns: 1fr 1fr
 
-    > p
+    .footer-credit
       display: none
 
 @media (max-width: 680px)
@@ -685,6 +711,12 @@
 
   .site-footer
     grid-template-columns: 1fr auto
+
+  .footer-links
+    gap: .85rem
+
+  .github-link span
+    display: none
 
 @media (prefers-reduced-motion: reduce)
   html

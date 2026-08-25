@@ -7,6 +7,7 @@ import {
   renderLessonFooter,
   renderLessonHeader,
   setFeedback,
+  sitePath,
 } from "./shared";
 
 const root = document.querySelector("#app");
@@ -234,11 +235,11 @@ root.innerHTML = `
       <aside class="ready-banner" data-reveal>
         <span>Before moving on</span>
         <p>I can explain <strong>why</strong> a system has one, zero, or infinitely many solutions—not just name the outcome.</p>
-        <a href="/pages/sections/9-2.html">Continue to three variables <span aria-hidden="true">→</span></a>
+        <a href="${sitePath("pages/sections/9-2.html")}">Continue to three variables <span aria-hidden="true">→</span></a>
       </aside>
     </section>
   </main>
-  ${renderLessonFooter({ next: { href: "/pages/sections/9-2.html", label: "Section 9.2 · Three variables" } })}
+  ${renderLessonFooter({ next: { href: "pages/sections/9-2.html", label: "Section 9.2 · Three variables" } })}
 `;
 
 function readCoefficients() {

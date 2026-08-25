@@ -240,7 +240,7 @@ root.innerHTML = `
       </aside>
     </section>
   </main>
-  ${renderLessonFooter({ previous: { href: "/pages/sections/9-1.html", label: "Section 9.1 · Two variables" } })}
+  ${renderLessonFooter({ previous: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two variables" } })}
 `;
 
 class PlaneExplorer {

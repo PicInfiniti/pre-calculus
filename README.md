@@ -1,66 +1,72 @@
 # MATH 1280 · Precalculus
 
-A growing collection of course notes, worked examples, and practice for **MATH 1280 — Fall 2026**.
+An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-The project follows the assigned sections of *Precalculus: Mathematics for Calculus*, eighth edition, by James Stewart, Lothar Redlin, and Saleem Watson. The home page is the course map; every lesson added later will live on its own page.
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
-## Course map
+## Why this project exists
 
-| Learning arc | Textbook sections |
-| --- | --- |
-| Systems of linear equations | 9.1, 9.2 |
-| The coordinate plane | 1.9 |
-| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 |
-| Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 |
-| Exponential and logarithmic functions | 4.1–4.5 |
-| Right-triangle trigonometry | 6.1–6.4 |
-| Unit-circle trigonometry | 5.1–5.5 |
-| Analytic trigonometry | 7.1–7.5 |
+Precalculus makes more sense when students can see ideas move, test a prediction, and connect algebraic steps to geometry. Each lesson is designed around a simple learning loop:
 
-That is **32 sections** across eight chapters, organized into eight connected learning arcs. The order reflects the Fall 2026 tentative calendar and may evolve with the course.
+1. **Understand** the central idea through clear language and a visual model.
+2. **Work it out** with deliberate examples that expose the important algebra.
+3. **Explore** by changing parameters, rotating models, and comparing outcomes.
+4. **Practice** with focused questions and immediate, useful feedback.
 
-## Textbook
+## Available lessons
 
-**Stewart, James; Redlin, Lothar; Watson, Saleem.** *Precalculus: Mathematics for Calculus*. 8th ed., Cengage, 2024.
+### 9.1 · Systems of Linear Equations in Two Variables
 
-- Print ISBN: `978-0-357-75363-7`
-- [Publisher page and table of contents](https://www.cengage.ca/c/precalculus-mathematics-for-calculus-8e-stewart-redlin-watson/9780357753637/)
+- Interactive line and solution explorer
+- Elimination studio with step-by-step reasoning
+- Word-problem modeling tools
+- Practice aligned with the course worksheet
 
-This repository is an independent learning resource. The textbook and its cover artwork are owned by their respective publisher and rights holders; no textbook content is redistributed here.
+### 9.2 · Systems of Linear Equations in Three Variables
 
-## Current status
+- Interactive 3D plane explorer built with the Canvas API
+- One-solution, no-solution, and infinitely-many-solutions models
+- Guided elimination from three variables to one
+- Free-variable and parameter-form practice
 
-- [x] Responsive course home page
-- [x] Complete Fall 2026 section roadmap
-- [x] Multi-page Vite foundation
-- [x] Interactive Section 9.1 and 9.2 pages
-- [x] Guided examples, targeted practice, and answer feedback for the systems unit
-- [ ] Remaining individual section pages
-- [ ] Cross-session progress tracking
+## Course roadmap
 
-## Development
+Every textbook section will have its own standalone page.
 
-Requirements:
+| Learning arc | Textbook sections | Status |
+| --- | --- | --- |
+| Systems of linear equations | 9.1, 9.2 | Available |
+| The coordinate plane | 1.9 | Planned |
+| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | Planned |
+| Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 | Planned |
+| Exponential and logarithmic functions | 4.1–4.5 | Planned |
+| Right-triangle trigonometry | 6.1–6.4 | Planned |
+| Unit-circle trigonometry | 5.1–5.5 | Planned |
+| Analytic trigonometry | 7.1–7.5 | Planned |
 
-- Node.js `20.19+` or `22.12+`
-- npm
+## Built with
 
-Install dependencies and start the local server:
+- [Vite](https://vite.dev/) for the multi-page build and development server
+- Modern JavaScript with no UI framework
+- Sass for the responsive visual system
+- The native Canvas API for the draggable 3D plane model
+- Accessible HTML, keyboard-friendly controls, and reduced-motion support
+
+## Run locally
+
+Requirements: Node.js `20.19+` or `22.12+`, and npm.
 
 ```bash
+git clone https://github.com/PicInfiniti/pre-calculus.git
+cd pre-calculus
 npm install
 npm run dev
 ```
 
-Create a production build:
+Create and preview a production build:
 
 ```bash
 npm run build
-```
-
-Preview the production build:
-
-```bash
 npm run preview
 ```
 
@@ -69,59 +75,50 @@ npm run preview
 ```text
 .
 ├── index.html                  # Course home entry
-├── pages/
-│   └── sections/              # One HTML entry per section (added over time)
-├── public/                     # Static files and CNAME
+├── pages/sections/             # One HTML entry per lesson
+├── public/                     # Static public assets
 ├── src/
-│   ├── assets/
-│   │   ├── fonts/
-│   │   ├── img/
-│   │   └── sass/
-│   ├── core/App.js            # Home page content and course map
-│   ├── sections/              # Lesson entries and shared lesson behavior
-│   └── main.js                # Home page bootstrap
-├── vite.config.js              # Vite multi-page inputs
+│   ├── assets/                 # Fonts, images, and Sass
+│   ├── core/App.js             # Home page and course roadmap
+│   ├── sections/               # Interactive lesson logic
+│   └── main.js                 # Home page bootstrap
+├── vite.config.js              # Multi-page Vite configuration
 └── package.json
 ```
 
-## Adding a section page
+## Adding a lesson
 
-Each textbook section should remain a standalone page so it can be opened, linked, and studied independently.
-
-Use this convention:
+Keep each textbook section independent so it can be linked and studied on its own:
 
 ```text
 pages/sections/9-1.html
 src/sections/section-9-1.js
 ```
 
-Then add its HTML file as a named input in `vite.config.js`:
-
-```js
-input: {
-  home: fileURLToPath(new URL("./index.html", import.meta.url)),
-  section91: fileURLToPath(
-    new URL("./pages/sections/9-1.html", import.meta.url),
-  ),
-}
-```
-
-A lesson page should follow the shared study rhythm:
-
-1. **Understand** — the central concept, vocabulary, and visual model.
-2. **Work it out** — clear examples with important algebra steps visible.
-3. **Practice** — focused problems with answers or feedback.
+Register the HTML file as an input in `vite.config.js`, reuse the shared lesson header and footer, and follow the understand → work → explore → practice learning loop.
 
 ## Deployment
 
-The project builds to `dist/` and can be published to GitHub Pages:
+The site is deployed from the generated `dist/` directory to the `gh-pages` branch:
 
 ```bash
 npm run deploy
 ```
 
-The custom domain is configured through `public/CNAME`.
+Vite uses `/pre-calculus/` as the production base path. The public deployment is available at [picinfiniti.net/pre-calculus](https://picinfiniti.net/pre-calculus/).
+
+## Textbook and attribution
+
+The course sequence follows:
+
+> James Stewart, Lothar Redlin, and Saleem Watson. *Precalculus: Mathematics for Calculus*. 8th ed., Cengage, 2024. Print ISBN `978-0-357-75363-7`.
+
+This repository is an independent learning resource. It is not affiliated with or endorsed by Cengage. The textbook title, content, and cover artwork belong to their respective publisher and rights holders; textbook content is not redistributed here.
 
 ## License
 
-Project source code is available under the licenses included in this repository. Third-party names, textbook content, and artwork remain the property of their respective owners.
+The project source is available under the [MIT License](LICENSE). Third-party names, content, and artwork remain the property of their respective owners.
+
+---
+
+Powered by [PicInfiniti](https://picinfiniti.net).

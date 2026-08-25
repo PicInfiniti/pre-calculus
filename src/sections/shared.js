@@ -1,27 +1,31 @@
+export function sitePath(path = "") {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+}
+
 export function renderLessonHeader(activeSection) {
   return `
     <div class="reading-progress" aria-hidden="true"><span></span></div>
     <header class="lesson-header">
-      <a class="lesson-brand" href="/" aria-label="Back to the MATH 1280 course home">
+      <a class="lesson-brand" href="${sitePath()}" aria-label="Back to the MATH 1280 course home">
         <span class="lesson-brand__mark" aria-hidden="true">ƒ</span>
-        <span><strong>Precalculus</strong><small>MATH 1280 · Fall 2026</small></span>
+        <span><strong>Precalculus</strong><small>MATH 1280</small></span>
       </a>
       <nav class="lesson-nav" aria-label="Systems lesson navigation">
-        <a class="${activeSection === "9.1" ? "is-current" : ""}" href="/pages/sections/9-1.html">9.1 · Two variables</a>
-        <a class="${activeSection === "9.2" ? "is-current" : ""}" href="/pages/sections/9-2.html">9.2 · Three variables</a>
+        <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>
+        <a class="${activeSection === "9.2" ? "is-current" : ""}" href="${sitePath("pages/sections/9-2.html")}">9.2 · Three variables</a>
       </nav>
-      <a class="lesson-header__home" href="/">Course map <span aria-hidden="true">↗</span></a>
+      <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
     </header>
   `;
 }
 
 export function renderLessonFooter({ previous, next }) {
   const previousLink = previous
-    ? `<a href="${previous.href}"><span>← Previous</span><strong>${previous.label}</strong></a>`
-    : `<a href="/"><span>← Return</span><strong>Course home</strong></a>`;
+    ? `<a href="${sitePath(previous.href)}"><span>← Previous</span><strong>${previous.label}</strong></a>`
+    : `<a href="${sitePath()}"><span>← Return</span><strong>Course home</strong></a>`;
   const nextLink = next
-    ? `<a class="lesson-footer__next" href="${next.href}"><span>Next →</span><strong>${next.label}</strong></a>`
-    : `<a class="lesson-footer__next" href="/"><span>Complete</span><strong>Course home →</strong></a>`;
+    ? `<a class="lesson-footer__next" href="${sitePath(next.href)}"><span>Next →</span><strong>${next.label}</strong></a>`
+    : `<a class="lesson-footer__next" href="${sitePath()}"><span>Complete</span><strong>Course home →</strong></a>`;
 
   return `
     <footer class="lesson-footer">
