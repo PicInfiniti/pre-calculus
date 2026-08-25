@@ -437,6 +437,19 @@
   font-size: .72rem
   font-weight: 700
 
+.section-chip--available
+  display: inline-flex
+  align-items: center
+  border-color: var(--line)
+  background: var(--white)
+  color: var(--ink)
+  transition: transform .2s ease, background .2s ease, border-color .2s ease
+
+  &:hover
+    border-color: var(--ink)
+    background: var(--paper-deep)
+    transform: translateY(-2px)
+
 .unit-card__note
   margin-top: .85rem
   color: rgba(35, 57, 77, .7)

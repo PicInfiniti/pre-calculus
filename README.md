@@ -33,9 +33,10 @@ This repository is an independent learning resource. The textbook and its cover 
 - [x] Responsive course home page
 - [x] Complete Fall 2026 section roadmap
 - [x] Multi-page Vite foundation
-- [ ] Individual section pages
-- [ ] Worked examples and practice sets
-- [ ] Progress and answer-checking tools
+- [x] Interactive Section 9.1 and 9.2 pages
+- [x] Guided examples, targeted practice, and answer feedback for the systems unit
+- [ ] Remaining individual section pages
+- [ ] Cross-session progress tracking
 
 ## Development
 
@@ -77,6 +78,7 @@ npm run preview
 │   │   ├── img/
 │   │   └── sass/
 │   ├── core/App.js            # Home page content and course map
+│   ├── sections/              # Lesson entries and shared lesson behavior
 │   └── main.js                # Home page bootstrap
 ├── vite.config.js              # Vite multi-page inputs
 └── package.json
@@ -90,7 +92,7 @@ Use this convention:
 
 ```text
 pages/sections/9-1.html
-src/sections/9-1.js
+src/sections/section-9-1.js
 ```
 
 Then add its HTML file as a named input in `vite.config.js`:

@@ -72,10 +72,24 @@ const sectionCount = courseUnits.reduce(
   0,
 );
 
+const sectionPages = {
+  "9.1": "/pages/sections/9-1.html",
+  "9.2": "/pages/sections/9-2.html",
+};
+
 function renderUnit(unit) {
   const sections = unit.sections
-    .map((section) => `<span class="section-chip">${section}</span>`)
+    .map((section) => {
+      const href = sectionPages[section];
+      return href
+        ? `<a class="section-chip section-chip--available" href="${href}">${section}</a>`
+        : `<span class="section-chip">${section}</span>`;
+    })
     .join("");
+  const availableCount = unit.sections.filter((section) => sectionPages[section]).length;
+  const note = availableCount
+    ? `${availableCount} interactive lesson${availableCount === 1 ? "" : "s"} available now.`
+    : "Individual lesson pages will be added here.";
 
   return `
     <article class="unit-card unit-card--${unit.accent}">
@@ -88,7 +102,7 @@ function renderUnit(unit) {
       <div class="unit-card__sections" aria-label="Included sections">
         ${sections}
       </div>
-      <span class="unit-card__note">Individual lesson pages will be added here.</span>
+      <span class="unit-card__note">${note}</span>
     </article>
   `;
 }
