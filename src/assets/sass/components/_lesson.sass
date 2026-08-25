@@ -119,6 +119,9 @@ button
 .lesson-hero--blue
   --hero-accent: var(--blue)
 
+.lesson-hero--gold
+  --hero-accent: var(--gold)
+
 .lesson-kicker
   display: flex
   align-items: center
@@ -1621,6 +1624,839 @@ input[type='range']
 .ready-banner--blue
   background: #f1d897
 
+// Section 1.9 · Coordinate plane and circles
+.coordinate-hero-art
+  position: relative
+  min-height: 500px
+
+  svg
+    width: 100%
+    filter: drop-shadow(0 28px 35px rgba(7, 29, 51, .14))
+
+.coordinate-hero__paper
+  fill: var(--white)
+  stroke: var(--line)
+
+.coordinate-hero__grid
+  color: rgba(7, 29, 51, .1)
+
+.coordinate-hero__axis
+  fill: none
+  stroke: var(--ink)
+  stroke-width: 2
+
+.coordinate-hero__circle
+  fill: rgba(255, 209, 102, .2)
+  stroke: var(--gold)
+  stroke-width: 7
+
+.coordinate-hero__segment
+  fill: none
+  stroke: var(--ink)
+  stroke-linecap: round
+  stroke-width: 5
+
+.coordinate-hero__point
+  stroke: var(--ink)
+  stroke-width: 4
+
+.coordinate-hero__point--a
+  fill: var(--coral)
+
+.coordinate-hero__point--b
+  fill: var(--blue)
+
+.coordinate-hero__midpoint
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.coordinate-hero__formula
+  position: absolute
+  padding: .75rem .9rem
+  border-radius: .3rem
+  color: var(--ink)
+  font-family: Georgia, serif
+  font-size: .85rem
+  box-shadow: 0 14px 30px rgba(7, 29, 51, .13)
+
+.coordinate-hero__formula--distance
+  top: 2rem
+  right: -1rem
+  background: var(--blue)
+  transform: rotate(3deg)
+
+.coordinate-hero__formula--circle
+  bottom: 2rem
+  left: -1rem
+  background: var(--gold)
+  transform: rotate(-3deg)
+
+.formula-ribbon
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: rgba(255, 253, 248, .62)
+
+  div
+    min-width: 0
+    padding: 1.25rem
+
+    &:not(:last-child)
+      border-right: 1px solid var(--line)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .59rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .55rem
+    font-family: Georgia, serif
+    font-size: .82rem
+    line-height: 1.45
+
+.coordinate-lab__body, .diameter-lab__body
+  display: grid
+  grid-template-columns: minmax(0, 1.16fr) minmax(350px, .84fr)
+
+.coordinate-stage
+  min-height: 610px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  overflow: hidden
+  background: var(--ink)
+
+  svg
+    width: min(100%, 610px)
+    overflow: visible
+    touch-action: none
+    user-select: none
+
+.coordinate-stage--light
+  background: var(--paper-deep)
+
+.coordinate-grid-line
+  stroke: rgba(255, 255, 255, .08)
+  stroke-width: 1
+
+.coordinate-grid-major
+  stroke: rgba(255, 255, 255, .15)
+  stroke-width: 1.25
+
+.coordinate-axis
+  stroke: rgba(255, 255, 255, .62)
+  stroke-width: 2
+
+.coordinate-number
+  fill: rgba(255, 255, 255, .45)
+  font-family: Arial, sans-serif
+  font-size: 10px
+
+.quadrant-label
+  fill: rgba(255, 255, 255, .24)
+  font-family: Georgia, serif
+  font-size: 22px
+  font-style: italic
+
+.coordinate-stage--light
+  .coordinate-grid-line
+    stroke: rgba(7, 29, 51, .08)
+
+  .coordinate-grid-major
+    stroke: rgba(7, 29, 51, .14)
+
+  .coordinate-axis
+    stroke: rgba(7, 29, 51, .55)
+
+  .coordinate-number
+    fill: rgba(7, 29, 51, .47)
+
+  .quadrant-label
+    fill: rgba(7, 29, 51, .2)
+
+.coordinate-change-path
+  fill: none
+  stroke: rgba(255, 255, 255, .36)
+  stroke-dasharray: 7 7
+  stroke-width: 2
+
+.coordinate-segment
+  stroke: var(--gold)
+  stroke-linecap: round
+  stroke-width: 5
+
+.coordinate-point
+  cursor: grab
+
+  &:active
+    cursor: grabbing
+
+  circle
+    stroke: var(--ink)
+    stroke-width: 4
+
+  text
+    fill: var(--white)
+    font-family: Arial, sans-serif
+    font-size: 14px
+    font-weight: 700
+    paint-order: stroke
+    stroke: var(--ink)
+    stroke-width: 4px
+    stroke-linejoin: round
+
+.coordinate-stage--light .coordinate-point text, .circle-analyzer__stage .coordinate-point text, .median-graph .coordinate-point text
+  fill: var(--ink)
+  stroke: var(--paper)
+
+.coordinate-point--a circle
+  fill: var(--coral)
+
+.coordinate-point--b circle
+  fill: var(--blue)
+
+.coordinate-point--c circle
+  fill: var(--violet)
+
+.coordinate-point--midpoint
+  cursor: default
+
+  circle
+    fill: var(--green)
+
+.coordinate-controls, .diameter-controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  border-left: 1px solid var(--line)
+
+.coordinate-input-grid
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .75rem
+
+  fieldset
+    padding: 1rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+
+  legend
+    padding: 0 .3rem
+    color: var(--ink-soft)
+    font-size: .62rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  label
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: .5rem
+    font-family: Georgia, serif
+    font-size: .8rem
+
+    + label
+      margin-top: .55rem
+
+  input
+    width: 4.2rem
+    min-height: 2.45rem
+    padding: .35rem
+    border: 1px solid var(--line)
+    border-radius: .25rem
+    background: var(--paper)
+    text-align: center
+
+.coordinate-metrics
+  margin-top: 1.4rem
+  display: grid
+  gap: .55rem
+
+  article
+    padding: .85rem 1rem
+    display: grid
+    grid-template-columns: 5.2rem 1fr auto
+    align-items: center
+    gap: .75rem
+    border-radius: .3rem
+    background: var(--paper)
+
+  span
+    color: var(--ink-soft)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    font-family: Georgia, serif
+    font-size: 1rem
+
+  small
+    color: var(--ink-soft)
+    font-size: .6rem
+
+.reverse-midpoint
+  margin-top: 1rem
+  padding: clamp(1.4rem, 3vw, 2.2rem)
+  display: grid
+  grid-template-columns: 1fr auto
+  align-items: center
+  gap: 2rem
+  border: 1px solid var(--line)
+  border-radius: .55rem
+  background: var(--white)
+
+  h3
+    margin-top: .65rem
+    font-size: clamp(1.15rem, 2vw, 1.6rem)
+
+  > div:first-child > p:last-child
+    margin-top: .6rem
+    color: var(--ink-soft)
+    font-size: .74rem
+    line-height: 1.55
+
+.compact-answer
+  min-width: 310px
+
+  label
+    display: flex
+    align-items: center
+    gap: .35rem
+    font-family: Georgia, serif
+    font-size: 1rem
+
+  input
+    width: 4rem
+    min-height: 2.7rem
+    border: 1px solid var(--line)
+    border-radius: .25rem
+    background: var(--paper)
+    text-align: center
+
+  button, .lesson-control-button
+    width: 100%
+    min-height: 2.7rem
+    margin-top: .7rem
+    border: 0
+    border-radius: .25rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .67rem
+    font-weight: 700
+
+.median-workbench
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.1fr .9fr
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: rgba(255, 255, 255, .06)
+
+.median-graph
+  min-height: 590px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--paper)
+
+  svg
+    width: min(100%, 590px)
+
+  .coordinate-grid-line
+    stroke: rgba(7, 29, 51, .08)
+
+  .coordinate-grid-major
+    stroke: rgba(7, 29, 51, .15)
+
+  .coordinate-axis
+    stroke: rgba(7, 29, 51, .52)
+
+  .coordinate-number
+    fill: rgba(7, 29, 51, .45)
+
+.median-triangle
+  fill: rgba(66, 184, 213, .13)
+  stroke: var(--blue)
+  stroke-width: 4
+
+.median-line
+  stroke: var(--coral)
+  stroke-dasharray: 9 7
+  stroke-width: 5
+
+.median-solution
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+
+  h3
+    margin-top: .7rem
+    font-size: clamp(1.35rem, 2.3vw, 2rem)
+
+  ol
+    margin-top: 1.6rem
+    display: grid
+    gap: .8rem
+    list-style: none
+
+  li
+    display: grid
+    grid-template-columns: 2rem 1fr
+    gap: .7rem
+
+    > span
+      width: 1.8rem
+      height: 1.8rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--gold)
+      color: var(--ink)
+      font-size: .62rem
+      font-weight: 700
+
+    strong
+      font-size: .75rem
+
+    p
+      margin-top: .3rem
+      color: rgba(255, 255, 255, .62)
+      font-size: .68rem
+      line-height: 1.45
+
+.median-answer-grid
+  margin-top: 1.4rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  label
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: .4rem
+    font-size: .7rem
+
+  input
+    width: 3.7rem
+    min-height: 2.5rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .25rem
+    background: rgba(255, 255, 255, .1)
+    color: var(--white)
+    text-align: center
+
+  .radical-answer
+    grid-column: 1 / -1
+    justify-content: flex-start
+    font-family: Georgia, serif
+    font-size: 1rem
+
+.lesson-control-button
+  width: 100%
+  min-height: 2.8rem
+  margin-top: .8rem
+  border: 0
+  border-radius: .25rem
+  background: var(--gold)
+  color: var(--ink)
+  font-size: .68rem
+  font-weight: 700
+
+.answer-feedback--dark
+  color: rgba(255, 255, 255, .72)
+
+.diameter-lab__body
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr)
+
+.diameter-circle
+  fill: rgba(255, 209, 102, .22)
+  stroke: var(--coral)
+  stroke-width: 5
+
+.diameter-segment
+  stroke: var(--ink)
+  stroke-width: 4
+
+.diameter-derivation
+  margin-top: 1.5rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .6rem
+
+  > div
+    padding: 1rem
+    border-radius: .3rem
+    background: var(--paper)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .57rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .55rem
+    font-family: Georgia, serif
+    font-size: 1.05rem
+
+  .diameter-equation
+    grid-column: 1 / -1
+    background: var(--gold)
+
+    strong
+      font-size: clamp(1rem, 2vw, 1.45rem)
+
+.concept-callout
+  margin-top: .8rem
+  padding: 1rem
+  border-left: 4px solid var(--blue)
+  background: rgba(66, 184, 213, .12)
+  color: var(--ink-soft)
+  font-size: .7rem
+  line-height: 1.55
+
+.circle-analyzer
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.08fr .92fr
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.equation-bridge
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: rgba(255, 253, 248, .68)
+
+  article
+    min-height: 175px
+    padding: 1.3rem
+
+    &:not(:last-child)
+      border-right: 1px solid var(--line)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .57rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  strong
+    margin-top: 1.25rem
+    font-size: .85rem
+    line-height: 1.4
+
+  p
+    margin-top: .55rem
+    color: var(--ink-soft)
+    font-size: .69rem
+    line-height: 1.5
+
+.circle-analyzer__stage
+  min-height: 600px
+  padding: 1.5rem
+  display: grid
+  place-items: center
+  background: var(--ink)
+
+  svg
+    width: min(100%, 600px)
+
+  .coordinate-point text
+    fill: var(--white)
+    stroke: var(--ink)
+
+.analyzer-circle
+  fill: rgba(255, 209, 102, .18)
+  stroke: var(--gold)
+  stroke-width: 6
+
+.analyzer-radius
+  stroke: var(--coral)
+  stroke-width: 4
+
+.circle-analyzer__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+
+  > label
+    margin-top: 1.15rem
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-size: .68rem
+    font-weight: 700
+
+  > input[type='range']
+    width: 100%
+    margin-top: .45rem
+    accent-color: var(--coral)
+
+.circle-equation-display
+  margin-top: .8rem
+  padding: 1rem
+  border-radius: .3rem
+  background: var(--gold)
+  font-family: Georgia, serif
+  font-size: clamp(1.05rem, 2vw, 1.45rem)
+  font-weight: 700
+
+.circle-facts
+  margin-top: 1.4rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  article
+    padding: .85rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+
+    &:last-child
+      grid-column: 1 / -1
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .55rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .42rem
+    font-family: Georgia, serif
+    font-size: .9rem
+
+.intercept-rule
+  margin-top: 1rem
+  padding: 1.2rem 1.4rem
+  border-radius: .4rem
+  background: var(--gold)
+  font-size: .78rem
+  line-height: 1.55
+
+.square-studio
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.08fr .92fr
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+
+.square-studio__steps, .square-studio__answer
+  padding: clamp(1.5rem, 3vw, 2.8rem)
+
+.square-studio__steps
+  background: var(--white)
+  color: var(--ink)
+
+  h3
+    margin-top: .8rem
+    font-family: Georgia, serif
+    font-size: clamp(1.3rem, 2.5vw, 2rem)
+
+  ol
+    margin-top: 1.5rem
+    display: grid
+    gap: .65rem
+    list-style: none
+
+  li
+    padding: .9rem
+    display: none
+    grid-template-columns: 1.8rem 1fr
+    align-items: center
+    gap: .7rem
+    border-radius: .3rem
+    background: var(--paper)
+
+    &.is-visible
+      display: grid
+
+    span
+      width: 1.6rem
+      height: 1.6rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--coral)
+      font-size: .6rem
+      font-weight: 700
+
+    p
+      font-family: Georgia, serif
+      font-size: .85rem
+
+  button
+    width: 100%
+    min-height: 2.8rem
+    margin-top: .8rem
+    border: 0
+    border-radius: .25rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .67rem
+    font-weight: 700
+
+    &:disabled
+      opacity: .65
+
+.square-studio__answer
+  background: rgba(255, 255, 255, .06)
+
+.square-answer-fields
+  margin-top: 1rem
+  display: grid
+  gap: .6rem
+
+  label
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: .5rem
+    font-size: .72rem
+
+  input
+    width: 4.5rem
+    min-height: 2.55rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .25rem
+    background: rgba(255, 255, 255, .1)
+    color: var(--white)
+    text-align: center
+
+.completion-rule
+  margin-top: 1rem
+  padding: 1rem
+  border-left: 4px solid var(--gold)
+  background: rgba(255, 255, 255, .06)
+
+  span
+    color: var(--gold)
+    font-size: .59rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  p
+    margin-top: .45rem
+    color: rgba(255, 255, 255, .7)
+    font-size: .7rem
+    line-height: 1.5
+
+.tangent-card
+  margin-top: 1rem
+  padding: clamp(1.5rem, 3vw, 2.5rem)
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 3rem
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .55rem
+  background: rgba(255, 255, 255, .06)
+
+  h3
+    margin-top: .7rem
+    font-size: clamp(1.25rem, 2.3vw, 1.9rem)
+
+  > div:first-child > p:last-child
+    margin-top: .7rem
+    color: rgba(255, 255, 255, .65)
+    font-size: .72rem
+    line-height: 1.5
+
+.tangent-card__answer
+  display: grid
+  gap: .55rem
+
+  label
+    font-size: .68rem
+    font-weight: 700
+
+  input, select
+    min-height: 2.7rem
+    padding: .45rem .6rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .25rem
+    background: var(--ink)
+    color: var(--white)
+
+  input
+    width: 4rem
+    margin-left: .5rem
+    text-align: center
+
+  button
+    min-height: 2.8rem
+    border: 0
+    border-radius: .25rem
+    background: var(--gold)
+    color: var(--ink)
+    font-size: .68rem
+    font-weight: 700
+
+.readiness--gold
+  --hero-accent: var(--gold)
+
+.first-move-grid
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  article
+    min-height: 170px
+    padding: 1.2rem
+
+    &:not(:last-child)
+      border-right: 1px solid var(--line)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .57rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: 2rem
+    font-size: .78rem
+    line-height: 1.45
+
+.ready-banner--gold
+  background: var(--gold)
+
 .lesson-footer
   width: min(calc(100% - (2 * var(--page-gutter))), var(--max-width))
   margin: 0 auto
@@ -1672,7 +2508,7 @@ input[type='range']
   .lesson-hero__copy
     max-width: 48rem
 
-  .hero-equations, .plane-hero-art
+  .hero-equations, .plane-hero-art, .coordinate-hero-art
     width: min(100%, 620px)
     margin: 0 auto
 
@@ -1708,6 +2544,55 @@ input[type='range']
   .triangle-lab
     grid-template-columns: 1fr
 
+  .formula-ribbon
+    grid-template-columns: 1fr 1fr
+
+    div:nth-child(2)
+      border-right: 0
+
+    div:nth-child(-n + 2)
+      border-bottom: 1px solid var(--line)
+
+  .coordinate-lab__body, .diameter-lab__body, .median-workbench, .circle-analyzer, .square-studio
+    grid-template-columns: 1fr
+
+  .coordinate-controls, .diameter-controls
+    border-left: 0
+    border-top: 1px solid var(--line)
+
+  .reverse-midpoint
+    grid-template-columns: 1fr
+
+  .median-graph, .circle-analyzer__stage
+    min-height: 520px
+
+  .tangent-card
+    grid-template-columns: 1fr
+    gap: 1.5rem
+
+  .first-move-grid
+    grid-template-columns: 1fr 1fr
+
+    article
+      border-bottom: 1px solid var(--line)
+
+      &:not(:last-child)
+        border-right: 0
+
+      &:nth-child(odd)
+        border-right: 1px solid var(--line)
+
+      &:last-child
+        grid-column: 1 / -1
+        border-bottom: 0
+
+  .equation-bridge
+    grid-template-columns: 1fr
+
+    article:not(:last-child)
+      border-right: 0
+      border-bottom: 1px solid var(--line)
+
 @media (max-width: 680px)
   .lesson-header
     padding: 1rem 0
@@ -1725,7 +2610,7 @@ input[type='range']
   .lesson-hero h1
     font-size: clamp(3.2rem, 16vw, 5rem)
 
-  .hero-equations, .plane-hero-art
+  .hero-equations, .plane-hero-art, .coordinate-hero-art
     min-height: 360px
 
   .equation-card
@@ -1812,6 +2697,73 @@ input[type='range']
 
     i
       transform: rotate(90deg)
+
+  .coordinate-hero__formula
+    font-size: .66rem
+
+  .coordinate-hero__formula--distance
+    right: 0
+
+  .coordinate-hero__formula--circle
+    left: 0
+
+  .formula-ribbon
+    grid-template-columns: 1fr
+
+    div
+      border-right: 0 !important
+
+      &:not(:last-child)
+        border-bottom: 1px solid var(--line)
+
+  .coordinate-stage
+    min-height: 390px
+    padding: .55rem
+
+  .coordinate-input-grid
+    grid-template-columns: 1fr
+
+  .coordinate-metrics article
+    grid-template-columns: 4.7rem 1fr
+
+    small
+      grid-column: 2
+
+  .compact-answer
+    min-width: 0
+
+    label
+      flex-wrap: wrap
+
+  .median-graph, .circle-analyzer__stage
+    min-height: 390px
+    padding: .55rem
+
+  .median-answer-grid
+    grid-template-columns: 1fr
+
+    .radical-answer
+      grid-column: auto
+
+  .diameter-derivation, .circle-facts
+    grid-template-columns: 1fr
+
+    .diameter-equation, article:last-child
+      grid-column: auto
+
+  .tangent-card
+    grid-template-columns: 1fr
+
+  .first-move-grid
+    grid-template-columns: 1fr
+
+    article, article:nth-child(odd), article:last-child
+      grid-column: auto
+      border-right: 0
+      border-bottom: 1px solid var(--line)
+
+    article:last-child
+      border-bottom: 0
 
   .lesson-footer
     grid-template-columns: 1fr 1fr

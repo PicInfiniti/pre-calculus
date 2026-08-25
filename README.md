@@ -29,6 +29,13 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Guided elimination from three variables to one
 - Free-variable and parameter-form practice
 
+### 1.9 · The Coordinate Plane; Graphs of Equations; Circles
+
+- Draggable distance and midpoint explorer
+- Guided reverse-midpoint and triangle-median practice
+- Circle construction from diameter endpoints
+- Exact intercepts, completing the square, and tangent-circle practice
+
 ## Course roadmap
 
 Every textbook section will have its own standalone page.
@@ -36,7 +43,7 @@ Every textbook section will have its own standalone page.
 | Learning arc | Textbook sections | Status |
 | --- | --- | --- |
 | Systems of linear equations | 9.1, 9.2 | Available |
-| The coordinate plane | 1.9 | Planned |
+| The coordinate plane | 1.9 | Available |
 | Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | Planned |
 | Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 | Planned |
 | Exponential and logarithmic functions | 4.1–4.5 | Planned |

@@ -3,6 +3,13 @@ export function sitePath(path = "") {
 }
 
 export function renderLessonHeader(activeSection) {
+  const navigation = activeSection === "1.9"
+    ? `<a class="is-current" href="${sitePath("pages/sections/1-9.html")}">1.9 · Coordinate plane</a>`
+    : `
+        <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>
+        <a class="${activeSection === "9.2" ? "is-current" : ""}" href="${sitePath("pages/sections/9-2.html")}">9.2 · Three variables</a>
+      `;
+
   return `
     <div class="reading-progress" aria-hidden="true"><span></span></div>
     <header class="lesson-header">
@@ -10,9 +17,8 @@ export function renderLessonHeader(activeSection) {
         <span class="lesson-brand__mark" aria-hidden="true">ƒ</span>
         <span><strong>Precalculus</strong><small>MATH 1280</small></span>
       </a>
-      <nav class="lesson-nav" aria-label="Systems lesson navigation">
-        <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>
-        <a class="${activeSection === "9.2" ? "is-current" : ""}" href="${sitePath("pages/sections/9-2.html")}">9.2 · Three variables</a>
+      <nav class="lesson-nav" aria-label="Lesson navigation">
+        ${navigation}
       </nav>
       <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
     </header>
