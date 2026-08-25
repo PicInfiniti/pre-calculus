@@ -4,13 +4,21 @@ const courseUnits = [
   {
     number: "01",
     eyebrow: "Opening week",
-    title: "Systems & the coordinate plane",
-    description: "Start with linear systems, then reconnect equations to graphs and circles.",
-    sections: ["9.1", "9.2", "1.9"],
+    title: "Systems of linear equations",
+    description: "Solve linear systems in two variables, then extend the methods to larger systems.",
+    sections: ["9.1", "9.2"],
     accent: "coral",
   },
   {
     number: "02",
+    eyebrow: "Coordinate foundations",
+    title: "The coordinate plane",
+    description: "Connect equations to their graphs and work with the geometry of circles.",
+    sections: ["1.9"],
+    accent: "gold",
+  },
+  {
+    number: "03",
     eyebrow: "Function toolkit",
     title: "Functions",
     description: "Read, transform, combine, and invert functions with confidence.",
@@ -18,7 +26,7 @@ const courseUnits = [
     accent: "blue",
   },
   {
-    number: "03",
+    number: "04",
     eyebrow: "Shape & behavior",
     title: "Polynomial & rational functions",
     description: "Connect formulas, zeros, end behavior, and asymptotes to graphs.",
@@ -26,7 +34,7 @@ const courseUnits = [
     accent: "gold",
   },
   {
-    number: "04",
+    number: "05",
     eyebrow: "Growth & inverse thinking",
     title: "Exponential & logarithmic functions",
     description: "Move between exponential and logarithmic forms and solve their equations.",
@@ -34,7 +42,7 @@ const courseUnits = [
     accent: "green",
   },
   {
-    number: "05",
+    number: "06",
     eyebrow: "Angles in context",
     title: "Right-triangle trigonometry",
     description: "Measure angles, solve triangles, and interpret trigonometric ratios.",
@@ -42,7 +50,7 @@ const courseUnits = [
     accent: "violet",
   },
   {
-    number: "06",
+    number: "07",
     eyebrow: "Circular motion",
     title: "Unit-circle trigonometry",
     description: "Build trig functions from the unit circle, then study their graphs and inverses.",
@@ -50,7 +58,7 @@ const courseUnits = [
     accent: "blue",
   },
   {
-    number: "07",
+    number: "08",
     eyebrow: "Identity & proof",
     title: "Analytic trigonometry",
     description: "Use identities and formulas to rewrite expressions and solve equations.",
@@ -170,7 +178,7 @@ export default class App {
           </div>
           <div class="course-intro__copy">
             <p>
-              The calendar moves through eight textbook chapters. We group them into seven
+              The calendar moves through eight textbook chapters. We group them into eight
               connected learning arcs so you can see where each lesson fits and what comes next.
             </p>
             <p class="availability"><span></span> Section pages will open as they are published.</p>

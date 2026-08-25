@@ -8,7 +8,8 @@ The project follows the assigned sections of *Precalculus: Mathematics for Calcu
 
 | Learning arc | Textbook sections |
 | --- | --- |
-| Systems and the coordinate plane | 9.1, 9.2, 1.9 |
+| Systems of linear equations | 9.1, 9.2 |
+| The coordinate plane | 1.9 |
 | Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 |
 | Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 |
 | Exponential and logarithmic functions | 4.1–4.5 |
@@ -16,7 +17,7 @@ The project follows the assigned sections of *Precalculus: Mathematics for Calcu
 | Unit-circle trigonometry | 5.1–5.5 |
 | Analytic trigonometry | 7.1–7.5 |
 
-That is **32 sections** across eight chapters, organized into seven connected learning arcs. The order reflects the Fall 2026 tentative calendar and may evolve with the course.
+That is **32 sections** across eight chapters, organized into eight connected learning arcs. The order reflects the Fall 2026 tentative calendar and may evolve with the course.
 
 ## Textbook
 
