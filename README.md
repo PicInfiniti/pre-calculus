@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -36,6 +36,13 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Circle construction from diameter endpoints
 - Exact intercepts, completing the square, and tangent-circle practice
 
+### 2.1 · Functions
+
+- Function-notation and input-versus-output explorer
+- Interactive piecewise-rule and speed-fine models
+- Net-change graph and difference-quotient secant explorer
+- Domain restriction visualizer and readiness practice
+
 ## Course roadmap
 
 Every textbook section will have its own standalone page.
@@ -44,7 +51,7 @@ Every textbook section will have its own standalone page.
 | --- | --- | --- |
 | Systems of linear equations | 9.1, 9.2 | Available |
 | The coordinate plane | 1.9 | Available |
-| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | Planned |
+| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1 available; others planned |
 | Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 | Planned |
 | Exponential and logarithmic functions | 4.1–4.5 | Planned |
 | Right-triangle trigonometry | 6.1–6.4 | Planned |
