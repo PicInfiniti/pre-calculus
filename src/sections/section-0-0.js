@@ -211,9 +211,9 @@ root.innerHTML = `
         <h2>Match x with x.<br>Match y with y.</h2>
         <p>In two dimensions, coordinate arithmetic works component by component. Geometrically, we are treating each point as its position vector from the origin.</p>
       </div>
-      <div class="coordinate-lab" data-reveal>
-        <div class="coordinate-lab__graph"><svg id="coordinate-chart" viewBox="0 0 540 540" role="img" aria-label="Coordinate vectors and their calculated result"></svg></div>
-        <div class="coordinate-lab__controls">
+      <div class="notation-coordinate-lab" data-reveal>
+        <div class="notation-coordinate-lab__graph"><svg id="coordinate-chart" viewBox="0 0 540 540" role="img" aria-label="Coordinate vectors and their calculated result"></svg></div>
+        <div class="notation-coordinate-lab__controls">
           <p class="tool-label">Two-dimensional calculator</p>
           <div class="coordinate-inputs">
             <fieldset><legend>P = (x₁, y₁)</legend><label>x₁<input id="point-p-x" type="number" min="-5" max="5" value="2" /></label><label>y₁<input id="point-p-y" type="number" min="-5" max="5" value="-1" /></label></fieldset>
