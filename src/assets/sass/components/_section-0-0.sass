@@ -565,6 +565,304 @@
     color: var(--ink-soft)
     font-size: .63rem
 
+.interval-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.08fr .92fr
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .2)
+
+.interval-lab__visual
+  min-height: 590px
+  padding: clamp(1.25rem, 3vw, 2.4rem)
+  display: grid
+  grid-template-rows: auto 1fr auto
+  background: var(--ink)
+  color: var(--white)
+
+  svg
+    width: 100%
+    align-self: center
+    overflow: visible
+    touch-action: none
+
+.interval-lab__visual-topline
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  font-size: .62rem
+  font-weight: 700
+  letter-spacing: .1em
+  text-transform: uppercase
+
+  span
+    display: flex
+    align-items: center
+    gap: .55rem
+
+    &::before
+      content: ''
+      width: .55rem
+      height: .55rem
+      border-radius: 50%
+      background: var(--green)
+      box-shadow: 0 0 0 5px rgba(169, 223, 114, .12)
+
+  small
+    color: rgba(255, 255, 255, .5)
+    font-size: .52rem
+
+.interval-axis
+  stroke: rgba(255, 255, 255, .55)
+  stroke-linecap: round
+  stroke-width: 4
+
+.interval-tick
+  stroke: rgba(255, 255, 255, .28)
+  stroke-width: 2
+
+.interval-tick-label
+  fill: rgba(255, 255, 255, .55)
+  font-family: Georgia, serif
+  font-size: 18px
+  text-anchor: middle
+
+.interval-selected
+  stroke: var(--gold)
+  stroke-linecap: round
+  stroke-width: 14
+
+.interval-arrow
+  fill: none
+  stroke: var(--gold)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 8
+
+.interval-endpoint
+  cursor: grab
+  stroke: var(--green)
+  stroke-width: 8
+  transition: r .15s ease
+
+  &:hover, &:focus
+    r: 19px
+    outline: none
+
+  &:active
+    cursor: grabbing
+
+  &.is-closed
+    fill: var(--green)
+
+  &.is-open
+    fill: var(--ink)
+
+.interval-endpoint-label
+  fill: var(--white)
+  font-family: Georgia, serif
+  font-size: 25px
+  font-weight: 700
+  text-anchor: middle
+
+.interval-key
+  display: flex
+  flex-wrap: wrap
+  gap: 1.2rem
+  color: rgba(255, 255, 255, .66)
+  font-size: .58rem
+
+  span
+    display: flex
+    align-items: center
+    gap: .45rem
+
+  i
+    width: .8rem
+    height: .8rem
+    border: 3px solid var(--green)
+    border-radius: 50%
+
+    &.is-closed
+      background: var(--green)
+
+    &.is-open
+      background: var(--ink)
+
+.interval-lab__controls
+  padding: clamp(1.5rem, 4vw, 3rem)
+  align-self: center
+  color: var(--ink)
+
+.interval-mode-buttons
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1.3fr 1fr 1fr
+  gap: .5rem
+
+  button
+    min-height: 3rem
+    padding: .55rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--paper)
+    color: var(--ink)
+    font-family: Georgia, serif
+    font-size: .64rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--coral)
+      background: var(--coral)
+      color: var(--white)
+
+.interval-endpoints
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .7rem
+
+  fieldset
+    padding: .9rem
+    display: grid
+    gap: .65rem
+    border: 1px solid var(--line)
+    border-radius: .4rem
+    transition: opacity .2s ease, background .2s ease
+
+    &.is-infinite
+      background: var(--paper)
+
+      label
+        opacity: .35
+
+  legend
+    padding: 0 .35rem
+    color: var(--coral)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  label
+    display: grid
+    grid-template-columns: 1fr 4rem
+    align-items: center
+    color: var(--ink-soft)
+    font-size: .6rem
+    font-weight: 700
+
+  input
+    min-width: 0
+    width: 100%
+    min-height: 2.4rem
+    padding: .3rem .5rem
+    border: 1px solid var(--line)
+    border-radius: .25rem
+    background: var(--paper)
+    color: var(--ink)
+    font-family: Georgia, serif
+    text-align: center
+
+  button
+    min-height: 3.1rem
+    padding: .55rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+    text-align: left
+
+    strong, small
+      display: block
+
+    strong
+      font-family: Georgia, serif
+      font-size: .72rem
+
+    small
+      margin-top: .2rem
+      color: var(--ink-soft)
+      font-size: .5rem
+
+    &.is-closed
+      border-color: var(--green)
+      background: rgba(169, 223, 114, .28)
+
+    &:disabled
+      cursor: default
+      opacity: 1
+
+.interval-result
+  margin-top: 1rem
+  padding: 1.1rem
+  border-radius: .4rem
+  background: var(--gold)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--ink-soft)
+    font-size: .54rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  > strong
+    margin-top: .45rem
+    font-family: Georgia, serif
+    font-size: clamp(1.8rem, 3vw, 2.7rem)
+    line-height: 1
+
+  dl
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: .5rem
+
+  div
+    padding: .7rem
+    border: 1px solid rgba(7, 29, 51, .18)
+    border-radius: .3rem
+    background: rgba(255, 255, 255, .35)
+
+  dt
+    color: var(--ink-soft)
+    font-size: .5rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  dd
+    margin-top: .35rem
+    font-family: Georgia, serif
+    font-size: .72rem
+    font-weight: 700
+    line-height: 1.35
+
+  p
+    margin-top: .8rem
+    color: var(--ink-soft)
+    font-size: .62rem
+    line-height: 1.5
+
+.interval-rule
+  margin-top: .75rem
+  padding: .85rem
+  border-left: 4px solid var(--blue)
+  background: rgba(69, 183, 213, .12)
+  color: var(--ink-soft)
+  font-size: .61rem
+  line-height: 1.5
+
+  strong
+    color: var(--ink)
+
 .coordinate-lab
   margin-top: 3rem
   display: grid
@@ -809,7 +1107,7 @@
     width: min(100%, 620px)
     margin: 0 auto
 
-  .notation-explorer, .number-lab, .set-lab, .coordinate-lab
+  .notation-explorer, .number-lab, .set-lab, .interval-lab, .coordinate-lab
     grid-template-columns: 1fr
 
   .notation-explorer__index
@@ -819,7 +1117,7 @@
   .notation-detail
     min-height: auto
 
-  .number-ladder, .set-lab__visual, .coordinate-lab__graph
+  .number-ladder, .set-lab__visual, .interval-lab__visual, .coordinate-lab__graph
     min-height: 520px
 
   .notation-check-grid
@@ -850,7 +1148,7 @@
   .notation-detail__symbol
     min-height: 95px
 
-  .number-ladder, .set-lab__visual, .coordinate-lab__graph
+  .number-ladder, .set-lab__visual, .interval-lab__visual, .coordinate-lab__graph
     min-height: 390px
     padding: .7rem
 
@@ -863,7 +1161,7 @@
   .number-choices
     grid-template-columns: repeat(2, 1fr)
 
-  .coordinate-inputs, .notation-check-grid
+  .interval-mode-buttons, .coordinate-inputs, .notation-check-grid
     grid-template-columns: 1fr
 
 @media (max-width: 430px)
@@ -878,13 +1176,13 @@
     width: 170px
     height: 170px
 
-  .notation-orbit span
+  .notation-orbit > span
     min-width: 2.5rem
     min-height: 2.5rem
     font-size: .85rem
 
   .notation-categories
-    margin-right: -1rem
+    max-width: 100%
 
-  .set-operation-buttons, .coordinate-operations
+  .set-operation-buttons, .interval-endpoints, .coordinate-operations
     grid-template-columns: 1fr

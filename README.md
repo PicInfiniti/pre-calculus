@@ -18,7 +18,7 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 ### 00 · Mathematical Notation
 
 - Clickable reference for number systems, sets, functions, variables, and algebra symbols
-- Interactive number-system nesting and set-operation visualizers
+- Interactive number-system nesting, set-operation, and interval-notation visualizers
 - Two-dimensional coordinate addition, subtraction, and scalar multiplication
 - Plain-language readings and examples for every notation entry
 

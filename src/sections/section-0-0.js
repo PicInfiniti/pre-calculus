@@ -94,7 +94,7 @@ root.innerHTML = `
       <p>Use this guide to</p>
       <ol>
         <li><span>01</span>Recognize standard number systems</li>
-        <li><span>02</span>Read set and function notation aloud</li>
+        <li><span>02</span>Read sets, intervals, and function notation aloud</li>
         <li><span>03</span>Distinguish variables, labels, and subscripts</li>
         <li><span>04</span>Calculate with two-dimensional coordinates</li>
       </ol>
@@ -176,9 +176,38 @@ root.innerHTML = `
       </div>
     </section>
 
+    <section class="lesson-section lesson-section--ink" id="interval-notation">
+      <div class="lesson-section__intro" data-reveal>
+        <p class="lesson-kicker lesson-kicker--gold"><span>04</span> Interval studio</p>
+        <h2>Brackets tell you<br>whether the edge stays.</h2>
+        <p>Move each finite endpoint, decide whether it belongs to the set, and compare the same interval as a picture, an inequality, and set-builder notation.</p>
+      </div>
+      <div class="interval-lab" data-reveal>
+        <div class="interval-lab__visual">
+          <div class="interval-lab__visual-topline"><span>Interactive number line</span><small>Drag the green endpoints</small></div>
+          <svg id="interval-line" viewBox="0 0 760 360" role="img" aria-label="A draggable number line showing the selected interval"></svg>
+          <div class="interval-key" aria-label="Endpoint key"><span><i class="is-closed"></i>Included endpoint</span><span><i class="is-open"></i>Excluded endpoint</span></div>
+        </div>
+        <div class="interval-lab__controls">
+          <p class="tool-label">Choose the interval shape</p>
+          <div class="interval-mode-buttons">
+            <button type="button" class="is-active" data-interval-mode="bounded">Between two numbers</button>
+            <button type="button" data-interval-mode="left-ray">Toward −∞</button>
+            <button type="button" data-interval-mode="right-ray">Toward ∞</button>
+          </div>
+          <div class="interval-endpoints">
+            <fieldset id="interval-left-field"><legend>Left endpoint</legend><label><span>Value</span><input id="interval-left" type="number" min="-9" max="8" value="-2" /></label><button type="button" class="is-closed" id="interval-left-toggle" aria-pressed="true"><strong>Included</strong><small>square bracket [</small></button></fieldset>
+            <fieldset id="interval-right-field"><legend>Right endpoint</legend><label><span>Value</span><input id="interval-right" type="number" min="-8" max="9" value="5" /></label><button type="button" id="interval-right-toggle" aria-pressed="false"><strong>Excluded</strong><small>parenthesis )</small></button></fieldset>
+          </div>
+          <div class="interval-result" id="interval-result" aria-live="polite"></div>
+          <p class="interval-rule"><strong>Infinity is never an endpoint.</strong> Always pair −∞ or ∞ with a parenthesis, never a square bracket.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="lesson-section lesson-section--soft" id="coordinate-arithmetic">
       <div class="lesson-section__intro" data-reveal>
-        <p class="lesson-kicker"><span>04</span> Coordinate arithmetic</p>
+        <p class="lesson-kicker"><span>05</span> Coordinate arithmetic</p>
         <h2>Match x with x.<br>Match y with y.</h2>
         <p>In two dimensions, coordinate arithmetic works component by component. Geometrically, we are treating each point as its position vector from the origin.</p>
       </div>
@@ -204,7 +233,7 @@ root.innerHTML = `
 
     <section class="lesson-section readiness readiness--notation" id="readiness">
       <div class="lesson-section__intro" data-reveal>
-        <p class="lesson-kicker"><span>05</span> Notation check</p>
+        <p class="lesson-kicker"><span>06</span> Notation check</p>
         <h2>Can you read it<br>before you solve it?</h2>
         <p>Translate each symbol into words first. Once the notation is clear, the calculation becomes much easier.</p>
       </div>
@@ -326,6 +355,148 @@ function renderSetOperation(operation) {
 
 document.querySelectorAll("[data-set-operation]").forEach((button) => button.addEventListener("click", () => renderSetOperation(button.dataset.setOperation)));
 renderSetOperation("union");
+
+const intervalState = {
+  mode: "bounded",
+  left: -2,
+  right: 5,
+  leftClosed: true,
+  rightClosed: false,
+};
+const intervalSvg = document.querySelector("#interval-line");
+const intervalLeftInput = document.querySelector("#interval-left");
+const intervalRightInput = document.querySelector("#interval-right");
+const intervalLeftToggle = document.querySelector("#interval-left-toggle");
+const intervalRightToggle = document.querySelector("#interval-right-toggle");
+const intervalX = (value) => 70 + ((value + 10) / 20) * 620;
+
+function intervalNumber(value) {
+  return value < 0 ? `−${Math.abs(value)}` : String(value);
+}
+
+function intervalEndpointMarkup(value, closed, side) {
+  const x = intervalX(value);
+  return `<circle cx="${x}" cy="180" r="15" class="interval-endpoint ${closed ? "is-closed" : "is-open"}" data-interval-endpoint="${side}" role="slider" tabindex="0" aria-label="${side} endpoint" aria-valuemin="-9" aria-valuemax="9" aria-valuenow="${value}"/><text x="${x}" y="232" class="interval-endpoint-label">${intervalNumber(value)}</text>`;
+}
+
+function intervalTicks() {
+  const ticks = [];
+  for (let value = -10; value <= 10; value += 1) {
+    const x = intervalX(value);
+    ticks.push(`<line x1="${x}" y1="${value % 2 === 0 ? 160 : 168}" x2="${x}" y2="${value % 2 === 0 ? 200 : 192}" class="interval-tick"/>`);
+    if (value % 2 === 0) ticks.push(`<text x="${x}" y="265" class="interval-tick-label">${intervalNumber(value)}</text>`);
+  }
+  return ticks.join("");
+}
+
+function intervalDescription() {
+  const left = intervalNumber(intervalState.left);
+  const right = intervalNumber(intervalState.right);
+  if (intervalState.mode === "left-ray") {
+    return {
+      interval: `(−∞, ${right}${intervalState.rightClosed ? "]" : ")"}`,
+      inequality: `x ${intervalState.rightClosed ? "≤" : "<"} ${right}`,
+      builder: `{x ∈ ℝ : x ${intervalState.rightClosed ? "≤" : "<"} ${right}}`,
+      words: `All real numbers ${intervalState.rightClosed ? "up to and including" : "less than"} ${right}.`,
+    };
+  }
+  if (intervalState.mode === "right-ray") {
+    return {
+      interval: `${intervalState.leftClosed ? "[" : "("}${left}, ∞)`,
+      inequality: `x ${intervalState.leftClosed ? "≥" : ">"} ${left}`,
+      builder: `{x ∈ ℝ : x ${intervalState.leftClosed ? "≥" : ">"} ${left}}`,
+      words: `All real numbers ${intervalState.leftClosed ? "from and including" : "greater than"} ${left}.`,
+    };
+  }
+  return {
+    interval: `${intervalState.leftClosed ? "[" : "("}${left}, ${right}${intervalState.rightClosed ? "]" : ")"}`,
+    inequality: `${left} ${intervalState.leftClosed ? "≤" : "<"} x ${intervalState.rightClosed ? "≤" : "<"} ${right}`,
+    builder: `{x ∈ ℝ : ${left} ${intervalState.leftClosed ? "≤" : "<"} x ${intervalState.rightClosed ? "≤" : "<"} ${right}}`,
+    words: `All real numbers between ${left} and ${right}; ${intervalState.leftClosed ? "include" : "exclude"} ${left} and ${intervalState.rightClosed ? "include" : "exclude"} ${right}.`,
+  };
+}
+
+function renderIntervalLab() {
+  const isLeftRay = intervalState.mode === "left-ray";
+  const isRightRay = intervalState.mode === "right-ray";
+  const startX = isLeftRay ? 58 : intervalX(intervalState.left);
+  const endX = isRightRay ? 702 : intervalX(intervalState.right);
+  const leftArrow = isLeftRay ? `<path d="M72 164 L48 180 L72 196" class="interval-arrow"/>` : "";
+  const rightArrow = isRightRay ? `<path d="M688 164 L712 180 L688 196" class="interval-arrow"/>` : "";
+  const leftEndpoint = isLeftRay ? "" : intervalEndpointMarkup(intervalState.left, intervalState.leftClosed, "left");
+  const rightEndpoint = isRightRay ? "" : intervalEndpointMarkup(intervalState.right, intervalState.rightClosed, "right");
+  intervalSvg.innerHTML = `
+    <line x1="50" y1="180" x2="710" y2="180" class="interval-axis"/>
+    ${intervalTicks()}
+    <line x1="${startX}" y1="180" x2="${endX}" y2="180" class="interval-selected"/>
+    ${leftArrow}${rightArrow}${leftEndpoint}${rightEndpoint}
+  `;
+
+  const description = intervalDescription();
+  document.querySelector("#interval-result").innerHTML = `<span>Interval notation</span><strong>${description.interval}</strong><dl><div><dt>Inequality</dt><dd>${description.inequality}</dd></div><div><dt>Set-builder</dt><dd>${description.builder}</dd></div></dl><p>${description.words}</p>`;
+  document.querySelectorAll("[data-interval-mode]").forEach((button) => button.classList.toggle("is-active", button.dataset.intervalMode === intervalState.mode));
+
+  document.querySelector("#interval-left-field").classList.toggle("is-infinite", isLeftRay);
+  document.querySelector("#interval-right-field").classList.toggle("is-infinite", isRightRay);
+  intervalLeftInput.disabled = isLeftRay;
+  intervalLeftToggle.disabled = isLeftRay;
+  intervalRightInput.disabled = isRightRay;
+  intervalRightToggle.disabled = isRightRay;
+  intervalLeftToggle.classList.toggle("is-closed", intervalState.leftClosed);
+  intervalLeftToggle.setAttribute("aria-pressed", String(intervalState.leftClosed));
+  intervalLeftToggle.querySelector("strong").textContent = isLeftRay ? "−∞" : intervalState.leftClosed ? "Included" : "Excluded";
+  intervalLeftToggle.querySelector("small").textContent = isLeftRay ? "always a parenthesis" : intervalState.leftClosed ? "square bracket [" : "parenthesis (";
+  intervalRightToggle.classList.toggle("is-closed", intervalState.rightClosed);
+  intervalRightToggle.setAttribute("aria-pressed", String(intervalState.rightClosed));
+  intervalRightToggle.querySelector("strong").textContent = isRightRay ? "∞" : intervalState.rightClosed ? "Included" : "Excluded";
+  intervalRightToggle.querySelector("small").textContent = isRightRay ? "always a parenthesis" : intervalState.rightClosed ? "square bracket ]" : "parenthesis )";
+}
+
+function setIntervalEndpoint(side, rawValue) {
+  const value = Math.max(-9, Math.min(9, Math.round(rawValue)));
+  if (side === "left") {
+    intervalState.left = Math.min(value, intervalState.right - 1);
+    intervalLeftInput.value = intervalState.left;
+  } else {
+    intervalState.right = Math.max(value, intervalState.left + 1);
+    intervalRightInput.value = intervalState.right;
+  }
+  renderIntervalLab();
+}
+
+document.querySelectorAll("[data-interval-mode]").forEach((button) => button.addEventListener("click", () => {
+  intervalState.mode = button.dataset.intervalMode;
+  renderIntervalLab();
+}));
+intervalLeftInput.addEventListener("input", () => setIntervalEndpoint("left", Number(intervalLeftInput.value)));
+intervalRightInput.addEventListener("input", () => setIntervalEndpoint("right", Number(intervalRightInput.value)));
+intervalLeftToggle.addEventListener("click", () => { intervalState.leftClosed = !intervalState.leftClosed; renderIntervalLab(); });
+intervalRightToggle.addEventListener("click", () => { intervalState.rightClosed = !intervalState.rightClosed; renderIntervalLab(); });
+
+let draggedIntervalEndpoint = null;
+intervalSvg.addEventListener("pointerdown", (event) => {
+  const handle = event.target.closest("[data-interval-endpoint]");
+  if (!handle) return;
+  draggedIntervalEndpoint = handle.dataset.intervalEndpoint;
+  intervalSvg.setPointerCapture(event.pointerId);
+});
+intervalSvg.addEventListener("pointermove", (event) => {
+  if (!draggedIntervalEndpoint) return;
+  const bounds = intervalSvg.getBoundingClientRect();
+  const svgX = ((event.clientX - bounds.left) / bounds.width) * 760;
+  setIntervalEndpoint(draggedIntervalEndpoint, ((svgX - 70) / 620) * 20 - 10);
+});
+intervalSvg.addEventListener("pointerup", () => { draggedIntervalEndpoint = null; });
+intervalSvg.addEventListener("pointercancel", () => { draggedIntervalEndpoint = null; });
+intervalSvg.addEventListener("keydown", (event) => {
+  const handle = event.target.closest("[data-interval-endpoint]");
+  if (!handle || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+  event.preventDefault();
+  const side = handle.dataset.intervalEndpoint;
+  setIntervalEndpoint(side, intervalState[side] + (event.key === "ArrowRight" ? 1 : -1));
+  intervalSvg.querySelector(`[data-interval-endpoint="${side}"]`)?.focus();
+});
+renderIntervalLab();
 
 const coordinateInputs = ["#point-p-x", "#point-p-y", "#point-q-x", "#point-q-y", "#point-scalar"].map((selector) => document.querySelector(selector));
 let coordinateOperation = "add";
