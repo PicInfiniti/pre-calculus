@@ -293,7 +293,14 @@
   letter-spacing: -.05em
 
   .math-indexed
+    max-width: 100%
     letter-spacing: 0
+
+  &.notation-detail__symbol--compact
+    font-size: clamp(2.5rem, 4vw, 4rem)
+
+    .math-indexed
+      white-space: nowrap
 
 .notation-detail__read, .notation-detail__example
   margin-top: 1.4rem
@@ -387,7 +394,12 @@
 
   aside
     margin-top: .8rem
+    grid-template-columns: 4.25rem 1fr
     border-style: dashed
+
+    > span
+      white-space: nowrap
+      font-size: 1.2rem
 
     &.is-active
       background: rgba(166, 146, 232, .26)
@@ -883,11 +895,11 @@
   svg
     width: min(100%, 600px)
 
-.coordinate-grid-line
+.notation-coordinate-grid-line
   stroke: rgba(255, 255, 255, .08)
   stroke-width: 1
 
-.coordinate-axis
+.notation-coordinate-axis
   stroke: rgba(255, 255, 255, .5)
   stroke-width: 2
 
@@ -1076,7 +1088,7 @@
     width: 100%
     margin-top: 1rem
 
-.coordinate-answer
+.notation-coordinate-answer
   margin-top: 1rem
   display: grid
   grid-template-columns: auto 1fr auto 1fr auto

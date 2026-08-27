@@ -241,7 +241,7 @@ root.innerHTML = `
         <article class="check-card" data-reveal><span>Number systems</span><h3>Smallest standard set containing −7</h3><select id="check-number"><option value="">Choose…</option><option value="a">ℕ</option><option value="correct">ℤ</option><option value="b">ℝ ∖ ℚ</option></select><button type="button" id="check-number-button">Check set</button><p id="feedback-number" class="answer-feedback" aria-live="polite"></p></article>
         <article class="check-card" data-reveal><span>Functions</span><h3>What does D<sub>f</sub> name?</h3><select id="check-domain-symbol"><option value="">Choose…</option><option value="a">The derivative of f</option><option value="correct">The domain of f</option><option value="b">The range of f</option></select><button type="button" id="check-domain-button">Check meaning</button><p id="feedback-domain-symbol" class="answer-feedback" aria-live="polite"></p></article>
         <article class="check-card" data-reveal><span>Sets</span><h3>A ∩ B keeps which elements?</h3><select id="check-intersection"><option value="">Choose…</option><option value="a">Everything in either set</option><option value="correct">Only elements shared by both</option><option value="b">Only elements outside both</option></select><button type="button" id="check-intersection-button">Check operation</button><p id="feedback-intersection" class="answer-feedback" aria-live="polite"></p></article>
-        <article class="check-card" data-reveal><span>Coordinates</span><h3>(3, −1) − (−2, 4)</h3><div class="coordinate-answer"><input id="check-coordinate-x" type="number" aria-label="x-coordinate" /><span aria-hidden="true">,</span><input id="check-coordinate-y" type="number" aria-label="y-coordinate" /></div><button type="button" id="check-coordinate-button">Check coordinates</button><p id="feedback-coordinate" class="answer-feedback" aria-live="polite"></p></article>
+        <article class="check-card" data-reveal><span>Coordinates</span><h3>(3, −1) − (−2, 4)</h3><div class="notation-coordinate-answer"><input id="check-coordinate-x" type="number" aria-label="x-coordinate" /><span aria-hidden="true">,</span><input id="check-coordinate-y" type="number" aria-label="y-coordinate" /></div><button type="button" id="check-coordinate-button">Check coordinates</button><p id="feedback-coordinate" class="answer-feedback" aria-live="polite"></p></article>
       </div>
       <aside class="ready-banner ready-banner--notation" data-reveal><span>You are notation-ready when</span><p>You can say a symbol aloud, explain its job, and use it correctly in a small example.</p><a href="#symbol-library">Open the symbol list <span aria-hidden="true">↑</span></a></aside>
     </section>
@@ -266,11 +266,13 @@ function renderCategories() {
 
 function renderNotationDetail(id) {
   const item = notationItems.find((candidate) => candidate.id === id) || notationItems[0];
+  const plainSymbol = item.symbol.replace(/<[^>]*>/g, "");
+  const symbolSizeClass = plainSymbol.length > 7 ? " notation-detail__symbol--compact" : "";
   activeNotation = item.id;
   document.querySelectorAll("[data-notation-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.notationId === item.id));
   notationDetail.innerHTML = `
     <p class="tool-label">${categoryLabels[item.category]}</p>
-    <div class="notation-detail__symbol"><span class="math-indexed">${item.symbol}</span></div>
+    <div class="notation-detail__symbol${symbolSizeClass}"><span class="math-indexed">${item.symbol}</span></div>
     <h3>${item.title}</h3>
     <div class="notation-detail__read"><span>Read it aloud</span><strong>“${item.read}”</strong></div>
     <p>${item.meaning}</p>
@@ -514,10 +516,10 @@ function coordinateY(value) { return 490 - ((value + 16) / 32) * 440; }
 function coordinateGrid() {
   const lines = [];
   for (let value = -16; value <= 16; value += 2) {
-    lines.push(`<line x1="${coordinateMapper(value)}" y1="50" x2="${coordinateMapper(value)}" y2="490" class="coordinate-grid-line"/>`);
-    lines.push(`<line x1="50" y1="${coordinateY(value)}" x2="490" y2="${coordinateY(value)}" class="coordinate-grid-line"/>`);
+    lines.push(`<line x1="${coordinateMapper(value)}" y1="50" x2="${coordinateMapper(value)}" y2="490" class="notation-coordinate-grid-line"/>`);
+    lines.push(`<line x1="50" y1="${coordinateY(value)}" x2="490" y2="${coordinateY(value)}" class="notation-coordinate-grid-line"/>`);
   }
-  lines.push(`<line x1="50" y1="${coordinateY(0)}" x2="490" y2="${coordinateY(0)}" class="coordinate-axis"/><line x1="${coordinateMapper(0)}" y1="50" x2="${coordinateMapper(0)}" y2="490" class="coordinate-axis"/>`);
+  lines.push(`<line x1="50" y1="${coordinateY(0)}" x2="490" y2="${coordinateY(0)}" class="notation-coordinate-axis"/><line x1="${coordinateMapper(0)}" y1="50" x2="${coordinateMapper(0)}" y2="490" class="notation-coordinate-axis"/>`);
   return lines.join("");
 }
 
