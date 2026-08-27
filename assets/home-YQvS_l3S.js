@@ -1,5 +1,5 @@
-import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,t=[{number:`01`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`02`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`03`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`04`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`05`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`07`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`08`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],n=t.reduce((e,t)=>e+t.sections.length,0),r=`/pre-calculus/`,i={"9.1":`${r}pages/sections/9-1.html`,"9.2":`${r}pages/sections/9-2.html`,"1.9":`${r}pages/sections/1-9.html`,"2.1":`${r}pages/sections/2-1.html`,"2.2":`${r}pages/sections/2-2.html`};function a(e){let t=e.sections.map(e=>{let t=i[e];return t?`<a class="section-chip section-chip--available" href="${t}">${e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),n=e.sections.filter(e=>i[e]).length,r=n?`${n} interactive lesson${n===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
-    <article class="unit-card unit-card--${e.accent}">
+import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,t=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`01`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`02`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`03`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`04`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`05`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`07`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`08`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],n=t.reduce((e,t)=>e+t.sections.length,0),r=`/pre-calculus/`,i={"0.0":`${r}pages/sections/0-0.html`,"9.1":`${r}pages/sections/9-1.html`,"9.2":`${r}pages/sections/9-2.html`,"1.9":`${r}pages/sections/1-9.html`,"2.1":`${r}pages/sections/2-1.html`,"2.2":`${r}pages/sections/2-2.html`,"2.3":`${r}pages/sections/2-3.html`},a={"0.0":`Open guide`};function o(e){let t=e.sections.map(e=>{let t=i[e];return t?`<a class="section-chip section-chip--available" href="${t}">${a[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),n=e.sections.filter(e=>i[e]).length,r=n?`${n} interactive lesson${n===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
+    <article class="unit-card unit-card--${e.accent}${e.layout?` unit-card--${e.layout}`:``}">
       <div class="unit-card__topline">
         <span class="unit-card__number">${e.number}</span>
         <span class="unit-card__eyebrow">${e.eyebrow}</span>
@@ -10,6 +10,17 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
         ${t}
       </div>
       <span class="unit-card__note">${r}</span>
+      ${e.layout===`primer`?`
+        <div class="unit-card-primer-art" aria-hidden="true">
+          <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--outer">
+            <span>ℝ</span><span>f(x)</span><span>∪</span>
+          </div>
+          <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--inner">
+            <span><span class="math-indexed">D<sub>f</sub></span></span><span>(x, y)</span><span>≤</span>
+          </div>
+          <div class="unit-card-primer-art__center"><strong>?</strong><small>click · read · use</small></div>
+        </div>
+      `:``}
     </article>
   `}new class{constructor(e){this.env=e,this.root=document.querySelector(`#app`)}init(){this.root.innerHTML=`
       <header class="site-header">
@@ -97,7 +108,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
         </section>
 
         <section class="unit-grid" aria-label="Course units">
-          ${t.map(a).join(``)}
+          ${t.map(o).join(``)}
         </section>
 
         <section class="study-loop" id="study-loop" aria-labelledby="study-loop-title">

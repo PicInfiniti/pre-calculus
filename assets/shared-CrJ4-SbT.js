@@ -1,6 +1,7 @@
-function e(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}function t(t){let n;return n=t===`1.9`?`<a class="is-current" href="${e(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`].includes(t)?`
+function e(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}function t(t){let n;return n=t===`0.0`?`<a class="is-current" href="${e(`pages/sections/0-0.html`)}">00 · Notation</a>`:t===`1.9`?`<a class="is-current" href="${e(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`,`2.3`].includes(t)?`
       <a class="${t===`2.1`?`is-current`:``}" href="${e(`pages/sections/2-1.html`)}">2.1 · Functions</a>
       <a class="${t===`2.2`?`is-current`:``}" href="${e(`pages/sections/2-2.html`)}">2.2 · Graphs</a>
+      <a class="${t===`2.3`?`is-current`:``}" href="${e(`pages/sections/2-3.html`)}">2.3 · Information</a>
     `:`
         <a class="${t===`9.1`?`is-current`:``}" href="${e(`pages/sections/9-1.html`)}">9.1 · Two variables</a>
         <a class="${t===`9.2`?`is-current`:``}" href="${e(`pages/sections/9-2.html`)}">9.2 · Three variables</a>
