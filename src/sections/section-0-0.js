@@ -477,6 +477,7 @@ let draggedIntervalEndpoint = null;
 intervalSvg.addEventListener("pointerdown", (event) => {
   const handle = event.target.closest("[data-interval-endpoint]");
   if (!handle) return;
+  event.preventDefault();
   draggedIntervalEndpoint = handle.dataset.intervalEndpoint;
   intervalSvg.setPointerCapture(event.pointerId);
 });

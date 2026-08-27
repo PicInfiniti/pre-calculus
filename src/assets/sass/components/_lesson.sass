@@ -7,6 +7,13 @@ button, input, select
 button
   cursor: pointer
 
+button, [role='button'], [role='slider'], input[type='range'], canvas, svg, svg *
+  -webkit-user-select: none
+  user-select: none
+
+button, [role='button'], [role='slider'], canvas, svg
+  -webkit-user-drag: none
+
 .sr-only
   position: absolute
   width: 1px

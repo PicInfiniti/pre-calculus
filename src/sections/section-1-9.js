@@ -398,6 +398,7 @@ function bindDraggableSvg(svg, state, render, translationHandles = {}) {
   svg.addEventListener("pointerdown", (event) => {
     const target = event.target.closest("[data-drag-point]");
     if (!target) return;
+    event.preventDefault();
     activePoint = target.dataset.dragPoint;
     const translatedPoints = translationHandles[activePoint];
     if (translatedPoints) {

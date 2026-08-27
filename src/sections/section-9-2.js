@@ -263,6 +263,7 @@ class PlaneExplorer {
 
   bind() {
     this.canvas.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
       this.dragging = true;
       this.lastPointer = { x: event.clientX, y: event.clientY };
       this.canvas.setPointerCapture(event.pointerId);
