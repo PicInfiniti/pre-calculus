@@ -266,13 +266,11 @@ function renderCategories() {
 
 function renderNotationDetail(id) {
   const item = notationItems.find((candidate) => candidate.id === id) || notationItems[0];
-  const plainSymbol = item.symbol.replace(/<[^>]*>/g, "");
-  const symbolSizeClass = plainSymbol.length > 7 ? " notation-detail__symbol--compact" : "";
   activeNotation = item.id;
   document.querySelectorAll("[data-notation-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.notationId === item.id));
   notationDetail.innerHTML = `
     <p class="tool-label">${categoryLabels[item.category]}</p>
-    <div class="notation-detail__symbol${symbolSizeClass}"><span class="math-indexed">${item.symbol}</span></div>
+    <div class="notation-detail__symbol"><span class="math-indexed">${item.symbol}</span></div>
     <h3>${item.title}</h3>
     <div class="notation-detail__read"><span>Read it aloud</span><strong>“${item.read}”</strong></div>
     <p>${item.meaning}</p>
