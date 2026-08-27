@@ -1,0 +1,749 @@
+.lesson-hero--information
+  --hero-accent: var(--green)
+
+.information-hero-art
+  position: relative
+  min-height: 480px
+
+  svg
+    position: absolute
+    inset: 0
+    z-index: 2
+    width: 100%
+    height: 100%
+
+    circle
+      fill: var(--green)
+      stroke: var(--ink)
+      stroke-width: 5
+
+.information-hero-art__paper
+  position: absolute
+  inset: 2rem
+  border: 1px solid var(--line)
+  border-radius: 50%
+  background-color: rgba(255, 253, 248, .76)
+  background-image: linear-gradient(rgba(7, 29, 51, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 29, 51, .07) 1px, transparent 1px)
+  background-size: 34px 34px
+  box-shadow: inset 0 0 0 1rem rgba(244, 240, 230, .55), var(--shadow)
+
+.information-hero-art__axis
+  fill: none
+  stroke: rgba(7, 29, 51, .5)
+  stroke-width: 2
+
+.information-hero-art__curve
+  fill: none
+  stroke: var(--violet)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 8
+
+.information-hero-art__laser
+  fill: none
+  stroke: var(--coral)
+  stroke-dasharray: 10 8
+  stroke-width: 4
+
+.information-hero-art__projection
+  fill: none
+  stroke: var(--ink)
+  stroke-dasharray: 7 7
+  stroke-width: 3
+
+.information-hero-art__tag
+  position: absolute
+  z-index: 4
+  padding: .65rem .82rem
+  border-radius: .3rem
+  font-size: .6rem
+  font-weight: 700
+  box-shadow: 0 12px 28px rgba(7, 29, 51, .12)
+
+.information-hero-art__tag--solve
+  top: 20%
+  left: 5%
+  background: var(--coral)
+  color: var(--white)
+  transform: rotate(-3deg)
+
+.information-hero-art__tag--turn
+  top: 8%
+  right: 7%
+  background: var(--green)
+  transform: rotate(2deg)
+
+.information-hero-art__tag--interval
+  right: 2%
+  bottom: 13%
+  background: var(--gold)
+  transform: rotate(-2deg)
+
+.projection-lab, .level-lab, .direction-lab, .context-lab, .radical-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1.15fr .85fr
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.information-graph
+  min-height: 610px
+  padding: 1.4rem
+  display: grid
+  place-items: center
+
+  svg
+    width: min(100%, 700px)
+    overflow: visible
+
+.information-graph--paper
+  background: var(--paper)
+
+.information-graph--light
+  background: var(--white)
+
+.information-graph--navy
+  background: var(--ink)
+
+.projection-lab__controls, .level-lab__controls, .direction-lab__controls, .context-lab__controls, .radical-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.8rem)
+  align-self: center
+
+  > label
+    margin-top: 1.5rem
+    display: flex
+    justify-content: space-between
+    align-items: center
+    gap: 1rem
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+
+  > input[type='range']
+    width: 100%
+    margin-top: .75rem
+    accent-color: var(--coral)
+
+.level-lab
+  border-color: rgba(255, 255, 255, .18)
+  background: rgba(255, 255, 255, .07)
+  box-shadow: none
+
+.level-lab__controls
+  > label
+    color: var(--white)
+
+.information-tabs
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .5rem
+
+  button
+    min-height: 2.7rem
+    padding: .55rem .65rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--paper)
+    color: var(--ink)
+    font-size: .61rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--ink)
+      color: var(--white)
+
+.information-tabs--dark
+  button
+    border-color: rgba(255, 255, 255, .22)
+    background: transparent
+    color: var(--white)
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+.projection-result, .level-result, .direction-status, .context-current, .radical-rule
+  min-height: 145px
+  margin-top: 1rem
+  padding: 1.1rem
+  border-radius: .4rem
+
+  span, strong
+    display: block
+
+  span
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .7rem
+    font-family: Georgia, serif
+    font-size: 1.25rem
+    line-height: 1.3
+
+  p
+    margin-top: .65rem
+    font-size: .68rem
+    line-height: 1.55
+
+.projection-result
+  background: var(--ink)
+  color: var(--white)
+
+  span
+    color: var(--green)
+
+  p
+    color: rgba(255, 255, 255, .68)
+
+.projection-facts
+  margin-top: .7rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .6rem
+
+  article
+    padding: .85rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .56rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-family: Georgia, serif
+    font-size: 1rem
+
+.info-grid-line
+  stroke: rgba(7, 29, 51, .1)
+  stroke-width: 1
+
+  &.is-light
+    stroke: rgba(255, 255, 255, .1)
+
+.info-axis-line
+  stroke: rgba(7, 29, 51, .55)
+  stroke-width: 2
+
+  &.is-light
+    stroke: rgba(255, 255, 255, .52)
+
+.info-grid-label
+  fill: rgba(7, 29, 51, .5)
+  font-family: Arial, sans-serif
+  font-size: 12px
+
+  &.is-light
+    fill: rgba(255, 255, 255, .5)
+
+.info-main-curve
+  fill: none
+  stroke: var(--violet)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 7
+
+  &.is-light
+    stroke: var(--gold)
+
+.info-endpoint
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 4
+
+  &.is-light
+    stroke: var(--white)
+
+.projection-line
+  fill: none
+  stroke: var(--coral)
+  stroke-dasharray: 7 6
+  stroke-width: 3
+
+.projection-line--soft
+  stroke: rgba(7, 29, 51, .42)
+
+.info-focus-point
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 5
+
+.projection-shadow
+  fill: none
+  stroke-linecap: round
+  stroke-width: 14
+
+.projection-shadow--domain
+  stroke: var(--coral)
+
+.projection-shadow--range
+  stroke: var(--green)
+
+.level-result
+  background: rgba(255, 255, 255, .1)
+  color: var(--white)
+
+  span
+    color: var(--gold)
+
+  p
+    color: rgba(255, 255, 255, .68)
+
+.level-laser
+  fill: none
+  stroke: var(--coral)
+  stroke-dasharray: 9 7
+  stroke-width: 4
+
+.level-crossing
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 5
+
+.level-highlight
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 10
+
+.information-tip
+  margin-top: .9rem
+  padding: .9rem
+  border-left: 4px solid var(--gold)
+  background: rgba(255, 255, 255, .08)
+  color: rgba(255, 255, 255, .7)
+  font-size: .65rem
+  line-height: 1.55
+
+  strong
+    color: var(--white)
+
+.direction-lab
+  grid-template-columns: 1.1fr .9fr
+
+.direction-status
+  background: var(--paper)
+
+  span
+    color: var(--coral)
+
+  p
+    color: var(--ink-soft)
+
+.direction-timeline
+  margin-top: .8rem
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  gap: .35rem
+
+  button
+    min-height: 3.4rem
+    padding: .45rem .25rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font-size: .5rem
+    font-weight: 700
+
+    span
+      margin-bottom: .25rem
+      display: block
+      color: var(--coral)
+      font-size: 1rem
+
+.tangent-line
+  fill: none
+  stroke: var(--coral)
+  stroke-dasharray: 10 7
+  stroke-width: 4
+
+.direction-guide
+  stroke: rgba(255, 255, 255, .35)
+  stroke-dasharray: 6 6
+  stroke-width: 2
+
+.direction-point
+  fill: var(--green)
+  stroke: var(--white)
+  stroke-width: 5
+
+.turn-marker
+  fill: var(--coral)
+  stroke: var(--ink)
+  stroke-width: 2
+
+.turning-point-compare
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+  article
+    min-height: 180px
+    padding: 1.2rem
+    display: grid
+    grid-template-columns: 150px 1fr
+    align-items: center
+    gap: 1.2rem
+    border: 1px solid var(--line)
+    border-radius: .55rem
+    background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .55rem
+    font-family: Georgia, serif
+    font-size: .95rem
+
+  p
+    margin-top: .45rem
+    color: var(--ink-soft)
+    font-size: .65rem
+    line-height: 1.5
+
+.turning-mini-graph
+  height: 110px
+  overflow: hidden
+  border-radius: .35rem
+  background-color: var(--paper)
+  background-image: linear-gradient(rgba(7, 29, 51, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 29, 51, .07) 1px, transparent 1px)
+  background-size: 22px 22px
+
+  svg
+    width: 100%
+    height: 100%
+
+  path
+    fill: none
+    stroke: var(--violet)
+    stroke-linecap: round
+    stroke-width: 5
+
+  line
+    stroke: var(--coral)
+    stroke-dasharray: 6 5
+    stroke-width: 3
+
+  circle
+    fill: var(--green)
+    stroke: var(--ink)
+    stroke-width: 3
+
+.turning-mini-graph--cusp
+  path
+    stroke-linejoin: miter
+
+.context-lab
+  grid-template-columns: 1.2fr .8fr
+
+.context-current
+  background: var(--ink)
+  color: var(--white)
+
+  span
+    color: var(--green)
+
+  p
+    color: rgba(255, 255, 255, .7)
+
+.context-area
+  fill: rgba(255, 107, 72, .13)
+
+.context-curve
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 7
+
+.context-guide
+  stroke: var(--ink)
+  stroke-dasharray: 6 5
+  stroke-width: 2
+
+.context-point
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 5
+
+.context-axis-title
+  fill: var(--ink-soft)
+  font-size: 12px
+  font-weight: 700
+
+.net-change-builder
+  margin-top: .8rem
+  padding: 1rem
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: var(--paper)
+
+  > p
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  label
+    margin-top: .7rem
+    display: grid
+    grid-template-columns: 1fr 80px
+    align-items: center
+    gap: .7rem
+    color: var(--ink-soft)
+    font-size: .65rem
+    font-weight: 700
+
+  input
+    min-height: 2.3rem
+    padding: .35rem .5rem
+    border: 1px solid var(--line)
+    border-radius: .25rem
+    background: var(--white)
+
+  div
+    margin-top: .85rem
+    padding-top: .85rem
+    border-top: 1px solid var(--line)
+    font-family: Georgia, serif
+    font-size: .73rem
+    line-height: 1.5
+
+    strong
+      color: var(--coral)
+
+.radical-lab
+  grid-template-columns: 1fr 1fr
+
+.radical-lab__controls
+  .information-tabs
+    grid-template-columns: 1fr 1fr
+
+.radical-rule
+  background: var(--gold)
+
+  span
+    color: var(--ink-soft)
+
+  strong
+    font-size: 1rem
+
+.radical-curve
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 9
+
+.radical-circle-guide
+  fill: none
+  stroke: rgba(255, 255, 255, .18)
+  stroke-width: 5
+
+.radical-point
+  fill: var(--green)
+  stroke: var(--white)
+  stroke-width: 5
+
+.radical-test
+  margin-top: .8rem
+  padding: .85rem
+  border-left: 4px solid var(--green)
+  background: rgba(169, 223, 114, .2)
+
+  span, strong
+    display: block
+
+  span
+    color: #315f17
+    font-size: .56rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+    font-family: Georgia, serif
+    font-size: .75rem
+
+  &.is-blocked
+    border-color: var(--coral)
+    background: rgba(255, 107, 72, .14)
+
+    span
+      color: #7b2815
+
+.radical-facts
+  margin-top: .8rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .6rem
+
+  div
+    padding: .85rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+
+  dt
+    color: var(--ink-soft)
+    font-size: .55rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  dd
+    margin-top: .4rem
+    font-family: Georgia, serif
+    font-size: 1rem
+    font-weight: 700
+
+.readiness--information
+  --hero-accent: var(--green)
+
+.information-check-grid
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+.information-check
+  padding: 1.5rem
+  display: flex
+  flex-direction: column
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  > span
+    color: var(--coral)
+    font-size: .58rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  h3
+    margin-top: .7rem
+    font-family: Georgia, serif
+    font-size: 1.08rem
+
+  label
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: 1fr minmax(130px, .9fr)
+    align-items: center
+    gap: .7rem
+    color: var(--ink-soft)
+    font-size: .67rem
+    font-weight: 700
+
+  input, select
+    min-height: 2.7rem
+    padding: .45rem .6rem
+    border: 1px solid var(--line)
+    border-radius: .28rem
+    background: var(--paper)
+
+  button
+    min-height: 2.7rem
+    margin-top: .8rem
+    border: 0
+    border-radius: .28rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .65rem
+    font-weight: 700
+
+  .answer-feedback
+    font-size: .7rem
+
+.ready-banner--information
+  background: var(--green)
+
+@media (max-width: 1050px)
+  .information-hero-art
+    width: min(100%, 650px)
+    margin: 0 auto
+
+  .projection-lab, .level-lab, .direction-lab, .context-lab, .radical-lab
+    grid-template-columns: 1fr
+
+  .information-graph
+    min-height: 520px
+
+@media (max-width: 760px)
+  .information-hero-art
+    min-height: 370px
+
+  .information-hero-art__paper
+    inset: 1rem 0
+
+  .information-hero-art__tag
+    font-size: .51rem
+
+  .information-graph
+    min-height: 390px
+    padding: .6rem
+
+  .information-tabs
+    grid-template-columns: 1fr
+
+  .radical-lab__controls .information-tabs
+    grid-template-columns: 1fr
+
+  .direction-timeline
+    grid-template-columns: repeat(2, 1fr)
+
+  .turning-point-compare, .information-check-grid
+    grid-template-columns: 1fr
+
+  .turning-point-compare article
+    grid-template-columns: 110px 1fr
+
+  .information-check label
+    grid-template-columns: 1fr
+
+  .projection-facts, .radical-facts
+    grid-template-columns: 1fr
+
+@media (max-width: 460px)
+  .information-hero-art
+    min-height: 315px
+
+  .information-hero-art__tag--turn
+    right: 0
+
+  .turning-point-compare article
+    grid-template-columns: 1fr
+
+  .turning-sketch
+    width: 100%
+
+  .net-change-builder label
+    grid-template-columns: 1fr

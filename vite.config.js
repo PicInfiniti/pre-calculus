@@ -10,6 +10,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: fileURLToPath(new URL("./index.html", import.meta.url)),
+        section00: fileURLToPath(
+          new URL("./pages/sections/0-0.html", import.meta.url),
+        ),
         section91: fileURLToPath(
           new URL("./pages/sections/9-1.html", import.meta.url),
         ),
@@ -24,6 +27,9 @@ export default defineConfig({
         ),
         section22: fileURLToPath(
           new URL("./pages/sections/2-2.html", import.meta.url),
+        ),
+        section23: fileURLToPath(
+          new URL("./pages/sections/2-3.html", import.meta.url),
         ),
       },
     },

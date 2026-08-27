@@ -306,7 +306,7 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({
     previous: { href: "pages/sections/2-1.html", label: "Section 2.1 · Functions" },
-    next: null,
+    next: { href: "pages/sections/2-3.html", label: "Section 2.3 · Getting information from graphs" },
   })}
 `;
 

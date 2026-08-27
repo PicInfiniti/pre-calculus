@@ -2,6 +2,15 @@ import textbookCover from "../assets/img/precalculus-8e-cover.png";
 
 const courseUnits = [
   {
+    number: "00",
+    eyebrow: "Start here",
+    title: "Mathematical notation",
+    description: "Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.",
+    sections: ["0.0"],
+    accent: "gold",
+    layout: "primer",
+  },
+  {
     number: "01",
     eyebrow: "Opening week",
     title: "Systems of linear equations",
@@ -74,11 +83,17 @@ const sectionCount = courseUnits.reduce(
 
 const baseUrl = import.meta.env.BASE_URL;
 const sectionPages = {
+  "0.0": `${baseUrl}pages/sections/0-0.html`,
   "9.1": `${baseUrl}pages/sections/9-1.html`,
   "9.2": `${baseUrl}pages/sections/9-2.html`,
   "1.9": `${baseUrl}pages/sections/1-9.html`,
   "2.1": `${baseUrl}pages/sections/2-1.html`,
   "2.2": `${baseUrl}pages/sections/2-2.html`,
+  "2.3": `${baseUrl}pages/sections/2-3.html`,
+};
+
+const sectionLabels = {
+  "0.0": "Open guide",
 };
 
 function renderUnit(unit) {
@@ -86,7 +101,7 @@ function renderUnit(unit) {
     .map((section) => {
       const href = sectionPages[section];
       return href
-        ? `<a class="section-chip section-chip--available" href="${href}">${section}</a>`
+        ? `<a class="section-chip section-chip--available" href="${href}">${sectionLabels[section] || section}</a>`
         : `<span class="section-chip">${section}</span>`;
     })
     .join("");
@@ -96,7 +111,7 @@ function renderUnit(unit) {
     : "Individual lesson pages will be added here.";
 
   return `
-    <article class="unit-card unit-card--${unit.accent}">
+    <article class="unit-card unit-card--${unit.accent}${unit.layout ? ` unit-card--${unit.layout}` : ""}">
       <div class="unit-card__topline">
         <span class="unit-card__number">${unit.number}</span>
         <span class="unit-card__eyebrow">${unit.eyebrow}</span>
@@ -107,6 +122,17 @@ function renderUnit(unit) {
         ${sections}
       </div>
       <span class="unit-card__note">${note}</span>
+      ${unit.layout === "primer" ? `
+        <div class="unit-card-primer-art" aria-hidden="true">
+          <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--outer">
+            <span>ℝ</span><span>f(x)</span><span>∪</span>
+          </div>
+          <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--inner">
+            <span><span class="math-indexed">D<sub>f</sub></span></span><span>(x, y)</span><span>≤</span>
+          </div>
+          <div class="unit-card-primer-art__center"><strong>?</strong><small>click · read · use</small></div>
+        </div>
+      ` : ""}
     </article>
   `;
 }

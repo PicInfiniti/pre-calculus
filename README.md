@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -14,6 +14,13 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 4. **Practice** with focused questions and immediate, useful feedback.
 
 ## Available lessons
+
+### 00 · Mathematical Notation
+
+- Clickable reference for number systems, sets, functions, variables, and algebra symbols
+- Interactive number-system nesting and set-operation visualizers
+- Two-dimensional coordinate addition, subtraction, and scalar multiplication
+- Plain-language readings and examples for every notation entry
 
 ### 9.1 · Systems of Linear Equations in Two Variables
 
@@ -50,15 +57,23 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Domain, range, endpoint, and net-change graph reader
 - Quarter-circle selector and piecewise graph reconstruction
 
+### 2.3 · Getting Information from Graphs
+
+- Domain and range projection explorer
+- Horizontal scanner for graphical equations and inequalities
+- Increasing/decreasing intervals, extrema, and tangent-slope studio
+- Contextual net change and radical-domain laboratories
+
 ## Course roadmap
 
-Every textbook section will have its own standalone page.
+Every course topic has its own standalone page, beginning with the notation guide.
 
 | Learning arc | Textbook sections | Status |
 | --- | --- | --- |
+| Course language | 00 | Available |
 | Systems of linear equations | 9.1, 9.2 | Available |
 | The coordinate plane | 1.9 | Available |
-| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1–2.2 available; others planned |
+| Functions | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1–2.3 available; others planned |
 | Polynomial and rational functions | 3.1, 3.2, 3.6, 3.7 | Planned |
 | Exponential and logarithmic functions | 4.1–4.5 | Planned |
 | Right-triangle trigonometry | 6.1–6.4 | Planned |
