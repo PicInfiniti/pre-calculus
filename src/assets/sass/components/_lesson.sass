@@ -221,31 +221,32 @@ button, [role='button'], [role='slider'], canvas, svg
     top: 50%
 
 .hero-equations__line
+  --solution-x: 64px
+  --solution-y: 32px
   position: absolute
   z-index: 2
   width: 135%
   height: 7px
-  left: -16%
+  top: calc(50% + var(--solution-y) - 3.5px)
+  left: calc(-17.5% + var(--solution-x))
   border-radius: 999px
   transform-origin: center
 
 .hero-equations__line--a
-  top: 48%
   background: var(--coral)
-  transform: rotate(-30deg)
+  transform: rotate(56.31deg)
 
 .hero-equations__line--b
-  top: 52%
   background: var(--blue)
-  transform: rotate(38deg)
+  transform: rotate(-18.435deg)
 
 .hero-equations__point
   position: absolute
   z-index: 3
   width: 1.2rem
   height: 1.2rem
-  top: calc(50% - .6rem)
-  left: calc(50% - .6rem)
+  top: calc(50% + 32px - .6rem)
+  left: calc(50% + 64px - .6rem)
   border: 4px solid var(--ink)
   border-radius: 50%
   background: var(--gold)

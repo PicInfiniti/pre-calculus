@@ -33,7 +33,7 @@ root.innerHTML = `
           <path class="graph-language-art__curve graph-language-art__curve--parabola" d="M120 75Q280 390 440 75" />
           <path class="graph-language-art__curve graph-language-art__curve--absolute" d="M95 120L280 330L470 110" />
           <path class="graph-language-art__scan" d="M385 55V405" />
-          <circle cx="385" cy="137" r="8" />
+          <circle cx="385" cy="165" r="8" />
         </svg>
         <span class="graph-language-art__label graph-language-art__label--domain">domain →</span>
         <span class="graph-language-art__label graph-language-art__label--range">↑ range</span>

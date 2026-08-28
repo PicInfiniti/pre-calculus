@@ -32,7 +32,7 @@ root.innerHTML = `
           <path class="information-hero-art__axis" d="M55 240H545M295 55V420" />
           <path class="information-hero-art__curve" d="M80 355C125 65 195 95 215 235S330 330 360 170S465 105 520 300" />
           <path class="information-hero-art__laser" d="M65 170H535" />
-          <path class="information-hero-art__projection" d="M360 170V405" />
+          <path class="information-hero-art__projection" d="M360 55V405" />
           <circle cx="360" cy="170" r="9" />
         </svg>
         <span class="information-hero-art__tag information-hero-art__tag--solve">f(x) = k</span>
