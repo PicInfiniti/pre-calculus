@@ -249,6 +249,82 @@ root.innerHTML = `
   ${renderLessonFooter({ previous: null, next: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two-variable systems" } })}
 `;
 
+function pointerAngle(event, element) {
+  const bounds = element.getBoundingClientRect();
+  return Math.atan2(
+    event.clientY - (bounds.top + (bounds.height / 2)),
+    event.clientX - (bounds.left + (bounds.width / 2)),
+  ) * (180 / Math.PI);
+}
+
+function shortestAngleChange(current, previous) {
+  return ((current - previous + 540) % 360) - 180;
+}
+
+function initNotationOrbitDrag() {
+  document.querySelectorAll(".notation-orbit").forEach((orbit) => {
+    const tokens = [...orbit.querySelectorAll(":scope > span")];
+    const duration = orbit.classList.contains("notation-orbit--one") ? 34000 : 25000;
+    const direction = orbit.classList.contains("notation-orbit--one") ? 1 : -1;
+    let dragState = null;
+
+    function finishDrag(event) {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
+      const finished = dragState;
+      dragState = null;
+      orbit.classList.remove("is-dragging");
+      finished.animations.forEach((animation) => animation.play());
+      if (finished.token.hasPointerCapture(event.pointerId)) finished.token.releasePointerCapture(event.pointerId);
+    }
+
+    tokens.forEach((token) => {
+      token.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        const orbitAnimation = orbit.getAnimations()[0];
+        const animations = [orbitAnimation, ...tokens.flatMap((item) => item.getAnimations())].filter(Boolean);
+        animations.forEach((animation) => animation.pause());
+        dragState = {
+          pointerId: event.pointerId,
+          token,
+          previousAngle: pointerAngle(event, orbit),
+          animationTime: orbitAnimation ? Number(orbitAnimation.currentTime) || 0 : 0,
+          staticAngle: Number(orbit.dataset.dragAngle) || 0,
+          animations,
+          orbitAnimation,
+        };
+        orbit.classList.add("is-dragging");
+        token.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      token.addEventListener("pointermove", (event) => {
+        if (!dragState || event.pointerId !== dragState.pointerId) return;
+        const currentAngle = pointerAngle(event, orbit);
+        const change = shortestAngleChange(currentAngle, dragState.previousAngle);
+        dragState.previousAngle = currentAngle;
+
+        if (dragState.orbitAnimation) {
+          dragState.animationTime += (change / 360) * duration * direction;
+          const wrappedTime = ((dragState.animationTime % duration) + duration) % duration;
+          dragState.animations.forEach((animation) => { animation.currentTime = wrappedTime; });
+        } else {
+          dragState.staticAngle += change;
+          orbit.dataset.dragAngle = String(dragState.staticAngle);
+          orbit.style.transform = `translate(-50%, -50%) rotate(${dragState.staticAngle}deg)`;
+          tokens.forEach((item) => { item.style.transform = `rotate(${-dragState.staticAngle}deg)`; });
+        }
+        event.preventDefault();
+      });
+
+      token.addEventListener("pointerup", finishDrag);
+      token.addEventListener("pointercancel", finishDrag);
+      token.addEventListener("lostpointercapture", finishDrag);
+    });
+  });
+}
+
+initNotationOrbitDrag();
+
 const notationList = document.querySelector("#notation-list");
 const notationDetail = document.querySelector("#notation-detail");
 const notationSearch = document.querySelector("#notation-search");

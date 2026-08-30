@@ -4,6 +4,12 @@
 .notation-hero-art
   position: relative
   min-height: 500px
+  -webkit-user-select: none
+  user-select: none
+
+  *
+    -webkit-user-select: none
+    user-select: none
 
 .notation-orbit
   position: absolute
@@ -28,7 +34,15 @@
     font-size: 1.15rem
     font-weight: 700
     white-space: nowrap
+    cursor: grab
+    touch-action: none
     box-shadow: 0 14px 30px rgba(7, 29, 51, .14)
+
+    &:hover
+      box-shadow: 0 18px 38px rgba(7, 29, 51, .22)
+
+  &.is-dragging > span
+    cursor: grabbing
 
 
 .math-indexed
