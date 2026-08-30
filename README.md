@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [Math whiteboard](https://picinfiniti.net/pre-calculus/pages/tools/whiteboard.html) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -14,6 +14,13 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 4. **Practice** with focused questions and immediate, useful feedback.
 
 ## Available lessons
+
+### Math whiteboard
+
+- Mouse, touch, and stylus drawing with pen, highlighter, and eraser tools
+- Undo and redo, adjustable stroke size, and course-color ink choices
+- Blank, square-grid, and coordinate-plane backgrounds
+- Automatic local saving and PNG export
 
 ### 00 · Mathematical Notation
 
@@ -112,11 +119,13 @@ npm run preview
 .
 ├── index.html                  # Course home entry
 ├── pages/sections/             # One HTML entry per lesson
+├── pages/tools/                # Standalone student tools
 ├── public/                     # Static public assets
 ├── src/
 │   ├── assets/                 # Fonts, images, and Sass
 │   ├── core/App.js             # Home page and course roadmap
 │   ├── sections/               # Interactive lesson logic
+│   ├── tools/                  # Interactive tool logic
 │   └── main.js                 # Home page bootstrap
 ├── vite.config.js              # Multi-page Vite configuration
 └── package.json

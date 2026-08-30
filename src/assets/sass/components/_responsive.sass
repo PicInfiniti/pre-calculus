@@ -11,10 +11,10 @@
     height: 44px
     touch-action: pan-x
 
-  .lesson-brand, .lesson-header__home, .lesson-nav a, .site-nav a, .header-cta, .section-chip--available, .github-link, .brand--footer, .text-link, .ready-banner a, .site-footer a
+  .lesson-brand, .lesson-header__home, .lesson-header__tool, .lesson-nav a, .site-nav a, .header-cta, .section-chip--available, .github-link, .brand--footer, .text-link, .ready-banner a, .site-footer a
     min-height: 44px
 
-  .lesson-header__home, .lesson-nav a, .site-nav a, .header-cta, .section-chip--available, .github-link, .text-link, .ready-banner a, .site-footer a
+  .lesson-header__home, .lesson-header__tool, .lesson-nav a, .site-nav a, .header-cta, .section-chip--available, .github-link, .text-link, .ready-banner a, .site-footer a
     display: inline-flex
     align-items: center
 
@@ -55,6 +55,13 @@
   .lesson-header__home
     padding-right: .25rem
     font-size: .72rem
+
+  .lesson-header__actions
+    gap: .45rem
+
+  @media (max-width: 520px)
+    .lesson-header__home
+      display: none
 
   .lesson-footer
     gap: .65rem

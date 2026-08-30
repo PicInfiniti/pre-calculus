@@ -655,6 +655,163 @@
   font-size: .72rem
   font-weight: 700
 
+.whiteboard-promo
+  min-height: 720px
+  padding: clamp(5rem, 9vw, 8rem) max(var(--page-gutter), calc((100vw - var(--max-width)) / 2))
+  display: grid
+  grid-template-columns: .78fr 1.22fr
+  align-items: center
+  gap: clamp(4rem, 8vw, 8rem)
+  overflow: hidden
+  background: linear-gradient(120deg, var(--paper-deep), var(--paper) 58%, rgba(66, 184, 213, .12))
+
+.whiteboard-promo__copy
+  position: relative
+  z-index: 2
+
+  h2
+    margin-top: 1rem
+    font-size: clamp(3.5rem, 6vw, 6rem)
+    line-height: .92
+    letter-spacing: -.065em
+
+  > p:not(.section-kicker)
+    max-width: 34rem
+    margin-top: 1.65rem
+    color: var(--ink-soft)
+    font-size: 1rem
+    line-height: 1.75
+
+.whiteboard-promo__actions
+  margin-top: 2rem
+  display: flex
+  align-items: center
+  gap: 1.2rem
+
+  span
+    max-width: 12rem
+    color: rgba(35, 57, 77, .72)
+    font-size: .68rem
+    line-height: 1.5
+
+.whiteboard-promo__visual
+  position: relative
+  width: min(100%, 700px)
+  padding-top: 3.4rem
+  justify-self: end
+  filter: drop-shadow(0 28px 36px rgba(7, 29, 51, .18))
+
+.whiteboard-promo__toolbar
+  position: absolute
+  z-index: 3
+  top: 0
+  left: 5%
+  padding: .65rem .75rem
+  display: flex
+  align-items: center
+  gap: .4rem
+  border-radius: .7rem .7rem 0 0
+  background: var(--ink)
+  color: var(--white)
+  transform: rotate(-1deg)
+
+  span
+    padding: .45rem .55rem
+    border: 1px solid rgba(255, 253, 248, .18)
+    border-radius: .4rem
+    font-size: .56rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+  i
+    width: .72rem
+    height: .72rem
+    border: 2px solid rgba(255, 253, 248, .55)
+    border-radius: 50%
+    background: var(--coral)
+
+    &:nth-of-type(2)
+      background: var(--gold)
+
+    &:nth-of-type(3)
+      background: var(--blue)
+
+    &:nth-of-type(4)
+      background: var(--violet)
+
+.whiteboard-promo__board
+  position: relative
+  padding: 1rem
+  border: 1px solid var(--line)
+  border-radius: .8rem
+  background: var(--white)
+  transform: rotate(1deg)
+  box-shadow: 16px 18px 0 rgba(66, 184, 213, .2)
+
+  svg
+    width: 100%
+    border-radius: .35rem
+    background: rgba(244, 240, 230, .28)
+
+.whiteboard-promo__grid
+  fill: none
+  stroke: rgba(7, 29, 51, .1)
+  stroke-width: 1
+
+.whiteboard-promo__axis
+  fill: none
+  stroke: rgba(7, 29, 51, .55)
+  stroke-width: 2.5
+
+.whiteboard-promo__curve
+  fill: none
+  stroke: var(--coral)
+  stroke-width: 9
+  stroke-linecap: round
+  stroke-dasharray: 900
+  animation: whiteboard-draw 4.5s ease-in-out infinite alternate
+
+.whiteboard-promo__origin-fill
+  fill: var(--gold)
+
+.whiteboard-promo__origin-ring
+  fill: none
+  stroke: var(--ink)
+  stroke-width: 5
+
+.whiteboard-promo__note
+  position: absolute
+  padding: .75rem .9rem
+  border-radius: .4rem
+  color: var(--ink)
+  font-family: Georgia, 'Times New Roman', serif
+  font-size: .9rem
+  font-weight: 700
+  box-shadow: 0 12px 25px rgba(7, 29, 51, .13)
+
+.whiteboard-promo__note--one
+  top: 16%
+  right: -2rem
+  background: var(--green)
+  transform: rotate(4deg)
+
+.whiteboard-promo__note--two
+  bottom: 8%
+  left: -2.5rem
+  background: var(--gold)
+  transform: rotate(-4deg)
+
+@keyframes whiteboard-draw
+  from
+    stroke-dashoffset: 900
+
+  35%, to
+    stroke-dashoffset: 0
+
 .textbook
   width: min(calc(100% - (2 * var(--page-gutter))), 1080px)
   margin: 0 auto
@@ -787,6 +944,18 @@
     grid-template-columns: 1fr
     gap: 3rem
 
+  .whiteboard-promo
+    min-height: auto
+    grid-template-columns: 1fr
+    gap: 4rem
+
+  .whiteboard-promo__copy
+    max-width: 44rem
+
+  .whiteboard-promo__visual
+    width: min(92%, 700px)
+    justify-self: center
+
   .textbook
     gap: 4rem
 
@@ -850,6 +1019,39 @@
     padding-top: 4.5rem
     padding-bottom: 4.5rem
 
+  .whiteboard-promo
+    padding-top: 5rem
+    padding-bottom: 5.5rem
+    gap: 3rem
+
+  .whiteboard-promo__copy h2
+    font-size: clamp(3.2rem, 15vw, 4.8rem)
+
+  .whiteboard-promo__actions
+    align-items: flex-start
+    flex-direction: column
+
+  .whiteboard-promo__visual
+    width: 100%
+    padding-top: 3rem
+
+  .whiteboard-promo__toolbar
+    left: 0
+    max-width: 100%
+
+    span
+      padding: .4rem
+
+    i
+      display: none
+
+  .whiteboard-promo__board
+    padding: .5rem
+    box-shadow: 8px 10px 0 rgba(66, 184, 213, .2)
+
+  .whiteboard-promo__note
+    display: none
+
   .study-steps li
     grid-template-columns: 2.5rem 1fr
 
@@ -882,3 +1084,7 @@
 
   *, *::before, *::after
     transition-duration: .01ms !important
+
+  .whiteboard-promo__curve
+    animation: none
+    stroke-dashoffset: 0

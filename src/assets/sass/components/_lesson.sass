@@ -104,13 +104,26 @@ button, [role='button'], [role='slider'], canvas, svg
       background: var(--ink)
       color: var(--white)
 
-.lesson-header__home
+.lesson-header__actions
   justify-self: end
+  display: flex
+  align-items: center
+  gap: .9rem
+
+.lesson-header__home, .lesson-header__tool
   font-size: .74rem
   font-weight: 700
 
   span
     margin-left: .35rem
+
+.lesson-header__tool
+  padding: .62rem .8rem
+  border: 1px solid var(--line)
+  border-radius: 999px
+
+  &:hover
+    border-color: var(--coral)
 
 .lesson-hero
   --hero-accent: var(--coral)

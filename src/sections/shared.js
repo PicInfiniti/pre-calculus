@@ -31,7 +31,10 @@ export function renderLessonHeader(activeSection) {
       <nav class="lesson-nav" aria-label="Lesson navigation">
         ${navigation}
       </nav>
-      <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
+      <div class="lesson-header__actions">
+        <a class="lesson-header__tool" href="${sitePath("pages/tools/whiteboard.html")}">Whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
+      </div>
     </header>
   `;
 }
