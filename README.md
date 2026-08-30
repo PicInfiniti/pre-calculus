@@ -17,7 +17,7 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 
 ### Math whiteboard
 
-- Mouse, touch, and pressure-sensitive stylus drawing with pen, highlighter, visible eraser, and canvas-panning tools
+- Mouse, touch, and pressure-sensitive stylus drawing with pen, highlighter, visible eraser, canvas panning, and area zoom
 - Undo and redo, adjustable stroke size, default-on curve smoothing, and course-color ink choices
 - Blank, square-grid, and numbered coordinate-plane backgrounds
 - Distraction-free full-screen mode with a compact essential-tools panel
