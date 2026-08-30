@@ -17,9 +17,10 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 
 ### Math whiteboard
 
-- Mouse, touch, and stylus drawing with pen, highlighter, and eraser tools
-- Undo and redo, adjustable stroke size, and course-color ink choices
-- Blank, square-grid, and coordinate-plane backgrounds
+- Mouse, touch, and pressure-sensitive stylus drawing with pen, highlighter, visible eraser, and canvas-panning tools
+- Undo and redo, adjustable stroke size, default-on curve smoothing, and course-color ink choices
+- Blank, square-grid, and numbered coordinate-plane backgrounds
+- Distraction-free full-screen mode with a compact essential-tools panel
 - Automatic local saving and PNG export
 
 ### 00 · Mathematical Notation
