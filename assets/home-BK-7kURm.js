@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,t=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`01`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`02`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`03`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`04`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`05`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`07`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`08`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],n=t.reduce((e,t)=>e+t.sections.length,0),r=`/pre-calculus/`,i={"0.0":`${r}pages/sections/0-0.html`,"9.1":`${r}pages/sections/9-1.html`,"9.2":`${r}pages/sections/9-2.html`,"1.9":`${r}pages/sections/1-9.html`,"2.1":`${r}pages/sections/2-1.html`,"2.2":`${r}pages/sections/2-2.html`,"2.3":`${r}pages/sections/2-3.html`},a={"0.0":`Open guide`};function o(e){let t=e.sections.map(e=>{let t=i[e];return t?`<a class="section-chip section-chip--available" href="${t}">${a[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),n=e.sections.filter(e=>i[e]).length,r=n?`${n} interactive lesson${n===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
+import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,t=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`01`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`02`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`03`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`04`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`05`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`07`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`08`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],n=t.reduce((e,t)=>e+t.sections.length,0),r=`/pre-calculus/`,i=`${r}pages/tools/whiteboard.html`,a={"0.0":`${r}pages/sections/0-0.html`,"9.1":`${r}pages/sections/9-1.html`,"9.2":`${r}pages/sections/9-2.html`,"1.9":`${r}pages/sections/1-9.html`,"2.1":`${r}pages/sections/2-1.html`,"2.2":`${r}pages/sections/2-2.html`,"2.3":`${r}pages/sections/2-3.html`},o={"0.0":`Open guide`};function s(e){let t=e.sections.map(e=>{let t=a[e];return t?`<a class="section-chip section-chip--available" href="${t}">${o[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),n=e.sections.filter(e=>a[e]).length,r=n?`${n} interactive lesson${n===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
     <article class="unit-card unit-card--${e.accent}${e.layout?` unit-card--${e.layout}`:``}">
       <div class="unit-card__topline">
         <span class="unit-card__number">${e.number}</span>
@@ -34,9 +34,10 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="#course-map">Course map</a>
           <a href="#study-loop">How to study</a>
+          <a href="#whiteboard">Whiteboard</a>
           <a href="#textbook">Textbook</a>
         </nav>
-        <a class="header-cta" href="#course-map">View sections <span aria-hidden="true">↘</span></a>
+        <a class="header-cta" href="${i}">Open whiteboard <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="top">
@@ -108,7 +109,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
         </section>
 
         <section class="unit-grid" aria-label="Course units">
-          ${t.map(o).join(``)}
+          ${t.map(s).join(``)}
         </section>
 
         <section class="study-loop" id="study-loop" aria-labelledby="study-loop-title">
@@ -131,6 +132,41 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
               <div><h3>Practice</h3><p>Check your understanding with targeted problems and quick feedback.</p></div>
             </li>
           </ol>
+        </section>
+
+        <section class="whiteboard-promo" id="whiteboard" aria-labelledby="whiteboard-title">
+          <div class="whiteboard-promo__copy">
+            <p class="section-kicker">A space to think</p>
+            <h2 id="whiteboard-title">Make a mark.<br>Follow the idea.</h2>
+            <p>
+              Sketch a graph, work through an equation, or explain a solution on a clean
+              mathematical canvas. Choose a blank page, square grid, or coordinate plane.
+            </p>
+            <div class="whiteboard-promo__actions">
+              <a class="button button--primary" href="${i}">Open the whiteboard</a>
+              <span>Saved automatically on this device.</span>
+            </div>
+          </div>
+          <div class="whiteboard-promo__visual" role="img" aria-label="A preview of the math whiteboard with a curve drawn on coordinate axes">
+            <div class="whiteboard-promo__toolbar" aria-hidden="true">
+              <span class="is-active">Pen</span><span>Highlight</span><span>Eraser</span>
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="whiteboard-promo__board" aria-hidden="true">
+              <svg viewBox="0 0 640 360">
+                <g class="whiteboard-promo__grid">
+                  <path d="M40 0V360M80 0V360M120 0V360M160 0V360M200 0V360M240 0V360M280 0V360M320 0V360M360 0V360M400 0V360M440 0V360M480 0V360M520 0V360M560 0V360M600 0V360" />
+                  <path d="M0 40H640M0 80H640M0 120H640M0 160H640M0 200H640M0 240H640M0 280H640M0 320H640" />
+                </g>
+                <path class="whiteboard-promo__axis" d="M320 0V360M0 180H640" />
+                <path class="whiteboard-promo__curve" d="M48 300C130 290 155 80 248 117C278 128 298 165 320 180C360 210 410 250 470 218C525 190 555 105 586 54" />
+                <circle class="whiteboard-promo__origin-fill" cx="320" cy="180" r="11" />
+                <circle class="whiteboard-promo__origin-ring" cx="320" cy="180" r="11" />
+              </svg>
+              <span class="whiteboard-promo__note whiteboard-promo__note--one">f(x)</span>
+              <span class="whiteboard-promo__note whiteboard-promo__note--two">test the shape</span>
+            </div>
+          </div>
         </section>
 
         <section class="textbook" id="textbook" aria-labelledby="textbook-title">
@@ -168,6 +204,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
           <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
         </p>
         <nav class="footer-links" aria-label="Project links">
+          <a href="${i}">Whiteboard <span aria-hidden="true">↗</span></a>
           <a
             class="github-link"
             href="https://github.com/PicInfiniti/pre-calculus"

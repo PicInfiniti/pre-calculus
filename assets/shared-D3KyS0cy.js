@@ -15,7 +15,10 @@ function e(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}function t(t){let
       <nav class="lesson-nav" aria-label="Lesson navigation">
         ${n}
       </nav>
-      <a class="lesson-header__home" href="${e()}">Course map <span aria-hidden="true">↗</span></a>
+      <div class="lesson-header__actions">
+        <a class="lesson-header__tool" href="${e(`pages/tools/whiteboard.html`)}">Whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__home" href="${e()}">Course map <span aria-hidden="true">↗</span></a>
+      </div>
     </header>
   `}function n({previous:t,next:n}){return`
     <footer class="lesson-footer">
