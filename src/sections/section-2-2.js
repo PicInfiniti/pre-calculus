@@ -349,9 +349,12 @@ function pathFromPoints(points, mapper) {
 }
 
 function sampledPoints(start, end, evaluate, step = 0.08) {
-  const points = [];
-  for (let x = start; x <= end + step / 2; x += step) points.push([x, evaluate(x)]);
-  return points;
+  const spacing = Number.isFinite(step) && step > 0 ? step : 0.08;
+  const sampleCount = Math.max(1, Math.ceil(Math.abs(end - start) / spacing));
+  return Array.from({ length: sampleCount + 1 }, (_, index) => {
+    const x = index === sampleCount ? end : start + ((end - start) * index / sampleCount);
+    return [x, evaluate(x)];
+  });
 }
 
 function endpointMarkup(mapper, x, y, closed = true, className = "") {
