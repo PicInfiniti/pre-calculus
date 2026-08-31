@@ -21,7 +21,7 @@ Precalculus makes more sense when students can see ideas move, test a prediction
 - Undo and redo, adjustable stroke size, default-on curve smoothing, and course-color ink choices
 - Blank, square-grid, and numbered coordinate-plane backgrounds
 - Distraction-free full-screen mode with a compact essential-tools panel
-- Multiple named canvas tabs with automatic local saving and per-canvas PNG export
+- IndexedDB autosave with visible save status, named/duplicable/reorderable canvas tabs, PNG/PDF downloads, and shareable project import/export
 
 ### 00 · Mathematical Notation
 
