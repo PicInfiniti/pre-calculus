@@ -71,7 +71,7 @@ root.innerHTML = `
           <button type="button" data-family="reciprocal-square">Reciprocal squared</button>
         </div>
         <div class="family-library__stage">
-          <svg id="family-chart" viewBox="0 0 620 420" role="img" aria-label="Graph of the selected parent function"></svg>
+          <svg id="family-chart" viewBox="0 0 620 620" role="img" aria-label="Graph of the selected parent function"></svg>
           <div class="family-library__copy" aria-live="polite">
             <p class="tool-label" id="family-name">Constant function</p>
             <h3 id="family-formula">f(x) = 2</h3>
@@ -358,7 +358,9 @@ function endpointMarkup(mapper, x, y, closed = true, className = "") {
   return `<circle cx="${mapper.x(x)}" cy="${mapper.y(y)}" r="8" class="graph-endpoint ${closed ? "is-closed" : "is-open"} ${className}" />`;
 }
 
-const familyMapper = createMapper({ width: 620, height: 420, padding: 48 });
+// Keep one horizontal unit equal to one vertical unit so parent-function
+// silhouettes are not visually stretched by the surrounding layout.
+const familyMapper = createMapper({ width: 620, height: 620, padding: 48 });
 const familyCases = {
   constant: { name: "Constant function", formula: "f(x) = 2", domain: "(−∞, ∞)", range: "{2}", clue: "A horizontal line: every input returns the same output.", segments: [[[-5, 2], [5, 2]]] },
   identity: { name: "Identity function", formula: "f(x) = x", domain: "(−∞, ∞)", range: "(−∞, ∞)", clue: "A line through the origin with slope 1: output equals input.", segments: [sampledPoints(-5, 5, (x) => x)] },
