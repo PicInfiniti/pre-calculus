@@ -237,7 +237,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";/* empty css               */import
           <h3>Use the three-rule function above.</h3>
           <label>f(2) <input id="check-piecewise-two" type="number" step="0.01" /></label>
           <label>f(3.5) <input id="check-piecewise-three" type="number" step="0.01" /></label>
-          <label>f(−π) = <input id="check-piecewise-pi" type="number" step="0.01" />π</label>
+          <label><span>f(−π) =</span><span class="check-answer-with-suffix"><input id="check-piecewise-pi" type="number" step="0.01" /><span>π</span></span></label>
           <button type="button" id="check-piecewise">Check values</button>
           <p id="feedback-piecewise" class="answer-feedback" aria-live="polite"></p>
         </article>
