@@ -270,6 +270,23 @@ function createMapper({ width, height, xMin, xMax, yMin, yMax, padding = 46, equ
   };
 }
 
+function expandBoundsToFit({ width, height, xMin, xMax, yMin, yMax, padding }) {
+  const frameAspect = (width - padding * 2) / (height - padding * 2);
+  const xSpan = xMax - xMin;
+  const ySpan = yMax - yMin;
+  const dataAspect = xSpan / ySpan;
+
+  if (dataAspect < frameAspect) {
+    const expandedSpan = ySpan * frameAspect;
+    const center = (xMin + xMax) / 2;
+    return { xMin: center - expandedSpan / 2, xMax: center + expandedSpan / 2, yMin, yMax };
+  }
+
+  const expandedSpan = xSpan / frameAspect;
+  const center = (yMin + yMax) / 2;
+  return { xMin, xMax, yMin: center - expandedSpan / 2, yMax: center + expandedSpan / 2 };
+}
+
 function gridMarkup(mapper, classPrefix = "transform") {
   const items = [];
   for (let x = Math.ceil(mapper.xMin); x <= mapper.xMax; x += 1) {
@@ -519,21 +536,24 @@ function renderSymmetry() {
   const x = Number(symmetryInput.value);
   const y = selected.fn(x);
   const partnerY = selected.type === "even" ? y : selected.type === "odd" ? -y : selected.fn(-x);
-  const symmetryMapper = createMapper({
-    width: 680,
-    height: 540,
+  const symmetryFrame = { width: 680, height: 540, padding: 52 };
+  const symmetryBounds = expandBoundsToFit({
+    ...symmetryFrame,
     xMin: -5,
     xMax: 5,
     yMin: selected.yMin,
     yMax: selected.yMax,
-    padding: 52,
+  });
+  const symmetryMapper = createMapper({
+    ...symmetryFrame,
+    ...symmetryBounds,
   });
   const positiveStart = selected.discontinuous ? 0.2 : 0;
   const right = sample(positiveStart, selected.xMax, selected.fn, 0.025);
   const left = sample(-selected.xMax, selected.discontinuous ? -0.2 : 0, selected.fn, 0.025);
   const curveOverflow = symmetryCase === "shifted" ? 0.2 : 1;
-  const pointIsVisible = y >= selected.yMin && y <= selected.yMax;
-  const partnerIsVisible = partnerY >= selected.yMin && partnerY <= selected.yMax;
+  const pointIsVisible = y >= symmetryMapper.yMin && y <= symmetryMapper.yMax;
+  const partnerIsVisible = partnerY >= symmetryMapper.yMin && partnerY <= symmetryMapper.yMax;
   symmetryChart.innerHTML = `
     ${gridMarkup(symmetryMapper, "symmetry")}
     <g>
@@ -548,8 +568,8 @@ function renderSymmetry() {
   document.querySelector("#symmetry-verdict").textContent = selected.verdict;
   document.querySelector("#symmetry-x-output").textContent = signed(x);
   const outsideNotes = [];
-  if (!pointIsVisible) outsideNotes.push(`The tracked point is ${y > selected.yMax ? "above" : "below"} the visible window.`);
-  if (!partnerIsVisible) outsideNotes.push(`Its partner is ${partnerY > selected.yMax ? "above" : "below"} the visible window.`);
+  if (!pointIsVisible) outsideNotes.push(`The tracked point is ${y > symmetryMapper.yMax ? "above" : "below"} the visible window.`);
+  if (!partnerIsVisible) outsideNotes.push(`Its partner is ${partnerY > symmetryMapper.yMax ? "above" : "below"} the visible window.`);
   document.querySelector("#symmetry-point-pair").innerHTML = `<span>(${signed(x)}, ${signed(y)}) pairs with (${signed(-x)}, ${signed(partnerY)})</span>${outsideNotes.length ? `<small>${outsideNotes.join(" ")}</small>` : ""}`;
   const reveal = document.querySelector("#symmetry-reveal");
   reveal.setAttribute("aria-pressed", String(symmetryRevealed));
