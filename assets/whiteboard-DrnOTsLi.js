@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-P2Xu9kJm.js";import{c as e}from"./shared-D3KyS0cy.js";var t=document.querySelector(`#app`);t.innerHTML=`
+import"./modulepreload-polyfill-P2Xu9kJm.js";import{c as e}from"./shared-CE7WJxMV.js";var t=document.querySelector(`#app`);t.innerHTML=`
   <div class="whiteboard-shell">
     <header class="whiteboard-header">
       <a class="whiteboard-brand" href="${e()}" aria-label="Back to the MATH 1280 course home">
