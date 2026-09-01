@@ -31,6 +31,9 @@ export default defineConfig({
         section23: fileURLToPath(
           new URL("./pages/sections/2-3.html", import.meta.url),
         ),
+        section26: fileURLToPath(
+          new URL("./pages/sections/2-6.html", import.meta.url),
+        ),
         whiteboard: fileURLToPath(
           new URL("./pages/tools/whiteboard.html", import.meta.url),
         ),
