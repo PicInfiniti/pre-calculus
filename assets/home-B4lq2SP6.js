@@ -18,7 +18,7 @@ import"./modulepreload-polyfill-P2Xu9kJm.js";var e=`/pre-calculus/assets/precalc
           <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--inner">
             <span><span class="math-indexed">D<sub>f</sub></span></span><span>(x, y)</span><span>≤</span>
           </div>
-          <div class="unit-card-primer-art__center"><strong>?</strong><small>click · read · use</small></div>
+          <div class="unit-card-primer-art__center"><strong>?</strong></div>
         </div>
       `:``}
     </article>
