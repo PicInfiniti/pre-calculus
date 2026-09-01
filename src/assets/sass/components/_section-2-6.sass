@@ -368,8 +368,10 @@
       strong
         color: rgba(7, 29, 51, .66)
 
+.rule-map__display
+  min-width: 0
+
 .rule-map__visual
-  position: relative
   min-height: 510px
   padding: 1rem
   overflow: hidden
@@ -377,6 +379,7 @@
   background: var(--white)
 
   svg
+    display: block
     width: 100%
 
 .rule-grid-line
@@ -410,13 +413,11 @@
   font: 700 14px Ubuntu, Arial, sans-serif
 
 .rule-map__explanation
-  position: absolute
-  right: 1.25rem
-  bottom: 1.25rem
-  left: 1.25rem
+  margin-top: .75rem
   padding: 1rem
+  border: 1px solid rgba(255, 255, 255, .18)
   border-radius: .4rem
-  background: rgba(7, 29, 51, .96)
+  background: rgba(255, 255, 255, .055)
   color: var(--white)
 
   span, strong
@@ -848,11 +849,6 @@
 
   .rule-map__visual
     min-height: 405px
-
-  .rule-map__explanation
-    right: .7rem
-    bottom: .7rem
-    left: .7rem
 
   .point-witness__rule
     font-size: .92rem

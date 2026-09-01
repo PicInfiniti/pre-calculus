@@ -58,7 +58,7 @@ root.innerHTML = `
 
       <div class="transformation-studio" data-reveal>
         <div class="transformation-stage">
-          <svg id="transformation-chart" viewBox="0 0 720 520" role="img" aria-label="Base function and transformed function on a coordinate grid"></svg>
+          <svg id="transformation-chart" viewBox="0 0 720 630" role="img" aria-label="Base function and transformed function on a coordinate grid"></svg>
           <div class="transformation-stage__legend" aria-hidden="true"><span><i></i>f(x)</span><span><i></i>g(x)</span></div>
         </div>
         <div class="transformation-controls">
@@ -109,8 +109,10 @@ root.innerHTML = `
           <button type="button" data-rule="xreflect"><span>−f(x)</span><strong>x-axis reflection</strong></button>
           <button type="button" data-rule="yreflect"><span>f(−x)</span><strong>y-axis reflection</strong></button>
         </div>
-        <div class="rule-map__visual">
-          <svg id="rule-map-chart" viewBox="0 0 620 390" role="img" aria-label="A point moving according to the selected transformation rule"></svg>
+        <div class="rule-map__display">
+          <div class="rule-map__visual">
+            <svg id="rule-map-chart" viewBox="0 0 620 490" role="img" aria-label="A point moving according to the selected transformation rule"></svg>
+          </div>
           <div class="rule-map__explanation" aria-live="polite">
             <span id="rule-map-label">Outside addition</span>
             <strong id="rule-map-mapping">(x, y) → (x, y + c)</strong>
@@ -129,7 +131,7 @@ root.innerHTML = `
 
       <div class="formula-lab" data-reveal>
         <div class="formula-lab__stage">
-          <svg id="formula-chart" viewBox="0 0 680 520" role="img" aria-label="Target parabola and adjustable guess on a coordinate grid"></svg>
+          <svg id="formula-chart" viewBox="0 0 680 680" role="img" aria-label="Target parabola and adjustable guess on a coordinate grid"></svg>
           <div class="formula-lab__legend" aria-hidden="true"><span><i></i>target g</span><span><i></i>your formula</span></div>
         </div>
         <div class="formula-lab__controls">
@@ -243,14 +245,28 @@ function signed(value, digits = 2) {
   return text.startsWith("-") ? `−${text.slice(1)}` : text;
 }
 
-function createMapper({ width, height, xMin, xMax, yMin, yMax, padding = 46 }) {
-  const xScale = (width - padding * 2) / (xMax - xMin);
-  const yScale = (height - padding * 2) / (yMax - yMin);
+function createMapper({ width, height, xMin, xMax, yMin, yMax, padding = 46, equalUnits = true }) {
+  const availableWidth = width - padding * 2;
+  const availableHeight = height - padding * 2;
+  let xScale = availableWidth / (xMax - xMin);
+  let yScale = availableHeight / (yMax - yMin);
+  let left = padding;
+  let top = padding;
+
+  if (equalUnits) {
+    const unitScale = Math.min(xScale, yScale);
+    xScale = unitScale;
+    yScale = unitScale;
+    left = (width - (xMax - xMin) * unitScale) / 2;
+    top = (height - (yMax - yMin) * unitScale) / 2;
+  }
+
   return {
     width, height, xMin, xMax, yMin, yMax,
-    left: padding, right: width - padding, top: padding, bottom: height - padding,
-    x: (x) => padding + (x - xMin) * xScale,
-    y: (y) => padding + (yMax - y) * yScale,
+    left, right: left + (xMax - xMin) * xScale,
+    top, bottom: top + (yMax - yMin) * yScale,
+    x: (x) => left + (x - xMin) * xScale,
+    y: (y) => top + (yMax - y) * yScale,
   };
 }
 
@@ -269,11 +285,11 @@ function gridMarkup(mapper, classPrefix = "transform") {
   return items.join("");
 }
 
-function pointsToPath(points, mapper) {
+function pointsToPath(points, mapper, overflow = 1) {
   let path = "";
   let drawing = false;
   points.forEach((point) => {
-    if (!point || !Number.isFinite(point[1]) || point[1] < mapper.yMin - 1 || point[1] > mapper.yMax + 1) {
+    if (!point || !Number.isFinite(point[1]) || point[1] < mapper.yMin - overflow || point[1] > mapper.yMax + overflow) {
       drawing = false;
       return;
     }
@@ -293,7 +309,7 @@ function baseFunction(x) {
   return 0.075 * (x + 3) * x * (x - 2);
 }
 
-const transformMapper = createMapper({ width: 720, height: 520, xMin: -7, xMax: 7, yMin: -6, yMax: 6, padding: 50 });
+const transformMapper = createMapper({ width: 720, height: 630, xMin: -7, xMax: 7, yMin: -6, yMax: 6, padding: 50 });
 const transformChart = document.querySelector("#transformation-chart");
 const aInput = document.querySelector("#transform-a");
 const bInput = document.querySelector("#transform-b");
@@ -391,20 +407,21 @@ document.querySelector("#transformation-reset").addEventListener("click", () => 
 });
 renderTransformation();
 
-const ruleMapper = createMapper({ width: 620, height: 390, xMin: -6, xMax: 6, yMin: -4, yMax: 5, padding: 42 });
+const ruleMapper = createMapper({ width: 620, height: 490, xMin: -6, xMax: 6, yMin: -4, yMax: 5, padding: 42 });
 const ruleChart = document.querySelector("#rule-map-chart");
+const ruleOrigin = [2, 1];
 const ruleCases = {
-  up: { label: "Outside addition", mapping: "(x, y) → (x, y + c)", copy: "The input is untouched. Add c directly to every output.", from: [2, 1], to: [2, 3], guide: "vertical" },
-  left: { label: "Inside addition", mapping: "(x, y) → (x − c, y)", copy: "Solve x + c = old input. The new x is c units smaller, so the graph moves left.", from: [2, 1], to: [0, 1], guide: "horizontal" },
-  vscale: { label: "Outside multiplication", mapping: "(x, y) → (x, ky)", copy: "Keep x. Multiply the height by k; negative k also reflects across the x-axis.", from: [2, 1], to: [2, 3], guide: "vertical" },
-  hscale: { label: "Inside multiplication", mapping: "(x, y) → (x/k, y)", copy: "Solve kx = old input. Divide x by k; negative k also reflects across the y-axis.", from: [3, 1], to: [1, 1], guide: "horizontal" },
-  xreflect: { label: "Negative outside", mapping: "(x, y) → (x, −y)", copy: "Every output changes sign, producing a reflection across the x-axis.", from: [2, 2], to: [2, -2], guide: "vertical" },
-  yreflect: { label: "Negative inside", mapping: "(x, y) → (−x, y)", copy: "Every input changes sign, producing a reflection across the y-axis.", from: [2, 2], to: [-2, 2], guide: "horizontal" },
+  up: { label: "Outside addition", mapping: "(x, y) → (x, y + c)", copy: "The input is untouched. Add c directly to every output.", to: [2, 3], guide: "vertical" },
+  left: { label: "Inside addition", mapping: "(x, y) → (x − c, y)", copy: "Solve x + c = old input. The new x is c units smaller, so the graph moves left.", to: [0, 1], guide: "horizontal" },
+  vscale: { label: "Outside multiplication", mapping: "(x, y) → (x, ky)", copy: "Keep x. Multiply the height by k; negative k also reflects across the x-axis.", to: [2, 3], guide: "vertical" },
+  hscale: { label: "Inside multiplication", mapping: "(x, y) → (x/k, y)", copy: "Solve kx = old input. Divide x by k; negative k also reflects across the y-axis.", to: [1, 1], guide: "horizontal" },
+  xreflect: { label: "Negative outside", mapping: "(x, y) → (x, −y)", copy: "Every output changes sign, producing a reflection across the x-axis.", to: [2, -1], guide: "vertical" },
+  yreflect: { label: "Negative inside", mapping: "(x, y) → (−x, y)", copy: "Every input changes sign, producing a reflection across the y-axis.", to: [-2, 1], guide: "horizontal" },
 };
 
 function renderRule(ruleName) {
   const rule = ruleCases[ruleName];
-  const [x1, y1] = rule.from;
+  const [x1, y1] = ruleOrigin;
   const [x2, y2] = rule.to;
   ruleChart.innerHTML = `
     ${gridMarkup(ruleMapper, "rule")}
@@ -425,7 +442,7 @@ document.querySelectorAll("[data-rule]").forEach((button) => button.addEventList
 }));
 renderRule("up");
 
-const formulaMapper = createMapper({ width: 680, height: 520, xMin: -6, xMax: 6, yMin: -6, yMax: 6, padding: 50 });
+const formulaMapper = createMapper({ width: 680, height: 680, xMin: -6, xMax: 6, yMin: -6, yMax: 6, padding: 50 });
 const formulaChart = document.querySelector("#formula-chart");
 const formulaA = document.querySelector("#formula-a");
 const formulaH = document.querySelector("#formula-h");
@@ -514,13 +531,14 @@ function renderSymmetry() {
   const positiveStart = selected.discontinuous ? 0.2 : 0;
   const right = sample(positiveStart, selected.xMax, selected.fn, 0.025);
   const left = sample(-selected.xMax, selected.discontinuous ? -0.2 : 0, selected.fn, 0.025);
+  const curveOverflow = symmetryCase === "shifted" ? 0.2 : 1;
   const pointIsVisible = y >= selected.yMin && y <= selected.yMax;
   const partnerIsVisible = partnerY >= selected.yMin && partnerY <= selected.yMax;
   symmetryChart.innerHTML = `
     ${gridMarkup(symmetryMapper, "symmetry")}
     <g>
-      <path d="${pointsToPath(right, symmetryMapper)}" class="symmetry-curve symmetry-curve--known" />
-      <path d="${pointsToPath(left, symmetryMapper)}" class="symmetry-curve symmetry-curve--mirror ${symmetryRevealed ? "is-revealed" : ""}" />
+      <path d="${pointsToPath(right, symmetryMapper, curveOverflow)}" class="symmetry-curve symmetry-curve--known" />
+      <path d="${pointsToPath(left, symmetryMapper, curveOverflow)}" class="symmetry-curve symmetry-curve--mirror ${symmetryRevealed ? "is-revealed" : ""}" />
       ${pointIsVisible ? `<circle cx="${symmetryMapper.x(x)}" cy="${symmetryMapper.y(y)}" r="8" class="symmetry-point symmetry-point--known" />` : ""}
       ${symmetryRevealed && partnerIsVisible ? `<circle cx="${symmetryMapper.x(-x)}" cy="${symmetryMapper.y(partnerY)}" r="8" class="symmetry-point symmetry-point--mirror" />` : ""}
     </g>
