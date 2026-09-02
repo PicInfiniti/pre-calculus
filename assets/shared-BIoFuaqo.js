@@ -17,7 +17,7 @@ function e(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}function t(t){let
         ${n}
       </nav>
       <div class="lesson-header__actions">
-        <a class="lesson-header__tool" href="${e(`pages/tools/whiteboard.html`)}">Whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__tool" href="https://picinfiniti.net/whiteboard/" target="_blank" rel="noreferrer">Whiteboard <span aria-hidden="true">↗</span></a>
         <a class="lesson-header__home" href="${e()}">Course map <span aria-hidden="true">↗</span></a>
       </div>
     </header>
