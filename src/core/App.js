@@ -82,7 +82,7 @@ const sectionCount = courseUnits.reduce(
 );
 
 const baseUrl = import.meta.env.BASE_URL;
-const whiteboardUrl = `${baseUrl}pages/tools/whiteboard.html`;
+const whiteboardUrl = "https://picinfiniti.net/whiteboard/";
 const sectionPages = {
   "0.0": `${baseUrl}pages/sections/0-0.html`,
   "9.1": `${baseUrl}pages/sections/9-1.html`,
@@ -161,7 +161,7 @@ export default class App {
           <a href="#whiteboard">Whiteboard</a>
           <a href="#textbook">Textbook</a>
         </nav>
-        <a class="header-cta" href="${whiteboardUrl}">Open whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="header-cta" href="${whiteboardUrl}" target="_blank" rel="noreferrer">Open whiteboard <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="top">
@@ -267,7 +267,7 @@ export default class App {
               mathematical canvas. Choose a blank page, square grid, or coordinate plane.
             </p>
             <div class="whiteboard-promo__actions">
-              <a class="button button--primary" href="${whiteboardUrl}">Open the whiteboard</a>
+              <a class="button button--primary" href="${whiteboardUrl}" target="_blank" rel="noreferrer">Open the whiteboard</a>
               <span>Saved automatically on this device.</span>
             </div>
           </div>
@@ -328,7 +328,7 @@ export default class App {
           <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
         </p>
         <nav class="footer-links" aria-label="Project links">
-          <a href="${whiteboardUrl}">Whiteboard <span aria-hidden="true">↗</span></a>
+          <a href="${whiteboardUrl}" target="_blank" rel="noreferrer">Whiteboard <span aria-hidden="true">↗</span></a>
           <a
             class="github-link"
             href="https://github.com/PicInfiniti/pre-calculus"

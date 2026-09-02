@@ -2,6 +2,8 @@ export function sitePath(path = "") {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 }
 
+const whiteboardUrl = "https://picinfiniti.net/whiteboard/";
+
 export function renderLessonHeader(activeSection) {
   let navigation;
   if (activeSection === "0.0") {
@@ -33,7 +35,7 @@ export function renderLessonHeader(activeSection) {
         ${navigation}
       </nav>
       <div class="lesson-header__actions">
-        <a class="lesson-header__tool" href="${sitePath("pages/tools/whiteboard.html")}">Whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__tool" href="${whiteboardUrl}" target="_blank" rel="noreferrer">Whiteboard <span aria-hidden="true">↗</span></a>
         <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
       </div>
     </header>
