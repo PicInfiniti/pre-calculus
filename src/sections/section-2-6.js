@@ -111,7 +111,7 @@ root.innerHTML = `
         </div>
         <div class="rule-map__display">
           <div class="rule-map__visual">
-            <svg id="rule-map-chart" viewBox="0 0 620 490" role="img" aria-label="A point moving according to the selected transformation rule"></svg>
+            <svg id="rule-map-chart" viewBox="0 0 620 537" role="img" aria-label="A draggable point moving according to the selected transformation rule"></svg>
           </div>
           <div class="rule-map__explanation" aria-live="polite">
             <span id="rule-map-label">Outside addition</span>
@@ -424,26 +424,52 @@ document.querySelector("#transformation-reset").addEventListener("click", () => 
 });
 renderTransformation();
 
-const ruleMapper = createMapper({ width: 620, height: 490, xMin: -6, xMax: 6, yMin: -4, yMax: 5, padding: 42 });
+const ruleMapper = createMapper({ width: 620, height: 537, xMin: -7, xMax: 7, yMin: -6, yMax: 6, padding: 21 });
 const ruleChart = document.querySelector("#rule-map-chart");
-const ruleOrigin = [2, 1];
+let ruleOrigin = [2, 1];
+let activeRuleName = "up";
+let isRuleDragging = false;
 const ruleCases = {
-  up: { label: "Outside addition", mapping: "(x, y) → (x, y + c)", copy: "The input is untouched. Add c directly to every output.", to: [2, 3], guide: "vertical" },
-  left: { label: "Inside addition", mapping: "(x, y) → (x − c, y)", copy: "Solve x + c = old input. The new x is c units smaller, so the graph moves left.", to: [0, 1], guide: "horizontal" },
-  vscale: { label: "Outside multiplication", mapping: "(x, y) → (x, ky)", copy: "Keep x. Multiply the height by k; negative k also reflects across the x-axis.", to: [2, 3], guide: "vertical" },
-  hscale: { label: "Inside multiplication", mapping: "(x, y) → (x/k, y)", copy: "Solve kx = old input. Divide x by k; negative k also reflects across the y-axis.", to: [1, 1], guide: "horizontal" },
-  xreflect: { label: "Negative outside", mapping: "(x, y) → (x, −y)", copy: "Every output changes sign, producing a reflection across the x-axis.", to: [2, -1], guide: "vertical" },
-  yreflect: { label: "Negative inside", mapping: "(x, y) → (−x, y)", copy: "Every input changes sign, producing a reflection across the y-axis.", to: [-2, 1], guide: "horizontal" },
+  up: { label: "Outside addition", mapping: "(x, y) → (x, y + c)", copy: "The input is untouched. Add c directly to every output.", apply: ([x, y]) => [x, y + 2] },
+  left: { label: "Inside addition", mapping: "(x, y) → (x − c, y)", copy: "Solve x + c = old input. The new x is c units smaller, so the graph moves left.", apply: ([x, y]) => [x - 2, y] },
+  vscale: { label: "Outside multiplication", mapping: "(x, y) → (x, ky)", copy: "Keep x. Multiply the height by k; negative k also reflects across the x-axis.", apply: ([x, y]) => [x, 3 * y] },
+  hscale: { label: "Inside multiplication", mapping: "(x, y) → (x/k, y)", copy: "Solve kx = old input. Divide x by k; negative k also reflects across the y-axis.", apply: ([x, y]) => [x / 2, y] },
+  xreflect: { label: "Negative outside", mapping: "(x, y) → (x, −y)", copy: "Every output changes sign, producing a reflection across the x-axis.", apply: ([x, y]) => [x, -y] },
+  yreflect: { label: "Negative inside", mapping: "(x, y) → (−x, y)", copy: "Every input changes sign, producing a reflection across the y-axis.", apply: ([x, y]) => [-x, y] },
 };
 
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function constrainRuleOrigin(ruleName, x, y) {
+  const snap = (value) => Math.round(value * 10) / 10;
+  return [
+    snap(clamp(x, -3, 3)),
+    snap(clamp(y, -3, 3)),
+  ];
+}
+
+function ruleCoordinatesFromPointer(event) {
+  const svgPoint = ruleChart.createSVGPoint();
+  svgPoint.x = event.clientX;
+  svgPoint.y = event.clientY;
+  const localPoint = svgPoint.matrixTransform(ruleChart.getScreenCTM().inverse());
+  const x = ruleMapper.xMin + ((localPoint.x - ruleMapper.left) / (ruleMapper.right - ruleMapper.left)) * (ruleMapper.xMax - ruleMapper.xMin);
+  const y = ruleMapper.yMax - ((localPoint.y - ruleMapper.top) / (ruleMapper.bottom - ruleMapper.top)) * (ruleMapper.yMax - ruleMapper.yMin);
+  return constrainRuleOrigin(activeRuleName, x, y);
+}
+
 function renderRule(ruleName) {
+  activeRuleName = ruleName;
+  ruleOrigin = constrainRuleOrigin(ruleName, ...ruleOrigin);
   const rule = ruleCases[ruleName];
   const [x1, y1] = ruleOrigin;
-  const [x2, y2] = rule.to;
+  const [x2, y2] = rule.apply(ruleOrigin);
   ruleChart.innerHTML = `
     ${gridMarkup(ruleMapper, "rule")}
     <line x1="${ruleMapper.x(x1)}" y1="${ruleMapper.y(y1)}" x2="${ruleMapper.x(x2)}" y2="${ruleMapper.y(y2)}" class="rule-motion-line" />
-    <circle cx="${ruleMapper.x(x1)}" cy="${ruleMapper.y(y1)}" r="10" class="rule-point rule-point--start" />
+    <circle cx="${ruleMapper.x(x1)}" cy="${ruleMapper.y(y1)}" r="12" class="rule-point rule-point--start" tabindex="0" role="button" aria-label="Old point at ${signed(x1)}, ${signed(y1)}. Drag it or use the arrow keys to move it." />
     <circle cx="${ruleMapper.x(x2)}" cy="${ruleMapper.y(y2)}" r="11" class="rule-point rule-point--end" />
     <text x="${ruleMapper.x(x1) + 14}" y="${ruleMapper.y(y1) - 12}" class="rule-point-label">old (${signed(x1)}, ${signed(y1)})</text>
     <text x="${ruleMapper.x(x2) + 14}" y="${ruleMapper.y(y2) + 24}" class="rule-point-label">new (${signed(x2)}, ${signed(y2)})</text>
@@ -457,6 +483,46 @@ document.querySelectorAll("[data-rule]").forEach((button) => button.addEventList
   document.querySelectorAll("[data-rule]").forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
   renderRule(button.dataset.rule);
 }));
+
+ruleChart.addEventListener("pointerdown", (event) => {
+  if (!event.target.classList.contains("rule-point--start")) return;
+  isRuleDragging = true;
+  ruleChart.setPointerCapture(event.pointerId);
+  ruleOrigin = ruleCoordinatesFromPointer(event);
+  renderRule(activeRuleName);
+});
+
+ruleChart.addEventListener("pointermove", (event) => {
+  if (!isRuleDragging) return;
+  ruleOrigin = ruleCoordinatesFromPointer(event);
+  renderRule(activeRuleName);
+});
+
+ruleChart.addEventListener("pointerup", (event) => {
+  isRuleDragging = false;
+  if (ruleChart.hasPointerCapture(event.pointerId)) ruleChart.releasePointerCapture(event.pointerId);
+});
+
+ruleChart.addEventListener("pointercancel", () => {
+  isRuleDragging = false;
+});
+
+ruleChart.addEventListener("keydown", (event) => {
+  if (!event.target.classList.contains("rule-point--start") || !event.key.startsWith("Arrow")) return;
+  event.preventDefault();
+  const step = event.shiftKey ? 1 : 0.1;
+  const moves = {
+    ArrowLeft: [-step, 0],
+    ArrowRight: [step, 0],
+    ArrowUp: [0, step],
+    ArrowDown: [0, -step],
+  };
+  const [dx, dy] = moves[event.key];
+  ruleOrigin = constrainRuleOrigin(activeRuleName, ruleOrigin[0] + dx, ruleOrigin[1] + dy);
+  renderRule(activeRuleName);
+  ruleChart.querySelector(".rule-point--start").focus();
+});
+
 renderRule("up");
 
 const formulaMapper = createMapper({ width: 680, height: 680, xMin: -6, xMax: 6, yMin: -6, yMax: 6, padding: 50 });

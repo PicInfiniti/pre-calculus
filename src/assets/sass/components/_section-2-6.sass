@@ -332,10 +332,12 @@
   margin-top: 3rem
   display: grid
   grid-template-columns: minmax(235px, .62fr) 1.38fr
-  gap: 1rem
+  gap: .75rem 1rem
 
 .rule-map__choices
+  margin-bottom: .55rem
   display: grid
+  grid-template-rows: repeat(6, 1fr)
   gap: .55rem
 
   button
@@ -369,11 +371,11 @@
         color: rgba(7, 29, 51, .66)
 
 .rule-map__display
-  min-width: 0
+  display: contents
 
 .rule-map__visual
   min-height: 510px
-  padding: 1rem
+  padding: .5rem
   overflow: hidden
   border-radius: .6rem
   background: var(--white)
@@ -381,6 +383,7 @@
   svg
     display: block
     width: 100%
+    touch-action: none
 
 .rule-grid-line
   stroke: rgba(7, 29, 51, .09)
@@ -404,6 +407,15 @@
 
 .rule-point--start
   fill: var(--violet)
+  cursor: grab
+
+  &:hover, &:focus
+    stroke: var(--gold)
+    stroke-width: 6
+    outline: none
+
+  &:active
+    cursor: grabbing
 
 .rule-point--end
   fill: var(--coral)
@@ -413,7 +425,7 @@
   font: 700 14px Ubuntu, Arial, sans-serif
 
 .rule-map__explanation
-  margin-top: .75rem
+  grid-column: 2
   padding: 1rem
   border: 1px solid rgba(255, 255, 255, .18)
   border-radius: .4rem
@@ -790,7 +802,12 @@
     grid-template-columns: 1fr
 
   .rule-map__choices
+    margin-bottom: 0
     grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: none
+
+  .rule-map__explanation
+    grid-column: 1
 
 @media (max-width: 760px)
   .transformation-hero-art
