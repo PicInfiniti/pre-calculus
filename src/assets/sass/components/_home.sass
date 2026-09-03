@@ -649,7 +649,7 @@
   font-size: .85rem
   font-weight: 700
 
-.whiteboard-promo
+.mathboard-promo
   min-height: 720px
   padding: clamp(5rem, 9vw, 8rem) max(var(--page-gutter), calc((100vw - var(--max-width)) / 2))
   display: grid
@@ -659,7 +659,7 @@
   overflow: hidden
   background: linear-gradient(120deg, var(--paper-deep), var(--paper) 58%, rgba(66, 184, 213, .12))
 
-.whiteboard-promo__copy
+.mathboard-promo__copy
   position: relative
   z-index: 2
 
@@ -676,7 +676,7 @@
     font-size: 1rem
     line-height: 1.75
 
-.whiteboard-promo__actions
+.mathboard-promo__actions
   margin-top: 2rem
   display: flex
   align-items: center
@@ -688,14 +688,14 @@
     font-size: .85rem
     line-height: 1.5
 
-.whiteboard-promo__visual
+.mathboard-promo__visual
   position: relative
   width: min(100%, 700px)
   padding-top: 3.4rem
   justify-self: end
   filter: drop-shadow(0 28px 36px rgba(7, 29, 51, .18))
 
-.whiteboard-promo__toolbar
+.mathboard-promo__toolbar
   position: absolute
   z-index: 3
   top: 0
@@ -737,7 +737,7 @@
     &:nth-of-type(4)
       background: var(--violet)
 
-.whiteboard-promo__board
+.mathboard-promo__board
   position: relative
   padding: 1rem
   border: 1px solid var(--line)
@@ -751,33 +751,33 @@
     border-radius: .35rem
     background: rgba(244, 240, 230, .28)
 
-.whiteboard-promo__grid
+.mathboard-promo__grid
   fill: none
   stroke: rgba(7, 29, 51, .1)
   stroke-width: 1
 
-.whiteboard-promo__axis
+.mathboard-promo__axis
   fill: none
   stroke: rgba(7, 29, 51, .55)
   stroke-width: 2.5
 
-.whiteboard-promo__curve
+.mathboard-promo__curve
   fill: none
   stroke: var(--coral)
   stroke-width: 9
   stroke-linecap: round
   stroke-dasharray: 900
-  animation: whiteboard-draw 4.5s ease-in-out infinite alternate
+  animation: mathboard-draw 4.5s ease-in-out infinite alternate
 
-.whiteboard-promo__origin-fill
+.mathboard-promo__origin-fill
   fill: var(--gold)
 
-.whiteboard-promo__origin-ring
+.mathboard-promo__origin-ring
   fill: none
   stroke: var(--ink)
   stroke-width: 5
 
-.whiteboard-promo__note
+.mathboard-promo__note
   position: absolute
   padding: .75rem .9rem
   border-radius: .4rem
@@ -787,19 +787,19 @@
   font-weight: 700
   box-shadow: 0 12px 25px rgba(7, 29, 51, .13)
 
-.whiteboard-promo__note--one
+.mathboard-promo__note--one
   top: 16%
   right: -2rem
   background: var(--green)
   transform: rotate(4deg)
 
-.whiteboard-promo__note--two
+.mathboard-promo__note--two
   bottom: 8%
   left: -2.5rem
   background: var(--gold)
   transform: rotate(-4deg)
 
-@keyframes whiteboard-draw
+@keyframes mathboard-draw
   from
     stroke-dashoffset: 900
 
@@ -938,15 +938,15 @@
     grid-template-columns: 1fr
     gap: 3rem
 
-  .whiteboard-promo
+  .mathboard-promo
     min-height: auto
     grid-template-columns: 1fr
     gap: 4rem
 
-  .whiteboard-promo__copy
+  .mathboard-promo__copy
     max-width: 44rem
 
-  .whiteboard-promo__visual
+  .mathboard-promo__visual
     width: min(92%, 700px)
     justify-self: center
 
@@ -1013,23 +1013,23 @@
     padding-top: 4.5rem
     padding-bottom: 4.5rem
 
-  .whiteboard-promo
+  .mathboard-promo
     padding-top: 5rem
     padding-bottom: 5.5rem
     gap: 3rem
 
-  .whiteboard-promo__copy h2
+  .mathboard-promo__copy h2
     font-size: clamp(3.2rem, 15vw, 4.8rem)
 
-  .whiteboard-promo__actions
+  .mathboard-promo__actions
     align-items: flex-start
     flex-direction: column
 
-  .whiteboard-promo__visual
+  .mathboard-promo__visual
     width: 100%
     padding-top: 3rem
 
-  .whiteboard-promo__toolbar
+  .mathboard-promo__toolbar
     left: 0
     max-width: 100%
 
@@ -1039,11 +1039,11 @@
     i
       display: none
 
-  .whiteboard-promo__board
+  .mathboard-promo__board
     padding: .5rem
     box-shadow: 8px 10px 0 rgba(66, 184, 213, .2)
 
-  .whiteboard-promo__note
+  .mathboard-promo__note
     display: none
 
   .study-steps li
@@ -1079,6 +1079,6 @@
   *, *::before, *::after
     transition-duration: .01ms !important
 
-  .whiteboard-promo__curve
+  .mathboard-promo__curve
     animation: none
     stroke-dashoffset: 0

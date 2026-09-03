@@ -2,7 +2,7 @@ export function sitePath(path = "") {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 }
 
-const whiteboardUrl = "https://picinfiniti.net/whiteboard/";
+const mathboardUrl = "https://picinfiniti.net/mathboard/";
 
 export function renderLessonHeader(activeSection) {
   let navigation;
@@ -35,7 +35,7 @@ export function renderLessonHeader(activeSection) {
         ${navigation}
       </nav>
       <div class="lesson-header__actions">
-        <a class="lesson-header__tool" href="${whiteboardUrl}" target="_blank" rel="noreferrer">Whiteboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__tool" href="${mathboardUrl}" target="_blank" rel="noreferrer">mathboard <span aria-hidden="true">↗</span></a>
         <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
       </div>
     </header>
@@ -63,7 +63,8 @@ export function initLessonChrome() {
   const progress = document.querySelector(".reading-progress span");
 
   const updateProgress = () => {
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollable =
+      document.documentElement.scrollHeight - window.innerHeight;
     const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
     progress.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
   };
@@ -71,7 +72,9 @@ export function initLessonChrome() {
   updateProgress();
   window.addEventListener("scroll", updateProgress, { passive: true });
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   if (reduceMotion || !("IntersectionObserver" in window)) {
     document.querySelectorAll("[data-reveal]").forEach((element) => {
       element.classList.add("is-visible");
@@ -90,7 +93,9 @@ export function initLessonChrome() {
     { threshold: 0.12 },
   );
 
-  document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
+  document
+    .querySelectorAll("[data-reveal]")
+    .forEach((element) => observer.observe(element));
 }
 
 export function bindTabs(container) {
@@ -119,7 +124,8 @@ export function nearlyEqual(actual, expected, tolerance = 0.001) {
 export function formatNumber(value) {
   if (!Number.isFinite(value)) return "—";
   if (Math.abs(value) < 1e-10) return "0";
-  if (Math.abs(value - Math.round(value)) < 1e-10) return String(Math.round(value));
+  if (Math.abs(value - Math.round(value)) < 1e-10)
+    return String(Math.round(value));
   return Number(value.toFixed(3)).toString();
 }
 
