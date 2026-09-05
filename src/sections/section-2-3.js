@@ -383,7 +383,7 @@ function curveSlope(x) {
 }
 
 const curvePoints = sample(-5, 5, curveValue, 0.025);
-const mainMapper = createMapper({ width: 680, height: 500, padding: 55, xMin: -6, xMax: 6, yMin: -4, yMax: 5 });
+const mainMapper = createMapper({ width: 680, height: 500, padding: 27.5, xMin: -6, xMax: 6, yMin: -4, yMax: 5 });
 
 function baseCurveMarkup({ light = false } = {}) {
   return `
@@ -584,7 +584,7 @@ function contextValue(age) {
   return start.y + (end.y - start.y) * eased;
 }
 
-const contextMapper = createMapper({ width: 720, height: 470, padding: 58, xMin: 0, xMax: 70, yMin: 0, yMax: 220 });
+const contextMapper = createMapper({ width: 720, height: 470, padding: 29, xMin: 0, xMax: 70, yMin: 0, yMax: 220 });
 const contextChart = document.querySelector("#context-chart");
 const contextAge = document.querySelector("#context-age");
 const contextStart = document.querySelector("#context-start");
@@ -594,13 +594,13 @@ function contextGrid() {
   const lines = [];
   for (let x = 0; x <= 70; x += 10) {
     lines.push(`<line x1="${contextMapper.x(x)}" y1="${contextMapper.top}" x2="${contextMapper.x(x)}" y2="${contextMapper.bottom}" class="info-grid-line" />`);
-    lines.push(`<text x="${contextMapper.x(x)}" y="${contextMapper.bottom + 25}" text-anchor="middle" class="info-grid-label">${x}</text>`);
+    lines.push(`<text x="${contextMapper.x(x)}" y="${contextMapper.bottom + 16}" text-anchor="middle" class="info-grid-label">${x}</text>`);
   }
   for (let y = 0; y <= 200; y += 50) {
     lines.push(`<line x1="${contextMapper.left}" y1="${contextMapper.y(y)}" x2="${contextMapper.right}" y2="${contextMapper.y(y)}" class="info-grid-line" />`);
     lines.push(`<text x="${contextMapper.left - 12}" y="${contextMapper.y(y) + 4}" text-anchor="end" class="info-grid-label">${y}</text>`);
   }
-  lines.push(`<text x="${contextMapper.right}" y="${contextMapper.bottom + 47}" text-anchor="end" class="context-axis-title">age x (years)</text>`);
+  lines.push(`<text x="${contextMapper.right}" y="${contextMapper.bottom + 23}" text-anchor="end" class="context-axis-title">age x (years)</text>`);
   lines.push(`<text x="${contextMapper.left}" y="${contextMapper.top - 18}" class="context-axis-title">W (lb)</text>`);
   return lines.join("");
 }
@@ -643,7 +643,7 @@ contextEnd.addEventListener("input", renderNetChange);
 renderContext();
 renderNetChange();
 
-const radicalMapper = createMapper({ width: 520, height: 520, padding: 55, xMin: -6, xMax: 6, yMin: -6, yMax: 6, equalScale: true });
+const radicalMapper = createMapper({ width: 520, height: 520, padding: 27.5, xMin: -6, xMax: 6, yMin: -6, yMax: 6, equalScale: true });
 const radicalChart = document.querySelector("#radical-chart");
 const radicalInput = document.querySelector("#radical-x");
 let radicalCase = "shifted";

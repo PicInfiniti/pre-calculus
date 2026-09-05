@@ -124,7 +124,7 @@ root.innerHTML = `
 
       <div class="graph-reader" data-reveal>
         <div class="graph-reader__stage">
-          <svg id="reader-chart" viewBox="0 0 620 440" role="img" aria-label="Three-piece function with open and closed endpoints"></svg>
+          <svg id="reader-chart" viewBox="0 0 620 620" role="img" aria-label="Three-piece function with open and closed endpoints"></svg>
         </div>
         <div class="graph-reader__copy">
           <p class="tool-label">Branch inspector</p>
@@ -193,7 +193,7 @@ root.innerHTML = `
         </div>
         <section data-reconstruction-panel="a">
           <div class="reconstruction-graph">
-            <svg id="reconstruction-a-chart" viewBox="0 0 680 470" role="img" aria-label="Piecewise graph with a constant segment, upper semicircle, and descending ray"></svg>
+            <svg id="reconstruction-a-chart" viewBox="0 0 680 495" role="img" aria-label="Piecewise graph with a constant segment, upper semicircle, and descending ray"></svg>
           </div>
           <div class="reconstruction-copy">
             <p class="tool-label">Constant · semicircle · ray</p>
@@ -215,7 +215,7 @@ root.innerHTML = `
         </section>
         <section data-reconstruction-panel="b" hidden>
           <div class="reconstruction-graph">
-            <svg id="reconstruction-b-chart" viewBox="0 0 680 470" role="img" aria-label="Piecewise graph with two horizontal segments and a rising line"></svg>
+            <svg id="reconstruction-b-chart" viewBox="0 0 680 495" role="img" aria-label="Piecewise graph with two horizontal segments and a rising line"></svg>
           </div>
           <div class="reconstruction-copy">
             <p class="tool-label">Open points change everything</p>
@@ -315,7 +315,14 @@ function signedNumber(value) {
   return result.startsWith("-") ? `−${result.slice(1)}` : result;
 }
 
-function createMapper({ width = 620, height = 420, padding = 44, xMin = -5, xMax = 5, yMin = -5, yMax = 5 }) {
+function createMapper({ width = 620, height = 420, padding = 44, xMin = -5, xMax = 5, yMin = -5, yMax = 5, equalScale = false }) {
+  let xScale = (width - 2 * padding) / (xMax - xMin);
+  let yScale = (height - 2 * padding) / (yMax - yMin);
+  if (equalScale) xScale = yScale = Math.min(xScale, yScale);
+  const plotWidth = (xMax - xMin) * xScale;
+  const plotHeight = (yMax - yMin) * yScale;
+  const left = (width - plotWidth) / 2;
+  const top = (height - plotHeight) / 2;
   return {
     width,
     height,
@@ -324,23 +331,27 @@ function createMapper({ width = 620, height = 420, padding = 44, xMin = -5, xMax
     xMax,
     yMin,
     yMax,
-    x: (value) => padding + ((value - xMin) / (xMax - xMin)) * (width - 2 * padding),
-    y: (value) => height - padding - ((value - yMin) / (yMax - yMin)) * (height - 2 * padding),
+    left,
+    right: left + plotWidth,
+    top,
+    bottom: top + plotHeight,
+    x: (value) => left + (value - xMin) * xScale,
+    y: (value) => top + (yMax - value) * yScale,
   };
 }
 
 function gridMarkup(mapper, { labels = true } = {}) {
   const lines = [];
   for (let x = Math.ceil(mapper.xMin); x <= Math.floor(mapper.xMax); x += 1) {
-    lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.padding}" x2="${mapper.x(x)}" y2="${mapper.height - mapper.padding}" class="graph-grid-line" />`);
+    lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.top}" x2="${mapper.x(x)}" y2="${mapper.bottom}" class="graph-grid-line" />`);
     if (labels && x !== 0 && x % 2 === 0) lines.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 20}" text-anchor="middle" class="graph-grid-label">${signedNumber(x)}</text>`);
   }
   for (let y = Math.ceil(mapper.yMin); y <= Math.floor(mapper.yMax); y += 1) {
-    lines.push(`<line x1="${mapper.padding}" y1="${mapper.y(y)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(y)}" class="graph-grid-line" />`);
+    lines.push(`<line x1="${mapper.left}" y1="${mapper.y(y)}" x2="${mapper.right}" y2="${mapper.y(y)}" class="graph-grid-line" />`);
     if (labels && y !== 0 && y % 2 === 0) lines.push(`<text x="${mapper.x(0) + 9}" y="${mapper.y(y) - 6}" class="graph-grid-label">${signedNumber(y)}</text>`);
   }
-  lines.push(`<line x1="${mapper.padding}" y1="${mapper.y(0)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(0)}" class="graph-axis-line" />`);
-  lines.push(`<line x1="${mapper.x(0)}" y1="${mapper.padding}" x2="${mapper.x(0)}" y2="${mapper.height - mapper.padding}" class="graph-axis-line" />`);
+  lines.push(`<line x1="${mapper.left}" y1="${mapper.y(0)}" x2="${mapper.right}" y2="${mapper.y(0)}" class="graph-axis-line" />`);
+  lines.push(`<line x1="${mapper.x(0)}" y1="${mapper.top}" x2="${mapper.x(0)}" y2="${mapper.bottom}" class="graph-axis-line" />`);
   return lines.join("");
 }
 
@@ -363,7 +374,7 @@ function endpointMarkup(mapper, x, y, closed = true, className = "") {
 
 // Keep one horizontal unit equal to one vertical unit so parent-function
 // silhouettes are not visually stretched by the surrounding layout.
-const familyMapper = createMapper({ width: 620, height: 620, padding: 48 });
+const familyMapper = createMapper({ width: 620, height: 620, padding: 24 });
 const familyCases = {
   constant: { name: "Constant function", formula: "f(x) = 2", domain: "(−∞, ∞)", range: "{2}", clue: "A horizontal line: every input returns the same output.", segments: [[[-5, 2], [5, 2]]] },
   identity: { name: "Identity function", formula: "f(x) = x", domain: "(−∞, ∞)", range: "(−∞, ∞)", clue: "A line through the origin with slope 1: output equals input.", segments: [sampledPoints(-5, 5, (x) => x)] },
@@ -392,7 +403,7 @@ function renderFamily(name) {
 document.querySelectorAll("[data-family]").forEach((button) => button.addEventListener("click", () => renderFamily(button.dataset.family)));
 renderFamily("constant");
 
-const verticalMapper = createMapper({ width: 500, height: 500, padding: 50 });
+const verticalMapper = createMapper({ width: 500, height: 500, padding: 25 });
 const verticalInput = document.querySelector("#vertical-x");
 let verticalCurve = "circle";
 const verticalCurveSettings = {
@@ -439,7 +450,7 @@ function renderVerticalTest() {
   document.querySelector("#vertical-test-chart").innerHTML = `
     ${gridMarkup(verticalMapper)}
     ${verticalCurveMarkup(verticalCurve)}
-    <line x1="${verticalMapper.x(x)}" y1="${verticalMapper.padding}" x2="${verticalMapper.x(x)}" y2="${verticalMapper.height - verticalMapper.padding}" class="vertical-scan-line" />
+    <line x1="${verticalMapper.x(x)}" y1="${verticalMapper.top}" x2="${verticalMapper.x(x)}" y2="${verticalMapper.bottom}" class="vertical-scan-line" />
     ${ys.filter((y) => y >= verticalMapper.yMin && y <= verticalMapper.yMax).map((y) => `<circle cx="${verticalMapper.x(x)}" cy="${verticalMapper.y(y)}" r="9" class="vertical-intersection" />`).join("")}
   `;
   document.querySelector("#vertical-x-output").textContent = signedNumber(x);
@@ -461,7 +472,7 @@ document.querySelectorAll("[data-test-curve]").forEach((button) => button.addEve
 verticalInput.addEventListener("input", renderVerticalTest);
 renderVerticalTest();
 
-const readerMapper = createMapper({ width: 620, height: 440, padding: 50, xMin: -4, xMax: 3, yMin: -3, yMax: 4 });
+const readerMapper = createMapper({ width: 620, height: 620, padding: 25, xMin: -4, xMax: 3, yMin: -3, yMax: 4, equalScale: true });
 let readerBranch = "one";
 function renderReaderGraph() {
   const branchClass = (name) => `reader-curve ${readerBranch === name ? "is-highlight" : ""}`;
@@ -484,7 +495,7 @@ document.querySelectorAll("[data-reader-branch]").forEach((button) => button.add
 }));
 renderReaderGraph();
 
-const quarterMapper = createMapper({ width: 500, height: 500, padding: 55, xMin: -7, xMax: 7, yMin: -7, yMax: 7 });
+const quarterMapper = createMapper({ width: 500, height: 500, padding: 27.5, xMin: -7, xMax: 7, yMin: -7, yMax: 7 });
 let selectedQuarter = "lower-left";
 const quarterCases = {
   "upper-left": { sign: 1, start: -6, end: 0, direction: "Upper selects + · left restricts x ≤ 0", formula: "f(x) = √(36 − x²)", domain: "Domain: [−6, 0] · Range: [0, 6]" },
@@ -514,7 +525,7 @@ document.querySelectorAll("[data-quarter]").forEach((button) => button.addEventL
 }));
 renderQuarterCircle();
 
-const reconstructionMapper = createMapper({ width: 680, height: 470, padding: 50, xMin: -8, xMax: 9, yMin: -6, yMax: 6 });
+const reconstructionMapper = createMapper({ width: 680, height: 495, padding: 25, xMin: -8, xMax: 9, yMin: -6, yMax: 6, equalScale: true });
 const reconstructionAChart = document.querySelector("#reconstruction-a-chart");
 const reconstructionBChart = document.querySelector("#reconstruction-b-chart");
 
