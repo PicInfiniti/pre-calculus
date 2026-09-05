@@ -50,10 +50,31 @@ root.innerHTML = `
     </section>
 
     <section class="lesson-section" id="transformation-studio">
-      <div class="lesson-section__intro" data-reveal>
-        <p class="lesson-kicker"><span>01</span> The transformation studio</p>
-        <h2>Outside changes outputs.<br>Inside changes inputs.</h2>
-        <p>Use <strong>g(x) = a f(b(x − h)) + k</strong> as a map. The outside numbers a and k control vertical motion; the inside numbers b and h control horizontal motion.</p>
+      <div class="transformation-section-lead">
+        <div class="lesson-section__intro" data-reveal>
+          <p class="lesson-kicker"><span>01</span> The transformation studio</p>
+          <h2>Outside changes outputs.<br>Inside changes inputs.</h2>
+          <p>Use <strong>g(x) = a f(b(x − h)) + k</strong> as a map. The outside numbers a and k control vertical motion; the inside numbers b and h control horizontal motion.</p>
+        </div>
+        <div class="formula-anatomy" aria-hidden="true" data-reveal>
+          <span class="formula-anatomy__eyebrow">Transformation anatomy</span>
+          <div class="formula-anatomy__equation">
+            <span>g(x) =</span>
+            <b class="is-a">a</b>
+            <span>f(</span>
+            <b class="is-b">b</b>
+            <span>(x −</span>
+            <b class="is-h">h</b>
+            <span>)) +</span>
+            <b class="is-k">k</b>
+          </div>
+          <div class="formula-anatomy__parameters">
+            <span class="is-a"><b>a</b> vertical scale</span>
+            <span class="is-b"><b>b</b> horizontal scale</span>
+            <span class="is-h"><b>h</b> left / right</span>
+            <span class="is-k"><b>k</b> down / up</span>
+          </div>
+        </div>
       </div>
 
       <div class="transformation-studio" data-reveal>

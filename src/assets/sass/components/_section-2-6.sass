@@ -1,6 +1,98 @@
 .lesson-hero--transformations
   --hero-accent: var(--gold)
 
+.transformation-section-lead
+  display: grid
+  grid-template-columns: minmax(0, 1.3fr) minmax(420px, .7fr)
+  align-items: center
+  gap: clamp(2rem, 5vw, 5rem)
+
+  .lesson-section__intro
+    max-width: none
+
+.formula-anatomy
+  width: min(100%, 440px)
+  aspect-ratio: 1.08
+  min-height: 0
+  padding: 2rem 1.75rem
+  justify-self: center
+  display: grid
+  align-content: center
+  gap: 1.5rem
+
+.formula-anatomy__eyebrow
+  color: var(--coral)
+  font-size: .78rem
+  font-weight: 700
+  letter-spacing: .12em
+  text-align: center
+  text-transform: uppercase
+
+.formula-anatomy__equation
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: .22rem
+  font-family: Georgia, serif
+  font-size: clamp(1.35rem, 2vw, 1.8rem)
+  white-space: nowrap
+
+  b
+    width: 2.15rem
+    height: 2.15rem
+    display: inline-grid
+    place-items: center
+    border-radius: 50%
+    font-size: 1.08rem
+
+    &.is-a
+      background: var(--coral)
+      color: var(--white)
+
+    &.is-b
+      background: var(--violet)
+      color: var(--white)
+
+    &.is-h
+      background: var(--gold)
+
+    &.is-k
+      background: var(--green)
+
+.formula-anatomy__parameters
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .55rem
+
+  span
+    --parameter-color: var(--coral)
+    min-height: 2.8rem
+    padding: .55rem .65rem
+    display: flex
+    align-items: center
+    gap: .5rem
+    border: 1px solid var(--line)
+    border-left: 4px solid var(--parameter-color)
+    border-radius: .35rem
+    background: var(--white)
+    color: var(--ink-soft)
+    font-size: .76rem
+    font-weight: 700
+
+    &.is-b
+      --parameter-color: var(--violet)
+
+    &.is-h
+      --parameter-color: var(--gold)
+
+    &.is-k
+      --parameter-color: var(--green)
+
+  b
+    color: var(--parameter-color)
+    font-family: Georgia, serif
+    font-size: 1.18rem
+
 .transformation-hero-art
   position: relative
   min-height: 480px
@@ -788,6 +880,12 @@
   background: var(--gold)
 
 @media (max-width: 1080px)
+  .transformation-section-lead
+    grid-template-columns: 1fr
+
+  .formula-anatomy
+    margin: 0 auto
+
   .transformation-hero-art
     width: min(100%, 680px)
     margin: 0 auto
@@ -840,6 +938,18 @@
     grid-template-columns: 1fr
 
 @media (max-width: 480px)
+  .formula-anatomy
+    padding: 1rem
+
+  .formula-anatomy__equation
+    gap: .12rem
+    font-size: 1.05rem
+
+    b
+      width: 1.7rem
+      height: 1.7rem
+      font-size: .95rem
+
   .transformation-hero-art
     min-height: 315px
 
