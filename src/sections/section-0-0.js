@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -10,54 +11,435 @@ import {
 const root = document.querySelector("#app");
 
 const notationItems = [
-  { id: "natural", category: "numbers", symbol: "ℕ", title: "Natural numbers", read: "the natural numbers", meaning: "The counting numbers. In this course we use ℕ = {1, 2, 3, …}.", example: "7 ∈ ℕ", note: "Some books include 0 in ℕ. Always check the definition being used." },
-  { id: "whole", category: "numbers", symbol: "W or ℕ₀", title: "Whole numbers", read: "the whole numbers", meaning: "The nonnegative integers: zero together with the counting numbers. The symbol W is common but not universal.", example: "W = {0, 1, 2, 3, …}" },
-  { id: "integers", category: "numbers", symbol: "ℤ", title: "Integers", read: "the integers", meaning: "Whole numbers, their negatives, and zero.", example: "ℤ = {…, −2, −1, 0, 1, 2, …}" },
-  { id: "rational", category: "numbers", symbol: "ℚ", title: "Rational numbers", read: "the rational numbers", meaning: "Numbers that can be written as a fraction p/q of integers, where q ≠ 0. Terminating and repeating decimals are rational.", example: "−3/4, 5, and 0.125 belong to ℚ" },
-  { id: "real", category: "numbers", symbol: "ℝ", title: "Real numbers", read: "the real numbers", meaning: "Every number represented on the number line: rational and irrational numbers together.", example: "√2 ∈ ℝ and π ∈ ℝ" },
-  { id: "irrational", category: "numbers", symbol: "ℝ ∖ ℚ", title: "Irrational numbers", read: "real numbers except rationals", meaning: "Real numbers that cannot be written as a ratio of integers. Their decimals neither terminate nor repeat.", example: "√2, π ∈ ℝ ∖ ℚ" },
-  { id: "complex", category: "numbers", symbol: "ℂ", title: "Complex numbers", read: "the complex numbers", meaning: "Numbers of the form a + bi, where a and b are real and i² = −1. Every real number is also complex.", example: "3 − 2i ∈ ℂ" },
+  {
+    id: "natural",
+    category: "numbers",
+    symbol: "ℕ",
+    title: "Natural numbers",
+    read: "the natural numbers",
+    meaning: "The counting numbers. In this course we use ℕ = {1, 2, 3, …}.",
+    example: "7 ∈ ℕ",
+    note: "Some books include 0 in ℕ. Always check the definition being used.",
+  },
+  {
+    id: "whole",
+    category: "numbers",
+    symbol: "W or ℕ₀",
+    title: "Whole numbers",
+    read: "the whole numbers",
+    meaning:
+      "The nonnegative integers: zero together with the counting numbers. The symbol W is common but not universal.",
+    example: "W = {0, 1, 2, 3, …}",
+  },
+  {
+    id: "integers",
+    category: "numbers",
+    symbol: "ℤ",
+    title: "Integers",
+    read: "the integers",
+    meaning: "Whole numbers, their negatives, and zero.",
+    example: "ℤ = {…, −2, −1, 0, 1, 2, …}",
+  },
+  {
+    id: "rational",
+    category: "numbers",
+    symbol: "ℚ",
+    title: "Rational numbers",
+    read: "the rational numbers",
+    meaning:
+      "Numbers that can be written as a fraction p/q of integers, where q ≠ 0. Terminating and repeating decimals are rational.",
+    example: "−3/4, 5, and 0.125 belong to ℚ",
+  },
+  {
+    id: "real",
+    category: "numbers",
+    symbol: "ℝ",
+    title: "Real numbers",
+    read: "the real numbers",
+    meaning:
+      "Every number represented on the number line: rational and irrational numbers together.",
+    example: "√2 ∈ ℝ and π ∈ ℝ",
+  },
+  {
+    id: "irrational",
+    category: "numbers",
+    symbol: "ℝ ∖ ℚ",
+    title: "Irrational numbers",
+    read: "real numbers except rationals",
+    meaning:
+      "Real numbers that cannot be written as a ratio of integers. Their decimals neither terminate nor repeat.",
+    example: "√2, π ∈ ℝ ∖ ℚ",
+  },
+  {
+    id: "complex",
+    category: "numbers",
+    symbol: "ℂ",
+    title: "Complex numbers",
+    read: "the complex numbers",
+    meaning:
+      "Numbers of the form a + bi, where a and b are real and i² = −1. Every real number is also complex.",
+    example: "3 − 2i ∈ ℂ",
+  },
 
-  { id: "set", category: "sets", symbol: "{…}", title: "Set braces", read: "the set containing", meaning: "Curly braces collect distinct objects into a set. Order and repetition do not change the set.", example: "A = {−1, 0, 2}" },
-  { id: "membership", category: "sets", symbol: "∈  ∉", title: "Membership", read: "is in; is not in", meaning: "Use ∈ when an object belongs to a set and ∉ when it does not.", example: "2 ∈ {1, 2, 3}, but 5 ∉ {1, 2, 3}" },
-  { id: "subset", category: "sets", symbol: "⊂  ⊆", title: "Subsets", read: "is a proper subset of; is a subset of", meaning: "A ⊆ B means every element of A belongs to B and equality is allowed. A ⊂ B commonly means A is strictly smaller than B.", example: "{1, 2} ⊂ {1, 2, 3} and A ⊆ A", note: "The symbol ⊂ is not used consistently in every book. Follow the definition given by your course or text." },
-  { id: "empty", category: "sets", symbol: "∅", title: "Empty set", read: "the empty set", meaning: "A set with no elements. It is not the same as the number 0.", example: "{x ∈ ℝ : x² = −1} = ∅" },
-  { id: "union", category: "sets", symbol: "A ∪ B", title: "Union", read: "A union B", meaning: "Everything in A or B, including elements shared by both sets.", example: "{1, 2} ∪ {2, 3} = {1, 2, 3}" },
-  { id: "intersection", category: "sets", symbol: "A ∩ B", title: "Intersection", read: "A intersect B", meaning: "Only the elements common to both A and B.", example: "{1, 2} ∩ {2, 3} = {2}" },
-  { id: "difference", category: "sets", symbol: "A ∖ B, A − B", title: "Set difference", read: "A minus B", meaning: "Elements in A after removing everything that is also in B. Both A ∖ B and A − B are commonly used.", example: "{1, 2, 3} ∖ {2, 3, 4} = {1}" },
-  { id: "interval", category: "sets", symbol: "[a, b)", title: "Interval notation", read: "from a through b", meaning: "A square bracket includes an endpoint; a parenthesis excludes it. Infinity always uses a parenthesis.", example: "[−2, 5) means −2 ≤ x < 5" },
-  { id: "builder", category: "sets", symbol: "{x : …}", title: "Set-builder notation", read: "the set of x such that", meaning: "Describes a set by a condition its elements must satisfy. A vertical bar may replace the colon.", example: "{x ∈ ℝ : x ≥ −2} = [−2, ∞)" },
+  {
+    id: "set",
+    category: "sets",
+    symbol: "{…}",
+    title: "Set braces",
+    read: "the set containing",
+    meaning:
+      "Curly braces collect distinct objects into a set. Order and repetition do not change the set.",
+    example: "A = {−1, 0, 2}",
+  },
+  {
+    id: "membership",
+    category: "sets",
+    symbol: "∈  ∉",
+    title: "Membership",
+    read: "is in; is not in",
+    meaning: "Use ∈ when an object belongs to a set and ∉ when it does not.",
+    example: "2 ∈ {1, 2, 3}, but 5 ∉ {1, 2, 3}",
+  },
+  {
+    id: "subset",
+    category: "sets",
+    symbol: "⊂  ⊆",
+    title: "Subsets",
+    read: "is a proper subset of; is a subset of",
+    meaning:
+      "A ⊆ B means every element of A belongs to B and equality is allowed. A ⊂ B commonly means A is strictly smaller than B.",
+    example: "{1, 2} ⊂ {1, 2, 3} and A ⊆ A",
+    note: "The symbol ⊂ is not used consistently in every book. Follow the definition given by your course or text.",
+  },
+  {
+    id: "empty",
+    category: "sets",
+    symbol: "∅",
+    title: "Empty set",
+    read: "the empty set",
+    meaning: "A set with no elements. It is not the same as the number 0.",
+    example: "{x ∈ ℝ : x² = −1} = ∅",
+  },
+  {
+    id: "union",
+    category: "sets",
+    symbol: "A ∪ B",
+    title: "Union",
+    read: "A union B",
+    meaning: "Everything in A or B, including elements shared by both sets.",
+    example: "{1, 2} ∪ {2, 3} = {1, 2, 3}",
+  },
+  {
+    id: "intersection",
+    category: "sets",
+    symbol: "A ∩ B",
+    title: "Intersection",
+    read: "A intersect B",
+    meaning: "Only the elements common to both A and B.",
+    example: "{1, 2} ∩ {2, 3} = {2}",
+  },
+  {
+    id: "difference",
+    category: "sets",
+    symbol: "A ∖ B, A − B",
+    title: "Set difference",
+    read: "A minus B",
+    meaning:
+      "Elements in A after removing everything that is also in B. Both A ∖ B and A − B are commonly used.",
+    example: "{1, 2, 3} ∖ {2, 3, 4} = {1}",
+  },
+  {
+    id: "interval",
+    category: "sets",
+    symbol: "[a, b)",
+    title: "Interval notation",
+    read: "from a through b",
+    meaning:
+      "A square bracket includes an endpoint; a parenthesis excludes it. Infinity always uses a parenthesis.",
+    example: "[−2, 5) means −2 ≤ x < 5",
+  },
+  {
+    id: "builder",
+    category: "sets",
+    symbol: "{x : …}",
+    title: "Set-builder notation",
+    read: "the set of x such that",
+    meaning:
+      "Describes a set by a condition its elements must satisfy. A vertical bar may replace the colon.",
+    example: "{x ∈ ℝ : x ≥ −2} = [−2, ∞)",
+  },
 
-  { id: "function-names", category: "functions", symbol: "f, g", title: "Function names", read: "f and g", meaning: "Lowercase letters such as f and g name functions. They are rules, not variables being multiplied.", example: "f(x) = x² and g(x) = 2x + 1" },
-  { id: "function-value", category: "functions", symbol: "f(x)", title: "Function value", read: "f of x", meaning: "The output of function f when its input is x. The parentheses do not mean multiplication.", example: "If f(x) = x², then f(−3) = 9" },
-  { id: "domain", category: "functions", symbol: "D<sub>f</sub>", title: "Domain of f", read: "D sub f", meaning: "The set of every allowed input for f. We write D<sub>f</sub> when naming that set directly.", example: "For f(x) = √x, D<sub>f</sub> = [0, ∞)" },
-  { id: "range", category: "functions", symbol: "R<sub>f</sub>", title: "Range of f", read: "R sub f", meaning: "The set of outputs the function f actually produces.", example: "For f(x) = x², R<sub>f</sub> = [0, ∞)" },
-  { id: "mapping", category: "functions", symbol: "f: A → B", title: "Function mapping", read: "f maps A to B", meaning: "Function f accepts inputs from set A and sends them to outputs in set B.", example: "f: ℝ → ℝ,  f(x) = 2x − 1" },
-  { id: "inverse-image", category: "functions", symbol: "f(x) = k", title: "Solving a function equation", read: "f of x equals k", meaning: "Find every input x whose output is k. On a graph, look where the curve crosses y = k.", example: "If f(x) = x², then f(x) = 9 gives x = ±3" },
+  {
+    id: "function-names",
+    category: "functions",
+    symbol: "f, g",
+    title: "Function names",
+    read: "f and g",
+    meaning:
+      "Lowercase letters such as f and g name functions. They are rules, not variables being multiplied.",
+    example: "f(x) = x² and g(x) = 2x + 1",
+  },
+  {
+    id: "function-value",
+    category: "functions",
+    symbol: "f(x)",
+    title: "Function value",
+    read: "f of x",
+    meaning:
+      "The output of function f when its input is x. The parentheses do not mean multiplication.",
+    example: "If f(x) = x², then f(−3) = 9",
+  },
+  {
+    id: "domain",
+    category: "functions",
+    symbol: "D<sub>f</sub>",
+    title: "Domain of f",
+    read: "D sub f",
+    meaning:
+      "The set of every allowed input for f. We write D<sub>f</sub> when naming that set directly.",
+    example: "For f(x) = √x, D<sub>f</sub> = [0, ∞)",
+  },
+  {
+    id: "range",
+    category: "functions",
+    symbol: "R<sub>f</sub>",
+    title: "Range of f",
+    read: "R sub f",
+    meaning: "The set of outputs the function f actually produces.",
+    example: "For f(x) = x², R<sub>f</sub> = [0, ∞)",
+  },
+  {
+    id: "mapping",
+    category: "functions",
+    symbol: "f: A → B",
+    title: "Function mapping",
+    read: "f maps A to B",
+    meaning:
+      "Function f accepts inputs from set A and sends them to outputs in set B.",
+    example: "f: ℝ → ℝ,  f(x) = 2x − 1",
+  },
+  {
+    id: "inverse-image",
+    category: "functions",
+    symbol: "f(x) = k",
+    title: "Solving a function equation",
+    read: "f of x equals k",
+    meaning:
+      "Find every input x whose output is k. On a graph, look where the curve crosses y = k.",
+    example: "If f(x) = x², then f(x) = 9 gives x = ±3",
+  },
 
-  { id: "variables", category: "names", symbol: "x, y, z", title: "Variables", read: "x, y, and z", meaning: "Lowercase x, y, and z usually represent quantities allowed to vary or unknown values to find.", example: "2x + 3y = 12" },
-  { id: "constants", category: "names", symbol: "a, b, c", title: "Constants and parameters", read: "a, b, and c", meaning: "Lowercase letters near the beginning of the alphabet often stand for fixed numbers or adjustable parameters.", example: "In y = ax² + bx + c, a, b, and c determine the parabola" },
-  { id: "subscripts", category: "names", symbol: "x₁, x₂", title: "Subscripts", read: "x sub one; x sub two", meaning: "A subscript labels related quantities. It is an index, not multiplication and not an exponent.", example: "P₁ = (x₁, y₁),  P₂ = (x₂, y₂)" },
-  { id: "uppercase-sets", category: "names", symbol: "A, B, C", title: "Names for sets", read: "set A, set B, set C", meaning: "Uppercase letters commonly name sets. Always use the surrounding context to distinguish a set from a point.", example: "A = {1, 3, 5}" },
-  { id: "points", category: "names", symbol: "P(x, y)", title: "Coordinate points", read: "point P at x comma y", meaning: "An uppercase letter names a point; the ordered pair gives its horizontal and vertical coordinates.", example: "P(−2, 5) is 2 units left and 5 units up" },
+  {
+    id: "variables",
+    category: "names",
+    symbol: "x, y, z",
+    title: "Variables",
+    read: "x, y, and z",
+    meaning:
+      "Lowercase x, y, and z usually represent quantities allowed to vary or unknown values to find.",
+    example: "2x + 3y = 12",
+  },
+  {
+    id: "constants",
+    category: "names",
+    symbol: "a, b, c",
+    title: "Constants and parameters",
+    read: "a, b, and c",
+    meaning:
+      "Lowercase letters near the beginning of the alphabet often stand for fixed numbers or adjustable parameters.",
+    example: "In y = ax² + bx + c, a, b, and c determine the parabola",
+  },
+  {
+    id: "subscripts",
+    category: "names",
+    symbol: "x₁, x₂",
+    title: "Subscripts",
+    read: "x sub one; x sub two",
+    meaning:
+      "A subscript labels related quantities. It is an index, not multiplication and not an exponent.",
+    example: "P₁ = (x₁, y₁),  P₂ = (x₂, y₂)",
+  },
+  {
+    id: "uppercase-sets",
+    category: "names",
+    symbol: "A, B, C",
+    title: "Names for sets",
+    read: "set A, set B, set C",
+    meaning:
+      "Uppercase letters commonly name sets. Always use the surrounding context to distinguish a set from a point.",
+    example: "A = {1, 3, 5}",
+  },
+  {
+    id: "points",
+    category: "names",
+    symbol: "P(x, y)",
+    title: "Coordinate points",
+    read: "point P at x comma y",
+    meaning:
+      "An uppercase letter names a point; the ordered pair gives its horizontal and vertical coordinates.",
+    example: "P(−2, 5) is 2 units left and 5 units up",
+  },
 
-  { id: "equal", category: "algebra", symbol: "=  ≠  ≈", title: "Equality symbols", read: "equals; does not equal; approximately equals", meaning: "Use = for exactly the same value, ≠ for different values, and ≈ only after rounding or estimating.", example: "√2 ≈ 1.414, but √2 ≠ 1.414" },
-  { id: "multiplication", category: "algebra", symbol: "ab, a · b", title: "Multiplication", read: "a times b", meaning: "Juxtaposition, a centered dot, and parentheses can all indicate multiplication. The × sign is used less often beside the variable x because they look alike.", example: "3x = 3 · x = 3(x)" },
-  { id: "division", category: "algebra", symbol: "a/b", title: "Division and fractions", read: "a divided by b; a over b", meaning: "A fraction bar means division and groups the entire numerator and denominator. The denominator cannot equal zero.", example: "(x + 1)/(x − 2),  x ≠ 2" },
-  { id: "parentheses", category: "algebra", symbol: "(…)", title: "Parentheses", read: "the quantity", meaning: "Parentheses may group operations, hold a function input, or form an ordered pair. Context tells you which job they are doing.", example: "3(x + 1),  f(x),  and P(2, −1)" },
-  { id: "inequality", category: "algebra", symbol: "<  ≤  >  ≥", title: "Inequalities", read: "less than; at most; greater than; at least", meaning: "The bar in ≤ or ≥ includes equality. The open symbols < and > do not.", example: "x ≥ 3 means x is 3 or larger" },
-  { id: "absolute", category: "algebra", symbol: "|x|", title: "Absolute value", read: "the absolute value of x", meaning: "Distance from x to 0, so the result is never negative.", example: "|−5| = 5" },
-  { id: "radical", category: "algebra", symbol: "√x", title: "Square root", read: "the principal square root of x", meaning: "The nonnegative number whose square is x. For real-number work, x must be at least 0.", example: "√25 = 5, not ±5; solving u² = 25 gives u = ±5" },
-  { id: "power", category: "algebra", symbol: "xⁿ", title: "Exponent", read: "x to the nth power", meaning: "The superscript tells how a base is powered. It is different from a subscript label.", example: "x³ = x · x · x" },
-  { id: "plus-minus", category: "algebra", symbol: "±", title: "Plus or minus", read: "plus or minus", meaning: "Represents two values or two cases, one using + and one using −.", example: "x² = 16 ⟹ x = ±4" },
-  { id: "infinity", category: "algebra", symbol: "∞", title: "Infinity", read: "infinity", meaning: "Describes unbounded behavior; it is not a real number or an endpoint that can be included.", example: "x > 2 is written (2, ∞)" },
-  { id: "delta", category: "algebra", symbol: "Δ", title: "Change", read: "delta", meaning: "Uppercase Greek delta commonly means final value minus initial value.", example: "Δy = y₂ − y₁" },
-  { id: "implies", category: "algebra", symbol: "⟹", title: "Implies", read: "implies; therefore", meaning: "Shows that the statement on the right follows from the statement on the left.", example: "x = 3 ⟹ x² = 9" },
+  {
+    id: "equal",
+    category: "algebra",
+    symbol: "=  ≠  ≈",
+    title: "Equality symbols",
+    read: "equals; does not equal; approximately equals",
+    meaning:
+      "Use = for exactly the same value, ≠ for different values, and ≈ only after rounding or estimating.",
+    example: "√2 ≈ 1.414, but √2 ≠ 1.414",
+  },
+  {
+    id: "multiplication",
+    category: "algebra",
+    symbol: "ab, a · b",
+    title: "Multiplication",
+    read: "a times b",
+    meaning:
+      "Juxtaposition, a centered dot, and parentheses can all indicate multiplication. The × sign is used less often beside the variable x because they look alike.",
+    example: "3x = 3 · x = 3(x)",
+  },
+  {
+    id: "division",
+    category: "algebra",
+    symbol: "a/b",
+    title: "Division and fractions",
+    read: "a divided by b; a over b",
+    meaning:
+      "A fraction bar means division and groups the entire numerator and denominator. The denominator cannot equal zero.",
+    example: "(x + 1)/(x − 2),  x ≠ 2",
+  },
+  {
+    id: "parentheses",
+    category: "algebra",
+    symbol: "(…)",
+    title: "Parentheses",
+    read: "the quantity",
+    meaning:
+      "Parentheses may group operations, hold a function input, or form an ordered pair. Context tells you which job they are doing.",
+    example: "3(x + 1),  f(x),  and P(2, −1)",
+  },
+  {
+    id: "inequality",
+    category: "algebra",
+    symbol: "<  ≤  ≥  >",
+    title: "Inequalities",
+    read: "less than; at most; greater than; at least",
+    meaning:
+      "The bar in ≤ or ≥ includes equality. The open symbols < and > do not.",
+    example: "x ≥ 3 means x is 3 or larger",
+  },
+  {
+    id: "absolute",
+    category: "algebra",
+    symbol: "|x|",
+    title: "Absolute value",
+    read: "the absolute value of x",
+    meaning: "Distance from x to 0, so the result is never negative.",
+    example: "|−5| = 5",
+  },
+  {
+    id: "radical",
+    category: "algebra",
+    symbol: "√x",
+    title: "Square root",
+    read: "the principal square root of x",
+    meaning:
+      "The nonnegative number whose square is x. For real-number work, x must be at least 0.",
+    example: "√25 = 5, not ±5; solving u² = 25 gives u = ±5",
+  },
+  {
+    id: "power",
+    category: "algebra",
+    symbol: "xⁿ",
+    title: "Exponent",
+    read: "x to the nth power",
+    meaning:
+      "The superscript tells how a base is powered. It is different from a subscript label.",
+    example: "x³ = x · x · x",
+  },
+  {
+    id: "plus-minus",
+    category: "algebra",
+    symbol: "±",
+    title: "Plus or minus",
+    read: "plus or minus",
+    meaning: "Represents two values or two cases, one using + and one using −.",
+    example: "x² = 16 ⟹ x = ±4",
+  },
+  {
+    id: "infinity",
+    category: "algebra",
+    symbol: "∞",
+    title: "Infinity",
+    read: "infinity",
+    meaning:
+      "Describes unbounded behavior; it is not a real number or an endpoint that can be included.",
+    example: "x > 2 is written (2, ∞)",
+  },
+  {
+    id: "delta",
+    category: "algebra",
+    symbol: "Δ",
+    title: "Change",
+    read: "delta",
+    meaning:
+      "Uppercase Greek delta commonly means final value minus initial value.",
+    example: "Δy = y₂ − y₁",
+  },
+  {
+    id: "implies",
+    category: "algebra",
+    symbol: "⟹",
+    title: "Implies",
+    read: "implies; therefore",
+    meaning:
+      "Shows that the statement on the right follows from the statement on the left.",
+    example: "x = 3 ⟹ x² = 9",
+  },
 
-  { id: "ordered-pair", category: "coordinates", symbol: "(x, y)", title: "Ordered pair", read: "x comma y", meaning: "The first coordinate is horizontal and the second is vertical. Reversing them usually gives a different point.", example: "(2, −3) ≠ (−3, 2)" },
-  { id: "point-add", category: "coordinates", symbol: "P + Q", title: "Coordinate addition", read: "P plus Q", meaning: "When points are treated as position vectors, add matching coordinates.", example: "(2, −1) + (3, 4) = (5, 3)", note: "Geometrically, this is vector addition. We use the coordinate shorthand when the context permits it." },
-  { id: "point-subtract", category: "coordinates", symbol: "P − Q", title: "Coordinate subtraction", read: "P minus Q", meaning: "Subtract the x-coordinates and y-coordinates in the same order. The result is the displacement from Q to P.", example: "(2, −1) − (3, 4) = (−1, −5)" },
-  { id: "scalar", category: "coordinates", symbol: "kP", title: "Scalar multiplication", read: "k times P", meaning: "Multiply both coordinates by the same scalar k. This stretches, shrinks, or reverses the position vector.", example: "−2(3, −1) = (−6, 2)" },
+  {
+    id: "ordered-pair",
+    category: "coordinates",
+    symbol: "(x, y)",
+    title: "Ordered pair",
+    read: "x comma y",
+    meaning:
+      "The first coordinate is horizontal and the second is vertical. Reversing them usually gives a different point.",
+    example: "(2, −3) ≠ (−3, 2)",
+  },
+  {
+    id: "point-add",
+    category: "coordinates",
+    symbol: "P + Q",
+    title: "Coordinate addition",
+    read: "P plus Q",
+    meaning:
+      "When points are treated as position vectors, add matching coordinates.",
+    example: "(2, −1) + (3, 4) = (5, 3)",
+    note: "Geometrically, this is vector addition. We use the coordinate shorthand when the context permits it.",
+  },
+  {
+    id: "point-subtract",
+    category: "coordinates",
+    symbol: "P − Q",
+    title: "Coordinate subtraction",
+    read: "P minus Q",
+    meaning:
+      "Subtract the x-coordinates and y-coordinates in the same order. The result is the displacement from Q to P.",
+    example: "(2, −1) − (3, 4) = (−1, −5)",
+  },
+  {
+    id: "scalar",
+    category: "coordinates",
+    symbol: "kP",
+    title: "Scalar multiplication",
+    read: "k times P",
+    meaning:
+      "Multiply both coordinates by the same scalar k. This stretches, shrinks, or reverses the position vector.",
+    example: "−2(3, −1) = (−6, 2)",
+  },
 ];
 
 const categoryLabels = {
@@ -68,6 +450,26 @@ const categoryLabels = {
   names: "Names & labels",
   algebra: "Algebra symbols",
   coordinates: "Coordinates",
+};
+
+const notationExampleTex = {
+  rational: String.raw`-\frac{3}{4},\ 5,\ \text{and }0.125\text{ belong to }\mathbb Q`,
+  real: String.raw`\sqrt2\in\mathbb R\quad\text{and}\quad\pi\in\mathbb R`,
+  membership: String.raw`2\in\{1,2,3\},\quad\text{but}\quad5\notin\{1,2,3\}`,
+  subset: String.raw`\{1,2\}\subset\{1,2,3\}\quad\text{and}\quad A\subseteq A`,
+  interval: String.raw`[-2,5)\quad\text{means}\quad-2\le x<5`,
+  "function-names": String.raw`f(x)=x^2\quad\text{and}\quad g(x)=2x+1`,
+  "function-value": String.raw`\text{If }f(x)=x^2,\quad\text{then }f(-3)=9`,
+  domain: String.raw`\text{For }f(x)=\sqrt x,\quad D_f=[0,\infty)`,
+  range: String.raw`\text{For }f(x)=x^2,\quad R_f=[0,\infty)`,
+  "inverse-image": String.raw`\text{If }f(x)=x^2,\quad f(x)=9\text{ gives }x=\pm3`,
+  constants: String.raw`\text{In }y=ax^2+bx+c,\quad a,b,c\text{ determine the parabola}`,
+  points: String.raw`P(-2,5)\text{ is 2 units left and 5 units up}`,
+  equal: String.raw`\sqrt2\approx1.414,\quad\text{but}\quad\sqrt2\ne1.414`,
+  parentheses: String.raw`3(x+1),\quad f(x),\quad\text{and}\quad P(2,-1)`,
+  inequality: String.raw`x\ge3\quad\text{means }x\text{ is 3 or larger}`,
+  radical: String.raw`\sqrt{25}=5,\ \text{not }\pm5;\quad u^2=25\text{ gives }u=\pm5`,
+  infinity: String.raw`x>2\quad\text{is written}\quad(2,\infty)`,
 };
 
 root.innerHTML = `
@@ -84,8 +486,8 @@ root.innerHTML = `
         </div>
       </div>
       <div class="notation-hero-art" aria-hidden="true" data-reveal>
-        <div class="notation-orbit notation-orbit--one"><span>ℝ</span><span>f(x)</span><span>∪</span></div>
-        <div class="notation-orbit notation-orbit--two"><span><span class="math-indexed">D<sub>f</sub></span></span><span>(x, y)</span><span>≤</span></div>
+        <div class="notation-orbit notation-orbit--one"><span>${mathMarkup(String.raw`\mathbb R`)}</span><span>${mathMarkup(String.raw`f(x)`)}</span><span>${mathMarkup(String.raw`\cup`)}</span></div>
+        <div class="notation-orbit notation-orbit--two"><span>${mathMarkup(String.raw`D_f`)}</span><span>${mathMarkup(String.raw`(x,y)`)}</span><span>${mathMarkup(String.raw`\le`)}</span></div>
         <div class="notation-orbit__center"><strong>?</strong><small>click · read · use</small></div>
       </div>
     </section>
@@ -122,15 +524,15 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker lesson-kicker--gold"><span>02</span> Number-system ladder</p>
         <h2>One number can belong<br>to several sets.</h2>
-        <p>The number systems nest inside one another: ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ. Choose a value and watch every set that contains it light up.</p>
+        <p>The number systems nest inside one another: ${mathMarkup(String.raw`\mathbb N\subseteq\mathbb Z\subseteq\mathbb Q\subseteq\mathbb R`)}. Choose a value and watch every set that contains it light up.</p>
       </div>
       <div class="number-lab" data-reveal>
         <div class="number-ladder" aria-label="Nested real-number systems">
-          <article data-number-set="R"><span>ℝ</span><strong>Real numbers</strong><small>everything on the number line</small></article>
-          <article data-number-set="Q"><span>ℚ</span><strong>Rational numbers</strong><small>fractions of integers</small></article>
-          <article data-number-set="Z"><span>ℤ</span><strong>Integers</strong><small>…, −2, −1, 0, 1, 2, …</small></article>
-          <article data-number-set="N"><span>ℕ</span><strong>Natural numbers</strong><small>1, 2, 3, … in this course</small></article>
-          <aside id="irrational-status"><span>ℝ ∖ ℚ</span><strong>Irrational</strong><small>real, but not rational</small></aside>
+          <article data-number-set="R"><span>${mathMarkup(String.raw`\mathbb R`)}</span><strong>Real numbers</strong><small>everything on the number line</small></article>
+          <article data-number-set="Q"><span>${mathMarkup(String.raw`\mathbb Q`)}</span><strong>Rational numbers</strong><small>fractions of integers</small></article>
+          <article data-number-set="Z"><span>${mathMarkup(String.raw`\mathbb Z`)}</span><strong>Integers</strong><small>${mathMarkup(String.raw`\ldots,-2,-1,0,1,2,\ldots`)}</small></article>
+          <article data-number-set="N"><span>${mathMarkup(String.raw`\mathbb N`)}</span><strong>Natural numbers</strong><small>${mathMarkup(String.raw`1,2,3,\ldots`)} in this course</small></article>
+          <aside id="irrational-status"><span>${mathMarkup(String.raw`\mathbb R\setminus\mathbb Q`)}</span><strong>Irrational</strong><small>real, but not rational</small></aside>
         </div>
         <div class="number-lab__controls">
           <p class="tool-label">Choose a number</p>
@@ -140,8 +542,8 @@ root.innerHTML = `
             <button type="button" data-number-case="negative">−3</button>
             <button type="button" data-number-case="fraction">2/3</button>
             <button type="button" data-number-case="decimal">0.125</button>
-            <button type="button" data-number-case="root">√2</button>
-            <button type="button" data-number-case="pi">π</button>
+            <button type="button" data-number-case="root">${mathMarkup(String.raw`\sqrt2`)}</button>
+            <button type="button" data-number-case="pi">${mathMarkup(String.raw`\pi`)}</button>
           </div>
           <div class="number-verdict" id="number-verdict" aria-live="polite"></div>
           <p class="notation-caution"><strong>Convention alert:</strong> some courses define ℕ to include 0. Here ℕ begins at 1; zero belongs to ℤ, ℚ, and ℝ.</p>
@@ -160,17 +562,17 @@ root.innerHTML = `
           <svg id="set-diagram" viewBox="0 0 600 420" role="img" aria-label="Venn diagram for the selected set operation"></svg>
         </div>
         <div class="set-lab__controls">
-          <p class="tool-label">A = {1, 2, 3} · B = {3, 4}</p>
+          <p class="tool-label">${mathMarkup(String.raw`A=\{1,2,3\},\quad B=\{3,4\}`)}</p>
           <div class="set-operation-buttons">
-            <button type="button" class="is-active" data-set-operation="union">A ∪ B</button>
-            <button type="button" data-set-operation="intersection">A ∩ B</button>
-            <button type="button" data-set-operation="a-minus-b">A ∖ B</button>
-            <button type="button" data-set-operation="b-minus-a">B ∖ A</button>
+            <button type="button" class="is-active" data-set-operation="union">${mathMarkup(String.raw`A\cup B`)}</button>
+            <button type="button" data-set-operation="intersection">${mathMarkup(String.raw`A\cap B`)}</button>
+            <button type="button" data-set-operation="a-minus-b">${mathMarkup(String.raw`A\setminus B`)}</button>
+            <button type="button" data-set-operation="b-minus-a">${mathMarkup(String.raw`B\setminus A`)}</button>
           </div>
           <div class="set-result" id="set-result" aria-live="polite"></div>
           <dl class="set-laws">
-            <div><dt>Union and intersection</dt><dd>A ∪ B = B ∪ A · A ∩ B = B ∩ A</dd></div>
-            <div><dt>Difference</dt><dd>A ∖ B usually differs from B ∖ A</dd></div>
+            <div><dt>Union and intersection</dt><dd>${mathMarkup(String.raw`A\cup B=B\cup A,\qquad A\cap B=B\cap A`)}</dd></div>
+            <div><dt>Difference</dt><dd>${mathMarkup(String.raw`A\setminus B\ne B\setminus A`)} in general</dd></div>
           </dl>
         </div>
       </div>
@@ -216,8 +618,8 @@ root.innerHTML = `
         <div class="notation-coordinate-lab__controls">
           <p class="tool-label">Two-dimensional calculator</p>
           <div class="coordinate-inputs">
-            <fieldset><legend>P = (x₁, y₁)</legend><label>x₁<input id="point-p-x" type="number" min="-5" max="5" value="2" /></label><label>y₁<input id="point-p-y" type="number" min="-5" max="5" value="-1" /></label></fieldset>
-            <fieldset><legend>Q = (x₂, y₂)</legend><label>x₂<input id="point-q-x" type="number" min="-5" max="5" value="3" /></label><label>y₂<input id="point-q-y" type="number" min="-5" max="5" value="4" /></label></fieldset>
+            <fieldset><legend>${mathMarkup(String.raw`P=(x_1,y_1)`)}</legend><label>${mathMarkup(String.raw`x_1`)}<input id="point-p-x" type="number" min="-5" max="5" value="2" /></label><label>${mathMarkup(String.raw`y_1`)}<input id="point-p-y" type="number" min="-5" max="5" value="-1" /></label></fieldset>
+            <fieldset><legend>${mathMarkup(String.raw`Q=(x_2,y_2)`)}</legend><label>${mathMarkup(String.raw`x_2`)}<input id="point-q-x" type="number" min="-5" max="5" value="3" /></label><label>${mathMarkup(String.raw`y_2`)}<input id="point-q-y" type="number" min="-5" max="5" value="4" /></label></fieldset>
           </div>
           <label class="scalar-input" for="point-scalar">Scalar k <input id="point-scalar" type="number" min="-3" max="3" step="0.5" value="-2" /></label>
           <div class="coordinate-operations">
@@ -249,12 +651,58 @@ root.innerHTML = `
   ${renderLessonFooter({ previous: null, next: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two-variable systems" } })}
 `;
 
+typesetMath(root);
+
+function expressionToTex(source) {
+  return source
+    .replaceAll("<sub>", "_")
+    .replaceAll("</sub>", "")
+    .replaceAll("{", String.raw`\{`)
+    .replaceAll("}", String.raw`\}`)
+    .replaceAll("ℕ", String.raw`\mathbb N`)
+    .replaceAll("ℤ", String.raw`\mathbb Z`)
+    .replaceAll("ℚ", String.raw`\mathbb Q`)
+    .replaceAll("ℝ", String.raw`\mathbb R`)
+    .replaceAll("ℂ", String.raw`\mathbb C`)
+    .replaceAll("∈", String.raw`\in`)
+    .replaceAll("∉", String.raw`\notin`)
+    .replaceAll("⊆", String.raw`\subseteq`)
+    .replaceAll("⊂", String.raw`\subset`)
+    .replaceAll("∪", String.raw`\cup`)
+    .replaceAll("∩", String.raw`\cap`)
+    .replaceAll("∖", String.raw`\setminus`)
+    .replaceAll(" or ", String.raw`\quad\text{or}\quad`)
+    .replaceAll("≤", String.raw`\le`)
+    .replaceAll("≥", String.raw`\ge`)
+    .replaceAll("≠", String.raw`\ne`)
+    .replaceAll("≈", String.raw`\approx`)
+    .replaceAll("⟹", String.raw`\Longrightarrow`)
+    .replaceAll("→", String.raw`\to`)
+    .replaceAll("±", String.raw`\pm`)
+    .replaceAll("∞", String.raw`\infty`)
+    .replaceAll("π", String.raw`\pi`)
+    .replaceAll("Δ", String.raw`\Delta `)
+    .replaceAll("−", "-")
+    .replaceAll("·", String.raw`\cdot`)
+    .replaceAll("…", String.raw`\ldots`)
+    .replaceAll("₀", "_0")
+    .replaceAll("₁", "_1")
+    .replaceAll("₂", "_2")
+    .replaceAll("²", "^2")
+    .replaceAll("³", "^3")
+    .replaceAll("ⁿ", "^n")
+    .replace(/√([A-Za-z0-9.]+)/g, String.raw`\sqrt{$1}`);
+}
+
 function pointerAngle(event, element) {
   const bounds = element.getBoundingClientRect();
-  return Math.atan2(
-    event.clientY - (bounds.top + (bounds.height / 2)),
-    event.clientX - (bounds.left + (bounds.width / 2)),
-  ) * (180 / Math.PI);
+  return (
+    Math.atan2(
+      event.clientY - (bounds.top + bounds.height / 2),
+      event.clientX - (bounds.left + bounds.width / 2),
+    ) *
+    (180 / Math.PI)
+  );
 }
 
 function shortestAngleChange(current, previous) {
@@ -264,7 +712,9 @@ function shortestAngleChange(current, previous) {
 function initNotationOrbitDrag() {
   document.querySelectorAll(".notation-orbit").forEach((orbit) => {
     const tokens = [...orbit.querySelectorAll(":scope > span")];
-    const duration = orbit.classList.contains("notation-orbit--one") ? 34000 : 25000;
+    const duration = orbit.classList.contains("notation-orbit--one")
+      ? 34000
+      : 25000;
     const direction = orbit.classList.contains("notation-orbit--one") ? 1 : -1;
     let dragState = null;
 
@@ -274,20 +724,26 @@ function initNotationOrbitDrag() {
       dragState = null;
       orbit.classList.remove("is-dragging");
       finished.animations.forEach((animation) => animation.play());
-      if (finished.token.hasPointerCapture(event.pointerId)) finished.token.releasePointerCapture(event.pointerId);
+      if (finished.token.hasPointerCapture(event.pointerId))
+        finished.token.releasePointerCapture(event.pointerId);
     }
 
     tokens.forEach((token) => {
       token.addEventListener("pointerdown", (event) => {
         if (event.button !== 0) return;
         const orbitAnimation = orbit.getAnimations()[0];
-        const animations = [orbitAnimation, ...tokens.flatMap((item) => item.getAnimations())].filter(Boolean);
+        const animations = [
+          orbitAnimation,
+          ...tokens.flatMap((item) => item.getAnimations()),
+        ].filter(Boolean);
         animations.forEach((animation) => animation.pause());
         dragState = {
           pointerId: event.pointerId,
           token,
           previousAngle: pointerAngle(event, orbit),
-          animationTime: orbitAnimation ? Number(orbitAnimation.currentTime) || 0 : 0,
+          animationTime: orbitAnimation
+            ? Number(orbitAnimation.currentTime) || 0
+            : 0,
           staticAngle: Number(orbit.dataset.dragAngle) || 0,
           animations,
           orbitAnimation,
@@ -300,18 +756,26 @@ function initNotationOrbitDrag() {
       token.addEventListener("pointermove", (event) => {
         if (!dragState || event.pointerId !== dragState.pointerId) return;
         const currentAngle = pointerAngle(event, orbit);
-        const change = shortestAngleChange(currentAngle, dragState.previousAngle);
+        const change = shortestAngleChange(
+          currentAngle,
+          dragState.previousAngle,
+        );
         dragState.previousAngle = currentAngle;
 
         if (dragState.orbitAnimation) {
           dragState.animationTime += (change / 360) * duration * direction;
-          const wrappedTime = ((dragState.animationTime % duration) + duration) % duration;
-          dragState.animations.forEach((animation) => { animation.currentTime = wrappedTime; });
+          const wrappedTime =
+            ((dragState.animationTime % duration) + duration) % duration;
+          dragState.animations.forEach((animation) => {
+            animation.currentTime = wrappedTime;
+          });
         } else {
           dragState.staticAngle += change;
           orbit.dataset.dragAngle = String(dragState.staticAngle);
           orbit.style.transform = `translate(-50%, -50%) rotate(${dragState.staticAngle}deg)`;
-          tokens.forEach((item) => { item.style.transform = `rotate(${-dragState.staticAngle}deg)`; });
+          tokens.forEach((item) => {
+            item.style.transform = `rotate(${-dragState.staticAngle}deg)`;
+          });
         }
         event.preventDefault();
       });
@@ -332,40 +796,73 @@ let activeCategory = "all";
 let activeNotation = "real";
 
 function renderCategories() {
-  document.querySelector("#notation-categories").innerHTML = Object.entries(categoryLabels).map(([key, label]) => `<button type="button" class="${key === activeCategory ? "is-active" : ""}" data-notation-category="${key}">${label}</button>`).join("");
-  document.querySelectorAll("[data-notation-category]").forEach((button) => button.addEventListener("click", () => {
-    activeCategory = button.dataset.notationCategory;
-    renderCategories();
-    renderNotationList();
-  }));
+  document.querySelector("#notation-categories").innerHTML = Object.entries(
+    categoryLabels,
+  )
+    .map(
+      ([key, label]) =>
+        `<button type="button" class="${key === activeCategory ? "is-active" : ""}" data-notation-category="${key}">${label}</button>`,
+    )
+    .join("");
+  document.querySelectorAll("[data-notation-category]").forEach((button) =>
+    button.addEventListener("click", () => {
+      activeCategory = button.dataset.notationCategory;
+      renderCategories();
+      renderNotationList();
+    }),
+  );
 }
 
 function renderNotationDetail(id) {
-  const item = notationItems.find((candidate) => candidate.id === id) || notationItems[0];
+  const item =
+    notationItems.find((candidate) => candidate.id === id) || notationItems[0];
   activeNotation = item.id;
-  document.querySelectorAll("[data-notation-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.notationId === item.id));
+  document
+    .querySelectorAll("[data-notation-id]")
+    .forEach((button) =>
+      button.classList.toggle(
+        "is-active",
+        button.dataset.notationId === item.id,
+      ),
+    );
   notationDetail.innerHTML = `
     <p class="tool-label">${categoryLabels[item.category]}</p>
-    <div class="notation-detail__symbol"><span class="math-indexed">${item.symbol}</span></div>
+    <div class="notation-detail__symbol${item.id === "subscripts" ? " notation-detail__symbol--indexed" : ""}">${mathMarkup(expressionToTex(item.symbol))}</div>
     <h3>${item.title}</h3>
     <div class="notation-detail__read"><span>Read it aloud</span><strong>“${item.read}”</strong></div>
     <p>${item.meaning}</p>
-    <div class="notation-detail__example"><span>Example</span><strong>${item.example}</strong></div>
+    <div class="notation-detail__example${item.id === "subscripts" ? " notation-detail__example--indexed" : ""}"><span>Example</span><strong>${mathMarkup(notationExampleTex[item.id] || expressionToTex(item.example))}</strong></div>
     ${item.note ? `<aside>${item.note}</aside>` : ""}
   `;
+  typesetMath(notationDetail);
 }
 
 function renderNotationList() {
   const query = notationSearch.value.trim().toLowerCase();
   const visible = notationItems.filter((item) => {
-    const inCategory = activeCategory === "all" || item.category === activeCategory;
-    const searchable = `${item.symbol} ${item.title} ${item.read} ${item.meaning}`.toLowerCase();
+    const inCategory =
+      activeCategory === "all" || item.category === activeCategory;
+    const searchable =
+      `${item.symbol} ${item.title} ${item.read} ${item.meaning}`.toLowerCase();
     return inCategory && searchable.includes(query);
   });
-  notationList.innerHTML = visible.map((item) => `<button type="button" class="${item.id === activeNotation ? "is-active" : ""}" data-notation-id="${item.id}"><span><span class="math-indexed">${item.symbol}</span></span><span><strong>${item.title}</strong><small>${item.read}</small></span></button>`).join("");
+  notationList.innerHTML = visible
+    .map(
+      (item) =>
+        `<button type="button" class="${item.id === activeNotation ? "is-active" : ""}" data-notation-id="${item.id}"><span>${mathMarkup(expressionToTex(item.symbol))}</span><span><strong>${item.title}</strong><small>${item.read}</small></span></button>`,
+    )
+    .join("");
+  typesetMath(notationList);
   document.querySelector("#notation-empty").hidden = visible.length > 0;
-  document.querySelectorAll("[data-notation-id]").forEach((button) => button.addEventListener("click", () => renderNotationDetail(button.dataset.notationId)));
-  if (visible.length && !visible.some((item) => item.id === activeNotation)) renderNotationDetail(visible[0].id);
+  document
+    .querySelectorAll("[data-notation-id]")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        renderNotationDetail(button.dataset.notationId),
+      ),
+    );
+  if (visible.length && !visible.some((item) => item.id === activeNotation))
+    renderNotationDetail(visible[0].id);
 }
 
 notationSearch.addEventListener("input", renderNotationList);
@@ -374,41 +871,126 @@ renderNotationList();
 renderNotationDetail(activeNotation);
 
 const numberCases = {
-  five: { value: "5", sets: ["N", "Z", "Q", "R"], irrational: false, text: "5 is a counting number, so it also belongs to every larger nested system." },
-  zero: { value: "0", sets: ["Z", "Q", "R"], irrational: false, text: "With our convention, 0 is not natural. It is an integer, 0/1 is rational, and every rational is real." },
-  negative: { value: "−3", sets: ["Z", "Q", "R"], irrational: false, text: "Negative integers are not natural, but −3 = −3/1 makes this number rational and therefore real." },
-  fraction: { value: "2/3", sets: ["Q", "R"], irrational: false, text: "A ratio of integers is rational. It need not be an integer." },
-  decimal: { value: "0.125", sets: ["Q", "R"], irrational: false, text: "This terminating decimal equals 1/8, so it is rational and real." },
-  root: { value: "√2", sets: ["R"], irrational: true, text: "√2 is real but cannot be written as a ratio of integers, so it lies in ℝ ∖ ℚ." },
-  pi: { value: "π", sets: ["R"], irrational: true, text: "π is an irrational real number: its decimal neither terminates nor repeats." },
+  five: {
+    value: "5",
+    sets: ["N", "Z", "Q", "R"],
+    irrational: false,
+    text: "5 is a counting number, so it also belongs to every larger nested system.",
+  },
+  zero: {
+    value: "0",
+    sets: ["Z", "Q", "R"],
+    irrational: false,
+    text: "With our convention, 0 is not natural. It is an integer, 0/1 is rational, and every rational is real.",
+  },
+  negative: {
+    value: "−3",
+    sets: ["Z", "Q", "R"],
+    irrational: false,
+    text: "Negative integers are not natural, but −3 = −3/1 makes this number rational and therefore real.",
+  },
+  fraction: {
+    value: "2/3",
+    sets: ["Q", "R"],
+    irrational: false,
+    text: "A ratio of integers is rational. It need not be an integer.",
+  },
+  decimal: {
+    value: "0.125",
+    sets: ["Q", "R"],
+    irrational: false,
+    text: "This terminating decimal equals 1/8, so it is rational and real.",
+  },
+  root: {
+    value: "√2",
+    sets: ["R"],
+    irrational: true,
+    text: "√2 is real but cannot be written as a ratio of integers, so it lies in ℝ ∖ ℚ.",
+  },
+  pi: {
+    value: "π",
+    sets: ["R"],
+    irrational: true,
+    text: "π is an irrational real number: its decimal neither terminates nor repeats.",
+  },
 };
 
 function renderNumberCase(key) {
   const selected = numberCases[key];
-  document.querySelectorAll("[data-number-case]").forEach((button) => button.classList.toggle("is-active", button.dataset.numberCase === key));
-  document.querySelectorAll("[data-number-set]").forEach((card) => card.classList.toggle("is-active", selected.sets.includes(card.dataset.numberSet)));
-  document.querySelector("#irrational-status").classList.toggle("is-active", selected.irrational);
-  const memberships = selected.sets.map((set) => `${selected.value} ∈ ℱ`.replace("ℱ", set === "N" ? "ℕ" : set === "Z" ? "ℤ" : set === "Q" ? "ℚ" : "ℝ"));
-  if (selected.irrational) memberships.splice(memberships.length - 1, 0, `${selected.value} ∈ ℝ ∖ ℚ`);
-  document.querySelector("#number-verdict").innerHTML = `<span>${memberships.join(" · ")}</span><strong>${selected.text}</strong>`;
+  document
+    .querySelectorAll("[data-number-case]")
+    .forEach((button) =>
+      button.classList.toggle("is-active", button.dataset.numberCase === key),
+    );
+  document
+    .querySelectorAll("[data-number-set]")
+    .forEach((card) =>
+      card.classList.toggle(
+        "is-active",
+        selected.sets.includes(card.dataset.numberSet),
+      ),
+    );
+  document
+    .querySelector("#irrational-status")
+    .classList.toggle("is-active", selected.irrational);
+  const memberships = selected.sets.map((set) =>
+    expressionToTex(
+      `${selected.value} ∈ ${set === "N" ? "ℕ" : set === "Z" ? "ℤ" : set === "Q" ? "ℚ" : "ℝ"}`,
+    ),
+  );
+  if (selected.irrational)
+    memberships.splice(
+      memberships.length - 1,
+      0,
+      expressionToTex(`${selected.value} ∈ ℝ ∖ ℚ`),
+    );
+  const verdict = document.querySelector("#number-verdict");
+  verdict.innerHTML = `<span>${mathMarkup(memberships.join(String.raw`\qquad`))}</span><strong>${selected.text}</strong>`;
+  typesetMath(verdict);
 }
 
-document.querySelectorAll("[data-number-case]").forEach((button) => button.addEventListener("click", () => renderNumberCase(button.dataset.numberCase)));
+document
+  .querySelectorAll("[data-number-case]")
+  .forEach((button) =>
+    button.addEventListener("click", () =>
+      renderNumberCase(button.dataset.numberCase),
+    ),
+  );
 renderNumberCase("five");
 
 const setCases = {
-  union: { expression: "A ∪ B", result: "{1, 2, 3, 4}", explanation: "Collect every element that appears in A or B. Write the shared 3 only once." },
-  intersection: { expression: "A ∩ B", result: "{3}", explanation: "Keep only the overlap: 3 is the one element present in both sets." },
-  "a-minus-b": { expression: "A ∖ B", result: "{1, 2}", explanation: "Start with A, then remove its shared element 3." },
-  "b-minus-a": { expression: "B ∖ A", result: "{4}", explanation: "Start with B, then remove its shared element 3. Difference depends on order." },
+  union: {
+    expression: "A ∪ B",
+    result: "{1, 2, 3, 4}",
+    explanation:
+      "Collect every element that appears in A or B. Write the shared 3 only once.",
+  },
+  intersection: {
+    expression: "A ∩ B",
+    result: "{3}",
+    explanation:
+      "Keep only the overlap: 3 is the one element present in both sets.",
+  },
+  "a-minus-b": {
+    expression: "A ∖ B",
+    result: "{1, 2}",
+    explanation: "Start with A, then remove its shared element 3.",
+  },
+  "b-minus-a": {
+    expression: "B ∖ A",
+    result: "{4}",
+    explanation:
+      "Start with B, then remove its shared element 3. Difference depends on order.",
+  },
 };
 
 function setDiagramMarkup(operation) {
-  const shape = operation === "union"
-    ? `<circle cx="235" cy="210" r="125" class="set-fill"/><circle cx="365" cy="210" r="125" class="set-fill"/>`
-    : operation === "intersection"
-      ? `<circle cx="365" cy="210" r="125" class="set-fill" clip-path="url(#clip-a)"/>`
-      : `<rect x="0" y="0" width="600" height="420" class="set-fill" mask="url(#${operation === "a-minus-b" ? "a-minus-b" : "b-minus-a"})"/>`;
+  const shape =
+    operation === "union"
+      ? `<circle cx="235" cy="210" r="125" class="set-fill"/><circle cx="365" cy="210" r="125" class="set-fill"/>`
+      : operation === "intersection"
+        ? `<circle cx="365" cy="210" r="125" class="set-fill" clip-path="url(#clip-a)"/>`
+        : `<rect x="0" y="0" width="600" height="420" class="set-fill" mask="url(#${operation === "a-minus-b" ? "a-minus-b" : "b-minus-a"})"/>`;
   return `
     <defs>
       <clipPath id="clip-a"><circle cx="235" cy="210" r="125"/></clipPath>
@@ -424,12 +1006,28 @@ function setDiagramMarkup(operation) {
 
 function renderSetOperation(operation) {
   const selected = setCases[operation];
-  document.querySelectorAll("[data-set-operation]").forEach((button) => button.classList.toggle("is-active", button.dataset.setOperation === operation));
-  document.querySelector("#set-diagram").innerHTML = setDiagramMarkup(operation);
-  document.querySelector("#set-result").innerHTML = `<span>${selected.expression}</span><strong>${selected.result}</strong><p>${selected.explanation}</p>`;
+  document
+    .querySelectorAll("[data-set-operation]")
+    .forEach((button) =>
+      button.classList.toggle(
+        "is-active",
+        button.dataset.setOperation === operation,
+      ),
+    );
+  document.querySelector("#set-diagram").innerHTML =
+    setDiagramMarkup(operation);
+  const result = document.querySelector("#set-result");
+  result.innerHTML = `<span>${mathMarkup(expressionToTex(selected.expression))}</span><strong>${mathMarkup(expressionToTex(selected.result))}</strong><p>${selected.explanation}</p>`;
+  typesetMath(result);
 }
 
-document.querySelectorAll("[data-set-operation]").forEach((button) => button.addEventListener("click", () => renderSetOperation(button.dataset.setOperation)));
+document
+  .querySelectorAll("[data-set-operation]")
+  .forEach((button) =>
+    button.addEventListener("click", () =>
+      renderSetOperation(button.dataset.setOperation),
+    ),
+  );
 renderSetOperation("union");
 
 const intervalState = {
@@ -459,8 +1057,13 @@ function intervalTicks() {
   const ticks = [];
   for (let value = -10; value <= 10; value += 1) {
     const x = intervalX(value);
-    ticks.push(`<line x1="${x}" y1="${value % 2 === 0 ? 160 : 168}" x2="${x}" y2="${value % 2 === 0 ? 200 : 192}" class="interval-tick"/>`);
-    if (value % 2 === 0) ticks.push(`<text x="${x}" y="265" class="interval-tick-label">${intervalNumber(value)}</text>`);
+    ticks.push(
+      `<line x1="${x}" y1="${value % 2 === 0 ? 160 : 168}" x2="${x}" y2="${value % 2 === 0 ? 200 : 192}" class="interval-tick"/>`,
+    );
+    if (value % 2 === 0)
+      ticks.push(
+        `<text x="${x}" y="265" class="interval-tick-label">${intervalNumber(value)}</text>`,
+      );
   }
   return ticks.join("");
 }
@@ -497,10 +1100,26 @@ function renderIntervalLab() {
   const isRightRay = intervalState.mode === "right-ray";
   const startX = isLeftRay ? 58 : intervalX(intervalState.left);
   const endX = isRightRay ? 702 : intervalX(intervalState.right);
-  const leftArrow = isLeftRay ? `<path d="M72 164 L48 180 L72 196" class="interval-arrow"/>` : "";
-  const rightArrow = isRightRay ? `<path d="M688 164 L712 180 L688 196" class="interval-arrow"/>` : "";
-  const leftEndpoint = isLeftRay ? "" : intervalEndpointMarkup(intervalState.left, intervalState.leftClosed, "left");
-  const rightEndpoint = isRightRay ? "" : intervalEndpointMarkup(intervalState.right, intervalState.rightClosed, "right");
+  const leftArrow = isLeftRay
+    ? `<path d="M72 164 L48 180 L72 196" class="interval-arrow"/>`
+    : "";
+  const rightArrow = isRightRay
+    ? `<path d="M688 164 L712 180 L688 196" class="interval-arrow"/>`
+    : "";
+  const leftEndpoint = isLeftRay
+    ? ""
+    : intervalEndpointMarkup(
+        intervalState.left,
+        intervalState.leftClosed,
+        "left",
+      );
+  const rightEndpoint = isRightRay
+    ? ""
+    : intervalEndpointMarkup(
+        intervalState.right,
+        intervalState.rightClosed,
+        "right",
+      );
   intervalSvg.innerHTML = `
     <line x1="50" y1="180" x2="710" y2="180" class="interval-axis"/>
     ${intervalTicks()}
@@ -509,23 +1128,58 @@ function renderIntervalLab() {
   `;
 
   const description = intervalDescription();
-  document.querySelector("#interval-result").innerHTML = `<span>Interval notation</span><strong>${description.interval}</strong><dl><div><dt>Inequality</dt><dd>${description.inequality}</dd></div><div><dt>Set-builder</dt><dd>${description.builder}</dd></div></dl><p>${description.words}</p>`;
-  document.querySelectorAll("[data-interval-mode]").forEach((button) => button.classList.toggle("is-active", button.dataset.intervalMode === intervalState.mode));
+  const intervalResult = document.querySelector("#interval-result");
+  intervalResult.innerHTML = `<span>Interval notation</span><strong>${mathMarkup(expressionToTex(description.interval))}</strong><dl><div><dt>Inequality</dt><dd>${mathMarkup(expressionToTex(description.inequality))}</dd></div><div><dt>Set-builder</dt><dd>${mathMarkup(expressionToTex(description.builder))}</dd></div></dl><p>${description.words}</p>`;
+  typesetMath(intervalResult);
+  document
+    .querySelectorAll("[data-interval-mode]")
+    .forEach((button) =>
+      button.classList.toggle(
+        "is-active",
+        button.dataset.intervalMode === intervalState.mode,
+      ),
+    );
 
-  document.querySelector("#interval-left-field").classList.toggle("is-infinite", isLeftRay);
-  document.querySelector("#interval-right-field").classList.toggle("is-infinite", isRightRay);
+  document
+    .querySelector("#interval-left-field")
+    .classList.toggle("is-infinite", isLeftRay);
+  document
+    .querySelector("#interval-right-field")
+    .classList.toggle("is-infinite", isRightRay);
   intervalLeftInput.disabled = isLeftRay;
   intervalLeftToggle.disabled = isLeftRay;
   intervalRightInput.disabled = isRightRay;
   intervalRightToggle.disabled = isRightRay;
   intervalLeftToggle.classList.toggle("is-closed", intervalState.leftClosed);
-  intervalLeftToggle.setAttribute("aria-pressed", String(intervalState.leftClosed));
-  intervalLeftToggle.querySelector("strong").textContent = isLeftRay ? "−∞" : intervalState.leftClosed ? "Included" : "Excluded";
-  intervalLeftToggle.querySelector("small").textContent = isLeftRay ? "always a parenthesis" : intervalState.leftClosed ? "square bracket [" : "parenthesis (";
+  intervalLeftToggle.setAttribute(
+    "aria-pressed",
+    String(intervalState.leftClosed),
+  );
+  intervalLeftToggle.querySelector("strong").textContent = isLeftRay
+    ? "−∞"
+    : intervalState.leftClosed
+      ? "Included"
+      : "Excluded";
+  intervalLeftToggle.querySelector("small").textContent = isLeftRay
+    ? "always a parenthesis"
+    : intervalState.leftClosed
+      ? "square bracket ["
+      : "parenthesis (";
   intervalRightToggle.classList.toggle("is-closed", intervalState.rightClosed);
-  intervalRightToggle.setAttribute("aria-pressed", String(intervalState.rightClosed));
-  intervalRightToggle.querySelector("strong").textContent = isRightRay ? "∞" : intervalState.rightClosed ? "Included" : "Excluded";
-  intervalRightToggle.querySelector("small").textContent = isRightRay ? "always a parenthesis" : intervalState.rightClosed ? "square bracket ]" : "parenthesis )";
+  intervalRightToggle.setAttribute(
+    "aria-pressed",
+    String(intervalState.rightClosed),
+  );
+  intervalRightToggle.querySelector("strong").textContent = isRightRay
+    ? "∞"
+    : intervalState.rightClosed
+      ? "Included"
+      : "Excluded";
+  intervalRightToggle.querySelector("small").textContent = isRightRay
+    ? "always a parenthesis"
+    : intervalState.rightClosed
+      ? "square bracket ]"
+      : "parenthesis )";
 }
 
 function setIntervalEndpoint(side, rawValue) {
@@ -540,14 +1194,26 @@ function setIntervalEndpoint(side, rawValue) {
   renderIntervalLab();
 }
 
-document.querySelectorAll("[data-interval-mode]").forEach((button) => button.addEventListener("click", () => {
-  intervalState.mode = button.dataset.intervalMode;
+document.querySelectorAll("[data-interval-mode]").forEach((button) =>
+  button.addEventListener("click", () => {
+    intervalState.mode = button.dataset.intervalMode;
+    renderIntervalLab();
+  }),
+);
+intervalLeftInput.addEventListener("input", () =>
+  setIntervalEndpoint("left", Number(intervalLeftInput.value)),
+);
+intervalRightInput.addEventListener("input", () =>
+  setIntervalEndpoint("right", Number(intervalRightInput.value)),
+);
+intervalLeftToggle.addEventListener("click", () => {
+  intervalState.leftClosed = !intervalState.leftClosed;
   renderIntervalLab();
-}));
-intervalLeftInput.addEventListener("input", () => setIntervalEndpoint("left", Number(intervalLeftInput.value)));
-intervalRightInput.addEventListener("input", () => setIntervalEndpoint("right", Number(intervalRightInput.value)));
-intervalLeftToggle.addEventListener("click", () => { intervalState.leftClosed = !intervalState.leftClosed; renderIntervalLab(); });
-intervalRightToggle.addEventListener("click", () => { intervalState.rightClosed = !intervalState.rightClosed; renderIntervalLab(); });
+});
+intervalRightToggle.addEventListener("click", () => {
+  intervalState.rightClosed = !intervalState.rightClosed;
+  renderIntervalLab();
+});
 
 let draggedIntervalEndpoint = null;
 intervalSvg.addEventListener("pointerdown", (event) => {
@@ -563,19 +1229,32 @@ intervalSvg.addEventListener("pointermove", (event) => {
   const svgX = ((event.clientX - bounds.left) / bounds.width) * 760;
   setIntervalEndpoint(draggedIntervalEndpoint, ((svgX - 70) / 620) * 20 - 10);
 });
-intervalSvg.addEventListener("pointerup", () => { draggedIntervalEndpoint = null; });
-intervalSvg.addEventListener("pointercancel", () => { draggedIntervalEndpoint = null; });
+intervalSvg.addEventListener("pointerup", () => {
+  draggedIntervalEndpoint = null;
+});
+intervalSvg.addEventListener("pointercancel", () => {
+  draggedIntervalEndpoint = null;
+});
 intervalSvg.addEventListener("keydown", (event) => {
   const handle = event.target.closest("[data-interval-endpoint]");
   if (!handle || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
   event.preventDefault();
   const side = handle.dataset.intervalEndpoint;
-  setIntervalEndpoint(side, intervalState[side] + (event.key === "ArrowRight" ? 1 : -1));
+  setIntervalEndpoint(
+    side,
+    intervalState[side] + (event.key === "ArrowRight" ? 1 : -1),
+  );
   intervalSvg.querySelector(`[data-interval-endpoint="${side}"]`)?.focus();
 });
 renderIntervalLab();
 
-const coordinateInputs = ["#point-p-x", "#point-p-y", "#point-q-x", "#point-q-y", "#point-scalar"].map((selector) => document.querySelector(selector));
+const coordinateInputs = [
+  "#point-p-x",
+  "#point-p-y",
+  "#point-q-x",
+  "#point-q-y",
+  "#point-scalar",
+].map((selector) => document.querySelector(selector));
 let coordinateOperation = "add";
 const coordinateChart = document.querySelector("#coordinate-chart");
 
@@ -584,16 +1263,30 @@ function coordinateNumber(value) {
   return text.startsWith("-") ? `−${text.slice(1)}` : text;
 }
 
-function coordinateMapper(value) { return 50 + ((value + 16) / 32) * 440; }
-function coordinateY(value) { return 490 - ((value + 16) / 32) * 440; }
+const coordinatePlotStart = 25;
+const coordinatePlotEnd = 515;
+const coordinatePlotSize = coordinatePlotEnd - coordinatePlotStart;
+
+function coordinateMapper(value) {
+  return coordinatePlotStart + ((value + 16) / 32) * coordinatePlotSize;
+}
+function coordinateY(value) {
+  return coordinatePlotEnd - ((value + 16) / 32) * coordinatePlotSize;
+}
 
 function coordinateGrid() {
   const lines = [];
   for (let value = -16; value <= 16; value += 2) {
-    lines.push(`<line x1="${coordinateMapper(value)}" y1="50" x2="${coordinateMapper(value)}" y2="490" class="notation-coordinate-grid-line"/>`);
-    lines.push(`<line x1="50" y1="${coordinateY(value)}" x2="490" y2="${coordinateY(value)}" class="notation-coordinate-grid-line"/>`);
+    lines.push(
+      `<line x1="${coordinateMapper(value)}" y1="${coordinatePlotStart}" x2="${coordinateMapper(value)}" y2="${coordinatePlotEnd}" class="notation-coordinate-grid-line"/>`,
+    );
+    lines.push(
+      `<line x1="${coordinatePlotStart}" y1="${coordinateY(value)}" x2="${coordinatePlotEnd}" y2="${coordinateY(value)}" class="notation-coordinate-grid-line"/>`,
+    );
   }
-  lines.push(`<line x1="50" y1="${coordinateY(0)}" x2="490" y2="${coordinateY(0)}" class="notation-coordinate-axis"/><line x1="${coordinateMapper(0)}" y1="50" x2="${coordinateMapper(0)}" y2="490" class="notation-coordinate-axis"/>`);
+  lines.push(
+    `<line x1="${coordinatePlotStart}" y1="${coordinateY(0)}" x2="${coordinatePlotEnd}" y2="${coordinateY(0)}" class="notation-coordinate-axis"/><line x1="${coordinateMapper(0)}" y1="${coordinatePlotStart}" x2="${coordinateMapper(0)}" y2="${coordinatePlotEnd}" class="notation-coordinate-axis"/>`,
+  );
   return lines.join("");
 }
 
@@ -602,7 +1295,9 @@ function vectorMarkup(point, className, label) {
 }
 
 function renderCoordinateLab() {
-  const [px, py, qx, qy, k] = coordinateInputs.map((input) => Number(input.value) || 0);
+  const [px, py, qx, qy, k] = coordinateInputs.map(
+    (input) => Number(input.value) || 0,
+  );
   const p = { x: px, y: py };
   const q = { x: qx, y: qy };
   let result;
@@ -622,32 +1317,74 @@ function renderCoordinateLab() {
     explanation = "The same scalar multiplies both coordinates.";
   }
   coordinateChart.innerHTML = `${coordinateGrid()}${vectorMarkup(p, "is-p", "P")}${vectorMarkup(q, "is-q", "Q")}${vectorMarkup(result, "is-result", "R")}`;
-  document.querySelector("#coordinate-result").innerHTML = `<span>${coordinateOperation === "add" ? "Coordinate addition" : coordinateOperation === "subtract" ? "Coordinate subtraction" : "Scalar multiplication"}</span><strong>${formula}</strong><p>${explanation}</p>`;
+  const coordinateResult = document.querySelector("#coordinate-result");
+  coordinateResult.innerHTML = `<span>${coordinateOperation === "add" ? "Coordinate addition" : coordinateOperation === "subtract" ? "Coordinate subtraction" : "Scalar multiplication"}</span><strong>${mathMarkup(expressionToTex(formula))}</strong><p>${explanation}</p>`;
+  typesetMath(coordinateResult);
 }
 
-coordinateInputs.forEach((input) => input.addEventListener("input", renderCoordinateLab));
-document.querySelectorAll("[data-coordinate-operation]").forEach((button) => button.addEventListener("click", () => {
-  coordinateOperation = button.dataset.coordinateOperation;
-  document.querySelectorAll("[data-coordinate-operation]").forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
-  renderCoordinateLab();
-}));
+coordinateInputs.forEach((input) =>
+  input.addEventListener("input", renderCoordinateLab),
+);
+document.querySelectorAll("[data-coordinate-operation]").forEach((button) =>
+  button.addEventListener("click", () => {
+    coordinateOperation = button.dataset.coordinateOperation;
+    document
+      .querySelectorAll("[data-coordinate-operation]")
+      .forEach((candidate) =>
+        candidate.classList.toggle("is-active", candidate === button),
+      );
+    renderCoordinateLab();
+  }),
+);
 renderCoordinateLab();
 
 document.querySelector("#check-number-button").addEventListener("click", () => {
   const correct = document.querySelector("#check-number").value === "correct";
-  setFeedback(document.querySelector("#feedback-number"), correct, correct ? "Correct. −7 is an integer; it is also rational and real, but ℤ is the smallest listed system." : "Negative whole numbers belong to the integers. Choose the smallest set that contains the number.");
+  setFeedback(
+    document.querySelector("#feedback-number"),
+    correct,
+    correct
+      ? "Correct. −7 is an integer; it is also rational and real, but ℤ is the smallest listed system."
+      : "Negative whole numbers belong to the integers. Choose the smallest set that contains the number.",
+  );
 });
 document.querySelector("#check-domain-button").addEventListener("click", () => {
-  const correct = document.querySelector("#check-domain-symbol").value === "correct";
-  setFeedback(document.querySelector("#feedback-domain-symbol"), correct, correct ? "Correct. D sub f names the set of allowed inputs for f." : "The subscript identifies which function the set belongs to: D means domain.");
+  const correct =
+    document.querySelector("#check-domain-symbol").value === "correct";
+  setFeedback(
+    document.querySelector("#feedback-domain-symbol"),
+    correct,
+    correct
+      ? "Correct. D sub f names the set of allowed inputs for f."
+      : "The subscript identifies which function the set belongs to: D means domain.",
+  );
 });
-document.querySelector("#check-intersection-button").addEventListener("click", () => {
-  const correct = document.querySelector("#check-intersection").value === "correct";
-  setFeedback(document.querySelector("#feedback-intersection"), correct, correct ? "Correct. Intersection keeps only the overlap." : "Think of the lens-shaped overlap in a Venn diagram.");
-});
-document.querySelector("#check-coordinate-button").addEventListener("click", () => {
-  const correct = Number(document.querySelector("#check-coordinate-x").value) === 5 && Number(document.querySelector("#check-coordinate-y").value) === -5;
-  setFeedback(document.querySelector("#feedback-coordinate"), correct, correct ? "Correct. (3 − (−2), −1 − 4) = (5, −5)." : "Subtract matching coordinates in order. Be careful: 3 − (−2) becomes 3 + 2.");
-});
+document
+  .querySelector("#check-intersection-button")
+  .addEventListener("click", () => {
+    const correct =
+      document.querySelector("#check-intersection").value === "correct";
+    setFeedback(
+      document.querySelector("#feedback-intersection"),
+      correct,
+      correct
+        ? "Correct. Intersection keeps only the overlap."
+        : "Think of the lens-shaped overlap in a Venn diagram.",
+    );
+  });
+document
+  .querySelector("#check-coordinate-button")
+  .addEventListener("click", () => {
+    const correct =
+      Number(document.querySelector("#check-coordinate-x").value) === 5 &&
+      Number(document.querySelector("#check-coordinate-y").value) === -5;
+    setFeedback(
+      document.querySelector("#feedback-coordinate"),
+      correct,
+      correct
+        ? "Correct. (3 − (−2), −1 − 4) = (5, −5)."
+        : "Subtract matching coordinates in order. Be careful: 3 − (−2) becomes 3 + 2.",
+    );
+  });
 
 initLessonChrome();

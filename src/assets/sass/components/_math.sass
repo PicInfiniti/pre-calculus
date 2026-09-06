@@ -1,0 +1,29 @@
+.lesson-math
+  max-width: 100%
+  display: inline-block
+  vertical-align: middle
+
+  .katex
+    font-size: 1em
+
+.katex
+  letter-spacing: normal
+  text-transform: none
+
+.lesson-math--display
+  width: 100%
+  display: block
+
+.lesson-math .katex-display
+  margin: 0
+
+.math-scroll
+  overflow-x: auto
+  overflow-y: hidden
+
+button .lesson-math
+  pointer-events: none
+
+@media (max-width: 560px)
+  .lesson-math--display .katex
+    font-size: .92em

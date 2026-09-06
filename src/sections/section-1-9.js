@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -42,8 +43,8 @@ root.innerHTML = `
           <circle cx="380" cy="140" r="10" class="coordinate-hero__point coordinate-hero__point--b" />
           <circle cx="260" cy="240" r="8" class="coordinate-hero__midpoint" />
         </svg>
-        <span class="coordinate-hero__formula coordinate-hero__formula--distance">d = √(Δx² + Δy²)</span>
-        <span class="coordinate-hero__formula coordinate-hero__formula--circle">(x − h)² + (y − k)² = r²</span>
+        <span class="coordinate-hero__formula coordinate-hero__formula--distance">${mathMarkup(String.raw`d=\sqrt{(\Delta x)^2+(\Delta y)^2}`)}</span>
+        <span class="coordinate-hero__formula coordinate-hero__formula--circle">${mathMarkup(String.raw`(x-h)^2+(y-k)^2=r^2`)}</span>
       </div>
     </section>
 
@@ -68,10 +69,10 @@ root.innerHTML = `
       </div>
 
       <div class="formula-ribbon" data-reveal>
-        <div><span>Horizontal change</span><strong>Δx = x₂ − x₁</strong></div>
-        <div><span>Vertical change</span><strong>Δy = y₂ − y₁</strong></div>
-        <div><span>Midpoint</span><strong>M = ((x₁+x₂)/2, (y₁+y₂)/2)</strong></div>
-        <div><span>Distance</span><strong>d = √(Δx² + Δy²)</strong></div>
+        <div><span>Horizontal change</span><strong>${mathMarkup(String.raw`\Delta x=x_2-x_1`)}</strong></div>
+        <div><span>Vertical change</span><strong>${mathMarkup(String.raw`\Delta y=y_2-y_1`)}</strong></div>
+        <div><span>Midpoint</span><strong>${mathMarkup(String.raw`M=\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)`)}</strong></div>
+        <div><span>Distance</span><strong>${mathMarkup(String.raw`d=\sqrt{(\Delta x)^2+(\Delta y)^2}`)}</strong></div>
       </div>
 
       <div class="interactive-shell coordinate-lab" data-reveal>
@@ -102,9 +103,9 @@ root.innerHTML = `
               <button type="button" data-coordinate-preset="free">New segment</button>
             </div>
             <div class="coordinate-metrics" aria-live="polite">
-              <article><span>Change</span><strong id="coordinate-change">Δx = −4 · Δy = −4</strong></article>
-              <article><span>Midpoint</span><strong id="coordinate-midpoint">(−4, −1)</strong></article>
-              <article><span>Distance</span><strong id="coordinate-distance">4√2</strong><small id="coordinate-distance-decimal">≈ 5.657</small></article>
+              <article><span>Change</span><strong id="coordinate-change"></strong></article>
+              <article><span>Midpoint</span><strong id="coordinate-midpoint"></strong></article>
+              <article><span>Distance</span><strong id="coordinate-distance"></strong><small id="coordinate-distance-decimal"></small></article>
             </div>
           </div>
         </div>
@@ -113,8 +114,8 @@ root.innerHTML = `
       <div class="reverse-midpoint" data-reveal>
         <div>
           <p class="tool-label">Reverse the midpoint formula</p>
-          <h3>Midpoint M is (−4, −1). One endpoint is A(−2, 1). Where is B?</h3>
-          <p>If Mₓ = (Aₓ + Bₓ)/2, then Bₓ = 2Mₓ − Aₓ. Use the same move for y.</p>
+          <h3>Midpoint ${mathMarkup(String.raw`M=(-4,-1)`)}. One endpoint is ${mathMarkup(String.raw`A=(-2,1)`)}. Where is ${mathMarkup(String.raw`B`)}?</h3>
+          <p>If ${mathMarkup(String.raw`M_x=\frac{A_x+B_x}{2}`)}, then ${mathMarkup(String.raw`B_x=2M_x-A_x`)}. Use the same move for ${mathMarkup(String.raw`y`)}.</p>
         </div>
         <div class="compact-answer">
           <label>B = ( <input id="missing-bx" type="number" aria-label="Missing endpoint x-coordinate" />, <input id="missing-by" type="number" aria-label="Missing endpoint y-coordinate" /> )</label>
@@ -142,7 +143,7 @@ root.innerHTML = `
           <ol>
             <li><span>1</span><div><strong>Find midpoint M of AC.</strong><p>Average A and C—not A and B.</p></div></li>
             <li><span>2</span><div><strong>Measure BM.</strong><p>Use B and the midpoint you just found.</p></div></li>
-            <li><span>3</span><div><strong>Simplify the radical.</strong><p>√80 = √(16 · 5) = 4√5.</p></div></li>
+            <li><span>3</span><div><strong>Simplify the radical.</strong><p>${mathMarkup(String.raw`\sqrt{80}=\sqrt{16\cdot5}=4\sqrt5`)}.</p></div></li>
           </ol>
           <div class="median-answer-grid">
             <label class="coordinate-answer">M = ( <input id="median-mx" type="number" aria-label="Midpoint x-coordinate" />, <input id="median-my" type="number" aria-label="Midpoint y-coordinate" /> )</label>
@@ -158,7 +159,7 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker"><span>03</span> Build a circle</p>
         <h2>A diameter gives you<br>the whole equation.</h2>
-        <p>The center is the midpoint of the diameter. The radius is half its length—or use one endpoint to find r² directly.</p>
+        <p>The center is the midpoint of the diameter. The radius is half its length—or use one endpoint to find ${mathMarkup(String.raw`r^2`)} directly.</p>
       </div>
 
       <div class="interactive-shell diameter-lab" data-reveal>
@@ -185,8 +186,8 @@ root.innerHTML = `
             </div>
             <div class="diameter-derivation" aria-live="polite">
               <div><span>Center = midpoint</span><strong id="diameter-center">(−1, 4)</strong></div>
-              <div><span>Radius squared</span><strong id="diameter-radius-squared">r² = 20</strong></div>
-              <div class="diameter-equation"><span>Circle equation</span><strong id="diameter-equation">(x + 1)² + (y − 4)² = 20</strong></div>
+              <div><span>Radius squared</span><strong id="diameter-radius-squared"></strong></div>
+              <div class="diameter-equation"><span>Circle equation</span><strong id="diameter-equation"></strong></div>
             </div>
             <p class="concept-callout"><strong>Fast route:</strong> after finding the center, compute r² with the squared changes. You do not need to simplify r first.</p>
           </div>
@@ -213,7 +214,7 @@ root.innerHTML = `
         </div>
         <div class="circle-analyzer__controls">
           <p class="tool-label">Adjust the standard form</p>
-          <div class="circle-equation-display" id="circle-equation-display">(x − 3)² + (y + 1)² = 14</div>
+          <div class="circle-equation-display" id="circle-equation-display"></div>
           <label for="circle-h">Center h <output id="circle-h-output">3</output></label>
           <input id="circle-h" type="range" min="-5" max="5" step="1" value="3" />
           <label for="circle-k">Center k <output id="circle-k-output">−1</output></label>
@@ -221,11 +222,11 @@ root.innerHTML = `
           <label for="circle-r2">Radius squared r² <output id="circle-r2-output">14</output></label>
           <input id="circle-r2" type="range" min="1" max="36" step="1" value="14" />
           <div class="circle-facts" aria-live="polite">
-            <article><span>Diameter</span><strong id="circle-diameter">2√14</strong></article>
+            <article><span>Diameter</span><strong id="circle-diameter"></strong></article>
             <article><span>Center location</span><strong id="circle-quadrant">Quadrant IV</strong></article>
-            <article><span>Center to origin</span><strong id="circle-origin-distance">√10</strong></article>
-            <article><span>x-intercepts</span><strong id="circle-x-intercepts">3 ± √13</strong></article>
-            <article><span>y-intercepts</span><strong id="circle-y-intercepts">−1 ± √5</strong></article>
+            <article><span>Center to origin</span><strong id="circle-origin-distance"></strong></article>
+            <article><span>x-intercepts</span><strong id="circle-x-intercepts"></strong></article>
+            <article><span>y-intercepts</span><strong id="circle-y-intercepts"></strong></article>
           </div>
         </div>
       </div>
@@ -245,11 +246,11 @@ root.innerHTML = `
       <div class="square-studio" data-reveal>
         <div class="square-studio__steps">
           <p class="tool-label">Convert the general-form equation</p>
-          <h3>x² + y² − 10x + 12y + 54 = 0</h3>
+          <h3>${mathMarkup(String.raw`x^2+y^2-10x+12y+54=0`)}</h3>
           <ol>
-            <li class="is-visible"><span>1</span><p>(x² − 10x) + (y² + 12y) = −54</p></li>
+            <li class="is-visible"><span>1</span><p>${mathMarkup(String.raw`(x^2-10x)+(y^2+12y)=-54`)}</p></li>
             <li><span>2</span><p>Add 25 and 36 to both sides.</p></li>
-            <li><span>3</span><p>(x − 5)² + (y + 6)² = 7</p></li>
+            <li><span>3</span><p>${mathMarkup(String.raw`(x-5)^2+(y+6)^2=7`)}</p></li>
           </ol>
           <button type="button" id="next-square-step">Reveal next step <span aria-hidden="true">→</span></button>
         </div>
@@ -264,7 +265,7 @@ root.innerHTML = `
           <p id="feedback-complete-square" class="answer-feedback answer-feedback--dark" aria-live="polite"></p>
           <div class="completion-rule">
             <span>Half, then square</span>
-            <p>x² + bx becomes (x + b/2)² after adding (b/2)².</p>
+            <p>${mathMarkup(String.raw`x^2+bx`)} becomes ${mathMarkup(String.raw`(x+\frac b2)^2`)} after adding ${mathMarkup(String.raw`(\frac b2)^2`)}.</p>
           </div>
         </div>
       </div>
@@ -312,6 +313,8 @@ root.innerHTML = `
   ${renderLessonFooter({})}
 `;
 
+typesetMath(root);
+
 const GRAPH_SIZE = 560;
 const GRAPH_BOUND = 10;
 const graphScale = GRAPH_SIZE / (GRAPH_BOUND * 2);
@@ -325,6 +328,13 @@ function clampCoordinate(value) {
 function signedNumber(value) {
   const formatted = formatNumber(value);
   return formatted.startsWith("-") ? `−${formatted.slice(1)}` : formatted;
+}
+
+function toTex(expression) {
+  return expression
+    .replaceAll("−", "-")
+    .replaceAll("±", String.raw`\pm`)
+    .replace(/√([\d.]+)/g, String.raw`\sqrt{$1}`);
 }
 
 function coordinateLabel({ x, y }) {
@@ -477,10 +487,10 @@ function renderCoordinateLab() {
     axes.x.value = coordinateState[name].x;
     axes.y.value = coordinateState[name].y;
   });
-  document.querySelector("#coordinate-change").textContent = `Δx = ${signedNumber(dx)} · Δy = ${signedNumber(dy)}`;
-  document.querySelector("#coordinate-midpoint").textContent = coordinateLabel(midpoint);
-  document.querySelector("#coordinate-distance").textContent = simplifyRadical(distanceSquared);
-  document.querySelector("#coordinate-distance-decimal").textContent = `≈ ${formatNumber(Math.sqrt(distanceSquared))}`;
+  setMath(document.querySelector("#coordinate-change"), String.raw`\Delta x=${toTex(signedNumber(dx))},\quad \Delta y=${toTex(signedNumber(dy))}`);
+  setMath(document.querySelector("#coordinate-midpoint"), toTex(coordinateLabel(midpoint)));
+  setMath(document.querySelector("#coordinate-distance"), toTex(simplifyRadical(distanceSquared)));
+  setMath(document.querySelector("#coordinate-distance-decimal"), String.raw`\approx ${formatNumber(Math.sqrt(distanceSquared))}`);
 }
 
 Object.entries(coordinateInputs).forEach(([name, axes]) => {
@@ -536,7 +546,7 @@ function renderMedianLab() {
     ${pointMarkup("C", C, "coordinate-point--c")}
     ${pointMarkup("M", M, "coordinate-point--midpoint", true)}
   `;
-  document.querySelector("#median-coordinates").textContent = `A${coordinateLabel(A)}, B${coordinateLabel(B)}, C${coordinateLabel(C)}`;
+  setMath(document.querySelector("#median-coordinates"), toTex(String.raw`A${coordinateLabel(A)},\quad B${coordinateLabel(B)},\quad C${coordinateLabel(C)}`));
 }
 
 bindDraggableSvg(medianSvg, medianPoints, renderMedianLab, { M: ["A", "B", "C", "M"] });
@@ -591,9 +601,9 @@ function renderDiameterLab() {
     axes.x.value = diameterState[name].x;
     axes.y.value = diameterState[name].y;
   });
-  document.querySelector("#diameter-center").textContent = coordinateLabel(center);
-  document.querySelector("#diameter-radius-squared").textContent = `r² = ${formatNumber(radiusSquared)}`;
-  document.querySelector("#diameter-equation").textContent = `${circleTerm("x", center.x)}² + ${circleTerm("y", center.y)}² = ${formatNumber(radiusSquared)}`;
+  setMath(document.querySelector("#diameter-center"), toTex(coordinateLabel(center)));
+  setMath(document.querySelector("#diameter-radius-squared"), String.raw`r^2=${formatNumber(radiusSquared)}`);
+  setMath(document.querySelector("#diameter-equation"), toTex(`${circleTerm("x", center.x)}^2+${circleTerm("y", center.y)}^2=${formatNumber(radiusSquared)}`));
 }
 
 Object.entries(diameterInputs).forEach(([name, axes]) => {
@@ -637,15 +647,19 @@ function renderCircleAnalyzer() {
     <line x1="${graphX(h)}" y1="${graphY(k)}" x2="${graphX(h + radius)}" y2="${graphY(k)}" class="analyzer-radius" />
     ${pointMarkup("C", { x: h, y: k }, "coordinate-point--midpoint")}
   `;
-  document.querySelector("#circle-equation-display").textContent = `${circleTerm("x", h)}² + ${circleTerm("y", k)}² = ${r2}`;
+  setMath(document.querySelector("#circle-equation-display"), toTex(`${circleTerm("x", h)}^2+${circleTerm("y", k)}^2=${r2}`));
   document.querySelector("#circle-h-output").textContent = signedNumber(h);
   document.querySelector("#circle-k-output").textContent = signedNumber(k);
   document.querySelector("#circle-r2-output").textContent = r2;
-  document.querySelector("#circle-diameter").textContent = simplifyRadical(r2, 2);
+  setMath(document.querySelector("#circle-diameter"), toTex(simplifyRadical(r2, 2)));
   document.querySelector("#circle-quadrant").textContent = quadrantName(h, k);
-  document.querySelector("#circle-origin-distance").textContent = simplifyRadical(h * h + k * k);
-  document.querySelector("#circle-x-intercepts").textContent = exactIntercept(h, r2 - k * k);
-  document.querySelector("#circle-y-intercepts").textContent = exactIntercept(k, r2 - h * h);
+  setMath(document.querySelector("#circle-origin-distance"), toTex(simplifyRadical(h * h + k * k)));
+  const xIntercepts = exactIntercept(h, r2 - k * k);
+  const yIntercepts = exactIntercept(k, r2 - h * h);
+  if (xIntercepts === "None") document.querySelector("#circle-x-intercepts").textContent = xIntercepts;
+  else setMath(document.querySelector("#circle-x-intercepts"), toTex(xIntercepts));
+  if (yIntercepts === "None") document.querySelector("#circle-y-intercepts").textContent = yIntercepts;
+  else setMath(document.querySelector("#circle-y-intercepts"), toTex(yIntercepts));
 }
 
 [

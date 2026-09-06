@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -27,16 +28,16 @@ root.innerHTML = `
         </div>
       </div>
       <div class="function-hero-art" aria-hidden="true" data-reveal>
-        <span class="function-hero-art__input">x</span>
+        <span class="function-hero-art__input">${mathMarkup(String.raw`x`)}</span>
         <div class="function-hero-art__machine">
           <span>FUNCTION</span>
           <strong>f</strong>
           <p>choose · calculate · return</p>
         </div>
-        <span class="function-hero-art__output">f(x)</span>
-        <div class="function-hero-art__rule function-hero-art__rule--one">x &lt; 0</div>
-        <div class="function-hero-art__rule function-hero-art__rule--two">0 ≤ x ≤ 2</div>
-        <div class="function-hero-art__rule function-hero-art__rule--three">x &gt; 2</div>
+        <span class="function-hero-art__output">${mathMarkup(String.raw`f(x)`)}</span>
+        <div class="function-hero-art__rule function-hero-art__rule--one">${mathMarkup(String.raw`x<0`)}</div>
+        <div class="function-hero-art__rule function-hero-art__rule--two">${mathMarkup(String.raw`0\le x\le2`)}</div>
+        <div class="function-hero-art__rule function-hero-art__rule--three">${mathMarkup(String.raw`x>2`)}</div>
         <svg viewBox="0 0 620 430">
           <path d="M72 215H215M405 215H550" />
           <circle cx="72" cy="215" r="8" />
@@ -65,24 +66,24 @@ root.innerHTML = `
       <div class="notation-lab" data-reveal>
         <div class="notation-lab__control">
           <p class="tool-label">Input laboratory</p>
-          <h3>Let f(x) = 3x − 1</h3>
+          <h3>Let ${mathMarkup(String.raw`f(x)=3x-1`)}</h3>
           <label for="notation-x">Choose x <output id="notation-x-output">2</output></label>
           <input id="notation-x" type="range" min="-4" max="4" step="0.5" value="2" />
           <div class="function-pipeline" aria-live="polite">
             <span id="pipeline-input">2</span><i>× 3</i><i>− 1</i><strong id="pipeline-output">5</strong>
           </div>
-          <p class="notation-readout" id="notation-readout">f(2) = 3(2) − 1 = 5</p>
+          <p class="notation-readout" id="notation-readout"></p>
         </div>
         <div class="notation-lab__compare">
           <article>
             <span>Change the input</span>
-            <h3>f(2x) = 6x − 1</h3>
+            <h3>${mathMarkup(String.raw`f(2x)=6x-1`)}</h3>
             <p>Replace every x in the rule with 2x.</p>
             <strong id="inside-value">At x = 2: f(4) = 11</strong>
           </article>
           <article>
             <span>Scale the output</span>
-            <h3>2f(x) = 6x − 2</h3>
+            <h3>${mathMarkup(String.raw`2f(x)=6x-2`)}</h3>
             <p>Evaluate f(x), then multiply the result by 2.</p>
             <strong id="outside-value">At x = 2: 2f(2) = 10</strong>
           </article>
@@ -101,10 +102,10 @@ root.innerHTML = `
       <div class="piecewise-studio" data-reveal>
         <div class="piecewise-studio__rules">
           <p class="tool-label">Three rules · one output</p>
-          <h3>f(x) =</h3>
-          <article data-piecewise-branch="negative"><strong>3x</strong><span>if x &lt; 0</span></article>
-          <article data-piecewise-branch="middle"><strong>x + 1</strong><span>if 0 ≤ x ≤ 2</span></article>
-          <article data-piecewise-branch="positive"><strong>(x − 2)²</strong><span>if x &gt; 2</span></article>
+          <h3>${mathMarkup(String.raw`f(x)=`)}</h3>
+          <article data-piecewise-branch="negative"><strong>${mathMarkup(String.raw`3x`)}</strong><span>if ${mathMarkup(String.raw`x<0`)}</span></article>
+          <article data-piecewise-branch="middle"><strong>${mathMarkup(String.raw`x+1`)}</strong><span>if ${mathMarkup(String.raw`0\le x\le2`)}</span></article>
+          <article data-piecewise-branch="positive"><strong>${mathMarkup(String.raw`(x-2)^2`)}</strong><span>if ${mathMarkup(String.raw`x>2`)}</span></article>
         </div>
         <div class="piecewise-studio__explorer">
           <div class="piecewise-number-line" aria-hidden="true">
@@ -122,7 +123,7 @@ root.innerHTML = `
           </div>
           <div class="piecewise-result" aria-live="polite">
             <span id="piecewise-decision">2 belongs to 0 ≤ x ≤ 2</span>
-            <strong id="piecewise-result">f(2) = 2 + 1 = 3</strong>
+            <strong id="piecewise-result"></strong>
             <p id="piecewise-explanation">The endpoint 2 is included because the condition uses ≤.</p>
           </div>
         </div>
@@ -141,9 +142,9 @@ root.innerHTML = `
           <p class="tool-label">Speed-limit model</p>
           <h3>What fine belongs to this speed?</h3>
           <div class="fine-rules">
-            <span>15(40 − x) <i>if 0 &lt; x &lt; 40</i></span>
-            <span>0 <i>if 40 ≤ x ≤ 65</i></span>
-            <span>15(x − 65) <i>if x &gt; 65</i></span>
+            <span>${mathMarkup(String.raw`15(40-x)`)} <i>if ${mathMarkup(String.raw`0<x<40`)}</i></span>
+            <span>${mathMarkup(String.raw`0`)} <i>if ${mathMarkup(String.raw`40\le x\le65`)}</i></span>
+            <span>${mathMarkup(String.raw`15(x-65)`)} <i>if ${mathMarkup(String.raw`x>65`)}</i></span>
           </div>
           <div class="speed-road" aria-hidden="true">
             <span>below 40</span><span>legal 40–65</span><span>above 65</span>
@@ -155,13 +156,13 @@ root.innerHTML = `
             <button type="button" data-speed-preset="30">30 mi/h</button>
             <button type="button" data-speed-preset="85">85 mi/h</button>
           </div>
-          <div class="fine-result" aria-live="polite"><span id="fine-rule">Below the minimum</span><strong id="fine-output">F(30) = $150</strong><p id="fine-meaning">The driver is 10 mi/h below the minimum.</p></div>
+          <div class="fine-result" aria-live="polite"><span id="fine-rule">Below the minimum</span><strong id="fine-output"></strong><p id="fine-meaning">The driver is 10 mi/h below the minimum.</p></div>
         </article>
 
         <article class="net-change-lab" data-reveal>
           <p class="tool-label">Net-change explorer</p>
           <h3>Final output minus initial output.</h3>
-          <p class="function-definition">R(x) = (13 + 7x⁰·⁴)/(1 + 4x⁰·⁴)</p>
+          <p class="function-definition">${mathMarkup(String.raw`R(x)=\frac{13+7x^{0.4}}{1+4x^{0.4}}`, true)}</p>
           <svg id="net-change-chart" viewBox="0 0 640 300" role="img" aria-label="Graph of pupil radius as brightness increases"></svg>
           <div class="net-change-inputs">
             <label for="net-a">Start a <output id="net-a-output">10</output><input id="net-a" type="range" min="1" max="120" step="1" value="10" /></label>
@@ -185,13 +186,13 @@ root.innerHTML = `
 
       <div class="quotient-studio" data-reveal>
         <div class="quotient-steps">
-          <p class="tool-label">For f(x) = 3x² − 4x</p>
-          <h3>[f(a + h) − f(a)] / h</h3>
+          <p class="tool-label">For ${mathMarkup(String.raw`f(x)=3x^2-4x`)}</p>
+          <h3>${mathMarkup(String.raw`\frac{f(a+h)-f(a)}{h}`, true)}</h3>
           <ol>
-            <li><span>1</span><p>f(a) = 3a² − 4a</p></li>
-            <li><span>2</span><p>f(a + h) = 3(a + h)² − 4(a + h)</p></li>
-            <li><span>3</span><p>Subtract: 6ah + 3h² − 4h</p></li>
-            <li><span>4</span><p>Factor h and divide: <strong>6a + 3h − 4</strong>, h ≠ 0</p></li>
+            <li><span>1</span><p>${mathMarkup(String.raw`f(a)=3a^2-4a`)}</p></li>
+            <li><span>2</span><p>${mathMarkup(String.raw`f(a+h)=3(a+h)^2-4(a+h)`)}</p></li>
+            <li><span>3</span><p>Subtract: ${mathMarkup(String.raw`6ah+3h^2-4h`)}</p></li>
+            <li><span>4</span><p>Factor ${mathMarkup(String.raw`h`)} and divide: <strong>${mathMarkup(String.raw`6a+3h-4`)}</strong>, ${mathMarkup(String.raw`h\ne0`)}</p></li>
           </ol>
           <aside><strong>Why h ≠ 0?</strong> The original quotient divides by h. Cancellation simplifies it, but it does not make h = 0 legal.</aside>
         </div>
@@ -223,9 +224,9 @@ root.innerHTML = `
         <div class="domain-stage">
           <div class="domain-stage__copy">
             <span id="domain-type">Even root</span>
-            <h3 id="domain-function">g(x) = √(7 − 3x)</h3>
+            <h3 id="domain-function"></h3>
             <p id="domain-restriction">Require 7 − 3x ≥ 0, so x ≤ 7/3.</p>
-            <strong id="domain-interval">Domain: (−∞, 7/3]</strong>
+            <strong id="domain-interval"></strong>
           </div>
           <div class="domain-visual" id="domain-visual" aria-label="Number line showing the allowed domain"></div>
         </div>
@@ -264,8 +265,8 @@ root.innerHTML = `
         </article>
         <article class="check-card" data-reveal>
           <span>Difference quotient</span>
-          <h3>For f(x) = 3x² − 4x</h3>
-          <label for="check-quotient">[f(a+h) − f(a)]/h =</label>
+          <h3>For ${mathMarkup(String.raw`f(x)=3x^2-4x`)}</h3>
+          <label for="check-quotient">${mathMarkup(String.raw`\frac{f(a+h)-f(a)}h=`)}</label>
           <select id="check-quotient">
             <option value="">Choose…</option>
             <option value="correct">6a + 3h − 4</option>
@@ -278,13 +279,13 @@ root.innerHTML = `
         <article class="check-card" data-reveal>
           <span>Domain restrictions</span>
           <h3>Match each function to its domain.</h3>
-          <label>√(7 − 3x)
+          <label>${mathMarkup(String.raw`\sqrt{7-3x}`)}
             <select id="check-domain-one"><option value="">Choose…</option><option value="correct">(−∞, 7/3]</option><option value="wrong-a">[7/3, ∞)</option><option value="wrong-b">(−∞, 7/3)</option></select>
           </label>
-          <label>x/(2x²+x−1)
+          <label>${mathMarkup(String.raw`\frac{x}{2x^2+x-1}`)}
             <select id="check-domain-two"><option value="">Choose…</option><option value="wrong-a">(−1, 1/2)</option><option value="correct">All reals except −1 and 1/2</option><option value="wrong-b">All real numbers</option></select>
           </label>
-          <label>x/⁴√(9−x²)
+          <label>${mathMarkup(String.raw`\frac{x}{\sqrt[4]{9-x^2}}`)}
             <select id="check-domain-three"><option value="">Choose…</option><option value="wrong-a">[−3, 3]</option><option value="correct">(−3, 3)</option><option value="wrong-b">(−∞, −3) ∪ (3, ∞)</option></select>
           </label>
           <button type="button" id="check-domains">Check domains</button>
@@ -304,11 +305,17 @@ root.innerHTML = `
   })}
 `;
 
+typesetMath(root);
+
 const linearFunction = (x) => 3 * x - 1;
 
 function signedNumber(value) {
   const result = formatNumber(value);
   return result.startsWith("-") ? `−${result.slice(1)}` : result;
+}
+
+function texNumber(value) {
+  return signedNumber(value).replace("−", "-");
 }
 
 const notationInput = document.querySelector("#notation-x");
@@ -318,9 +325,13 @@ function renderNotationLab() {
   document.querySelector("#notation-x-output").textContent = signedNumber(x);
   document.querySelector("#pipeline-input").textContent = signedNumber(x);
   document.querySelector("#pipeline-output").textContent = signedNumber(output);
-  document.querySelector("#notation-readout").textContent = `f(${signedNumber(x)}) = 3(${signedNumber(x)}) − 1 = ${signedNumber(output)}`;
-  document.querySelector("#inside-value").textContent = `At x = ${signedNumber(x)}: f(${signedNumber(2 * x)}) = ${signedNumber(linearFunction(2 * x))}`;
-  document.querySelector("#outside-value").textContent = `At x = ${signedNumber(x)}: 2f(${signedNumber(x)}) = ${signedNumber(2 * output)}`;
+  setMath(document.querySelector("#notation-readout"), String.raw`f(${texNumber(x)})=3(${texNumber(x)})-1=${texNumber(output)}`);
+  const inside = document.querySelector("#inside-value");
+  inside.innerHTML = `At ${mathMarkup(String.raw`x=${texNumber(x)}:\quad f(${texNumber(2 * x)})=${texNumber(linearFunction(2 * x))}`)}`;
+  typesetMath(inside);
+  const outside = document.querySelector("#outside-value");
+  outside.innerHTML = `At ${mathMarkup(String.raw`x=${texNumber(x)}:\quad 2f(${texNumber(x)})=${texNumber(2 * output)}`)}`;
+  typesetMath(outside);
 }
 notationInput.addEventListener("input", renderNotationLab);
 renderNotationLab();
@@ -338,19 +349,21 @@ function renderPiecewiseLab() {
   document.querySelectorAll("[data-piecewise-branch]").forEach((card) => card.classList.toggle("is-active", card.dataset.piecewiseBranch === branch));
   document.querySelector("#piecewise-x-output").textContent = xLabel;
   document.querySelector("#piecewise-marker").style.left = `${((x + 4) / 9) * 100}%`;
-  document.querySelector("#piecewise-decision").textContent = `${xLabel} belongs to ${condition}`;
+  const decision = document.querySelector("#piecewise-decision");
+  decision.innerHTML = `${mathMarkup(piecewiseSymbolicPi ? String.raw`-\pi` : texNumber(x))} belongs to ${mathMarkup(condition.replaceAll("≤", String.raw`\le`))}`;
+  typesetMath(decision);
 
   if (piecewiseSymbolicPi) {
-    document.querySelector("#piecewise-result").textContent = "f(−π) = 3(−π) = −3π";
+    setMath(document.querySelector("#piecewise-result"), String.raw`f(-\pi)=3(-\pi)=-3\pi`);
     document.querySelector("#piecewise-explanation").textContent = `Exactly −3π; approximately ${signedNumber(value)}.`;
   } else if (branch === "negative") {
-    document.querySelector("#piecewise-result").textContent = `f(${xLabel}) = 3(${xLabel}) = ${signedNumber(value)}`;
+    setMath(document.querySelector("#piecewise-result"), String.raw`f(${texNumber(x)})=3(${texNumber(x)})=${texNumber(value)}`);
     document.querySelector("#piecewise-explanation").textContent = "Negative inputs use the first rule.";
   } else if (branch === "middle") {
-    document.querySelector("#piecewise-result").textContent = `f(${xLabel}) = ${xLabel} + 1 = ${signedNumber(value)}`;
+    setMath(document.querySelector("#piecewise-result"), String.raw`f(${texNumber(x)})=${texNumber(x)}+1=${texNumber(value)}`);
     document.querySelector("#piecewise-explanation").textContent = x === 2 ? "The endpoint 2 is included because the condition uses ≤." : "This input lies in the closed middle interval.";
   } else {
-    document.querySelector("#piecewise-result").textContent = `f(${xLabel}) = (${xLabel} − 2)² = ${signedNumber(value)}`;
+    setMath(document.querySelector("#piecewise-result"), String.raw`f(${texNumber(x)})=(${texNumber(x)}-2)^2=${texNumber(value)}`);
     document.querySelector("#piecewise-explanation").textContent = "Inputs above 2 use the squared rule.";
   }
 }
@@ -386,7 +399,7 @@ function renderFineLab() {
   document.querySelector("#speed-output").textContent = `${speed} mi/h`;
   document.querySelector("#speed-car").style.left = `${speed}%`;
   document.querySelector("#fine-rule").textContent = label;
-  document.querySelector("#fine-output").textContent = `F(${speed}) = $${fine}`;
+  setMath(document.querySelector("#fine-output"), String.raw`F(${speed})=\$${fine}`);
   document.querySelector("#fine-meaning").textContent = meaning;
 }
 speedInput.addEventListener("input", renderFineLab);
@@ -428,9 +441,9 @@ function renderNetChange() {
   `;
   document.querySelector("#net-a-output").textContent = a;
   document.querySelector("#net-b-output").textContent = b;
-  document.querySelector("#net-values").textContent = `R(${b}) − R(${a})`;
+  setMath(document.querySelector("#net-values"), String.raw`R(${b})-R(${a})`);
   const formattedChange = change < 0 ? `−${Math.abs(change).toFixed(3)}` : change.toFixed(3);
-  document.querySelector("#net-result").textContent = `${end.toFixed(3)} − ${start.toFixed(3)} = ${formattedChange} mm`;
+  setMath(document.querySelector("#net-result"), String.raw`${end.toFixed(3)}-${start.toFixed(3)}=${formattedChange.replace("−", "-")}\,\mathrm{mm}`);
   document.querySelector("#net-meaning").textContent = change < 0
     ? `The pupil radius decreases by about ${Math.abs(change).toFixed(3)} mm.`
     : `The pupil radius increases by about ${change.toFixed(3)} mm.`;
@@ -467,9 +480,13 @@ function renderSecantLab() {
   `;
   document.querySelector("#secant-a-output").textContent = signedNumber(a);
   document.querySelector("#secant-h-output").textContent = formatNumber(h);
-  document.querySelector("#secant-points").textContent = `Compare f(${signedNumber(a)}) and f(${signedNumber(b)})`;
-  document.querySelector("#secant-slope").textContent = `Difference quotient = ${signedNumber(slope)}`;
-  document.querySelector("#secant-formula").textContent = `6(${signedNumber(a)}) + 3(${formatNumber(h)}) − 4 = ${signedNumber(slope)}`;
+  const points = document.querySelector("#secant-points");
+  points.innerHTML = `Compare ${mathMarkup(String.raw`f(${texNumber(a)})`)} and ${mathMarkup(String.raw`f(${texNumber(b)})`)}`;
+  typesetMath(points);
+  const slopeResult = document.querySelector("#secant-slope");
+  slopeResult.innerHTML = `Difference quotient ${mathMarkup(String.raw`=${texNumber(slope)}`)}`;
+  typesetMath(slopeResult);
+  setMath(document.querySelector("#secant-formula"), String.raw`6(${texNumber(a)})+3(${formatNumber(h)})-4=${texNumber(slope)}`);
 }
 secantA.addEventListener("input", renderSecantLab);
 secantH.addEventListener("input", renderSecantLab);
@@ -478,25 +495,25 @@ renderSecantLab();
 const domainCases = {
   radical: {
     type: "Even root",
-    formula: "g(x) = √(7 − 3x)",
-    restriction: "Require 7 − 3x ≥ 0, so x ≤ 7/3.",
-    interval: "Domain: (−∞, 7/3]",
+    formulaTex: String.raw`g(x)=\sqrt{7-3x}`,
+    restriction: `Require ${mathMarkup(String.raw`7-3x\ge0`)}, so ${mathMarkup(String.raw`x\le\frac73`)}.`,
+    interval: `Domain: ${mathMarkup(String.raw`(-\infty,\frac73]`)}`,
     segments: [{ start: 0, width: 73.33 }],
     markers: [{ position: 73.33, label: "7/3", closed: true }],
   },
   rational: {
     type: "Denominator",
-    formula: "g(x) = x/(2x² + x − 1)",
-    restriction: "Factor (2x − 1)(x + 1). Exclude x = 1/2 and x = −1.",
-    interval: "Domain: (−∞, −1) ∪ (−1, 1/2) ∪ (1/2, ∞)",
+    formulaTex: String.raw`g(x)=\frac{x}{2x^2+x-1}`,
+    restriction: `Factor ${mathMarkup(String.raw`(2x-1)(x+1)`)}. Exclude ${mathMarkup(String.raw`x=\frac12`)} and ${mathMarkup(String.raw`x=-1`)}.`,
+    interval: `Domain: ${mathMarkup(String.raw`(-\infty,-1)\cup(-1,\frac12)\cup(\frac12,\infty)`)}`,
     segments: [{ start: 0, width: 40 }, { start: 40, width: 15 }, { start: 55, width: 45 }],
     markers: [{ position: 40, label: "−1", closed: false }, { position: 55, label: "1/2", closed: false }],
   },
   "root-denominator": {
     type: "Fourth root in a denominator",
-    formula: "f(x) = x/⁴√(9 − x²)",
-    restriction: "Require 9 − x² > 0. The strict inequality keeps the denominator nonzero.",
-    interval: "Domain: (−3, 3)",
+    formulaTex: String.raw`f(x)=\frac{x}{\sqrt[4]{9-x^2}}`,
+    restriction: `Require ${mathMarkup(String.raw`9-x^2>0`)}. The strict inequality keeps the denominator nonzero.`,
+    interval: `Domain: ${mathMarkup(String.raw`(-3,3)`)}`,
     segments: [{ start: 20, width: 60 }],
     markers: [{ position: 20, label: "−3", closed: false }, { position: 80, label: "3", closed: false }],
   },
@@ -506,9 +523,10 @@ function renderDomainCase(name) {
   const selected = domainCases[name];
   document.querySelectorAll("[data-domain-case]").forEach((button) => button.classList.toggle("is-active", button.dataset.domainCase === name));
   document.querySelector("#domain-type").textContent = selected.type;
-  document.querySelector("#domain-function").textContent = selected.formula;
-  document.querySelector("#domain-restriction").textContent = selected.restriction;
-  document.querySelector("#domain-interval").textContent = selected.interval;
+  setMath(document.querySelector("#domain-function"), selected.formulaTex);
+  document.querySelector("#domain-restriction").innerHTML = selected.restriction;
+  document.querySelector("#domain-interval").innerHTML = selected.interval;
+  typesetMath(document.querySelector(".domain-stage"));
   document.querySelector("#domain-visual").innerHTML = `
     <div class="domain-axis"></div>
     ${selected.segments.map((segment) => `<i class="domain-segment" style="left:${segment.start}%;width:${segment.width}%"></i>`).join("")}

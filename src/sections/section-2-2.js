@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -74,10 +75,10 @@ root.innerHTML = `
           <svg id="family-chart" viewBox="0 0 620 620" role="img" aria-label="Graph of the selected parent function"></svg>
           <div class="family-library__copy" aria-live="polite">
             <p class="tool-label" id="family-name">Constant function</p>
-            <h3 id="family-formula">f(x) = 2</h3>
+            <h3 id="family-formula"></h3>
             <dl>
-              <div><dt>Domain</dt><dd id="family-domain">(−∞, ∞)</dd></div>
-              <div><dt>Range</dt><dd id="family-range">{2}</dd></div>
+              <div><dt>Domain</dt><dd id="family-domain"></dd></div>
+              <div><dt>Range</dt><dd id="family-range"></dd></div>
             </dl>
             <p id="family-clue">A horizontal line: every input returns the same output.</p>
           </div>
@@ -97,6 +98,7 @@ root.innerHTML = `
           <svg id="vertical-test-chart" viewBox="0 0 500 500" role="img" aria-label="A movable vertical line testing a selected curve"></svg>
         </div>
         <div class="vertical-test-lab__controls">
+          <div class="vertical-test-equation" id="vertical-test-equation" aria-label="Equation of the selected relation"></div>
           <p class="tool-label">Vertical-line scanner</p>
           <div class="vertical-test-options">
             <button type="button" data-test-curve="line">Line</button>
@@ -130,17 +132,17 @@ root.innerHTML = `
           <p class="tool-label">Branch inspector</p>
           <h3>Trace one piece at a time.</h3>
           <div class="reader-branches">
-            <button type="button" class="is-active" data-reader-branch="one"><strong>−2</strong><span>−3 ≤ x ≤ −1</span></button>
-            <button type="button" data-reader-branch="two"><strong>2x + 2</strong><span>−1 &lt; x ≤ 0</span></button>
-            <button type="button" data-reader-branch="three"><strong>x/2 + 2</strong><span>0 &lt; x ≤ 2</span></button>
+            <button type="button" class="is-active" data-reader-branch="one"><strong>${mathMarkup(String.raw`-2`)}</strong><span>${mathMarkup(String.raw`-3\le x\le-1`)}</span></button>
+            <button type="button" data-reader-branch="two"><strong>${mathMarkup(String.raw`2x+2`)}</strong><span>${mathMarkup(String.raw`-1<x\le0`)}</span></button>
+            <button type="button" data-reader-branch="three"><strong>${mathMarkup(String.raw`\frac{x}{2}+2`)}</strong><span>${mathMarkup(String.raw`0<x\le2`)}</span></button>
           </div>
           <div class="reader-facts">
-            <article><span>Domain</span><strong>[−3, 2]</strong></article>
-            <article><span>Range</span><strong>{−2} ∪ (0, 3]</strong></article>
+            <article><span>Domain</span><strong>${mathMarkup(String.raw`[-3,2]`)}</strong></article>
+            <article><span>Range</span><strong>${mathMarkup(String.raw`\{-2\}\cup(0,3]`)}</strong></article>
           </div>
           <div class="reader-net-change">
-            <span>Net change from x = 0 to x = 2</span>
-            <strong>f(2) − f(0) = 3 − 2 = 1</strong>
+            <span>Net change from ${mathMarkup(String.raw`x=0`)} to ${mathMarkup(String.raw`x=2`)}</span>
+            <strong>${mathMarkup(String.raw`f(2)-f(0)=3-2=1`)}</strong>
           </div>
         </div>
       </div>
@@ -150,7 +152,7 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker"><span>04</span> Select one branch</p>
         <h2>A circle becomes a function<br>when you choose a piece.</h2>
-        <p>Solving x² + y² = 36 for y gives two signs. Geometry chooses the sign; the requested left or right side restricts the domain.</p>
+        <p>Solving ${mathMarkup(String.raw`x^2+y^2=36`)} for ${mathMarkup(String.raw`y`)} gives two signs. Geometry chooses the sign; the requested left or right side restricts the domain.</p>
       </div>
 
       <div class="circle-branch-lab" data-reveal>
@@ -167,12 +169,12 @@ root.innerHTML = `
           </div>
           <div class="circle-branch-result" aria-live="polite">
             <span id="quarter-direction">Lower selects − · left restricts x ≤ 0</span>
-            <strong id="quarter-formula">f(x) = −√(36 − x²)</strong>
-            <p id="quarter-domain">Domain: [−6, 0] · Range: [−6, 0]</p>
+            <strong id="quarter-formula"></strong>
+            <p id="quarter-domain"></p>
           </div>
           <ol>
-            <li><span>1</span><p>Isolate y²: y² = 36 − x².</p></li>
-            <li><span>2</span><p>Take both branches: y = ±√(36 − x²).</p></li>
+            <li><span>1</span><p>Isolate ${mathMarkup(String.raw`y^2`)}: ${mathMarkup(String.raw`y^2=36-x^2`)}.</p></li>
+            <li><span>2</span><p>Take both branches: ${mathMarkup(String.raw`y=\pm\sqrt{36-x^2}`)}.</p></li>
             <li><span>3</span><p>Use the picture to select a sign and domain.</p></li>
           </ol>
         </div>
@@ -197,11 +199,11 @@ root.innerHTML = `
           </div>
           <div class="reconstruction-copy">
             <p class="tool-label">Constant · semicircle · ray</p>
-            <h3>p(x) =</h3>
+            <h3>${mathMarkup(String.raw`p(x)=`)}</h3>
             <div class="reconstruction-rules">
-              <span><strong>−2</strong><i>if −7 ≤ x ≤ −4</i></span>
-              <span><strong>√(16 − x²)</strong><i>if −4 &lt; x ≤ 4</i></span>
-              <span><strong>1 − x/2</strong><i>if x &gt; 4</i></span>
+              <span><strong>${mathMarkup(String.raw`-2`)}</strong><i>if ${mathMarkup(String.raw`-7\le x\le-4`)}</i></span>
+              <span><strong>${mathMarkup(String.raw`\sqrt{16-x^2}`)}</strong><i>if ${mathMarkup(String.raw`-4<x\le4`)}</i></span>
+              <span><strong>${mathMarkup(String.raw`1-\frac{x}{2}`)}</strong><i>if ${mathMarkup(String.raw`x>4`)}</i></span>
             </div>
             <label for="reconstruction-a-x">Inspect x <output id="reconstruction-a-x-output">−4</output></label>
             <input id="reconstruction-a-x" type="range" min="-7" max="8" step="1" value="-4" />
@@ -219,11 +221,11 @@ root.innerHTML = `
           </div>
           <div class="reconstruction-copy">
             <p class="tool-label">Open points change everything</p>
-            <h3>g(x) =</h3>
+            <h3>${mathMarkup(String.raw`g(x)=`)}</h3>
             <div class="reconstruction-rules">
-              <span><strong>3</strong><i>if −5 &lt; x &lt; −2</i></span>
-              <span><strong>3x/2 − 1</strong><i>if −2 ≤ x &lt; 4</i></span>
-              <span><strong>−5</strong><i>if 4 &lt; x ≤ 8</i></span>
+              <span><strong>${mathMarkup(String.raw`3`)}</strong><i>if ${mathMarkup(String.raw`-5<x<-2`)}</i></span>
+              <span><strong>${mathMarkup(String.raw`\frac{3x}{2}-1`)}</strong><i>if ${mathMarkup(String.raw`-2\le x<4`)}</i></span>
+              <span><strong>${mathMarkup(String.raw`-5`)}</strong><i>if ${mathMarkup(String.raw`4<x\le8`)}</i></span>
             </div>
             <label for="reconstruction-b-x">Inspect x <output id="reconstruction-b-x-output">4</output></label>
             <input id="reconstruction-b-x" type="range" min="-5" max="8" step="1" value="4" />
@@ -310,6 +312,21 @@ root.innerHTML = `
   })}
 `;
 
+typesetMath(root);
+
+function toTex(expression) {
+  return expression
+    .replaceAll("³√x", String.raw`\sqrt[3]{x}`)
+    .replaceAll("√x", String.raw`\sqrt{x}`)
+    .replaceAll("1/x²", String.raw`\frac{1}{x^2}`)
+    .replaceAll("1/x", String.raw`\frac{1}{x}`)
+    .replaceAll("²", "^2")
+    .replaceAll("³", "^3")
+    .replaceAll("−", "-")
+    .replaceAll("∞", String.raw`\infty`)
+    .replaceAll("∪", String.raw`\cup`);
+}
+
 function signedNumber(value) {
   const result = formatNumber(value);
   return result.startsWith("-") ? `−${result.slice(1)}` : result;
@@ -395,9 +412,9 @@ function renderFamily(name) {
     ${selected.segments.map((segment) => `<path d="${pathFromPoints(segment, familyMapper)}" class="family-curve" />`).join("")}
   `;
   document.querySelector("#family-name").textContent = selected.name;
-  document.querySelector("#family-formula").textContent = selected.formula;
-  document.querySelector("#family-domain").textContent = selected.domain;
-  document.querySelector("#family-range").textContent = selected.range;
+  setMath(document.querySelector("#family-formula"), toTex(selected.formula));
+  setMath(document.querySelector("#family-domain"), toTex(selected.domain));
+  setMath(document.querySelector("#family-range"), toTex(selected.range));
   document.querySelector("#family-clue").textContent = selected.clue;
 }
 document.querySelectorAll("[data-family]").forEach((button) => button.addEventListener("click", () => renderFamily(button.dataset.family)));
@@ -412,6 +429,12 @@ const verticalCurveSettings = {
   circle: { min: -5, max: 5, value: 1 },
   sideways: { min: -1, max: 5, value: 1 },
 };
+const verticalCurveEquations = {
+  line: String.raw`y=\frac{7}{10}x`,
+  parabola: String.raw`y=x^2`,
+  circle: String.raw`x^2+y^2=9`,
+  sideways: String.raw`x=y^2`,
+};
 
 function verticalCurveMarkup(type) {
   if (type === "line") return `<path d="${pathFromPoints([[-5, -3.5], [5, 3.5]], verticalMapper)}" class="vertical-test-curve" />`;
@@ -422,6 +445,10 @@ function verticalCurveMarkup(type) {
 
 function renderVerticalTest() {
   const x = Number(verticalInput.value);
+  setMath(
+    document.querySelector("#vertical-test-equation"),
+    verticalCurveEquations[verticalCurve],
+  );
   let ys = [];
   let isFunction = false;
   let reason = "";
@@ -498,10 +525,10 @@ renderReaderGraph();
 const quarterMapper = createMapper({ width: 500, height: 500, padding: 27.5, xMin: -7, xMax: 7, yMin: -7, yMax: 7 });
 let selectedQuarter = "lower-left";
 const quarterCases = {
-  "upper-left": { sign: 1, start: -6, end: 0, direction: "Upper selects + · left restricts x ≤ 0", formula: "f(x) = √(36 − x²)", domain: "Domain: [−6, 0] · Range: [0, 6]" },
-  "upper-right": { sign: 1, start: 0, end: 6, direction: "Upper selects + · right restricts x ≥ 0", formula: "f(x) = √(36 − x²)", domain: "Domain: [0, 6] · Range: [0, 6]" },
-  "lower-left": { sign: -1, start: -6, end: 0, direction: "Lower selects − · left restricts x ≤ 0", formula: "f(x) = −√(36 − x²)", domain: "Domain: [−6, 0] · Range: [−6, 0]" },
-  "lower-right": { sign: -1, start: 0, end: 6, direction: "Lower selects − · right restricts x ≥ 0", formula: "f(x) = −√(36 − x²)", domain: "Domain: [0, 6] · Range: [−6, 0]" },
+  "upper-left": { sign: 1, start: -6, end: 0, direction: "Upper selects + · left restricts x ≤ 0", formulaTex: String.raw`f(x)=\sqrt{36-x^2}`, domainTex: String.raw`[-6,0]`, rangeTex: String.raw`[0,6]` },
+  "upper-right": { sign: 1, start: 0, end: 6, direction: "Upper selects + · right restricts x ≥ 0", formulaTex: String.raw`f(x)=\sqrt{36-x^2}`, domainTex: String.raw`[0,6]`, rangeTex: String.raw`[0,6]` },
+  "lower-left": { sign: -1, start: -6, end: 0, direction: "Lower selects − · left restricts x ≤ 0", formulaTex: String.raw`f(x)=-\sqrt{36-x^2}`, domainTex: String.raw`[-6,0]`, rangeTex: String.raw`[-6,0]` },
+  "lower-right": { sign: -1, start: 0, end: 6, direction: "Lower selects − · right restricts x ≥ 0", formulaTex: String.raw`f(x)=-\sqrt{36-x^2}`, domainTex: String.raw`[0,6]`, rangeTex: String.raw`[-6,0]` },
 };
 
 function renderQuarterCircle() {
@@ -516,8 +543,10 @@ function renderQuarterCircle() {
   `;
   document.querySelectorAll("[data-quarter]").forEach((button) => button.classList.toggle("is-active", button.dataset.quarter === selectedQuarter));
   document.querySelector("#quarter-direction").textContent = selected.direction;
-  document.querySelector("#quarter-formula").textContent = selected.formula;
-  document.querySelector("#quarter-domain").textContent = selected.domain;
+  setMath(document.querySelector("#quarter-formula"), selected.formulaTex);
+  const domain = document.querySelector("#quarter-domain");
+  domain.innerHTML = `Domain: ${mathMarkup(selected.domainTex)} · Range: ${mathMarkup(selected.rangeTex)}`;
+  typesetMath(domain);
 }
 document.querySelectorAll("[data-quarter]").forEach((button) => button.addEventListener("click", () => {
   selectedQuarter = button.dataset.quarter;

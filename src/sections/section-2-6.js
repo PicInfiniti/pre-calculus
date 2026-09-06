@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   initLessonChrome,
   nearlyEqual,
@@ -35,7 +36,7 @@ root.innerHTML = `
         </svg>
         <span class="transformation-hero-art__tag transformation-hero-art__tag--inside">inside → horizontal</span>
         <span class="transformation-hero-art__tag transformation-hero-art__tag--outside">outside → vertical</span>
-        <span class="transformation-hero-art__formula">g(x) = a f(b(x − h)) + k</span>
+        <span class="transformation-hero-art__formula">${mathMarkup(String.raw`g(x)=a f\!\left(b(x-h)\right)+k`)}</span>
       </div>
     </section>
 
@@ -54,7 +55,7 @@ root.innerHTML = `
         <div class="lesson-section__intro" data-reveal>
           <p class="lesson-kicker"><span>01</span> The transformation studio</p>
           <h2>Outside changes outputs.<br>Inside changes inputs.</h2>
-          <p>Use <strong>g(x) = a f(b(x − h)) + k</strong> as a map. The outside numbers a and k control vertical motion; the inside numbers b and h control horizontal motion.</p>
+          <p>Use <strong>${mathMarkup(String.raw`g(x)=a f\!\left(b(x-h)\right)+k`)}</strong> as a map. The outside numbers ${mathMarkup(String.raw`a`)} and ${mathMarkup(String.raw`k`)} control vertical motion; the inside numbers ${mathMarkup(String.raw`b`)} and ${mathMarkup(String.raw`h`)} control horizontal motion.</p>
         </div>
         <div class="formula-anatomy" aria-hidden="true" data-reveal>
           <span class="formula-anatomy__eyebrow">Transformation anatomy</span>
@@ -84,7 +85,7 @@ root.innerHTML = `
         </div>
         <div class="transformation-controls">
           <p class="tool-label">Four-control graph machine</p>
-          <div class="transformation-formula" id="transformation-formula" aria-live="polite">g(x) = f(x)</div>
+          <div class="transformation-formula" id="transformation-formula" aria-live="polite"></div>
           <div class="transformation-control-grid">
             <label for="transform-a"><span><strong>a</strong> Vertical scale</span><output id="transform-a-output">1</output><input id="transform-a" type="range" min="-2" max="2" step="0.1" value="1" /></label>
             <label for="transform-b"><span><strong>b</strong> Horizontal scale</span><output id="transform-b-output">1</output><input id="transform-b" type="range" min="-2" max="2" step="0.1" value="1" /></label>
@@ -103,13 +104,13 @@ root.innerHTML = `
         <div>
           <p class="tool-label">Follow one point</p>
           <h3>A point carries the whole rule.</h3>
-          <p>If <strong>(u, f(u))</strong> lies on the original graph, then the transformed point is</p>
-          <div class="point-witness__rule">(u, f(u)) <span>→</span> (h + u/b, k + a·f(u))</div>
+          <p>If <strong>${mathMarkup(String.raw`(u,f(u))`)}</strong> lies on the original graph, then the transformed point is</p>
+          <div class="point-witness__rule">${mathMarkup(String.raw`(u,f(u))\longmapsto\left(h+\frac{u}{b},\ k+a f(u)\right)`, true)}</div>
         </div>
         <div class="point-witness__live">
           <label for="witness-u">Choose u <output id="witness-u-output">1</output></label>
           <input id="witness-u" type="range" min="-4" max="4" step="0.1" value="1" />
-          <p id="point-witness-result" aria-live="polite">(1, f(1)) → (1, f(1))</p>
+          <p id="point-witness-result" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -123,12 +124,12 @@ root.innerHTML = `
 
       <div class="rule-map" data-reveal>
         <div class="rule-map__choices" role="tablist" aria-label="Transformation rules">
-          <button type="button" class="is-active" data-rule="up"><span>f(x) + c</span><strong>up c</strong></button>
-          <button type="button" data-rule="left"><span>f(x + c)</span><strong>left c</strong></button>
-          <button type="button" data-rule="vscale"><span>k f(x)</span><strong>vertical × k</strong></button>
-          <button type="button" data-rule="hscale"><span>f(kx)</span><strong>horizontal ÷ k</strong></button>
-          <button type="button" data-rule="xreflect"><span>−f(x)</span><strong>x-axis reflection</strong></button>
-          <button type="button" data-rule="yreflect"><span>f(−x)</span><strong>y-axis reflection</strong></button>
+          <button type="button" class="is-active" data-rule="up"><span>${mathMarkup(String.raw`f(x)+c`)}</span><strong>up c</strong></button>
+          <button type="button" data-rule="left"><span>${mathMarkup(String.raw`f(x+c)`)}</span><strong>left c</strong></button>
+          <button type="button" data-rule="vscale"><span>${mathMarkup(String.raw`k f(x)`)}</span><strong>vertical × k</strong></button>
+          <button type="button" data-rule="hscale"><span>${mathMarkup(String.raw`f(kx)`)}</span><strong>horizontal ÷ k</strong></button>
+          <button type="button" data-rule="xreflect"><span>${mathMarkup(String.raw`-f(x)`)}</span><strong>x-axis reflection</strong></button>
+          <button type="button" data-rule="yreflect"><span>${mathMarkup(String.raw`f(-x)`)}</span><strong>y-axis reflection</strong></button>
         </div>
         <div class="rule-map__display">
           <div class="rule-map__visual">
@@ -147,7 +148,7 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker"><span>03</span> Work backward from the graph</p>
         <h2>Find the landmark.<br>Then read the shape.</h2>
-        <p>The target curve below came from f(x) = x². Match its vertex, opening direction, and width to reconstruct g(x) = a(x − h)² + k.</p>
+          <p>The target curve below came from ${mathMarkup(String.raw`f(x)=x^2`)}. Match its vertex, opening direction, and width to reconstruct ${mathMarkup(String.raw`g(x)=a(x-h)^2+k`)}.</p>
       </div>
 
       <div class="formula-lab" data-reveal>
@@ -157,14 +158,14 @@ root.innerHTML = `
         </div>
         <div class="formula-lab__controls">
           <p class="tool-label">Formula builder</p>
-          <div class="formula-lab__formula" id="formula-guess">g(x) = (x)²</div>
+          <div class="formula-lab__formula" id="formula-guess"></div>
           <label for="formula-a"><span>Opening and width a</span><output id="formula-a-output">1</output><input id="formula-a" type="range" min="-2" max="2" step="0.1" value="1" /></label>
           <label for="formula-h"><span>Vertex x-coordinate h</span><output id="formula-h-output">0</output><input id="formula-h" type="range" min="-4" max="4" step="0.1" value="0" /></label>
           <label for="formula-k"><span>Vertex y-coordinate k</span><output id="formula-k-output">0</output><input id="formula-k" type="range" min="-4" max="4" step="0.1" value="0" /></label>
           <div class="formula-clues">
-            <article><span>01</span><p>The vertex reveals <strong>(h, k)</strong>.</p></article>
-            <article><span>02</span><p>Opening down means <strong>a &lt; 0</strong>.</p></article>
-            <article><span>03</span><p>A wider graph has <strong>0 &lt; |a| &lt; 1</strong>.</p></article>
+            <article><span>01</span><p>The vertex reveals <strong>${mathMarkup(String.raw`(h,k)`)}</strong>.</p></article>
+            <article><span>02</span><p>Opening down means <strong>${mathMarkup(String.raw`a<0`)}</strong>.</p></article>
+            <article><span>03</span><p>A wider graph has <strong>${mathMarkup(String.raw`0<|a|<1`)}</strong>.</p></article>
           </div>
           <button id="formula-check" type="button">Check my formula</button>
           <p class="answer-feedback" id="formula-feedback" aria-live="polite"></p>
@@ -176,12 +177,12 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker"><span>04</span> Even and odd functions</p>
         <h2>Mirror across an axis.<br>Turn through the origin.</h2>
-        <p>An even function satisfies f(−x) = f(x) and has y-axis symmetry. An odd function satisfies f(−x) = −f(x) and has origin symmetry.</p>
+        <p>An even function satisfies ${mathMarkup(String.raw`f(-x)=f(x)`)} and has y-axis symmetry. An odd function satisfies ${mathMarkup(String.raw`f(-x)=-f(x)`)} and has origin symmetry.</p>
       </div>
 
       <div class="symmetry-test-strip" data-reveal>
-        <article><span>Even test</span><strong>f(−x) = f(x)</strong><p>(x, y) requires (−x, y)</p></article>
-        <article><span>Odd test</span><strong>f(−x) = −f(x)</strong><p>(x, y) requires (−x, −y)</p></article>
+        <article><span>Even test</span><strong>${mathMarkup(String.raw`f(-x)=f(x)`)}</strong><p>${mathMarkup(String.raw`(x,y)\Longrightarrow(-x,y)`)}</p></article>
+        <article><span>Odd test</span><strong>${mathMarkup(String.raw`f(-x)=-f(x)`)}</strong><p>${mathMarkup(String.raw`(x,y)\Longrightarrow(-x,-y)`)}</p></article>
         <article><span>Neither</span><strong>Both tests fail</strong><p>No required mirror partner</p></article>
       </div>
 
@@ -193,14 +194,14 @@ root.innerHTML = `
         <div class="symmetry-lab__controls">
           <p class="tool-label">Symmetry mirror</p>
           <div class="symmetry-options" role="tablist" aria-label="Functions to test">
-            <button type="button" class="is-active" data-symmetry="quartic"><span>x⁴ − 4x²</span><strong>Even candidate</strong></button>
-            <button type="button" data-symmetry="reciprocal"><span>x + 1/x</span><strong>Odd candidate</strong></button>
-            <button type="button" data-symmetry="rational"><span>x/(1 + x²)</span><strong>Classify it</strong></button>
-            <button type="button" data-symmetry="shifted"><span>(x − 1)²</span><strong>Neither candidate</strong></button>
+            <button type="button" class="is-active" data-symmetry="quartic"><span>${mathMarkup(String.raw`x^4-4x^2`)}</span><strong>Even candidate</strong></button>
+            <button type="button" data-symmetry="reciprocal"><span>${mathMarkup(String.raw`x+\frac1x`)}</span><strong>Odd candidate</strong></button>
+            <button type="button" data-symmetry="rational"><span>${mathMarkup(String.raw`\frac{x}{1+x^2}`)}</span><strong>Classify it</strong></button>
+            <button type="button" data-symmetry="shifted"><span>${mathMarkup(String.raw`(x-1)^2`)}</span><strong>Neither candidate</strong></button>
           </div>
           <div class="symmetry-proof" aria-live="polite">
-            <span id="symmetry-substitution">f(−x) = (−x)⁴ − 4(−x)²</span>
-            <strong id="symmetry-simplified">f(−x) = x⁴ − 4x² = f(x)</strong>
+            <span id="symmetry-substitution"></span>
+            <strong id="symmetry-simplified"></strong>
             <p id="symmetry-verdict">Even · reflect the known half across the y-axis.</p>
           </div>
           <label for="symmetry-x">Track the point at x = <output id="symmetry-x-output">1.5</output></label>
@@ -226,14 +227,14 @@ root.innerHTML = `
         </article>
         <article class="transformation-check" data-reveal>
           <span>Odd outputs</span>
-          <h3>If f(−2) = 7 and f is odd…</h3>
+          <h3>If ${mathMarkup(String.raw`f(-2)=7`)} and ${mathMarkup(String.raw`f`)} is odd…</h3>
           <label>f(2) = <input id="check-odd-value" type="number" /></label>
           <button id="check-odd" type="button">Check value</button>
           <p class="answer-feedback" id="feedback-odd" aria-live="polite"></p>
         </article>
         <article class="transformation-check" data-reveal>
           <span>Algebraic test</span>
-          <h3>Classify f(x) = x/(1 + x²).</h3>
+          <h3>Classify ${mathMarkup(String.raw`f(x)=\frac{x}{1+x^2}`)}.</h3>
           <label>Symmetry <select id="check-rational"><option value="">Choose…</option><option value="a">Even</option><option value="correct">Odd</option><option value="b">Neither</option></select></label>
           <button id="check-classification" type="button">Check classification</button>
           <p class="answer-feedback" id="feedback-classification" aria-live="polite"></p>
@@ -259,11 +260,23 @@ root.innerHTML = `
   })}
 `;
 
+typesetMath(root);
+
 function signed(value, digits = 2) {
   const rounded = Number(value.toFixed(digits));
   if (Math.abs(rounded) < 1e-10) return "0";
   const text = Number.isInteger(rounded) ? String(rounded) : String(rounded);
   return text.startsWith("-") ? `−${text.slice(1)}` : text;
+}
+
+function toTex(expression) {
+  return expression
+    .replaceAll("−", "-")
+    .replaceAll("²", "^2")
+    .replaceAll("⁴", "^4")
+    .replaceAll("→", String.raw`\longrightarrow`)
+    .replaceAll("≠", String.raw`\ne`)
+    .replaceAll("·", String.raw`\cdot`);
 }
 
 function createMapper({ width, height, xMin, xMax, yMin, yMax, padding = 46, equalUnits = true }) {
@@ -419,7 +432,7 @@ function renderTransformation() {
     <circle cx="${transformMapper.x(u)}" cy="${transformMapper.y(originalY)}" r="7" class="transform-point transform-point--base" />
     ${canMapPoint ? `<circle cx="${transformMapper.x(movedX)}" cy="${transformMapper.y(movedY)}" r="8" class="transform-point transform-point--moved" />` : ""}
   `;
-  document.querySelector("#transformation-formula").textContent = transformedFormula(state);
+  setMath(document.querySelector("#transformation-formula"), toTex(transformedFormula(state)));
   document.querySelector("#transform-a-output").textContent = signed(state.a);
   document.querySelector("#transform-b-output").textContent = signed(state.b);
   document.querySelector("#transform-h-output").textContent = signed(state.h);
@@ -431,7 +444,9 @@ function renderTransformation() {
   document.querySelector("#horizontal-story").textContent = horizontal.length ? horizontal.join(" · ") : "No horizontal change";
   document.querySelector("#horizontal-detail").textContent = canMapPoint ? `x becomes h + u/b = ${signed(state.h)} + u/${signed(state.b)}.` : "With b = 0, every x sends the same input 0 into f.";
   document.querySelector("#witness-u-output").textContent = signed(u);
-  document.querySelector("#point-witness-result").textContent = canMapPoint ? `(${signed(u)}, ${signed(originalY)}) → (${signed(movedX)}, ${signed(movedY)})` : "b = 0 freezes the input, so this point map is not one-to-one.";
+  const witnessResult = document.querySelector("#point-witness-result");
+  if (canMapPoint) setMath(witnessResult, String.raw`(${toTex(signed(u))},${toTex(signed(originalY))})\longmapsto(${toTex(signed(movedX))},${toTex(signed(movedY))})`);
+  else witnessResult.textContent = "b = 0 freezes the input, so this point map is not one-to-one.";
 }
 
 [aInput, bInput, hInput, kInput, witnessInput].forEach((input) => input.addEventListener("input", renderTransformation));
@@ -496,7 +511,7 @@ function renderRule(ruleName) {
     <text x="${ruleMapper.x(x2) + 14}" y="${ruleMapper.y(y2) + 24}" class="rule-point-label">new (${signed(x2)}, ${signed(y2)})</text>
   `;
   document.querySelector("#rule-map-label").textContent = rule.label;
-  document.querySelector("#rule-map-mapping").textContent = rule.mapping;
+  setMath(document.querySelector("#rule-map-mapping"), toTex(rule.mapping));
   document.querySelector("#rule-map-copy").textContent = rule.copy;
 }
 
@@ -574,7 +589,7 @@ function renderFormulaLab() {
     <circle cx="${formulaMapper.x(targetFormula.h)}" cy="${formulaMapper.y(targetFormula.k)}" r="9" class="formula-vertex formula-vertex--target" />
     <circle cx="${formulaMapper.x(guess.h)}" cy="${formulaMapper.y(guess.k)}" r="7" class="formula-vertex formula-vertex--guess" />
   `;
-  document.querySelector("#formula-guess").textContent = parabolaFormula(guess);
+  setMath(document.querySelector("#formula-guess"), toTex(parabolaFormula(guess)));
   document.querySelector("#formula-a-output").textContent = signed(guess.a);
   document.querySelector("#formula-h-output").textContent = signed(guess.h);
   document.querySelector("#formula-k-output").textContent = signed(guess.k);
@@ -650,8 +665,8 @@ function renderSymmetry() {
       ${symmetryRevealed && partnerIsVisible ? `<circle cx="${symmetryMapper.x(-x)}" cy="${symmetryMapper.y(partnerY)}" r="8" class="symmetry-point symmetry-point--mirror" />` : ""}
     </g>
   `;
-  document.querySelector("#symmetry-substitution").textContent = selected.substitution;
-  document.querySelector("#symmetry-simplified").textContent = selected.simplified;
+  setMath(document.querySelector("#symmetry-substitution"), toTex(selected.substitution));
+  setMath(document.querySelector("#symmetry-simplified"), toTex(selected.simplified));
   document.querySelector("#symmetry-verdict").textContent = selected.verdict;
   document.querySelector("#symmetry-x-output").textContent = signed(x);
   const outsideNotes = [];

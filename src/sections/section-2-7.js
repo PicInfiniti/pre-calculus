@@ -1,6 +1,5 @@
 import "../assets/sass/lesson.sass";
-import katex from "katex";
-import "katex/dist/katex.min.css";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   initLessonChrome,
   nearlyEqual,
@@ -10,30 +9,6 @@ import {
 } from "./shared";
 
 const root = document.querySelector("#app");
-
-function mathMarkup(expression, displayMode = false) {
-  return `<span class="section-27-math${displayMode ? " section-27-math--display" : ""}" data-katex="${encodeURIComponent(expression)}" data-katex-display="${displayMode}"></span>`;
-}
-
-function typesetMath(scope = document) {
-  scope.querySelectorAll("[data-katex]").forEach((element) => {
-    katex.render(decodeURIComponent(element.dataset.katex), element, {
-      displayMode: element.dataset.katexDisplay === "true",
-      throwOnError: false,
-      strict: "ignore",
-    });
-    element.removeAttribute("data-katex");
-    element.removeAttribute("data-katex-display");
-  });
-}
-
-function setMath(element, expression, displayMode = false) {
-  katex.render(expression, element, {
-    displayMode,
-    throwOnError: false,
-    strict: "ignore",
-  });
-}
 
 function setMathFeedback(element, correct, markup) {
   setFeedback(element, correct, "");

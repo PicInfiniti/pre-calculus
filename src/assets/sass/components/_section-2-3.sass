@@ -174,16 +174,16 @@
   padding: 1.1rem
   border-radius: .4rem
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .7rem
     font-family: Georgia, serif
     font-size: 1.25rem
@@ -198,7 +198,7 @@
   background: var(--ink)
   color: var(--white)
 
-  span
+  > span
     color: var(--green)
 
   p
@@ -215,17 +215,17 @@
     border: 1px solid var(--line)
     border-radius: .35rem
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .45rem
     font-family: Georgia, serif
     font-size: 1rem
@@ -299,7 +299,7 @@
   background: rgba(255, 255, 255, .1)
   color: var(--white)
 
-  span
+  > span
     color: var(--gold)
 
   p
@@ -341,7 +341,7 @@
 .direction-status
   background: var(--paper)
 
-  span
+  > span
     color: var(--coral)
 
   p
@@ -363,7 +363,7 @@
     font-size: .75rem
     font-weight: 700
 
-    span
+    > span:first-child
       margin-bottom: .25rem
       display: block
       color: var(--coral)
@@ -417,7 +417,7 @@
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .55rem
     font-family: Georgia, serif
     font-size: .95rem
@@ -521,6 +521,14 @@
     font-size: .85rem
     font-weight: 700
 
+  .information-check__prompt
+    display: flex
+    align-items: center
+    gap: .45rem
+
+    .lesson-math
+      font-size: 1.25rem
+
   input
     min-height: 2.3rem
     padding: .35rem .5rem
@@ -578,17 +586,17 @@
   border-left: 4px solid var(--green)
   background: rgba(169, 223, 114, .2)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: #315f17
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .35rem
     font-family: Georgia, serif
     font-size: .85rem
@@ -597,7 +605,7 @@
     border-color: var(--coral)
     background: rgba(255, 107, 72, .14)
 
-    span
+    > span
       color: #7b2815
 
 .radical-facts

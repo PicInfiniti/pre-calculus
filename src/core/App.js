@@ -1,4 +1,5 @@
 import textbookCover from "../assets/img/precalculus-8e-cover.png";
+import { mathMarkup, typesetMath } from "../sections/math";
 
 const courseUnits = [
   {
@@ -141,10 +142,10 @@ function renderUnit(unit) {
           ? `
         <div class="unit-card-primer-art" aria-hidden="true">
           <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--outer">
-            <span>ℝ</span><span>f(x)</span><span>∪</span>
+            <span>${mathMarkup(String.raw`\mathbb{R}`)}</span><span>${mathMarkup(String.raw`f(x)`)}</span><span>${mathMarkup(String.raw`\cup`)}</span>
           </div>
           <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--inner">
-            <span><span class="math-indexed">D<sub>f</sub></span></span><span>(x, y)</span><span>≤</span>
+            <span>${mathMarkup(String.raw`D_f`)}</span><span>${mathMarkup(String.raw`(x,y)`)}</span><span>${mathMarkup(String.raw`\le`)}</span>
           </div>
           <div class="unit-card-primer-art__center"><strong>?</strong></div>
         </div>
@@ -201,8 +202,8 @@ export default class App {
           </div>
 
           <div class="hero__visual" aria-label="A coordinate graph representing the course journey">
-            <span class="formula formula--one">f(x)</span>
-            <span class="formula formula--two">sin θ</span>
+            <span class="formula formula--one">${mathMarkup(String.raw`f(x)`)}</span>
+            <span class="formula formula--two">${mathMarkup(String.raw`\sin\theta`)}</span>
             <div class="graph-card">
               <div class="graph-card__label"><span></span> From functions to calculus</div>
               <svg viewBox="0 0 520 390" role="img" aria-labelledby="graph-title graph-desc">
@@ -303,7 +304,7 @@ export default class App {
                 <circle class="mathboard-promo__origin-fill" cx="320" cy="180" r="11" />
                 <circle class="mathboard-promo__origin-ring" cx="320" cy="180" r="11" />
               </svg>
-              <span class="mathboard-promo__note mathboard-promo__note--one">f(x)</span>
+              <span class="mathboard-promo__note mathboard-promo__note--one">${mathMarkup(String.raw`f(x)`)}</span>
               <span class="mathboard-promo__note mathboard-promo__note--two">test the shape</span>
             </div>
           </div>
@@ -361,5 +362,6 @@ export default class App {
         </nav>
       </footer>
     `;
+    typesetMath(this.root);
   }
 }

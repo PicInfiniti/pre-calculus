@@ -835,7 +835,7 @@ button, [role='button'], [role='slider'], canvas, svg
       color: var(--gold)
       font-size: .85rem
 
-    strong
+    > strong
       font-size: .9rem
 
     p
@@ -889,7 +889,7 @@ button, [role='button'], [role='slider'], canvas, svg
   flex-wrap: wrap
   gap: .55rem
 
-  span
+  > span
     padding: .55rem .7rem
     border-radius: .25rem
     background: var(--paper)
@@ -983,10 +983,10 @@ input[type='range']
   background: var(--ink)
   color: var(--white)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--gold)
     font-size: .85rem
     font-weight: 700
@@ -1443,7 +1443,7 @@ input[type='range']
     &:nth-child(3)
       margin-left: 24%
 
-  span
+  div > span
     font-family: Georgia, serif
 
   i
@@ -1728,17 +1728,17 @@ input[type='range']
     &:not(:last-child)
       border-right: 1px solid var(--line)
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
-  span
+  > div > span
     color: var(--ink-soft)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .55rem
     font-family: Georgia, serif
     font-size: .9rem
@@ -1917,14 +1917,14 @@ input[type='range']
     border-radius: .3rem
     background: var(--paper)
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     font-family: Georgia, serif
     font-size: 1rem
 
@@ -2059,7 +2059,7 @@ input[type='range']
       font-size: .85rem
       font-weight: 700
 
-    strong
+    > strong
       font-size: .85rem
 
     p
@@ -2143,17 +2143,17 @@ input[type='range']
     border-radius: .3rem
     background: var(--paper)
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
-  span
+  > div > span
     color: var(--ink-soft)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .55rem
     font-family: Georgia, serif
     font-size: 1.05rem
@@ -2162,7 +2162,7 @@ input[type='range']
     grid-column: 1 / -1
     background: var(--gold)
 
-    strong
+    > strong
       font-size: clamp(1rem, 2vw, 1.45rem)
 
 .concept-callout
@@ -2199,17 +2199,17 @@ input[type='range']
     &:not(:last-child)
       border-right: 1px solid var(--line)
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: var(--coral)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .09em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: 1.25rem
     font-size: .85rem
     line-height: 1.4
@@ -2282,17 +2282,17 @@ input[type='range']
     &:last-child
       grid-column: 1 / -1
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .42rem
     font-family: Georgia, serif
     font-size: .9rem
@@ -2343,7 +2343,7 @@ input[type='range']
     &.is-visible
       display: grid
 
-    span
+    > span
       width: 1.6rem
       height: 1.6rem
       display: grid
@@ -2483,17 +2483,17 @@ input[type='range']
     &:not(:last-child)
       border-right: 1px solid var(--line)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--coral)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: 2rem
     font-size: .85rem
     line-height: 1.45
@@ -2541,7 +2541,7 @@ input[type='range']
   transform: translate(-50%, -50%) rotate(-3deg)
   box-shadow: var(--shadow)
 
-  span
+  > span
     color: var(--gold)
     font-size: .85rem
     font-weight: 700
@@ -2829,17 +2829,17 @@ input[type='range']
   border-radius: .4rem
   background: var(--paper)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--coral)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .06em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .75rem
     font-family: Georgia, serif
     font-size: 1.25rem
@@ -2881,7 +2881,7 @@ input[type='range']
   display: grid
   gap: .45rem
 
-  span
+  > span
     padding: .65rem .75rem
     display: flex
     justify-content: space-between
@@ -2933,17 +2933,17 @@ input[type='range']
   border-radius: .35rem
   background: var(--paper-deep)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--coral)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .55rem
     font-family: Georgia, serif
     font-size: 1.08rem
@@ -3053,7 +3053,7 @@ input[type='range']
     border: 1px solid rgba(255, 255, 255, .13)
     border-radius: .35rem
 
-    span
+    > span
       width: 1.6rem
       height: 1.6rem
       display: grid
@@ -3128,7 +3128,7 @@ input[type='range']
   p
     margin-top: 1rem
     color: var(--ink-soft)
-    font-size: .85rem
+    font-size: 1rem
     line-height: 1.6
 
   strong
@@ -3160,7 +3160,7 @@ input[type='range']
 .domain-marker
   position: absolute
   z-index: 3
-  top: 45px
+  top: 50px
   transform: translateX(-50%)
 
   i
@@ -3272,8 +3272,14 @@ input[type='range']
     align-items: center
     gap: .7rem
 
+    > .lesson-math
+      font-size: 1.2rem
+
     input, select
       margin-top: 0
+
+  .check-card:first-child > label > input
+    width: calc(100% - 1rem)
 
   .check-answer-with-suffix
     display: grid
@@ -3641,7 +3647,7 @@ input[type='range']
     grid-template-columns: 1fr
     gap: .35rem
 
-  .fine-rules span
+  .fine-rules > span
     display: grid
     gap: .35rem
 

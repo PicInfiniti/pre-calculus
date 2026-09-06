@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, setMath, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -35,7 +36,7 @@ root.innerHTML = `
           <path class="information-hero-art__projection" d="M360 55V405" />
           <circle cx="360" cy="170" r="9" />
         </svg>
-        <span class="information-hero-art__tag information-hero-art__tag--solve">f(x) = k</span>
+        <span class="information-hero-art__tag information-hero-art__tag--solve">${mathMarkup(String.raw`f(x)=k`)}</span>
         <span class="information-hero-art__tag information-hero-art__tag--turn">local maximum</span>
         <span class="information-hero-art__tag information-hero-art__tag--interval">increasing →</span>
       </div>
@@ -73,12 +74,12 @@ root.innerHTML = `
           <input id="projection-x" type="range" min="-5" max="5" step="0.1" value="1" />
           <div class="projection-result" aria-live="polite">
             <span id="projection-result-label">At this input</span>
-            <strong id="projection-result-main">f(1) ≈ 1.7</strong>
+            <strong id="projection-result-main"></strong>
             <p id="projection-result-copy">Read vertically from x = 1 until you meet the curve.</p>
           </div>
           <div class="projection-facts">
-            <article><span>Domain</span><strong>[−5, 5]</strong></article>
-            <article><span>Range</span><strong>[−3, 4]</strong></article>
+            <article><span>Domain</span><strong>${mathMarkup(String.raw`[-5,5]`)}</strong></article>
+            <article><span>Range</span><strong>${mathMarkup(String.raw`[-3,4]`)}</strong></article>
           </div>
         </div>
       </div>
@@ -88,7 +89,7 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker lesson-kicker--gold"><span>02</span> Sweep a horizontal level</p>
         <h2>Equations are crossings.<br>Inequalities are regions.</h2>
-        <p>The equation f(x) = k asks where the curve meets y = k. For f(x) &gt; k, keep the curve above the laser; for f(x) &lt; k, keep the curve below it.</p>
+        <p>The equation ${mathMarkup(String.raw`f(x)=k`)} asks where the curve meets ${mathMarkup(String.raw`y=k`)}. For ${mathMarkup(String.raw`f(x)>k`)}, keep the curve above the laser; for ${mathMarkup(String.raw`f(x)<k`)}, keep the curve below it.</p>
       </div>
 
       <div class="level-lab" data-reveal>
@@ -98,9 +99,9 @@ root.innerHTML = `
         <div class="level-lab__controls">
           <p class="tool-label">Horizontal laser</p>
           <div class="information-tabs information-tabs--dark" role="tablist" aria-label="Equation and inequality modes">
-            <button type="button" class="is-active" data-level-relation="equal">f(x) = k</button>
-            <button type="button" data-level-relation="above">f(x) &gt; k</button>
-            <button type="button" data-level-relation="below">f(x) &lt; k</button>
+            <button type="button" class="is-active" data-level-relation="equal">${mathMarkup(String.raw`f(x)=k`)}</button>
+            <button type="button" data-level-relation="above">${mathMarkup(String.raw`f(x)>k`)}</button>
+            <button type="button" data-level-relation="below">${mathMarkup(String.raw`f(x)<k`)}</button>
           </div>
           <label for="level-y">Move k to <output id="level-y-output">1</output></label>
           <input id="level-y" type="range" min="-2" max="3" step="0.5" value="1" />
@@ -135,11 +136,11 @@ root.innerHTML = `
             <p id="direction-detail">Nearby outputs rise as you read from left to right.</p>
           </div>
           <div class="direction-timeline" aria-label="Behavior intervals">
-            <button type="button" data-direction-x="-4"><span>↑</span>(−5, −3)</button>
-            <button type="button" data-direction-x="-2"><span>↓</span>(−3, −1)</button>
-            <button type="button" data-direction-x="0"><span>↑</span>(−1, 1.5)</button>
-            <button type="button" data-direction-x="2.2"><span>↓</span>(1.5, 3)</button>
-            <button type="button" data-direction-x="4"><span>↑</span>(3, 5)</button>
+            <button type="button" data-direction-x="-4"><span>↑</span>${mathMarkup(String.raw`(-5,-3)`)}</button>
+            <button type="button" data-direction-x="-2"><span>↓</span>${mathMarkup(String.raw`(-3,-1)`)}</button>
+            <button type="button" data-direction-x="0"><span>↑</span>${mathMarkup(String.raw`(-1,1.5)`)}</button>
+            <button type="button" data-direction-x="2.2"><span>↓</span>${mathMarkup(String.raw`(1.5,3)`)}</button>
+            <button type="button" data-direction-x="4"><span>↑</span>${mathMarkup(String.raw`(3,5)`)}</button>
           </div>
         </div>
       </div>
@@ -189,14 +190,14 @@ root.innerHTML = `
           <input id="context-age" type="range" min="0" max="70" step="1" value="30" />
           <div class="context-current" aria-live="polite">
             <span id="context-trend">Local minimum</span>
-            <strong id="context-weight">W(30) = 125 lb</strong>
+            <strong id="context-weight"></strong>
             <p id="context-story">The graph records a sudden dip and recovery. It does not identify the cause by itself.</p>
           </div>
           <div class="net-change-builder">
             <p>Build a net change</p>
             <label>From age <input id="context-start" type="number" min="0" max="70" step="1" value="10" /></label>
             <label>to age <input id="context-end" type="number" min="0" max="70" step="1" value="20" /></label>
-            <div id="context-net-change" aria-live="polite">W(20) − W(10) = 150 − 50 = <strong>100 lb</strong></div>
+            <div id="context-net-change" aria-live="polite"></div>
           </div>
         </div>
       </div>
@@ -216,19 +217,19 @@ root.innerHTML = `
         <div class="radical-lab__controls">
           <p class="tool-label">Radicand gate</p>
           <div class="information-tabs" role="tablist" aria-label="Radical examples">
-            <button type="button" class="is-active" data-radical="shifted">√(x + 2)</button>
-            <button type="button" data-radical="semicircle">−√(25 − x²)</button>
+            <button type="button" class="is-active" data-radical="shifted">${mathMarkup(String.raw`\sqrt{x+2}`)}</button>
+            <button type="button" data-radical="semicircle">${mathMarkup(String.raw`-\sqrt{25-x^2}`)}</button>
           </div>
           <div class="radical-rule" aria-live="polite">
-            <span id="radical-formula">f(x) = √(x + 2)</span>
-            <strong id="radical-constraint">x + 2 ≥ 0  ⟹  x ≥ −2</strong>
+            <span id="radical-formula"></span>
+            <strong id="radical-constraint"></strong>
           </div>
           <label for="radical-x">Test x = <output id="radical-x-output">−2</output></label>
           <input id="radical-x" type="range" min="-6" max="6" step="0.5" value="-2" />
           <div class="radical-test" id="radical-test" aria-live="polite"></div>
           <dl class="radical-facts">
-            <div><dt>Domain</dt><dd id="radical-domain">[−2, ∞)</dd></div>
-            <div><dt>Range</dt><dd id="radical-range">[0, ∞)</dd></div>
+            <div><dt>Domain</dt><dd id="radical-domain"></dd></div>
+            <div><dt>Range</dt><dd id="radical-range"></dd></div>
           </dl>
         </div>
       </div>
@@ -266,10 +267,10 @@ root.innerHTML = `
         <article class="information-check" data-reveal>
           <span>Radicals</span>
           <h3>Let the radicand decide.</h3>
-          <label>Domain of √(x + 2)
+          <label><span class="information-check__prompt">Domain of ${mathMarkup(String.raw`\sqrt{x+2}`)}</span>
             <select id="check-radical-domain"><option value="">Choose…</option><option value="a">(−2, ∞)</option><option value="correct">[−2, ∞)</option><option value="b">[0, ∞)</option></select>
           </label>
-          <label>Range of −√(25 − x²)
+          <label><span class="information-check__prompt">Range of ${mathMarkup(String.raw`-\sqrt{25-x^2}`)}</span>
             <select id="check-radical-range"><option value="">Choose…</option><option value="a">[−5, 5]</option><option value="correct">[−5, 0]</option><option value="b">[0, 5]</option></select>
           </label>
           <button type="button" id="check-radicals">Check radicals</button>
@@ -299,10 +300,16 @@ root.innerHTML = `
   })}
 `;
 
+typesetMath(root);
+
 function signed(value, digits = 2) {
   const rounded = Number(value.toFixed(digits));
   const result = formatNumber(rounded);
   return result.startsWith("-") ? `−${result.slice(1)}` : result;
+}
+
+function texNumber(value, digits = 2) {
+  return signed(value, digits).replace("−", "-");
 }
 
 function createMapper({ width, height, padding = 48, xMin, xMax, yMin, yMax, equalScale = false }) {
@@ -407,23 +414,23 @@ function renderProjection() {
     <circle cx="${mainMapper.x(x)}" cy="${mainMapper.y(y)}" r="9" class="info-focus-point" />
   `;
   let label = "At this input";
-  let main = `f(${signed(x, 1)}) ≈ ${signed(y, 1)}`;
+  let mainTex = String.raw`f(${texNumber(x, 1)})\approx ${texNumber(y, 1)}`;
   let copy = `Read vertically from x = ${signed(x, 1)} until you meet the curve.`;
   if (projectionMode === "domain") {
     overlay = `<line x1="${mainMapper.x(-5)}" y1="${mainMapper.y(0)}" x2="${mainMapper.x(5)}" y2="${mainMapper.y(0)}" class="projection-shadow projection-shadow--domain" />`;
     label = "Horizontal shadow";
-    main = "Domain = [−5, 5]";
+    mainTex = String.raw`D_f=[-5,5]`;
     copy = "Both endpoints are filled, so −5 and 5 are included.";
   } else if (projectionMode === "range") {
     overlay = `<line x1="${mainMapper.x(0)}" y1="${mainMapper.y(-3)}" x2="${mainMapper.x(0)}" y2="${mainMapper.y(4)}" class="projection-shadow projection-shadow--range" />`;
     label = "Vertical shadow";
-    main = "Range = [−3, 4]";
+    mainTex = String.raw`R_f=[-3,4]`;
     copy = "The curve reaches every height from its lowest to its highest output.";
   }
   projectionChart.innerHTML = `${baseCurveMarkup()}${overlay}`;
   document.querySelector("#projection-x-output").textContent = signed(x, 1);
   document.querySelector("#projection-result-label").textContent = label;
-  document.querySelector("#projection-result-main").textContent = main;
+  setMath(document.querySelector("#projection-result-main"), mainTex);
   document.querySelector("#projection-result-copy").textContent = copy;
   projectionInput.disabled = projectionMode !== "input";
 }
@@ -510,12 +517,14 @@ function renderLevelLab() {
   document.querySelector("#level-y-output").textContent = signed(level, 1);
   if (levelRelation === "equal") {
     document.querySelector("#level-result-label").textContent = `${roots.length} crossing${roots.length === 1 ? "" : "s"}`;
-    document.querySelector("#level-result-main").textContent = roots.length ? `x ≈ ${roots.map((x) => signed(x, 1)).join(", ")}` : "No solution at this level";
+    const main = document.querySelector("#level-result-main");
+    if (roots.length) setMath(main, String.raw`x\approx ${roots.map((x) => texNumber(x, 1)).join(",\ ")}`);
+    else main.textContent = "No solution at this level";
     document.querySelector("#level-result-copy").textContent = "Each crossing contributes one solution to f(x) = k.";
   } else {
     const symbol = levelRelation === "above" ? ">" : "<";
     document.querySelector("#level-result-label").textContent = levelRelation === "above" ? "Curve above the laser" : "Curve below the laser";
-    document.querySelector("#level-result-main").textContent = `f(x) ${symbol} ${signed(level, 1)}`;
+    setMath(document.querySelector("#level-result-main"), String.raw`f(x)${symbol}${texNumber(level, 1)}`);
     document.querySelector("#level-result-copy").textContent = `Approximately ${intervalSummary(level, levelRelation)}`;
   }
 }
@@ -624,7 +633,7 @@ function renderContext() {
   else if (age === 28) { trend = "Local maximum"; story = "Increasing changes to decreasing here."; }
   document.querySelector("#context-age-output").textContent = signed(age, 0);
   document.querySelector("#context-trend").textContent = trend;
-  document.querySelector("#context-weight").textContent = `W(${signed(age, 0)}) ≈ ${signed(weight, 0)} lb`;
+  setMath(document.querySelector("#context-weight"), String.raw`W(${texNumber(age, 0)})\approx ${texNumber(weight, 0)}\,\mathrm{lb}`);
   document.querySelector("#context-story").textContent = story;
 }
 
@@ -634,7 +643,7 @@ function renderNetChange() {
   const initial = contextValue(start);
   const final = contextValue(end);
   const change = final - initial;
-  document.querySelector("#context-net-change").innerHTML = `W(${signed(end, 0)}) − W(${signed(start, 0)}) = ${signed(final, 0)} − ${signed(initial, 0)} = <strong>${signed(change, 0)} lb</strong>`;
+  setMath(document.querySelector("#context-net-change"), String.raw`W(${texNumber(end, 0)})-W(${texNumber(start, 0)})=${texNumber(final, 0)}-${texNumber(initial, 0)}=${texNumber(change, 0)}\,\mathrm{lb}`);
 }
 
 contextAge.addEventListener("input", renderContext);
@@ -649,12 +658,12 @@ const radicalInput = document.querySelector("#radical-x");
 let radicalCase = "shifted";
 const radicalCases = {
   shifted: {
-    formula: "f(x) = √(x + 2)", constraint: "x + 2 ≥ 0  ⟹  x ≥ −2", domain: "[−2, ∞)", range: "[0, ∞)",
+    formulaTex: String.raw`f(x)=\sqrt{x+2}`, constraintTex: String.raw`x+2\ge0\Longrightarrow x\ge-2`, domainTex: String.raw`[-2,\infty)`, rangeTex: String.raw`[0,\infty)`,
     evaluate: (x) => x >= -2 ? Math.sqrt(x + 2) : null,
     points: () => sample(-2, 6, (x) => Math.sqrt(x + 2), 0.04),
   },
   semicircle: {
-    formula: "f(x) = −√(25 − x²)", constraint: "25 − x² ≥ 0  ⟹  −5 ≤ x ≤ 5", domain: "[−5, 5]", range: "[−5, 0]",
+    formulaTex: String.raw`f(x)=-\sqrt{25-x^2}`, constraintTex: String.raw`25-x^2\ge0\Longrightarrow -5\le x\le5`, domainTex: String.raw`[-5,5]`, rangeTex: String.raw`[-5,0]`,
     evaluate: (x) => Math.abs(x) <= 5 ? -Math.sqrt(Math.max(0, 25 - x ** 2)) : null,
     points: () => sample(-5, 5, (x) => -Math.sqrt(Math.max(0, 25 - x ** 2)), 0.03),
   },
@@ -670,16 +679,17 @@ function renderRadical() {
     <path d="${pathFromPoints(selected.points(), radicalMapper)}" class="radical-curve" />
     ${value === null ? "" : `<circle cx="${radicalMapper.x(x)}" cy="${radicalMapper.y(value)}" r="9" class="radical-point" />`}
   `;
-  document.querySelector("#radical-formula").textContent = selected.formula;
-  document.querySelector("#radical-constraint").textContent = selected.constraint;
-  document.querySelector("#radical-domain").textContent = selected.domain;
-  document.querySelector("#radical-range").textContent = selected.range;
+  setMath(document.querySelector("#radical-formula"), selected.formulaTex);
+  setMath(document.querySelector("#radical-constraint"), selected.constraintTex);
+  setMath(document.querySelector("#radical-domain"), selected.domainTex);
+  setMath(document.querySelector("#radical-range"), selected.rangeTex);
   document.querySelector("#radical-x-output").textContent = signed(x, 1);
   const result = document.querySelector("#radical-test");
   result.classList.toggle("is-blocked", value === null);
   result.innerHTML = value === null
     ? `<span>Blocked</span><strong>The radicand is negative, so there is no real output.</strong>`
-    : `<span>Allowed</span><strong>f(${signed(x, 1)}) = ${signed(value, 2)}</strong>`;
+    : `<span>Allowed</span><strong>${mathMarkup(String.raw`f(${texNumber(x, 1)})=${texNumber(value, 2)}`)}</strong>`;
+  typesetMath(result);
 }
 
 document.querySelectorAll("[data-radical]").forEach((button) => button.addEventListener("click", () => {

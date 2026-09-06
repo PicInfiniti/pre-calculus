@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, typesetMath } from "./math";
 import {
   bindTabs,
   formatNumber,
@@ -36,9 +37,9 @@ root.innerHTML = `
           <span class="hero-equations__x">x</span>
           <span class="hero-equations__y">y</span>
         </div>
-        <div class="equation-card equation-card--a">3x + 2y = 4</div>
-        <div class="equation-card equation-card--b">−x + 3y = −5</div>
-        <div class="equation-card equation-card--answer">(2, −1)</div>
+        <div class="equation-card equation-card--a">${mathMarkup(String.raw`3x+2y=4`)}</div>
+        <div class="equation-card equation-card--b">${mathMarkup(String.raw`-x+3y=-5`)}</div>
+        <div class="equation-card equation-card--answer">${mathMarkup(String.raw`(2,-1)`)}</div>
       </div>
     </section>
 
@@ -71,7 +72,7 @@ root.innerHTML = `
       <div class="interactive-shell line-lab" data-reveal>
         <div class="interactive-shell__header">
           <div><span class="live-dot"></span><p>Interactive line lab</p></div>
-          <span>ax + by = c</span>
+          <span>${mathMarkup(String.raw`ax+by=c`)}</span>
         </div>
         <div class="line-lab__body">
           <div class="line-controls">
@@ -107,7 +108,7 @@ root.innerHTML = `
             </div>
             <details class="concept-note">
               <summary>Why the determinant decides</summary>
-              <p>For <strong>a₁x + b₁y = c₁</strong> and <strong>a₂x + b₂y = c₂</strong>, compute D = a₁b₂ − a₂b₁. If D ≠ 0, the slopes differ and there is one solution.</p>
+              <p>For <strong>${mathMarkup(String.raw`a_1x+b_1y=c_1`)}</strong> and <strong>${mathMarkup(String.raw`a_2x+b_2y=c_2`)}</strong>, compute ${mathMarkup(String.raw`D=a_1b_2-a_2b_1`)}. If ${mathMarkup(String.raw`D\ne0`)}, the slopes differ and there is one solution.</p>
             </details>
           </div>
           <div class="line-graph-wrap">
@@ -135,14 +136,14 @@ root.innerHTML = `
           <div class="method-panel__summary">
             <span>Use it when</span>
             <h3>A variable is already isolated—or almost isolated.</h3>
-            <div class="system-brace"><span>3x + 2y = 4</span><span>−x + 3y = −5</span></div>
+            <div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=4`)}</span><span>${mathMarkup(String.raw`-x+3y=-5`)}</span></div>
           </div>
           <div class="stepper" data-stepper>
             <ol>
-              <li class="is-visible"><span>1</span><div><strong>Isolate x in the second equation.</strong><p>x = 3y + 5</p></div></li>
-              <li><span>2</span><div><strong>Substitute into the first equation.</strong><p>3(3y + 5) + 2y = 4</p></div></li>
-              <li><span>3</span><div><strong>Solve the one-variable equation.</strong><p>11y + 15 = 4 → y = −1</p></div></li>
-              <li><span>4</span><div><strong>Back-substitute and verify.</strong><p>x = 3(−1) + 5 = 2, so the solution is (2, −1).</p></div></li>
+              <li class="is-visible"><span>1</span><div><strong>Isolate ${mathMarkup(String.raw`x`)} in the second equation.</strong><p>${mathMarkup(String.raw`x=3y+5`)}</p></div></li>
+              <li><span>2</span><div><strong>Substitute into the first equation.</strong><p>${mathMarkup(String.raw`3(3y+5)+2y=4`)}</p></div></li>
+              <li><span>3</span><div><strong>Solve the one-variable equation.</strong><p>${mathMarkup(String.raw`11y+15=4\Longrightarrow y=-1`)}</p></div></li>
+              <li><span>4</span><div><strong>Back-substitute and verify.</strong><p>${mathMarkup(String.raw`x=3(-1)+5=2`)}, so the solution is ${mathMarkup(String.raw`(2,-1)`)}.</p></div></li>
             </ol>
             <button class="stepper__next" type="button">Show next step <span>→</span></button>
           </div>
@@ -152,14 +153,14 @@ root.innerHTML = `
           <div class="method-panel__summary">
             <span>Use it when</span>
             <h3>Coefficients already match, or can match with small multipliers.</h3>
-            <div class="system-brace"><span>3x + 2y = −8</span><span>−5x − 3y = 11</span></div>
+            <div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=-8`)}</span><span>${mathMarkup(String.raw`-5x-3y=11`)}</span></div>
           </div>
           <div class="stepper" data-stepper>
             <ol>
-              <li class="is-visible"><span>1</span><div><strong>Target y and find the LCM.</strong><p>LCM(2, 3) = 6.</p></div></li>
-              <li><span>2</span><div><strong>Multiply the equations.</strong><p>3(E₁): 9x + 6y = −24<br>2(E₂): −10x − 6y = 22</p></div></li>
-              <li><span>3</span><div><strong>Add to eliminate y.</strong><p>−x = −2 → x = 2</p></div></li>
-              <li><span>4</span><div><strong>Back-substitute.</strong><p>3(2) + 2y = −8 → y = −7, so (2, −7).</p></div></li>
+              <li class="is-visible"><span>1</span><div><strong>Target ${mathMarkup(String.raw`y`)} and find the LCM.</strong><p>${mathMarkup(String.raw`\operatorname{LCM}(2,3)=6`)}.</p></div></li>
+              <li><span>2</span><div><strong>Multiply the equations.</strong><p>${mathMarkup(String.raw`3(E_1):\ 9x+6y=-24`)}<br>${mathMarkup(String.raw`2(E_2):\ -10x-6y=22`)}</p></div></li>
+              <li><span>3</span><div><strong>Add to eliminate ${mathMarkup(String.raw`y`)}.</strong><p>${mathMarkup(String.raw`-x=-2\Longrightarrow x=2`)}</p></div></li>
+              <li><span>4</span><div><strong>Back-substitute.</strong><p>${mathMarkup(String.raw`3(2)+2y=-8\Longrightarrow y=-7`)}, so ${mathMarkup(String.raw`(2,-7)`)}.</p></div></li>
             </ol>
             <button class="stepper__next" type="button">Show next step <span>→</span></button>
           </div>
@@ -178,7 +179,7 @@ root.innerHTML = `
         <article class="coin-lab" data-reveal>
           <div class="tool-label">Coin model</div>
           <h3>46 coins · dimes and quarters · $6.70 total</h3>
-          <div class="coin-equations"><span>d + q = 46</span><span>0.10d + 0.25q = 6.70</span></div>
+          <div class="coin-equations"><span>${mathMarkup(String.raw`d+q=46`)}</span><span>${mathMarkup(String.raw`0.10d+0.25q=6.70`)}</span></div>
           <label class="range-label" for="quarters-range"><span>Adjust the number of quarters</span><output id="quarters-output">10</output></label>
           <input id="quarters-range" type="range" min="0" max="46" value="10" />
           <div class="coin-totals">
@@ -192,10 +193,10 @@ root.innerHTML = `
         <article class="parameter-lab" data-reveal>
           <div class="tool-label">Parameter explorer</div>
           <h3>What changes when a changes?</h3>
-          <div class="system-brace system-brace--light"><span>x + y = 0</span><span>x + ay = 4</span></div>
+          <div class="system-brace system-brace--light"><span>${mathMarkup(String.raw`x+y=0`)}</span><span>${mathMarkup(String.raw`x+ay=4`)}</span></div>
           <label for="parameter-a">Choose a <input id="parameter-a" type="number" step="1" value="2" /></label>
           <div class="parameter-result" id="parameter-result" aria-live="polite"></div>
-          <p class="parameter-rule">Subtracting the equations gives <strong>(a − 1)y = 4</strong>. Always inspect the value that makes the coefficient zero.</p>
+          <p class="parameter-rule">Subtracting the equations gives <strong>${mathMarkup(String.raw`(a-1)y=4`)}</strong>. Always inspect the value that makes the coefficient zero.</p>
         </article>
       </div>
     </section>
@@ -209,7 +210,7 @@ root.innerHTML = `
       <div class="readiness-grid">
         <article class="check-card" data-reveal>
           <span>A · classify</span>
-          <h3>3x − 4y = 16<br>−9x + 12y = −48</h3>
+          <h3>${mathMarkup(String.raw`3x-4y=16`)}<br>${mathMarkup(String.raw`-9x+12y=-48`)}</h3>
           <label for="check-a">Number of solutions</label>
           <select id="check-a"><option value="">Choose…</option><option value="one">One</option><option value="none">None</option><option value="infinite">Infinitely many</option></select>
           <button type="button" data-check="a">Check reasoning</button>
@@ -217,7 +218,7 @@ root.innerHTML = `
         </article>
         <article class="check-card" data-reveal>
           <span>B · force parallel</span>
-          <h3>6x + 2y = 8<br>kx − y = 5</h3>
+          <h3>${mathMarkup(String.raw`6x+2y=8`)}<br>${mathMarkup(String.raw`kx-y=5`)}</h3>
           <label for="check-b">The system has no solution when k =</label>
           <input id="check-b" type="number" step="1" />
           <button type="button" data-check="b">Check value</button>
@@ -225,7 +226,7 @@ root.innerHTML = `
         </article>
         <article class="check-card" data-reveal>
           <span>F · inspect the parameter</span>
-          <h3>x + y = 0<br>x + ay = 4</h3>
+          <h3>${mathMarkup(String.raw`x+y=0`)}<br>${mathMarkup(String.raw`x+ay=4`)}</h3>
           <label for="check-f">Which a-value creates the special case?</label>
           <input id="check-f" type="number" step="1" />
           <button type="button" data-check="f">Check value</button>
@@ -241,6 +242,8 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({ next: { href: "pages/sections/9-2.html", label: "Section 9.2 · Three variables" } })}
 `;
+
+typesetMath(root);
 
 function readCoefficients() {
   return ["a1", "b1", "c1", "a2", "b2", "c2"].map((id) =>
@@ -414,12 +417,14 @@ function updateParameterLab() {
   const a = Number(parameterInput.value);
   const result = document.querySelector("#parameter-result");
   if (nearlyEqual(a, 1)) {
-    result.innerHTML = `<span class="parameter-result__status">No solution</span><strong>0 = 4 is a contradiction.</strong><p>When a = 1, both equations have the same left side but different constants.</p>`;
+    result.innerHTML = `<span class="parameter-result__status">No solution</span><strong>${mathMarkup(String.raw`0=4`)} is a contradiction.</strong><p>When ${mathMarkup(String.raw`a=1`)}, both equations have the same left side but different constants.</p>`;
+    typesetMath(result);
     return;
   }
   const y = 4 / (a - 1);
   const x = -y;
-  result.innerHTML = `<span class="parameter-result__status">One solution</span><strong>(x, y) = (${formatNumber(x)}, ${formatNumber(y)})</strong><p>In symbols: x = 4/(1 − a), y = 4/(a − 1), with a ≠ 1.</p>`;
+  result.innerHTML = `<span class="parameter-result__status">One solution</span><strong>${mathMarkup(String.raw`(x,y)=(${formatNumber(x)},${formatNumber(y)})`)}</strong><p>In symbols: ${mathMarkup(String.raw`x=\frac{4}{1-a},\quad y=\frac{4}{a-1},\quad a\ne1`)}.</p>`;
+  typesetMath(result);
 }
 parameterInput.addEventListener("input", updateParameterLab);
 

@@ -1,4 +1,5 @@
 import "../assets/sass/lesson.sass";
+import { mathMarkup, typesetMath } from "./math";
 import {
   formatNumber,
   initLessonChrome,
@@ -31,7 +32,7 @@ root.innerHTML = `
         <span class="plane-art plane-art--two"></span>
         <span class="plane-art plane-art--three"></span>
         <span class="plane-art__point"></span>
-        <div class="plane-art__equation">ax + by + cz = d</div>
+        <div class="plane-art__equation">${mathMarkup(String.raw`ax+by+cz=d`)}</div>
       </div>
     </section>
 
@@ -90,23 +91,23 @@ root.innerHTML = `
         <div class="funnel__stage funnel__stage--three">
           <span>Original system</span>
           <div class="numbered-system">
-            <p><i class="eq-number">1</i> 3x + 2y − z = −7</p>
-            <p><i class="eq-number">2</i> 6x − y + 3z = −4</p>
-            <p><i class="eq-number">3</i> x + 10y − 2z = 2</p>
+            <p><i class="eq-number">1</i> ${mathMarkup(String.raw`3x+2y-z=-7`)}</p>
+            <p><i class="eq-number">2</i> ${mathMarkup(String.raw`6x-y+3z=-4`)}</p>
+            <p><i class="eq-number">3</i> ${mathMarkup(String.raw`x+10y-2z=2`)}</p>
           </div>
         </div>
         <div class="funnel__arrow"><span>Eliminate z twice</span>↓</div>
         <div class="funnel__stage funnel__stage--two">
           <span>Two-variable system</span>
           <div class="numbered-system">
-            <p>3<i class="eq-number">1</i> + <i class="eq-number">2</i> → 15x + 5y = −25</p>
-            <p>2<i class="eq-number">1</i> − <i class="eq-number">3</i> → 5x − 6y = −16</p>
+            <p>${mathMarkup(String.raw`3(1)+(2)\longrightarrow 15x+5y=-25`)}</p>
+            <p>${mathMarkup(String.raw`2(1)-(3)\longrightarrow 5x-6y=-16`)}</p>
           </div>
         </div>
         <div class="funnel__arrow"><span>Simplify and solve</span>↓</div>
         <div class="funnel__stage funnel__stage--one">
           <span>Shared point</span>
-          <strong>(x, y, z) = (−2, 1, 3)</strong>
+          <strong>${mathMarkup(String.raw`(x,y,z)=(-2,1,3)`)}</strong>
           <p>Verify it in all three original equations.</p>
         </div>
       </div>
@@ -129,16 +130,16 @@ root.innerHTML = `
         <div class="studio-source">
           <div class="tool-label">Elimination practice</div>
           <div class="numbered-system numbered-system--large">
-            <p><i class="eq-number">1</i> 3x − 2y + 9z = 2</p>
-            <p><i class="eq-number">2</i> −2x − 5y − 4z = 3</p>
-            <p><i class="eq-number">3</i> 5x − 3y + 3z = 15</p>
+            <p><i class="eq-number">1</i> ${mathMarkup(String.raw`3x-2y+9z=2`)}</p>
+            <p><i class="eq-number">2</i> ${mathMarkup(String.raw`-2x-5y-4z=3`)}</p>
+            <p><i class="eq-number">3</i> ${mathMarkup(String.raw`5x-3y+3z=15`)}</p>
           </div>
           <p class="studio-tip"><strong>Keep your equation balanced:</strong> every multiplier applies to every term and to the constant.</p>
         </div>
         <div class="studio-combinations">
           <article class="combination-card">
             <span>Replace Equation 3</span>
-            <h3>3<i class="eq-number">3</i> − <i class="eq-number">1</i></h3>
+            <h3>${mathMarkup(String.raw`3(3)-(1)`)}</h3>
             <div class="coefficient-answer">
               <label><span class="sr-only">x coefficient</span><input id="c3x" type="number" />x</label>
               <span>+</span>
@@ -151,7 +152,7 @@ root.innerHTML = `
           </article>
           <article class="combination-card">
             <span>Replace Equation 2</span>
-            <h3>9<i class="eq-number">2</i> + 4<i class="eq-number">1</i></h3>
+            <h3>${mathMarkup(String.raw`9(2)+4(1)`)}</h3>
             <div class="coefficient-answer">
               <label><span class="sr-only">x coefficient</span><input id="c2x" type="number" />x</label>
               <span>+</span>
@@ -175,9 +176,9 @@ root.innerHTML = `
 
       <div class="triangle-lab" data-reveal>
         <div class="triangle-system" aria-label="Triangular system">
-          <div><span>2x − y + 6z = 5</span><i>three variables</i></div>
-          <div><span>y + 4z = 0</span><i>two variables</i></div>
-          <div><span>−2z = 1</span><i>one variable</i></div>
+          <div><span>${mathMarkup(String.raw`2x-y+6z=5`)}</span><i>three variables</i></div>
+          <div><span>${mathMarkup(String.raw`y+4z=0`)}</span><i>two variables</i></div>
+          <div><span>${mathMarkup(String.raw`-2z=1`)}</span><i>one variable</i></div>
         </div>
         <div class="back-substitution">
           <label>Start at the bottom: z = <input id="triangle-z" type="number" step="0.5" /></label>
@@ -197,17 +198,17 @@ root.innerHTML = `
       </div>
 
       <div class="zero-row-grid" data-reveal>
-        <article class="zero-card zero-card--free"><span>0 = 0</span><h3>True for every value</h3><p>The row was redundant. At least one variable may be free, producing infinitely many solutions.</p></article>
-        <article class="zero-card zero-card--stop"><span>0 = 7</span><h3>Never true</h3><p>The equations contradict one another. The system has no solution.</p></article>
+        <article class="zero-card zero-card--free"><span>${mathMarkup(String.raw`0=0`)}</span><h3>True for every value</h3><p>The row was redundant. At least one variable may be free, producing infinitely many solutions.</p></article>
+        <article class="zero-card zero-card--stop"><span>${mathMarkup(String.raw`0=7`)}</span><h3>Never true</h3><p>The equations contradict one another. The system has no solution.</p></article>
       </div>
 
       <div class="parameter-line" data-reveal>
         <div class="parameter-line__copy">
           <div class="tool-label">Free-variable practice</div>
           <div class="numbered-system numbered-system--large">
-            <p>5x + y − 2z = 10</p>
-            <p>y + 3z = 5</p>
-            <p>0 = 0</p>
+            <p>${mathMarkup(String.raw`5x+y-2z=10`)}</p>
+            <p>${mathMarkup(String.raw`y+3z=5`)}</p>
+            <p>${mathMarkup(String.raw`0=0`)}</p>
           </div>
           <label for="classification-d">Classify the system</label>
           <select id="classification-d"><option value="">Choose…</option><option value="none">No solution</option><option value="one">One solution</option><option value="infinite">Infinitely many</option></select>
@@ -215,12 +216,12 @@ root.innerHTML = `
           <p id="feedback-d" class="answer-feedback" aria-live="polite"></p>
         </div>
         <div class="parameter-line__visual">
-          <span>Let z = t</span>
+          <span>Let ${mathMarkup(String.raw`z=t`)}</span>
           <label for="parameter-t">Move t <output id="parameter-t-output">0</output></label>
           <input id="parameter-t" type="range" min="-4" max="4" step="0.5" value="0" />
           <div class="solution-triple"><span>x</span><strong id="parameter-x">1</strong><span>y</span><strong id="parameter-y">5</strong><span>z</span><strong id="parameter-z">0</strong></div>
-          <div class="verification"><p>5x + y − 2z = <strong id="verify-one">10</strong></p><p>y + 3z = <strong id="verify-two">5</strong></p></div>
-          <p>Every t creates another solution: <strong>(x, y, z) = (1 + t, 5 − 3t, t)</strong>.</p>
+          <div class="verification"><p>${mathMarkup(String.raw`5x+y-2z=`)} <strong id="verify-one">10</strong></p><p>${mathMarkup(String.raw`y+3z=`)} <strong id="verify-two">5</strong></p></div>
+          <p>Every ${mathMarkup(String.raw`t`)} creates another solution: <strong>${mathMarkup(String.raw`(x,y,z)=(1+t,5-3t,t)`)}</strong>.</p>
         </div>
       </div>
     </section>
@@ -242,6 +243,8 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({ previous: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two variables" } })}
 `;
+
+typesetMath(root);
 
 class PlaneExplorer {
   constructor(canvas) {

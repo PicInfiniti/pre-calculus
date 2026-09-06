@@ -231,6 +231,15 @@
       background: var(--gold)
       color: var(--ink)
 
+.vertical-test-equation
+  padding: 0 0 .25rem
+  color: rgba(255, 255, 255, .88)
+  font-size: clamp(1.85rem, 3vw, 2.5rem)
+  text-align: left
+
+  + .tool-label
+    margin-top: 2rem
+
 .vertical-test-curve
   fill: none
   stroke: var(--violet)
@@ -339,11 +348,11 @@
     background: var(--paper)
     text-align: left
 
-    strong
+    > strong
       font-family: Georgia, serif
       font-size: .9rem
 
-    span
+    > span
       color: var(--ink-soft)
       font-size: .85rem
 
@@ -362,17 +371,17 @@
     border: 1px solid var(--line)
     border-radius: .35rem
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: var(--coral)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .45rem
     font-family: Georgia, serif
     font-size: .85rem
@@ -383,16 +392,16 @@
   border-radius: .35rem
   background: var(--gold)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     font-size: .85rem
     font-weight: 700
     letter-spacing: .07em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .55rem
     font-family: Georgia, serif
     font-size: .9rem
@@ -433,7 +442,7 @@
     align-items: center
     gap: .65rem
 
-    span
+    > span
       width: 1.5rem
       height: 1.5rem
       display: grid
@@ -486,17 +495,17 @@
   background: var(--ink)
   color: var(--white)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--green)
     font-size: .85rem
     font-weight: 700
     letter-spacing: .06em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .75rem
     font-family: Georgia, serif
     font-size: 1.16rem
@@ -596,7 +605,7 @@
   display: grid
   gap: .5rem
 
-  span
+  > span
     padding: .75rem .85rem
     display: grid
     grid-template-columns: 1fr auto
