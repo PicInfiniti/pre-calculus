@@ -1,4 +1,6 @@
 import "../assets/sass/lesson.sass";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 import {
   initLessonChrome,
   nearlyEqual,
@@ -8,6 +10,36 @@ import {
 } from "./shared";
 
 const root = document.querySelector("#app");
+
+function mathMarkup(expression, displayMode = false) {
+  return `<span class="section-27-math${displayMode ? " section-27-math--display" : ""}" data-katex="${encodeURIComponent(expression)}" data-katex-display="${displayMode}"></span>`;
+}
+
+function typesetMath(scope = document) {
+  scope.querySelectorAll("[data-katex]").forEach((element) => {
+    katex.render(decodeURIComponent(element.dataset.katex), element, {
+      displayMode: element.dataset.katexDisplay === "true",
+      throwOnError: false,
+      strict: "ignore",
+    });
+    element.removeAttribute("data-katex");
+    element.removeAttribute("data-katex-display");
+  });
+}
+
+function setMath(element, expression, displayMode = false) {
+  katex.render(expression, element, {
+    displayMode,
+    throwOnError: false,
+    strict: "ignore",
+  });
+}
+
+function setMathFeedback(element, correct, markup) {
+  setFeedback(element, correct, "");
+  element.innerHTML = markup;
+  typesetMath(element);
+}
 
 root.innerHTML = `
   ${renderLessonHeader("2.7")}
@@ -28,12 +60,12 @@ root.innerHTML = `
       <div class="combination-hero-art" aria-hidden="true" data-reveal>
         <div class="combination-hero-art__orbit"></div>
         <div class="hero-machine hero-machine--g"><span>inner</span><strong>g</strong><small>changes x first</small></div>
-        <div class="hero-machine hero-machine--f"><span>outer</span><strong>f</strong><small>receives g(x)</small></div>
-        <div class="hero-machine__path hero-machine__path--one"><i>x</i></div>
-        <div class="hero-machine__path hero-machine__path--two"><i>g(x)</i></div>
-        <div class="hero-machine__path hero-machine__path--three"><i>f(g(x))</i></div>
-        <div class="hero-operation-card">(f + g)(x)</div>
-        <div class="hero-composition-card">f ∘ g <span>right to left</span></div>
+        <div class="hero-machine hero-machine--f"><span>outer</span><strong>f</strong><small>receives ${mathMarkup(String.raw`g(x)`)}</small></div>
+        <div class="hero-machine__path hero-machine__path--one"><i>${mathMarkup(String.raw`x`)}</i></div>
+        <div class="hero-machine__path hero-machine__path--two"><i>${mathMarkup(String.raw`g(x)`)}</i></div>
+        <div class="hero-machine__path hero-machine__path--three"><i>${mathMarkup(String.raw`f(g(x))`)}</i></div>
+        <div class="hero-operation-card">${mathMarkup(String.raw`(f+g)(x)`)}</div>
+        <div class="hero-composition-card">${mathMarkup(String.raw`f\circ g`)} <span class="hero-composition-card__direction">right to left</span></div>
       </div>
     </section>
 
@@ -55,17 +87,17 @@ root.innerHTML = `
           <p>For addition, subtraction, and multiplication, intersect the original domains. Division adds one more rule: the denominator cannot be zero. Composition follows a different path—the inner output must belong to the outer domain.</p>
         </div>
         <div class="domain-rule-stack" data-reveal>
-          <article><span>Side by side</span><strong>D<sub>f ± g</sub> = D<sub>f</sub> ∩ D<sub>g</sub></strong></article>
-          <article><span>Quotient</span><strong>D<sub>f/g</sub> = D<sub>f</sub> ∩ D<sub>g</sub>, g(x) ≠ 0</strong></article>
-          <article><span>Composition</span><strong>x ∈ D<sub>g</sub> and g(x) ∈ D<sub>f</sub></strong></article>
+          <article><span>Side by side</span><strong>${mathMarkup(String.raw`D_{f\pm g}=D_f\cap D_g`)}</strong></article>
+          <article><span>Quotient</span><strong>${mathMarkup(String.raw`D_{f/g}=D_f\cap D_g,\quad g(x)\ne 0`)}</strong></article>
+          <article><span>Composition</span><strong>${mathMarkup(String.raw`x\in D_g\quad\text{and}\quad g(x)\in D_f`)}</strong></article>
         </div>
       </div>
 
       <div class="domain-gate-lab" data-reveal>
         <div class="domain-gate-lab__stage">
           <div class="domain-function-pair" aria-label="Functions used in the domain explorer">
-            <span><i>f</i><b>f(x) = √(x + 2)<small>Domain [−2, ∞)</small></b></span>
-            <span><i>g</i><b>g(x) = √(1 − x)<small>Domain (−∞, 1]</small></b></span>
+            <span><i>f</i><b>${mathMarkup(String.raw`f(x)=\sqrt{x+2}`)}<small>${mathMarkup(String.raw`D_f=[-2,\infty)`)}</small></b></span>
+            <span><i>g</i><b>${mathMarkup(String.raw`g(x)=\sqrt{1-x}`)}<small>${mathMarkup(String.raw`D_g=(-\infty,1]`)}</small></b></span>
           </div>
           <svg id="domain-number-line" viewBox="0 0 760 260" role="img" aria-label="Number line showing the domains of f and g, the selected combined function's domain, and the current test input"></svg>
           <div class="domain-gates" aria-live="polite">
@@ -79,13 +111,13 @@ root.innerHTML = `
         <div class="domain-gate-lab__controls">
           <p class="tool-label">Choose a combination</p>
           <div class="domain-operation-tabs" role="tablist" aria-label="Function combinations">
-            <button class="is-active" type="button" data-domain-operation="sum" role="tab" aria-selected="true">f + g</button>
-            <button type="button" data-domain-operation="quotient" role="tab" aria-selected="false">f / g</button>
-            <button type="button" data-domain-operation="composition" role="tab" aria-selected="false">g ∘ f</button>
+            <button class="is-active" type="button" data-domain-operation="sum" role="tab" aria-selected="true">${mathMarkup(String.raw`f+g`)}</button>
+            <button type="button" data-domain-operation="quotient" role="tab" aria-selected="false">${mathMarkup(String.raw`f/g`)}</button>
+            <button type="button" data-domain-operation="composition" role="tab" aria-selected="false">${mathMarkup(String.raw`g\circ f`)}</button>
           </div>
-          <div class="domain-live-formula" id="domain-formula">(f + g)(x) = √(x + 2) + √(1 − x)</div>
+          <div class="domain-live-formula" id="domain-formula"></div>
           <dl class="domain-summary">
-            <div><dt>Domain</dt><dd id="domain-answer">[−2, 1]</dd></div>
+            <div><dt>Domain</dt><dd id="domain-answer"></dd></div>
             <div><dt>Reason</dt><dd id="domain-reason">Both radicals must be real.</dd></div>
           </dl>
           <label class="domain-input-label" for="domain-x">Test x = <output id="domain-x-output">0</output></label>
@@ -105,25 +137,25 @@ root.innerHTML = `
       <div class="lesson-section__intro" data-reveal>
         <p class="lesson-kicker lesson-kicker--gold"><span>02</span> Composition order</p>
         <h2>Read the circles<br>from right to left.</h2>
-        <p>In (f ∘ g)(x) = f(g(x)), g acts first. Its output becomes the input of f. Reversing the order can produce a different function and a different answer.</p>
+        <p>In ${mathMarkup(String.raw`(f\circ g)(x)=f(g(x))`)}, ${mathMarkup(String.raw`g`)} acts first. Its output becomes the input of ${mathMarkup(String.raw`f`)}. Reversing the order can produce a different function and a different answer.</p>
       </div>
 
       <div class="order-lab" data-reveal>
         <div class="order-lab__controls">
           <p class="tool-label">Two price-changing functions</p>
           <div class="order-function-definitions">
-            <article><span>f</span><div><strong>10% discount</strong><small>f(x) = 0.90x</small></div></article>
-            <article><span>g</span><div><strong>$100 rebate</strong><small>g(x) = x − 100</small></div></article>
+            <article><span>f</span><div><strong>10% discount</strong><small>${mathMarkup(String.raw`f(x)=0.90x`)}</small></div></article>
+            <article><span>g</span><div><strong>$100 rebate</strong><small>${mathMarkup(String.raw`g(x)=x-100`)}</small></div></article>
           </div>
           <label for="order-price">Sticker price <output id="order-price-output">$800</output></label>
           <input id="order-price" type="range" min="200" max="2000" step="25" value="800" />
           <div class="order-choice" role="tablist" aria-label="Composition order">
-            <button class="is-active" type="button" data-order="fg" role="tab" aria-selected="true"><span>f ∘ g</span>rebate, then discount</button>
-            <button type="button" data-order="gf" role="tab" aria-selected="false"><span>g ∘ f</span>discount, then rebate</button>
+            <button class="is-active" type="button" data-order="fg" role="tab" aria-selected="true"><span>${mathMarkup(String.raw`f\circ g`)}</span>rebate, then discount</button>
+            <button type="button" data-order="gf" role="tab" aria-selected="false"><span>${mathMarkup(String.raw`g\circ f`)}</span>discount, then rebate</button>
           </div>
         </div>
         <div class="order-machine" aria-live="polite">
-          <div class="order-machine__formula" id="order-formula">(f ∘ g)(x) = 0.90(x − 100)</div>
+          <div class="order-machine__formula" id="order-formula"></div>
           <div class="order-machine__track">
             <article><span>input</span><strong id="order-step-input">$800</strong></article>
             <i>→</i>
@@ -132,8 +164,8 @@ root.innerHTML = `
             <article class="order-machine__outer"><span id="order-outer-label">f acts second</span><strong id="order-step-final">$630</strong></article>
           </div>
           <div class="order-comparison">
-            <div><span>f ∘ g</span><b id="order-fg-total">$630</b><i id="order-fg-bar"></i></div>
-            <div><span>g ∘ f</span><b id="order-gf-total">$620</b><i id="order-gf-bar"></i></div>
+            <div><span>${mathMarkup(String.raw`f\circ g`)}</span><b id="order-fg-total">$630</b><i id="order-fg-bar"></i></div>
+            <div><span>${mathMarkup(String.raw`g\circ f`)}</span><b id="order-gf-total">$620</b><i id="order-gf-bar"></i></div>
           </div>
           <p id="order-insight">Discounting first and subtracting the rebate second saves $10 more.</p>
         </div>
@@ -149,15 +181,15 @@ root.innerHTML = `
 
       <div class="peel-lab" data-reveal>
         <div class="peel-lab__menu" role="tablist" aria-label="Expressions to decompose">
-          <button class="is-active" type="button" data-peel="power" role="tab" aria-selected="true"><span>A</span><b>(5 − ∛x)<sup>7</sup></b></button>
-          <button type="button" data-peel="rational" role="tab" aria-selected="false"><span>B</span><b>t²/(t² + 4)</b></button>
-          <button type="button" data-peel="radical" role="tab" aria-selected="false"><span>C</span><b>√(s³ + 4s)</b></button>
-          <button type="button" data-peel="triple" role="tab" aria-selected="false"><span>D</span><b>3 − ⁴√(5x)</b></button>
+          <button class="is-active" type="button" data-peel="power" role="tab" aria-selected="true"><span>A</span><b>${mathMarkup(String.raw`(5-\sqrt[3]{x})^7`)}</b></button>
+          <button type="button" data-peel="rational" role="tab" aria-selected="false"><span>B</span><b>${mathMarkup(String.raw`\frac{t^2}{t^2+4}`)}</b></button>
+          <button type="button" data-peel="radical" role="tab" aria-selected="false"><span>C</span><b>${mathMarkup(String.raw`\sqrt{s^3+4s}`)}</b></button>
+          <button type="button" data-peel="triple" role="tab" aria-selected="false"><span>D</span><b>${mathMarkup(String.raw`3-\sqrt[4]{5x}`)}</b></button>
         </div>
         <div class="peel-lab__workspace">
           <div class="peel-expression">
             <span>Target expression</span>
-            <strong id="peel-target">F(x) = (5 − ∛x)⁷</strong>
+            <strong id="peel-target"></strong>
             <p id="peel-prompt">The seventh power happens last, so keep the entire “5 minus” expression in the outer function.</p>
           </div>
           <div class="peel-pipeline" id="peel-pipeline" aria-live="polite"></div>
@@ -171,7 +203,7 @@ root.innerHTML = `
 
       <aside class="composition-reading" data-reveal>
         <span>Say it aloud</span>
-        <p><strong>f ∘ g ∘ h</strong> means “h first, then g, then f.” Evaluation always begins beside the input.</p>
+        <p><strong>${mathMarkup(String.raw`f\circ g\circ h`)}</strong> means “h first, then g, then f.” Evaluation always begins beside the input.</p>
       </aside>
     </section>
 
@@ -207,13 +239,13 @@ root.innerHTML = `
           <label for="balloon-time">Time t <output id="balloon-time-output">6 s</output></label>
           <input id="balloon-time" type="range" min="0" max="12" step="0.5" value="6" />
           <div class="model-pipeline">
-            <article><span>time → radius</span><strong>r = f(t) = 5t</strong><small id="balloon-radius-readout">r = 30 cm</small></article>
+            <article><span>time → radius</span><strong>${mathMarkup(String.raw`r=f(t)=5t`)}</strong><small id="balloon-radius-readout"></small></article>
             <i>→</i>
-            <article><span>radius → volume</span><strong>V = g(r) = 4πr³/3</strong><small id="balloon-volume-readout">V = 36,000π cm³</small></article>
+            <article><span>radius → volume</span><strong>${mathMarkup(String.raw`V=g(r)=\frac{4}{3}\pi r^3`)}</strong><small id="balloon-volume-readout"></small></article>
           </div>
           <div class="model-composite">
             <span>Direct time-to-volume model</span>
-            <strong>(g ∘ f)(t) = 4π(5t)³/3 = 500πt³/3</strong>
+            <strong>${mathMarkup(String.raw`(g\circ f)(t)=\frac{4}{3}\pi(5t)^3=\frac{500}{3}\pi t^3`, true)}</strong>
             <p id="balloon-meaning">At 6 seconds, the composite returns the balloon’s volume directly from time.</p>
           </div>
         </div>
@@ -227,10 +259,10 @@ root.innerHTML = `
         </div>
         <button id="blueprint-reveal" type="button" aria-expanded="false">Reveal one construction</button>
         <div class="domain-blueprint__answer" id="blueprint-answer" hidden>
-          <span>Inner</span><strong>g(x) = x²</strong>
+          <span>Inner</span><strong>${mathMarkup(String.raw`g(x)=x^2`)}</strong>
           <i>→</i>
-          <span>Outer</span><strong>f(u) = √((4 − u)/u)</strong>
-          <p>The outer domain is (0, 4]. Requiring x² ∈ (0, 4] gives 0 &lt; x² ≤ 4, so −2 ≤ x &lt; 0 or 0 &lt; x ≤ 2.</p>
+          <span>Outer</span><strong>${mathMarkup(String.raw`f(u)=\sqrt{\frac{4-u}{u}}`)}</strong>
+          <p>The outer domain is ${mathMarkup(String.raw`(0,4]`)}. Requiring ${mathMarkup(String.raw`x^2\in(0,4]`)} gives ${mathMarkup(String.raw`0<x^2\le 4`)}, so ${mathMarkup(String.raw`-2\le x<0`)} or ${mathMarkup(String.raw`0<x\le 2`)}.</p>
         </div>
       </div>
     </section>
@@ -244,21 +276,21 @@ root.innerHTML = `
       <div class="combination-check-grid">
         <article class="combination-check" data-reveal>
           <span>Quotient domain</span>
-          <h3>Find the domain of √(x − 3)/(x − 5).</h3>
+          <h3>Find the domain of ${mathMarkup(String.raw`\frac{\sqrt{x-3}}{x-5}`)}.</h3>
           <label>Domain <select id="check-domain"><option value="">Choose…</option><option value="a">[3, ∞)</option><option value="correct">[3, 5) ∪ (5, ∞)</option><option value="b">(3, 5) ∪ (5, ∞)</option></select></label>
           <button id="check-domain-button" type="button">Check domain</button>
           <p class="answer-feedback" id="feedback-domain" aria-live="polite"></p>
         </article>
         <article class="combination-check" data-reveal>
           <span>Evaluate a composite</span>
-          <h3>If f(x) = 2x + 1 and g(x) = x², find (f ∘ g)(3).</h3>
+          <h3>If ${mathMarkup(String.raw`f(x)=2x+1`)} and ${mathMarkup(String.raw`g(x)=x^2`)}, find ${mathMarkup(String.raw`(f\circ g)(3)`)}.</h3>
           <label>Value <input id="check-composite" type="number" inputmode="decimal" /></label>
           <button id="check-composite-button" type="button">Check value</button>
           <p class="answer-feedback" id="feedback-composite" aria-live="polite"></p>
         </article>
         <article class="combination-check" data-reveal>
           <span>Decompose</span>
-          <h3>Write √(x³ + 4x) as f ∘ g.</h3>
+          <h3>Write ${mathMarkup(String.raw`\sqrt{x^3+4x}`)} as ${mathMarkup(String.raw`f\circ g`)}.</h3>
           <label>Pair <select id="check-decompose"><option value="">Choose…</option><option value="correct">g(x) = x³ + 4x; f(u) = √u</option><option value="a">g(x) = √x; f(u) = u³ + 4u</option><option value="b">g(x) = x³; f(u) = √u + 4u</option></select></label>
           <button id="check-decompose-button" type="button">Check pair</button>
           <p class="answer-feedback" id="feedback-decompose" aria-live="polite"></p>
@@ -284,6 +316,8 @@ root.innerHTML = `
   })}
 `;
 
+typesetMath(root);
+
 function formatValue(value, digits = 2) {
   if (!Number.isFinite(value)) return "undefined";
   const rounded = Number(value.toFixed(digits));
@@ -303,10 +337,16 @@ function formatPlainNumber(value) {
   return new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
 }
 
+function formatTexValue(value, digits = 2) {
+  const rounded = Number(value.toFixed(digits));
+  return String(rounded);
+}
+
 const domainCases = {
   sum: {
-    formula: "(f + g)(x) = √(x + 2) + √(1 − x)",
     domain: "[−2, 1]",
+    formulaTex: String.raw`(f+g)(x)=\sqrt{x+2}+\sqrt{1-x}`,
+    domainTex: String.raw`[-2,1]`,
     reason: "Both radicals must be real.",
     interval: [-2, 1],
     closed: [true, true],
@@ -314,32 +354,34 @@ const domainCases = {
       const first = x >= -2;
       const second = x <= 1;
       return [
-        { pass: first, title: first ? "f(x) is real" : "f(x) is not real", detail: `x + 2 ${first ? "≥" : "<"} 0` },
-        { pass: second, title: second ? "g(x) is real" : "g(x) is not real", detail: `1 − x ${second ? "≥" : "<"} 0` },
-        { pass: first && second, title: first && second ? "Input accepted" : "Input blocked", detail: first && second ? `Value ≈ ${formatValue(Math.sqrt(x + 2) + Math.sqrt(1 - x))}` : "Both gates must pass" },
+        { pass: first, titleMarkup: `${mathMarkup(String.raw`f(x)`)} is ${first ? "real" : "not real"}`, detailTex: String.raw`x+2${first ? String.raw`\ge` : "<"}0` },
+        { pass: second, titleMarkup: `${mathMarkup(String.raw`g(x)`)} is ${second ? "real" : "not real"}`, detailTex: String.raw`1-x${second ? String.raw`\ge` : "<"}0` },
+        { pass: first && second, title: first && second ? "Input accepted" : "Input blocked", detailTex: first && second ? String.raw`\text{Value}\approx ${formatTexValue(Math.sqrt(x + 2) + Math.sqrt(1 - x))}` : null, detail: "Both gates must pass" },
       ];
     },
   },
   quotient: {
-    formula: "(f / g)(x) = √(x + 2) / √(1 − x)",
     domain: "[−2, 1)",
-    reason: "Both radicals must be real, and g(x) cannot equal zero.",
+    formulaTex: String.raw`\left(\frac{f}{g}\right)(x)=\frac{\sqrt{x+2}}{\sqrt{1-x}}`,
+    domainTex: String.raw`[-2,1)`,
+    reason: `Both radicals must be real, and ${mathMarkup(String.raw`g(x)\ne0`)}.`,
     interval: [-2, 1],
     closed: [true, false],
     gates(x) {
       const radicals = x >= -2 && x <= 1;
       const denominator = x < 1;
       return [
-        { pass: radicals, title: radicals ? "Radicals are real" : "A radical fails", detail: "−2 ≤ x ≤ 1" },
-        { pass: denominator, title: denominator ? "Denominator is nonzero" : "Division by zero", detail: `g(x) ${denominator ? "≠" : "="} 0` },
-        { pass: radicals && denominator, title: radicals && denominator ? "Input accepted" : "Input blocked", detail: radicals && denominator ? `Value ≈ ${formatValue(Math.sqrt(x + 2) / Math.sqrt(1 - x))}` : "Every restriction must pass" },
+        { pass: radicals, title: radicals ? "Radicals are real" : "A radical fails", detailTex: String.raw`-2\le x\le 1` },
+        { pass: denominator, title: denominator ? "Denominator is nonzero" : "Division by zero", detailTex: String.raw`g(x)${denominator ? String.raw`\ne` : "="}0` },
+        { pass: radicals && denominator, title: radicals && denominator ? "Input accepted" : "Input blocked", detailTex: radicals && denominator ? String.raw`\text{Value}\approx ${formatTexValue(Math.sqrt(x + 2) / Math.sqrt(1 - x))}` : null, detail: "Every restriction must pass" },
       ];
     },
   },
   composition: {
-    formula: "(g ∘ f)(x) = √(1 − √(x + 2))",
     domain: "[−2, −1]",
-    reason: "The inner radical must be real and its output cannot exceed 1.",
+    formulaTex: String.raw`(g\circ f)(x)=\sqrt{1-\sqrt{x+2}}`,
+    domainTex: String.raw`[-2,-1]`,
+    reason: `The inner radical must be real and its output must satisfy ${mathMarkup(String.raw`f(x)\le1`)}.`,
     interval: [-2, -1],
     closed: [true, true],
     gates(x) {
@@ -347,9 +389,9 @@ const domainCases = {
       const innerValue = inner ? Math.sqrt(x + 2) : NaN;
       const outer = inner && innerValue <= 1;
       return [
-        { pass: inner, title: inner ? "Inner f works" : "Inner f is blocked", detail: inner ? `f(x) ≈ ${formatValue(innerValue)}` : "x + 2 < 0" },
-        { pass: outer, title: outer ? "Output fits g" : "Output does not fit g", detail: inner ? `f(x) ${outer ? "≤" : ">"} 1` : "No inner output to test" },
-        { pass: inner && outer, title: inner && outer ? "Input accepted" : "Input blocked", detail: inner && outer ? `Value ≈ ${formatValue(Math.sqrt(1 - innerValue))}` : "The output handoff fails" },
+        { pass: inner, title: inner ? "Inner f works" : "Inner f is blocked", detailTex: inner ? String.raw`f(x)\approx ${formatTexValue(innerValue)}` : String.raw`x+2<0` },
+        { pass: outer, title: outer ? "Output fits g" : "Output does not fit g", detailTex: inner ? String.raw`f(x)${outer ? String.raw`\le` : ">"}1` : null, detail: "No inner output to test" },
+        { pass: inner && outer, title: inner && outer ? "Input accepted" : "Input blocked", detailTex: inner && outer ? String.raw`\text{Value}\approx ${formatTexValue(Math.sqrt(1 - innerValue))}` : null, detail: "The output handoff fails" },
       ];
     },
   },
@@ -407,16 +449,29 @@ function renderDomainLab() {
   const selected = domainCases[activeDomainCase];
   const x = Number(domainInput.value);
   const gates = selected.gates(x);
-  document.querySelector("#domain-formula").textContent = selected.formula;
-  document.querySelector("#domain-answer").textContent = selected.domain;
-  document.querySelector("#domain-reason").textContent = selected.reason;
+  setMath(document.querySelector("#domain-formula"), selected.formulaTex, true);
+  setMath(document.querySelector("#domain-answer"), selected.domainTex);
+  const reason = document.querySelector("#domain-reason");
+  reason.innerHTML = selected.reason;
+  typesetMath(reason);
   document.querySelector("#domain-x-output").textContent = formatValue(x, 1);
   ["one", "two", "three"].forEach((name, index) => {
     const element = document.querySelector(`#domain-gate-${name}`);
     element.classList.toggle("is-pass", gates[index].pass);
     element.classList.toggle("is-blocked", !gates[index].pass);
-    element.querySelector("strong").textContent = gates[index].title;
-    element.querySelector("small").textContent = gates[index].detail;
+    const title = element.querySelector("strong");
+    if (gates[index].titleMarkup) {
+      title.innerHTML = gates[index].titleMarkup;
+      typesetMath(title);
+    } else {
+      title.textContent = gates[index].title;
+    }
+    const detail = element.querySelector("small");
+    if (gates[index].detailTex) {
+      setMath(detail, gates[index].detailTex);
+    } else {
+      detail.textContent = gates[index].detail;
+    }
   });
   const accepted = gates[2].pass;
   const verdict = document.querySelector("#domain-verdict");
@@ -450,7 +505,11 @@ function renderOrderLab() {
   const gfFinal = gfMiddle - 100;
   const fg = activeOrder === "fg";
   document.querySelector("#order-price-output").textContent = formatMoney(price);
-  document.querySelector("#order-formula").textContent = fg ? "(f ∘ g)(x) = 0.90(x − 100)" : "(g ∘ f)(x) = 0.90x − 100";
+  setMath(
+    document.querySelector("#order-formula"),
+    fg ? String.raw`(f\circ g)(x)=0.90(x-100)` : String.raw`(g\circ f)(x)=0.90x-100`,
+    true,
+  );
   document.querySelector("#order-step-input").textContent = formatMoney(price);
   document.querySelector("#order-inner-label").textContent = fg ? "g acts first" : "f acts first";
   document.querySelector("#order-step-middle").textContent = formatMoney(fg ? fgMiddle : gfMiddle);
@@ -479,45 +538,45 @@ renderOrderLab();
 
 const peelCases = {
   power: {
-    target: "F(x) = (5 − ∛x)⁷",
+    targetTex: String.raw`F(x)=(5-\sqrt[3]{x})^7`,
     prompt: "The seventh power happens last, so keep the entire “5 minus” expression in the outer function.",
     layers: [
-      { label: "input", formula: "x" },
-      { label: "inner g", formula: "g(x) = ∛x" },
-      { label: "outer f", formula: "f(u) = (5 − u)⁷" },
+      { label: "input", formulaTex: String.raw`x` },
+      { label: "inner g", formulaTex: String.raw`g(x)=\sqrt[3]{x}` },
+      { label: "outer f", formulaTex: String.raw`f(u)=(5-u)^7` },
     ],
-    result: "F = f ∘ g, because f(g(x)) = (5 − ∛x)⁷.",
+    resultTex: String.raw`F=f\circ g,\qquad \text{because}\qquad f(g(x))=(5-\sqrt[3]{x})^7`,
   },
   rational: {
-    target: "G(t) = t²/(t² + 4)",
-    prompt: "The same t² appears twice. Treat that repeated expression as one inner output.",
+    targetTex: String.raw`G(t)=\frac{t^2}{t^2+4}`,
+    prompt: `The same ${mathMarkup(String.raw`t^2`)} appears twice. Treat that repeated expression as one inner output.`,
     layers: [
-      { label: "input", formula: "t" },
-      { label: "inner g", formula: "g(t) = t²" },
-      { label: "outer f", formula: "f(u) = u/(u + 4)" },
+      { label: "input", formulaTex: String.raw`t` },
+      { label: "inner g", formulaTex: String.raw`g(t)=t^2` },
+      { label: "outer f", formulaTex: String.raw`f(u)=\frac{u}{u+4}` },
     ],
-    result: "G = f ∘ g, because f(g(t)) = t²/(t² + 4).",
+    resultTex: String.raw`G=f\circ g,\qquad \text{because}\qquad f(g(t))=\frac{t^2}{t^2+4}`,
   },
   radical: {
-    target: "H(s) = √(s³ + 4s)",
+    targetTex: String.raw`H(s)=\sqrt{s^3+4s}`,
     prompt: "The square root happens last. Everything beneath it belongs to the inner function.",
     layers: [
-      { label: "input", formula: "s" },
-      { label: "inner g", formula: "g(s) = s³ + 4s" },
-      { label: "outer f", formula: "f(u) = √u" },
+      { label: "input", formulaTex: String.raw`s` },
+      { label: "inner g", formulaTex: String.raw`g(s)=s^3+4s` },
+      { label: "outer f", formulaTex: String.raw`f(u)=\sqrt{u}` },
     ],
-    result: "H = f ∘ g, because f(g(s)) = √(s³ + 4s).",
+    resultTex: String.raw`H=f\circ g,\qquad \text{because}\qquad f(g(s))=\sqrt{s^3+4s}`,
   },
   triple: {
-    target: "G(x) = 3 − ⁴√(5x)",
+    targetTex: String.raw`G(x)=3-\sqrt[4]{5x}`,
     prompt: "Follow the construction: multiply by 5, take a fourth root, then subtract from 3.",
     layers: [
-      { label: "input", formula: "x" },
-      { label: "inner h", formula: "h(x) = 5x" },
-      { label: "middle g", formula: "g(u) = ⁴√u" },
-      { label: "outer f", formula: "f(v) = 3 − v" },
+      { label: "input", formulaTex: String.raw`x` },
+      { label: "inner h", formulaTex: String.raw`h(x)=5x` },
+      { label: "middle g", formulaTex: String.raw`g(u)=\sqrt[4]{u}` },
+      { label: "outer f", formulaTex: String.raw`f(v)=3-v` },
     ],
-    result: "G = f ∘ g ∘ h. Reading right to left reproduces all three operations.",
+    resultTex: String.raw`G=f\circ g\circ h,\qquad \text{read from right to left}`,
   },
 };
 
@@ -526,22 +585,28 @@ let revealedLayers = 1;
 
 function renderPeelLab() {
   const selected = peelCases[activePeel];
-  document.querySelector("#peel-target").textContent = selected.target;
-  document.querySelector("#peel-prompt").textContent = selected.prompt;
-  document.querySelector("#peel-pipeline").innerHTML = selected.layers
+  setMath(document.querySelector("#peel-target"), selected.targetTex);
+  const prompt = document.querySelector("#peel-prompt");
+  prompt.innerHTML = selected.prompt;
+  typesetMath(prompt);
+  const pipeline = document.querySelector("#peel-pipeline");
+  pipeline.innerHTML = selected.layers
     .map((layer, index) => `
       ${index ? `<i class="peel-arrow ${index < revealedLayers ? "is-visible" : ""}" aria-hidden="true">→</i>` : ""}
       <article class="peel-layer ${index < revealedLayers ? "is-visible" : ""}">
         <span>${index < revealedLayers ? layer.label : "hidden layer"}</span>
-        <strong>${index < revealedLayers ? layer.formula : "?"}</strong>
+        <strong>${index < revealedLayers ? mathMarkup(layer.formulaTex) : "?"}</strong>
       </article>
     `)
     .join("");
+  typesetMath(pipeline);
   const complete = revealedLayers >= selected.layers.length;
   const nextButton = document.querySelector("#peel-next");
   nextButton.disabled = complete;
   nextButton.textContent = complete ? "All layers revealed" : "Peel the next layer";
-  document.querySelector("#peel-equivalence").textContent = complete ? selected.result : "";
+  const equivalence = document.querySelector("#peel-equivalence");
+  if (complete) setMath(equivalence, selected.resultTex);
+  else equivalence.textContent = "";
 }
 
 document.querySelectorAll("[data-peel]").forEach((button) => {
@@ -589,8 +654,14 @@ function renderBalloon() {
   radiusLabel.setAttribute("x", 310 + visualRadius / 2);
   radiusLabel.textContent = `r = ${formatValue(radius, 1)} cm`;
   document.querySelector("#balloon-time-output").textContent = `${formatValue(time, 1)} s`;
-  document.querySelector("#balloon-radius-readout").textContent = `r = ${formatValue(radius, 1)} cm`;
-  document.querySelector("#balloon-volume-readout").textContent = `V = ${formatPlainNumber(volumeCoefficient)}π cm³`;
+  setMath(
+    document.querySelector("#balloon-radius-readout"),
+    String.raw`r=${formatValue(radius, 1)}\,\mathrm{cm}`,
+  );
+  setMath(
+    document.querySelector("#balloon-volume-readout"),
+    String.raw`V=${formatPlainNumber(volumeCoefficient).replaceAll(",", "{,}")}\pi\,\mathrm{cm}^3`,
+  );
   document.querySelector("#balloon-meaning").textContent = `At ${formatValue(time, 1)} seconds, the composite returns the balloon’s volume directly from time.`;
 }
 
@@ -607,22 +678,46 @@ document.querySelector("#blueprint-reveal").addEventListener("click", (event) =>
 
 document.querySelector("#check-domain-button").addEventListener("click", () => {
   const correct = document.querySelector("#check-domain").value === "correct";
-  setFeedback(document.querySelector("#feedback-domain"), correct, correct ? "Correct. x = 3 is allowed by the radical, but x = 5 makes the denominator zero." : "Require x − 3 ≥ 0, then remove the value that makes x − 5 equal zero.");
+  setMathFeedback(
+    document.querySelector("#feedback-domain"),
+    correct,
+    correct
+      ? `Correct. ${mathMarkup(String.raw`x=3`)} is allowed by the radical, but ${mathMarkup(String.raw`x=5`)} makes the denominator zero.`
+      : `Require ${mathMarkup(String.raw`x-3\ge 0`)}, then remove the value that makes ${mathMarkup(String.raw`x-5`)} equal zero.`,
+  );
 });
 
 document.querySelector("#check-composite-button").addEventListener("click", () => {
   const correct = nearlyEqual(Number(document.querySelector("#check-composite").value), 19);
-  setFeedback(document.querySelector("#feedback-composite"), correct, correct ? "Correct. g(3) = 9 first, and f(9) = 2(9) + 1 = 19." : "Start with the inner function: find g(3), then use that result as f’s input.");
+  setMathFeedback(
+    document.querySelector("#feedback-composite"),
+    correct,
+    correct
+      ? `Correct. ${mathMarkup(String.raw`g(3)=9`)} first, and ${mathMarkup(String.raw`f(9)=2(9)+1=19`)}.`
+      : `Start with the inner function: find ${mathMarkup(String.raw`g(3)`)}, then use that result as ${mathMarkup(String.raw`f`)}’s input.`,
+  );
 });
 
 document.querySelector("#check-decompose-button").addEventListener("click", () => {
   const correct = document.querySelector("#check-decompose").value === "correct";
-  setFeedback(document.querySelector("#feedback-decompose"), correct, correct ? "Correct. Build x³ + 4x first, then take the square root of that entire output." : "Ask which operation happens last. The square root is the outer function.");
+  setMathFeedback(
+    document.querySelector("#feedback-decompose"),
+    correct,
+    correct
+      ? `Correct. Build ${mathMarkup(String.raw`x^3+4x`)} first, then take the square root of that entire output.`
+      : "Ask which operation happens last. The square root is the outer function.",
+  );
 });
 
 document.querySelector("#check-order-button").addEventListener("click", () => {
   const correct = document.querySelector("#check-order").value === "correct";
-  setFeedback(document.querySelector("#feedback-order"), correct, correct ? "Correct. 0.90(800) − 100 = $620, which is $10 less than 0.90(800 − 100) = $630." : "Compare 0.90(800 − 100) with 0.90(800) − 100. The order changes whether the rebate is discounted too.");
+  setMathFeedback(
+    document.querySelector("#feedback-order"),
+    correct,
+    correct
+      ? `Correct. ${mathMarkup(String.raw`0.90(800)-100=\$620`)}, which is $10 less than ${mathMarkup(String.raw`0.90(800-100)=\$630`)}.`
+      : `Compare ${mathMarkup(String.raw`0.90(800-100)`)} with ${mathMarkup(String.raw`0.90(800)-100`)}. The order changes whether the rebate is discounted too.`,
+  );
 });
 
 initLessonChrome();

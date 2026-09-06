@@ -1,6 +1,37 @@
 .lesson-hero--combinations
   --hero-accent: var(--green)
 
+.section-27-math
+  max-width: 100%
+  display: inline-block
+  vertical-align: middle
+
+  .katex
+    font-size: 1em
+
+.section-27-math--display
+  width: 100%
+  display: block
+
+.section-27-math .katex-display, .domain-live-formula .katex-display, .order-machine__formula .katex-display, .model-composite .katex-display
+  margin: 0
+
+.domain-live-formula, .order-machine__formula, .model-composite strong
+  overflow-x: auto
+  overflow-y: hidden
+
+.domain-rule-stack .katex
+  font-size: .93em
+
+.domain-operation-tabs .katex, .order-choice .katex
+  pointer-events: none
+
+.peel-lab__menu .katex
+  font-size: .95em
+
+.peel-equivalence .katex
+  color: #365f18
+
 .combination-hero-art
   position: relative
   min-height: 480px
@@ -168,7 +199,7 @@
   color: var(--white)
   transform: rotate(-3deg)
 
-  span
+  > .hero-composition-card__direction
     margin-left: .45rem
     color: var(--green)
     font-family: Ubuntu, Arial, sans-serif
@@ -218,17 +249,17 @@
     &:nth-child(3)
       border-left-color: var(--violet)
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .7rem
     font-weight: 700
     letter-spacing: .1em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .35rem
     font-family: Georgia, serif
     font-size: 1rem
@@ -254,7 +285,7 @@
   grid-template-columns: 1fr 1fr
   gap: .7rem
 
-  span
+  > span
     min-height: 3.2rem
     padding: .65rem .8rem
     display: flex
@@ -291,7 +322,7 @@
     font-style: italic
     font-weight: 700
 
-  span:last-child i
+  > span:last-child > i
     background: var(--violet)
 
 #domain-number-line
@@ -423,22 +454,22 @@
     &.is-blocked
       border-top-color: var(--coral)
 
-  span, strong, small
+  article > span, article > strong, article > small
     display: block
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .68rem
     font-weight: 700
     letter-spacing: .1em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .5rem
     font-size: .87rem
     line-height: 1.25
 
-  small
+  article > small
     margin-top: .35rem
     color: var(--ink-soft)
     font-size: .76rem
@@ -660,7 +691,7 @@
     font-size: .73rem
     line-height: 1.35
 
-    span
+    > span
       display: block
       color: var(--white)
       font-family: Georgia, serif
@@ -672,7 +703,7 @@
       background: var(--gold)
       color: var(--ink-soft)
 
-      span
+      > span
         color: var(--ink)
 
 .order-machine
@@ -711,17 +742,17 @@
     border-radius: .45rem
     text-align: center
 
-  span, strong
+  article > span, article > strong
     display: block
 
-  span
+  article > span
     color: rgba(255, 255, 255, .58)
     font-size: .68rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .35rem
     font-size: 1.25rem
 
@@ -742,7 +773,7 @@
     align-items: center
     gap: .7rem
 
-  span
+  div > span
     font-family: Georgia, serif
     font-weight: 700
 
@@ -837,17 +868,17 @@
   padding-bottom: 1.2rem
   border-bottom: 1px solid var(--line)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--coral)
     font-size: .7rem
     font-weight: 700
     letter-spacing: .1em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .5rem
     font-family: Georgia, serif
     font-size: clamp(1.35rem, 3vw, 2rem)
@@ -893,16 +924,16 @@
     color: var(--ink)
     box-shadow: 5px 5px 0 var(--green)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     font-size: .64rem
     font-weight: 700
     letter-spacing: .09em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .45rem
     font-family: Georgia, serif
     font-size: .88rem
@@ -1059,23 +1090,23 @@
     border-radius: .4rem
     background: var(--paper)
 
-  span, strong, small
+  article > span, article > strong, article > small
     display: block
 
-  span
+  article > span
     color: var(--ink-soft)
     font-size: .65rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  article > strong
     margin-top: .45rem
     font-family: Georgia, serif
     font-size: .9rem
     line-height: 1.4
 
-  small
+  article > small
     margin-top: .45rem
     color: var(--coral)
     font-size: .78rem
@@ -1088,17 +1119,17 @@
   background: var(--ink)
   color: var(--white)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--gold)
     font-size: .68rem
     font-weight: 700
     letter-spacing: .09em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .5rem
     font-family: Georgia, serif
     font-size: 1rem
@@ -1154,7 +1185,7 @@
   &[hidden]
     display: none
 
-  span
+  > span
     color: var(--coral)
     font-size: .68rem
     font-weight: 700
