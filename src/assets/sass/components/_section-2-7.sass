@@ -1,0 +1,1459 @@
+.lesson-hero--combinations
+  --hero-accent: var(--green)
+
+.combination-hero-art
+  position: relative
+  min-height: 480px
+
+.combination-hero-art__orbit
+  position: absolute
+  width: 410px
+  height: 410px
+  top: 50%
+  left: 50%
+  border: 1px solid var(--line)
+  border-radius: 50%
+  background-color: rgba(255, 253, 248, .66)
+  background-image: radial-gradient(circle at center, rgba(169, 223, 114, .2), transparent 58%), linear-gradient(rgba(7, 29, 51, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 29, 51, .055) 1px, transparent 1px)
+  background-size: auto, 31px 31px, 31px 31px
+  box-shadow: inset 0 0 0 1rem rgba(244, 240, 230, .56), var(--shadow)
+  transform: translate(-50%, -50%)
+
+.hero-machine
+  position: absolute
+  z-index: 3
+  width: 142px
+  min-height: 152px
+  padding: 1rem
+  display: grid
+  place-items: center
+  align-content: center
+  border: 3px solid var(--ink)
+  border-radius: 1.5rem
+  box-shadow: 8px 8px 0 rgba(7, 29, 51, .15)
+
+  span, small
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin: .25rem 0
+    font-family: Georgia, serif
+    font-size: 4rem
+    font-style: italic
+    line-height: 1
+
+  small
+    max-width: 7rem
+    line-height: 1.3
+    text-align: center
+
+.hero-machine--g
+  top: 30%
+  left: 17%
+  background: var(--violet)
+
+.hero-machine--f
+  top: 30%
+  right: 14%
+  background: var(--coral)
+  transform: rotate(2deg)
+
+.hero-machine__path
+  position: absolute
+  z-index: 4
+  height: 4px
+  top: 47%
+  background: var(--ink)
+
+  &::after
+    content: ''
+    position: absolute
+    width: 14px
+    height: 16px
+    top: 50%
+    right: -14px
+    background: var(--ink)
+    clip-path: polygon(0 0, 100% 50%, 0 100%)
+    transform: translateY(-50%)
+
+  i
+    position: absolute
+    min-width: 2.25rem
+    min-height: 2.25rem
+    padding: .35rem
+    top: 50%
+    display: grid
+    place-items: center
+    border: 2px solid var(--ink)
+    border-radius: 50%
+    background: var(--gold)
+    font-family: Georgia, serif
+    font-size: .8rem
+    font-style: normal
+    font-weight: 700
+    white-space: nowrap
+    transform: translateY(-50%)
+
+.hero-machine__path--one
+  --flow-distance: 36px
+  width: calc(16% - 1.15rem)
+  left: 1%
+
+  i
+    left: 0
+    animation: composition-flow-short 3.8s ease-in-out infinite
+
+.hero-machine__path--two
+  --flow-distance: 28px
+  width: calc(15% - 1.2rem)
+  left: 46%
+
+  i
+    left: 0
+    background: var(--green)
+    animation: composition-flow-short 3.8s .75s ease-in-out infinite
+
+.hero-machine__path--three
+  z-index: 2
+  width: auto
+  left: calc(86% + .4rem)
+  right: -8%
+  background: none
+
+  &::before
+    content: ''
+    position: absolute
+    height: 4px
+    top: 0
+    right: calc(4.7rem + 14px)
+    left: 0
+    background: var(--ink)
+
+  &::after
+    right: 4.7rem
+
+  i
+    right: 0
+    z-index: 5
+    min-width: 4.25rem
+    min-height: 2.55rem
+    padding: .45rem .65rem
+    background: var(--blue)
+    box-shadow: 0 8px 18px rgba(7, 29, 51, .2)
+    font-size: .82rem
+    animation: composition-pulse 3.8s 1.5s ease-in-out infinite
+
+.hero-operation-card, .hero-composition-card
+  position: absolute
+  z-index: 6
+  padding: .75rem 1rem
+  border-radius: .35rem
+  font-family: Georgia, serif
+  font-weight: 700
+  box-shadow: 0 14px 30px rgba(7, 29, 51, .15)
+
+.hero-operation-card
+  top: 8%
+  right: 4%
+  background: var(--gold)
+  transform: rotate(4deg)
+
+.hero-composition-card
+  bottom: 8%
+  left: 3%
+  background: var(--ink)
+  color: var(--white)
+  transform: rotate(-3deg)
+
+  span
+    margin-left: .45rem
+    color: var(--green)
+    font-family: Ubuntu, Arial, sans-serif
+    font-size: .7rem
+    letter-spacing: .06em
+    text-transform: uppercase
+
+@keyframes composition-flow-short
+  0%, 15%
+    transform: translate(0, -50%) scale(.8)
+    opacity: 0
+  30%, 62%
+    opacity: 1
+  78%, 100%
+    transform: translate(var(--flow-distance, 32px), -50%) scale(1)
+    opacity: 0
+
+@keyframes composition-pulse
+  0%, 30%, 100%
+    transform: translateY(-50%) scale(.96)
+  52%, 72%
+    transform: translateY(-50%) scale(1.06)
+
+.combination-section-lead
+  display: grid
+  grid-template-columns: minmax(0, 1.25fr) minmax(380px, .75fr)
+  align-items: end
+  gap: clamp(2rem, 6vw, 6rem)
+
+  .lesson-section__intro
+    max-width: none
+
+.domain-rule-stack
+  display: grid
+  gap: .65rem
+
+  article
+    padding: 1rem 1.15rem
+    border: 1px solid var(--line)
+    border-left: 6px solid var(--coral)
+    border-radius: .4rem
+    background: var(--white)
+
+    &:nth-child(2)
+      border-left-color: var(--gold)
+
+    &:nth-child(3)
+      border-left-color: var(--violet)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+    font-family: Georgia, serif
+    font-size: 1rem
+
+.domain-gate-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.22fr) minmax(350px, .78fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.domain-gate-lab__stage
+  min-width: 0
+  padding: clamp(1.2rem, 3vw, 2.2rem)
+  background-color: var(--paper)
+  background-image: radial-gradient(circle at 14% 12%, rgba(166, 146, 232, .18), transparent 30%)
+
+.domain-function-pair
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .7rem
+
+  span
+    min-height: 3.2rem
+    padding: .65rem .8rem
+    display: flex
+    align-items: center
+    gap: .6rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: rgba(255, 253, 248, .85)
+    font-family: Georgia, serif
+    font-size: 1rem
+
+  b, small
+    display: block
+
+  b
+    font-weight: 400
+
+  small
+    margin-top: .22rem
+    color: var(--ink-soft)
+    font-family: Ubuntu, Arial, sans-serif
+    font-size: .68rem
+    font-weight: 700
+
+  i
+    width: 1.8rem
+    height: 1.8rem
+    display: grid
+    place-items: center
+    flex: 0 0 auto
+    border-radius: 50%
+    background: var(--coral)
+    color: var(--white)
+    font-style: italic
+    font-weight: 700
+
+  span:last-child i
+    background: var(--violet)
+
+#domain-number-line
+  width: 100%
+  margin: .8rem 0 0
+  overflow: visible
+
+.domain-line__title
+  fill: var(--ink)
+  font-family: Ubuntu, Arial, sans-serif
+  font-size: 17px
+  font-weight: 700
+
+.domain-line__base
+  stroke: rgba(7, 29, 51, .45)
+  stroke-width: 3
+
+.domain-line__arrow
+  fill: rgba(7, 29, 51, .45)
+
+.domain-line__tick
+  stroke: rgba(7, 29, 51, .55)
+  stroke-width: 2
+
+.domain-line__label
+  fill: var(--ink-soft)
+  font-family: Ubuntu, Arial, sans-serif
+  font-size: 14px
+
+.domain-line__interval
+  stroke: var(--green)
+  stroke-linecap: round
+  stroke-width: 8
+
+.domain-line__endpoint
+  stroke: var(--ink)
+  stroke-width: 3
+
+  &.is-closed
+    fill: var(--green)
+
+  &.is-open
+    fill: var(--paper)
+
+.domain-line__marker-stem
+  stroke-width: 3
+  stroke-dasharray: 5 5
+
+  &.is-accepted
+    stroke: #4c7d20
+
+  &.is-blocked
+    stroke: var(--coral)
+
+.domain-line__marker
+  stroke: var(--ink)
+  stroke-width: 3
+
+  &.is-accepted
+    fill: var(--green)
+
+  &.is-blocked
+    fill: var(--coral)
+
+.domain-line__marker-label
+  fill: var(--ink)
+  font-family: Georgia, serif
+  font-size: 15px
+  font-style: italic
+  font-weight: 700
+
+.domain-source__line
+  stroke-linecap: round
+  stroke-width: 5
+
+.domain-source__endpoint
+  stroke: var(--ink)
+  stroke-width: 2.5
+
+.domain-source__label
+  font-family: Ubuntu, Arial, sans-serif
+  font-size: 13px
+  font-weight: 700
+
+.domain-source--f
+  .domain-source__line
+    stroke: var(--coral)
+
+  .domain-source__endpoint, .domain-source__arrow
+    fill: var(--coral)
+
+  .domain-source__label
+    fill: #b53c21
+
+.domain-source--g
+  .domain-source__line
+    stroke: var(--violet)
+
+  .domain-source__endpoint, .domain-source__arrow
+    fill: var(--violet)
+
+  .domain-source__label
+    fill: #5c489e
+
+.domain-gates
+  margin-top: 1.25rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr auto 1fr
+  align-items: stretch
+  gap: .55rem
+
+  > i
+    align-self: center
+    color: rgba(7, 29, 51, .4)
+    font-style: normal
+    font-weight: 700
+
+  article
+    min-height: 112px
+    padding: .85rem
+    border: 1px solid var(--line)
+    border-top: 6px solid var(--paper-deep)
+    border-radius: .4rem
+    background: var(--white)
+
+    &.is-pass
+      border-top-color: var(--green)
+
+    &.is-blocked
+      border-top-color: var(--coral)
+
+  span, strong, small
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  strong
+    margin-top: .5rem
+    font-size: .87rem
+    line-height: 1.25
+
+  small
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .76rem
+    line-height: 1.35
+
+.domain-gate-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+.domain-operation-tabs
+  margin-top: .75rem
+  padding: .3rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .3rem
+  border: 1px solid var(--line)
+  border-radius: 999px
+  background: var(--paper)
+
+  button
+    min-height: 2.7rem
+    border: 0
+    border-radius: 999px
+    background: transparent
+    font-family: Georgia, serif
+    font-size: 1rem
+    font-weight: 700
+
+    &.is-active
+      background: var(--ink)
+      color: var(--white)
+
+.domain-live-formula
+  min-height: 5rem
+  margin-top: .9rem
+  padding: 1rem
+  display: grid
+  place-items: center
+  border-radius: .4rem
+  background: var(--ink)
+  color: var(--white)
+  font-family: Georgia, serif
+  font-size: 1.08rem
+  line-height: 1.5
+  text-align: center
+
+.domain-summary
+  margin-top: .8rem
+  display: grid
+  gap: .55rem
+
+  div
+    padding: .75rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+
+  dt
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  dd
+    margin-top: .3rem
+    font-size: .86rem
+    font-weight: 700
+    line-height: 1.4
+
+.domain-input-label, .balloon-controls > label, .order-lab__controls > label
+  margin-top: 1rem
+  display: flex
+  justify-content: space-between
+  gap: 1rem
+  color: var(--ink-soft)
+  font-size: .85rem
+  font-weight: 700
+
+.domain-gate-lab__controls > input, .balloon-controls > input, .order-lab__controls > input
+  width: 100%
+  margin-top: .45rem
+  accent-color: var(--coral)
+
+.domain-verdict
+  min-height: 4.2rem
+  margin-top: .6rem
+  padding: .75rem .85rem
+  border-radius: .35rem
+
+  &.is-pass
+    background: rgba(169, 223, 114, .35)
+
+  &.is-blocked
+    background: rgba(255, 107, 72, .17)
+
+  strong, span
+    display: block
+
+  strong
+    font-size: .87rem
+
+  span
+    margin-top: .25rem
+    color: var(--ink-soft)
+    font-size: .77rem
+
+.domain-method
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: rgba(255, 253, 248, .65)
+
+  article
+    min-height: 145px
+    padding: 1.2rem
+    display: grid
+    grid-template-columns: 2rem 1fr
+    gap: .75rem
+
+    &:not(:last-child)
+      border-right: 1px solid var(--line)
+
+    > span
+      width: 2rem
+      height: 2rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--gold)
+      font-weight: 700
+
+  strong
+    font-size: .9rem
+
+  p
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .8rem
+    line-height: 1.5
+
+.order-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(330px, .74fr) minmax(0, 1.26fr)
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: rgba(255, 255, 255, .05)
+
+.order-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  border-right: 1px solid rgba(255, 255, 255, .16)
+
+  .tool-label
+    color: var(--gold)
+
+  > label
+    color: rgba(255, 255, 255, .74)
+
+  > input
+    accent-color: var(--gold)
+
+.order-function-definitions
+  margin-top: 1rem
+  display: grid
+  gap: .55rem
+
+  article
+    padding: .8rem
+    display: grid
+    grid-template-columns: 2.5rem 1fr
+    align-items: center
+    gap: .7rem
+    border: 1px solid rgba(255, 255, 255, .16)
+    border-radius: .4rem
+
+    > span
+      width: 2.5rem
+      height: 2.5rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--coral)
+      color: var(--white)
+      font-family: Georgia, serif
+      font-size: 1.3rem
+      font-style: italic
+      font-weight: 700
+
+    &:nth-child(2) > span
+      background: var(--violet)
+
+  strong, small
+    display: block
+
+  strong
+    font-size: .88rem
+
+  small
+    margin-top: .25rem
+    color: rgba(255, 255, 255, .62)
+    font-family: Georgia, serif
+
+.order-choice
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .5rem
+
+  button
+    min-height: 4.2rem
+    padding: .7rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .4rem
+    background: transparent
+    color: rgba(255, 255, 255, .68)
+    font-size: .73rem
+    line-height: 1.35
+
+    span
+      display: block
+      color: var(--white)
+      font-family: Georgia, serif
+      font-size: 1rem
+      font-weight: 700
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink-soft)
+
+      span
+        color: var(--ink)
+
+.order-machine
+  padding: clamp(1.5rem, 4vw, 3.2rem)
+  align-self: center
+
+.order-machine__formula
+  padding: 1rem
+  border-radius: .4rem
+  background: var(--white)
+  color: var(--ink)
+  font-family: Georgia, serif
+  font-size: clamp(1.05rem, 2vw, 1.35rem)
+  font-weight: 700
+  text-align: center
+
+.order-machine__track
+  margin-top: 1.25rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr auto 1fr
+  align-items: center
+  gap: .55rem
+
+  > i
+    color: var(--gold)
+    font-style: normal
+    font-size: 1.3rem
+
+  article
+    min-height: 92px
+    padding: .9rem
+    display: grid
+    place-items: center
+    align-content: center
+    border: 1px solid rgba(255, 255, 255, .18)
+    border-radius: .45rem
+    text-align: center
+
+  span, strong
+    display: block
+
+  span
+    color: rgba(255, 255, 255, .58)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+    font-size: 1.25rem
+
+  .order-machine__inner
+    background: rgba(166, 146, 232, .16)
+
+  .order-machine__outer
+    background: rgba(255, 107, 72, .16)
+
+.order-comparison
+  margin-top: 1.2rem
+  display: grid
+  gap: .65rem
+
+  div
+    display: grid
+    grid-template-columns: 4rem 4.8rem 1fr
+    align-items: center
+    gap: .7rem
+
+  span
+    font-family: Georgia, serif
+    font-weight: 700
+
+  b
+    color: var(--gold)
+    font-size: .9rem
+
+  i
+    min-width: 8%
+    height: .65rem
+    display: block
+    border-radius: 999px
+    background: var(--coral)
+    transition: width .3s ease
+
+  div:last-child i
+    background: var(--green)
+
+#order-insight
+  margin-top: 1.2rem
+  padding-top: 1rem
+  border-top: 1px solid rgba(255, 255, 255, .16)
+  color: rgba(255, 255, 255, .75)
+  font-size: .83rem
+  line-height: 1.55
+
+.peel-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(250px, .28fr) minmax(0, .72fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.peel-lab__menu
+  padding: 1rem
+  display: grid
+  align-content: start
+  gap: .55rem
+  border-right: 1px solid var(--line)
+  background: var(--ink)
+
+  button
+    min-height: 4rem
+    padding: .7rem
+    display: grid
+    grid-template-columns: 2rem 1fr
+    align-items: center
+    gap: .6rem
+    border: 1px solid rgba(255, 255, 255, .16)
+    border-radius: .4rem
+    background: transparent
+    color: var(--white)
+    font-family: Georgia, serif
+    font-size: .9rem
+    text-align: left
+
+    > span
+      width: 2rem
+      height: 2rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: rgba(255, 255, 255, .1)
+      font-family: Ubuntu, Arial, sans-serif
+      font-size: .72rem
+      font-weight: 700
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+      > span
+        background: var(--ink)
+        color: var(--white)
+
+    > b
+      min-width: 0
+      font-weight: 400
+      white-space: nowrap
+
+.peel-lab__workspace
+  min-height: 450px
+  padding: clamp(1.5rem, 4vw, 3rem)
+  display: flex
+  flex-direction: column
+
+.peel-expression
+  padding-bottom: 1.2rem
+  border-bottom: 1px solid var(--line)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  strong
+    margin-top: .5rem
+    font-family: Georgia, serif
+    font-size: clamp(1.35rem, 3vw, 2rem)
+
+  p
+    margin-top: .55rem
+    color: var(--ink-soft)
+    font-size: .83rem
+    line-height: 1.55
+
+.peel-pipeline
+  margin: auto 0
+  padding: 1.8rem 0
+  display: flex
+  align-items: stretch
+  justify-content: center
+  gap: .45rem
+
+.peel-arrow
+  align-self: center
+  color: rgba(7, 29, 51, .18)
+  font-style: normal
+  font-weight: 700
+
+  &.is-visible
+    color: var(--ink)
+
+.peel-layer
+  min-width: 112px
+  min-height: 96px
+  padding: .8rem
+  display: grid
+  place-items: center
+  align-content: center
+  border: 2px dashed rgba(7, 29, 51, .18)
+  border-radius: .55rem
+  color: rgba(7, 29, 51, .3)
+  text-align: center
+
+  &.is-visible
+    border: 2px solid var(--ink)
+    background: var(--paper)
+    color: var(--ink)
+    box-shadow: 5px 5px 0 var(--green)
+
+  span, strong
+    display: block
+
+  span
+    font-size: .64rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-family: Georgia, serif
+    font-size: .88rem
+    line-height: 1.35
+
+.peel-actions
+  display: flex
+  gap: .55rem
+
+  button
+    min-height: 2.8rem
+    padding: .65rem .9rem
+    border: 0
+    border-radius: .3rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .8rem
+    font-weight: 700
+
+    &:last-child
+      border: 1px solid var(--line)
+      background: transparent
+      color: var(--ink)
+
+    &:disabled
+      opacity: .55
+      cursor: default
+
+.peel-equivalence
+  min-height: 2.1rem
+  margin-top: .8rem
+  color: #365f18
+  font-size: .84rem
+  font-weight: 700
+  line-height: 1.5
+
+.composition-reading
+  margin-top: 1rem
+  padding: 1.2rem 1.4rem
+  display: grid
+  grid-template-columns: auto 1fr
+  align-items: center
+  gap: 1.2rem
+  border-radius: .5rem
+  background: var(--violet)
+
+  > span
+    padding: .45rem .6rem
+    border-radius: 999px
+    background: var(--ink)
+    color: var(--white)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  p
+    font-size: .9rem
+    line-height: 1.5
+
+  strong
+    font-family: Georgia, serif
+    font-size: 1rem
+
+.balloon-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.balloon-stage
+  position: relative
+  min-height: 540px
+  display: grid
+  place-items: center
+  overflow: hidden
+  background-color: #eaf3ed
+  background-image: radial-gradient(circle at 50% 42%, rgba(255, 209, 102, .4), transparent 40%), linear-gradient(rgba(7, 29, 51, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 29, 51, .055) 1px, transparent 1px)
+  background-size: auto, 34px 34px, 34px 34px
+
+  svg
+    position: relative
+    z-index: 2
+    width: min(100%, 620px)
+
+.balloon-knot
+  fill: var(--coral)
+  stroke: var(--ink)
+  stroke-width: 2
+
+.balloon-string
+  fill: none
+  stroke: var(--ink)
+  stroke-width: 2
+
+.balloon-radius-line
+  stroke: var(--ink)
+  stroke-dasharray: 5 5
+  stroke-width: 2
+
+.balloon-radius-label
+  fill: var(--ink)
+  font-family: Ubuntu, Arial, sans-serif
+  font-size: 14px
+  font-weight: 700
+  text-anchor: middle
+
+.balloon-stage__pulse
+  position: absolute
+  width: 65%
+  aspect-ratio: 1
+  border: 1px solid rgba(255, 107, 72, .3)
+  border-radius: 50%
+  animation: balloon-pulse 3s ease-out infinite
+
+@keyframes balloon-pulse
+  from
+    opacity: .65
+    transform: scale(.5)
+  to
+    opacity: 0
+    transform: scale(1.2)
+
+.balloon-controls
+  padding: clamp(1.5rem, 3vw, 2.8rem)
+  align-self: center
+
+  h3
+    margin-top: .6rem
+    font-size: clamp(1.35rem, 2.5vw, 1.8rem)
+    line-height: 1.15
+
+.model-pipeline
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr
+  align-items: stretch
+  gap: .5rem
+
+  > i
+    align-self: center
+    color: var(--coral)
+    font-style: normal
+    font-weight: 700
+
+  article
+    min-height: 112px
+    padding: .8rem
+    border: 1px solid var(--line)
+    border-radius: .4rem
+    background: var(--paper)
+
+  span, strong, small
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .65rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-family: Georgia, serif
+    font-size: .9rem
+    line-height: 1.4
+
+  small
+    margin-top: .45rem
+    color: var(--coral)
+    font-size: .78rem
+    font-weight: 700
+
+.model-composite
+  margin-top: .8rem
+  padding: 1rem
+  border-radius: .4rem
+  background: var(--ink)
+  color: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--gold)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  strong
+    margin-top: .5rem
+    font-family: Georgia, serif
+    font-size: 1rem
+    line-height: 1.45
+
+  p
+    margin-top: .5rem
+    color: rgba(255, 255, 255, .72)
+    font-size: .78rem
+    line-height: 1.5
+
+.domain-blueprint
+  margin-top: 1rem
+  padding: 1.35rem
+  display: grid
+  grid-template-columns: 1fr auto
+  align-items: center
+  gap: 1rem 2rem
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--gold)
+
+  h3
+    margin-top: .4rem
+    font-size: 1.25rem
+
+  p
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .84rem
+    line-height: 1.5
+
+  > button
+    min-height: 2.8rem
+    padding: .65rem .9rem
+    border: 0
+    border-radius: .3rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .8rem
+    font-weight: 700
+
+.domain-blueprint__answer
+  grid-column: 1 / -1
+  padding: 1rem
+  display: grid
+  grid-template-columns: auto auto auto auto auto
+  align-items: center
+  gap: .7rem
+  border-radius: .4rem
+  background: var(--white)
+
+  &[hidden]
+    display: none
+
+  span
+    color: var(--coral)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    font-family: Georgia, serif
+    font-size: .95rem
+
+  i
+    font-style: normal
+    font-weight: 700
+
+  p
+    grid-column: 1 / -1
+    margin-top: .2rem
+
+.readiness--combinations
+  background: rgba(166, 146, 232, .08)
+
+.combination-check-grid
+  margin-top: 2rem
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: .8rem
+
+.combination-check
+  padding: 1.25rem
+  display: flex
+  flex-direction: column
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  > span
+    color: var(--coral)
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  h3
+    margin-top: .65rem
+    font-family: Georgia, serif
+    font-size: 1.05rem
+    line-height: 1.45
+
+  label
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: 5rem 1fr
+    align-items: center
+    gap: .7rem
+    color: var(--ink-soft)
+    font-size: .82rem
+    font-weight: 700
+
+  input, select
+    width: 100%
+    min-height: 2.75rem
+    padding: .45rem .6rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+
+  button
+    width: 100%
+    min-height: 2.75rem
+    margin-top: .8rem
+    border: 0
+    border-radius: .3rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .82rem
+    font-weight: 700
+
+  .answer-feedback
+    min-height: 1.5rem
+    margin-top: .6rem
+
+.ready-banner--combinations
+  background: var(--green)
+
+@media (max-width: 1080px)
+  .combination-section-lead
+    grid-template-columns: 1fr
+
+  .domain-rule-stack
+    grid-template-columns: repeat(3, 1fr)
+
+  .domain-gate-lab, .order-lab, .peel-lab, .balloon-lab
+    grid-template-columns: 1fr
+
+  .domain-gate-lab__controls
+    border-top: 1px solid var(--line)
+
+  .order-lab__controls
+    border-right: 0
+    border-bottom: 1px solid rgba(255, 255, 255, .16)
+
+  .peel-lab__menu
+    grid-template-columns: repeat(4, 1fr)
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+  .balloon-stage
+    min-height: 500px
+
+@media (max-width: 760px)
+  .combination-hero-art
+    min-height: 370px
+
+  .combination-hero-art__orbit
+    width: 330px
+    height: 330px
+
+  .hero-machine
+    width: 112px
+    min-height: 128px
+    padding: .7rem
+
+    strong
+      font-size: 3rem
+
+  .hero-machine--g
+    left: 15%
+
+  .hero-machine--f
+    right: 12%
+
+  .hero-machine__path--three
+    width: auto
+    left: calc(88% + .35rem)
+    right: -4%
+    background: none
+
+    &::before
+      display: block
+      right: calc(3.8rem + 14px)
+
+    &::after
+      right: 3.8rem
+
+    i
+      min-width: 3.3rem
+      min-height: 2.2rem
+      padding: .35rem .5rem
+      font-size: .7rem
+
+  .domain-rule-stack, .domain-method, .combination-check-grid
+    grid-template-columns: 1fr
+
+  .domain-method article:not(:last-child)
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+  .domain-gates
+    grid-template-columns: 1fr
+
+    > i
+      transform: rotate(90deg)
+      justify-self: center
+
+  .domain-function-pair
+    grid-template-columns: 1fr
+
+  .order-machine__track
+    grid-template-columns: 1fr
+
+    > i
+      justify-self: center
+      transform: rotate(90deg)
+
+  .peel-lab__menu
+    grid-template-columns: 1fr 1fr
+
+  .peel-pipeline
+    align-items: stretch
+    flex-direction: column
+
+  .peel-arrow
+    transform: rotate(90deg)
+
+  .peel-layer
+    min-height: 80px
+
+  .composition-reading
+    grid-template-columns: 1fr
+
+  .balloon-stage
+    min-height: 410px
+
+  .model-pipeline
+    grid-template-columns: 1fr
+
+    > i
+      justify-self: center
+      transform: rotate(90deg)
+
+  .domain-blueprint
+    grid-template-columns: 1fr
+
+  .domain-blueprint__answer
+    grid-template-columns: 1fr
+
+    i
+      transform: rotate(90deg)
+
+  .combination-check label
+    grid-template-columns: 1fr
+
+@media (max-width: 480px)
+  .combination-hero-art
+    min-height: 320px
+
+  .combination-hero-art__orbit
+    width: 285px
+    height: 285px
+
+  .hero-machine
+    width: 95px
+    min-height: 112px
+
+    strong
+      font-size: 2.5rem
+
+    small
+      font-size: .58rem
+
+  .hero-machine--g
+    left: 13%
+
+  .hero-machine--f
+    right: 20%
+
+  .hero-machine__path--two
+    left: 44%
+    width: calc(9% - .9rem)
+
+  .hero-machine__path--one
+    width: calc(16% - 1.65rem)
+
+  .hero-machine__path--three
+    width: auto
+    left: calc(80% + .35rem)
+    right: -5%
+
+    &::before, &::after
+      right: 3.2rem
+
+    &::before
+      right: calc(3.2rem + 14px)
+
+  .hero-machine__path i
+    min-width: 1.8rem
+    min-height: 1.8rem
+    font-size: .65rem
+
+  .hero-machine__path--three i
+    min-width: 3rem
+    min-height: 2.2rem
+    font-size: .7rem
+
+  .hero-machine__path--one i, .hero-machine__path--two i
+    display: none
+
+  .hero-operation-card
+    top: 1%
+    right: 0
+
+  .hero-composition-card
+    bottom: 1%
+    left: 0
+
+  .domain-operation-tabs
+    border-radius: .4rem
+
+    button
+      padding: .5rem .2rem
+      border-radius: .3rem
+
+  .order-choice, .peel-lab__menu
+    grid-template-columns: 1fr
+
+  .order-comparison div
+    grid-template-columns: 3.6rem 4.4rem 1fr
+    gap: .4rem
+
+  .peel-actions
+    flex-direction: column
+
+  .balloon-stage
+    min-height: 340px
+
+@media (prefers-reduced-motion: reduce)
+  .hero-machine__path i, .balloon-stage__pulse
+    animation: none
+
+  .order-comparison i
+    transition: none
