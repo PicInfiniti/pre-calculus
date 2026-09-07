@@ -1,5 +1,5 @@
 const storageKey = "precalculus-reading-magnifier";
-const magnification = 1.65;
+const magnification = 2;
 
 function readStoredState() {
   try {
@@ -77,7 +77,9 @@ export function initReadingMagnifier() {
   lens.innerHTML = `
     <div class="reading-lens__glass">
       <div class="reading-lens__viewport">
-        <div class="reading-lens__page"></div>
+        <div class="reading-lens__positioner">
+          <div class="reading-lens__page"></div>
+        </div>
       </div>
       <span class="reading-lens__shine" aria-hidden="true"></span>
     </div>
@@ -89,6 +91,7 @@ export function initReadingMagnifier() {
   const tooltip = widget.querySelector(".reading-magnifier__tooltip");
   const hint = widget.querySelector(".reading-magnifier__hint");
   const liveRegion = widget.querySelector("[aria-live]");
+  const positioner = lens.querySelector(".reading-lens__positioner");
   const mirror = lens.querySelector(".reading-lens__page");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -116,6 +119,7 @@ export function initReadingMagnifier() {
     const bodyStyle = window.getComputedStyle(document.body);
     mirror.style.width = `${document.documentElement.clientWidth}px`;
     mirror.style.minHeight = `${document.documentElement.scrollHeight}px`;
+    mirror.style.zoom = magnification;
     mirror.style.background = bodyStyle.background;
     mirror.style.color = bodyStyle.color;
     mirror.style.fontFamily = bodyStyle.fontFamily;
@@ -160,7 +164,16 @@ export function initReadingMagnifier() {
 
     lens.style.left = `${left}px`;
     lens.style.top = `${top}px`;
-    mirror.style.transform = `translate3d(${radius - (x + window.scrollX) * magnification}px, ${radius - (y + window.scrollY) * magnification}px, 0) scale(${magnification})`;
+    const deviceScale = window.devicePixelRatio || 1;
+    const snapToDevicePixel = (value) => Math.round(value * deviceScale) / deviceScale;
+    const offsetX = snapToDevicePixel(
+      radius - (x + window.scrollX) * magnification,
+    );
+    const offsetY = snapToDevicePixel(
+      radius - (y + window.scrollY) * magnification,
+    );
+    positioner.style.left = `${offsetX}px`;
+    positioner.style.top = `${offsetY}px`;
     lens.classList.toggle("is-touch", mode === "touch");
     lens.classList.toggle("is-keyboard", mode === "keyboard");
     lens.classList.add("is-visible");

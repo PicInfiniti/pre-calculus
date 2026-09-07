@@ -141,16 +141,12 @@
   background: conic-gradient(from 205deg, #9b6407, #f6cf55 12%, #fff1a2 22%, #c4870d 39%, #ffe37a 55%, #a96e08 72%, #f9d765 88%, #9b6407)
   box-shadow: 0 25px 58px rgba(7, 29, 51, .3), inset 0 2px 3px rgba(255, 255, 255, .9), inset 0 -3px 5px rgba(99, 57, 0, .38), 0 0 0 2px rgba(255, 235, 143, .68)
   opacity: 0
-  transform: scale(.72)
-  transform-origin: center
   pointer-events: none
   visibility: hidden
-  will-change: left, top, transform
-  transition: opacity .16s ease, transform .22s cubic-bezier(.2, .8, .2, 1.2), visibility 0s linear .22s
+  transition: opacity .18s ease, visibility 0s linear .18s
 
   &.is-visible
     opacity: 1
-    transform: scale(1)
     visibility: visible
     transition-delay: 0s
 
@@ -170,14 +166,15 @@
   border-radius: 50%
   background: var(--paper)
 
-.reading-lens__page
+.reading-lens__positioner
   position: absolute
   top: 0
   left: 0
+
+.reading-lens__page
+  position: relative
   margin: 0
-  transform-origin: 0 0
   pointer-events: none
-  will-change: transform
 
   *, *::before, *::after
     pointer-events: none !important
