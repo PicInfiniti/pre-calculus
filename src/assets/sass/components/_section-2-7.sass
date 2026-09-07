@@ -4,7 +4,7 @@
 .domain-live-formula .katex-display, .order-machine__formula .katex-display, .model-composite .katex-display
   margin: 0
 
-.domain-live-formula, .order-machine__formula, .model-composite strong
+.domain-live-formula, .order-machine__formula
   overflow-x: auto
   overflow-y: hidden
 
@@ -868,6 +868,7 @@
 
   > strong
     margin-top: .5rem
+    padding: .3rem 0
     font-family: Georgia, serif
     font-size: clamp(1.35rem, 3vw, 2rem)
 
@@ -987,6 +988,12 @@
     font-size: 1rem
 
 .balloon-lab
+  --balloon-hue: 11
+  --balloon-saturation: 71%
+  --balloon-light: 89%
+  --balloon-middle: 71%
+  --balloon-deep: 58%
+  --balloon-pulse-duration: 2.13s
   margin-top: 3rem
   display: grid
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr)
@@ -1012,9 +1019,18 @@
     width: min(100%, 620px)
 
 .balloon-knot
-  fill: var(--coral)
+  fill: hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-deep))
   stroke: var(--ink)
   stroke-width: 2
+
+.balloon-fill__light
+  stop-color: hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-light))
+
+.balloon-fill__middle
+  stop-color: hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-middle))
+
+.balloon-fill__deep
+  stop-color: hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-deep))
 
 .balloon-string
   fill: none
@@ -1033,13 +1049,99 @@
   font-weight: 700
   text-anchor: middle
 
+.balloon-burst
+  opacity: 0
+  visibility: hidden
+  pointer-events: none
+  transform-box: view-box
+  transform-origin: 310px 246px
+
+.balloon-burst__ray
+  fill: none
+  stroke: var(--gold)
+  stroke-linecap: round
+  stroke-width: 7
+
+.balloon-burst__fragment
+  fill: var(--coral)
+  stroke: var(--ink)
+  stroke-linejoin: round
+  stroke-width: 2
+
+.balloon-burst__fragment--two, .balloon-burst__fragment--four
+  fill: var(--violet)
+
+.balloon-burst__label
+  fill: var(--ink)
+  font-family: Georgia, serif
+  font-size: 58px
+  font-weight: 700
+  paint-order: stroke
+  stroke: var(--white)
+  stroke-width: 12px
+  text-anchor: middle
+
+.balloon-stage.is-popped
+  #balloon-circle, #balloon-highlight, #balloon-knot, #balloon-string, #balloon-radius-line, #balloon-radius-label
+    animation: balloon-body-pop .72s ease-out both
+    transform-box: fill-box
+    transform-origin: center
+
+  .balloon-burst
+    visibility: visible
+    animation: balloon-burst-pop .72s cubic-bezier(.2, .8, .25, 1.15) both
+
+  .balloon-stage__pulse
+    animation: none
+    opacity: 0
+
 .balloon-stage__pulse
   position: absolute
   width: 65%
   aspect-ratio: 1
-  border: 1px solid rgba(255, 107, 72, .3)
+  border: 1px solid hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-deep), .35)
   border-radius: 50%
-  animation: balloon-pulse 3s ease-out infinite
+  animation: balloon-pulse var(--balloon-pulse-duration) ease-out infinite
+
+.balloon-pressure
+  position: absolute
+  z-index: 4
+  top: 1rem
+  left: 1rem
+  padding: .65rem .8rem
+  display: flex
+  align-items: center
+  gap: .6rem
+  border: 1px solid var(--line)
+  border-radius: 999px
+  background: rgba(255, 253, 248, .9)
+  box-shadow: 0 8px 22px rgba(7, 29, 51, .12)
+
+  > i
+    width: .72rem
+    height: .72rem
+    flex: 0 0 auto
+    border-radius: 50%
+    background: hsl(var(--balloon-hue), var(--balloon-saturation), var(--balloon-deep))
+
+  strong
+    color: var(--ink)
+    font-size: .72rem
+    letter-spacing: .07em
+    line-height: 1
+    text-transform: uppercase
+
+  &.is-caution
+    border-color: rgba(227, 172, 50, .65)
+
+  &.is-danger, &.is-popped
+    border-color: rgba(255, 107, 72, .72)
+
+  &.is-danger > i
+    animation: pressure-warning 1s ease-in-out infinite
+
+  &.is-popped > i
+    background: var(--coral)
 
 @keyframes balloon-pulse
   from
@@ -1048,6 +1150,38 @@
   to
     opacity: 0
     transform: scale(1.2)
+
+@keyframes pressure-warning
+  0%, 100%
+    box-shadow: 0 0 0 0 hsla(var(--balloon-hue), 85%, 48%, .15)
+    transform: scale(1)
+  50%
+    box-shadow: 0 0 0 .5rem hsla(var(--balloon-hue), 85%, 48%, .28)
+    transform: scale(1.12)
+
+@keyframes balloon-body-pop
+  0%
+    opacity: 1
+    transform: scale(1)
+  38%
+    opacity: 1
+    transform: scale(1.07)
+  48%, 100%
+    opacity: 0
+    transform: scale(1.18)
+
+@keyframes balloon-burst-pop
+  0%, 38%
+    opacity: 0
+    transform: scale(.62) rotate(-5deg)
+  52%
+    opacity: 1
+    transform: scale(1.08) rotate(2deg)
+  72%
+    transform: scale(.96) rotate(-1deg)
+  100%
+    opacity: 1
+    transform: scale(1) rotate(0)
 
 .balloon-controls
   padding: clamp(1.5rem, 3vw, 2.8rem)
@@ -1083,7 +1217,7 @@
 
   article > span
     color: var(--ink-soft)
-    font-size: .65rem
+    font-size: .76rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
@@ -1091,13 +1225,13 @@
   article > strong
     margin-top: .45rem
     font-family: Georgia, serif
-    font-size: .9rem
+    font-size: 1.05rem
     line-height: 1.4
 
   article > small
     margin-top: .45rem
     color: var(--coral)
-    font-size: .78rem
+    font-size: .94rem
     font-weight: 700
 
 .model-composite
@@ -1112,7 +1246,7 @@
 
   > span
     color: var(--gold)
-    font-size: .68rem
+    font-size: .78rem
     font-weight: 700
     letter-spacing: .09em
     text-transform: uppercase
@@ -1120,13 +1254,13 @@
   > strong
     margin-top: .5rem
     font-family: Georgia, serif
-    font-size: 1rem
+    font-size: 1.18rem
     line-height: 1.45
 
   p
     margin-top: .5rem
     color: rgba(255, 255, 255, .72)
-    font-size: .78rem
+    font-size: .9rem
     line-height: 1.5
 
 .domain-blueprint
@@ -1471,8 +1605,18 @@
     min-height: 340px
 
 @media (prefers-reduced-motion: reduce)
-  .hero-machine__path i, .balloon-stage__pulse
+  .hero-machine__path i, .balloon-stage__pulse, .balloon-pressure > i
     animation: none
+
+  .balloon-stage.is-popped
+    #balloon-circle, #balloon-highlight, #balloon-knot, #balloon-string, #balloon-radius-line, #balloon-radius-label
+      animation: none
+      opacity: 0
+
+    .balloon-burst
+      animation: none
+      opacity: 1
+      visibility: visible
 
   .order-comparison i
     transition: none

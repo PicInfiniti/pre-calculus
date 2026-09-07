@@ -194,9 +194,9 @@ root.innerHTML = `
           <svg id="balloon-svg" viewBox="0 0 620 540" role="img" aria-label="A balloon growing as time increases">
             <defs>
               <radialGradient id="balloon-fill" cx="36%" cy="28%" r="72%">
-                <stop offset="0" stop-color="#ffd8ce" />
-                <stop offset=".42" stop-color="#ff8a6c" />
-                <stop offset="1" stop-color="#ff6b48" />
+                <stop offset="0" class="balloon-fill__light" />
+                <stop offset=".42" class="balloon-fill__middle" />
+                <stop offset="1" class="balloon-fill__deep" />
               </radialGradient>
             </defs>
             <circle id="balloon-circle" cx="310" cy="245" r="90" fill="url(#balloon-fill)" />
@@ -205,8 +205,21 @@ root.innerHTML = `
             <path id="balloon-string" d="M310 354C292 395 335 421 310 490" class="balloon-string" />
             <line id="balloon-radius-line" x1="310" y1="245" x2="400" y2="245" class="balloon-radius-line" />
             <text id="balloon-radius-label" x="350" y="232" class="balloon-radius-label">r = 30 cm</text>
+            <g class="balloon-burst" aria-hidden="true">
+              <path class="balloon-burst__ray" d="M310 62V18M443 113l31-31M498 246h44M443 379l31 31M310 434v44M177 379l-31 31M122 246H78M177 113l-31-31" />
+              <path class="balloon-burst__fragment balloon-burst__fragment--one" d="M236 91l-23-27 36 10Z" />
+              <path class="balloon-burst__fragment balloon-burst__fragment--two" d="M431 105l33-14-17 34Z" />
+              <path class="balloon-burst__fragment balloon-burst__fragment--three" d="M470 320l31 20-37 5Z" />
+              <path class="balloon-burst__fragment balloon-burst__fragment--four" d="M226 405l-34 9 19-31Z" />
+              <path class="balloon-burst__fragment balloon-burst__fragment--five" d="M137 174l-29-18 35-7Z" />
+              <text x="310" y="262" class="balloon-burst__label">POP!</text>
+            </g>
           </svg>
           <div class="balloon-stage__pulse" aria-hidden="true"></div>
+          <div class="balloon-pressure is-safe" id="balloon-pressure" aria-live="polite">
+            <i aria-hidden="true"></i>
+            <strong>Stable</strong>
+          </div>
         </div>
         <div class="balloon-controls">
           <p class="tool-label">Inflation model</p>
@@ -610,6 +623,20 @@ const balloonTime = document.querySelector("#balloon-time");
 
 function renderBalloon() {
   const time = Number(balloonTime.value);
+  const popped = time >= 12;
+  const balloonLab = document.querySelector(".balloon-lab");
+  const pressureRatio = time / 12;
+  const balloonSaturation = Math.round(46 + pressureRatio * 50);
+  const balloonLight = Math.round(92 - pressureRatio * 6);
+  const balloonMiddle = Math.round(78 - pressureRatio * 14);
+  const balloonDeep = Math.round(68 - pressureRatio * 20);
+  const pulseDuration = 3.4 - pressureRatio * 2.55;
+  balloonLab.style.setProperty("--balloon-saturation", `${balloonSaturation}%`);
+  balloonLab.style.setProperty("--balloon-light", `${balloonLight}%`);
+  balloonLab.style.setProperty("--balloon-middle", `${balloonMiddle}%`);
+  balloonLab.style.setProperty("--balloon-deep", `${balloonDeep}%`);
+  balloonLab.style.setProperty("--balloon-pulse-duration", `${pulseDuration.toFixed(2)}s`);
+  balloonTime.style.accentColor = `hsl(11, ${balloonSaturation}%, ${balloonDeep}%)`;
   const radius = time * 5;
   const volumeCoefficient = (4 * radius ** 3) / 3;
   const visualRadius = 34 + (time / 12) * 154;
@@ -629,6 +656,18 @@ function renderBalloon() {
   radiusLabel.setAttribute("x", 310 + visualRadius / 2);
   radiusLabel.textContent = `r = ${formatValue(radius, 1)} cm`;
   document.querySelector("#balloon-time-output").textContent = `${formatValue(time, 1)} s`;
+  document.querySelector(".balloon-stage").classList.toggle("is-popped", popped);
+  document.querySelector("#balloon-svg").setAttribute("aria-label", popped ? "A balloon popping after reaching the maximum inflation time" : "A balloon growing as time increases");
+  const pressure = document.querySelector("#balloon-pressure");
+  const pressureState = popped ? "popped" : time >= 10 ? "danger" : time >= 7 ? "caution" : "safe";
+  const pressureCopy = {
+    safe: "Stable",
+    caution: "Pressure rising",
+    danger: "Near its limit",
+    popped: "Limit reached",
+  }[pressureState];
+  pressure.className = `balloon-pressure is-${pressureState}`;
+  pressure.querySelector("strong").textContent = pressureCopy;
   setMath(
     document.querySelector("#balloon-radius-readout"),
     String.raw`r=${formatValue(radius, 1)}\,\mathrm{cm}`,
@@ -637,7 +676,9 @@ function renderBalloon() {
     document.querySelector("#balloon-volume-readout"),
     String.raw`V=${formatPlainNumber(volumeCoefficient).replaceAll(",", "{,}")}\pi\,\mathrm{cm}^3`,
   );
-  document.querySelector("#balloon-meaning").textContent = `At ${formatValue(time, 1)} seconds, the composite returns the balloon’s volume directly from time.`;
+  document.querySelector("#balloon-meaning").textContent = popped
+    ? "At 12 seconds, the model reaches the demo’s inflation limit—the calculated radius is 60 cm, and the balloon pops."
+    : `At ${formatValue(time, 1)} seconds, the composite returns the balloon’s volume directly from time.`;
 }
 
 balloonTime.addEventListener("input", renderBalloon);
