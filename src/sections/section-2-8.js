@@ -41,11 +41,11 @@ root.innerHTML = `
           </defs>
           <rect x="42" y="32" width="536" height="410" rx="18" class="inverse-hero-art__paper" />
           <rect x="62" y="52" width="496" height="370" fill="url(#inverse-hero-grid)" class="inverse-hero-art__grid" />
-          <path d="M82 398L536 72" class="inverse-hero-art__mirror" />
-          <path d="M112 354C180 342 205 282 270 264S378 186 487 120" class="inverse-hero-art__curve inverse-hero-art__curve--forward" />
-          <path d="M144 376C156 308 216 283 234 218S312 110 378 88" class="inverse-hero-art__curve inverse-hero-art__curve--inverse" />
-          <circle cx="270" cy="264" r="9" class="inverse-hero-art__point inverse-hero-art__point--forward" />
-          <circle cx="234" cy="218" r="9" class="inverse-hero-art__point inverse-hero-art__point--inverse" />
+          <path d="M78 422L448 52" class="inverse-hero-art__mirror" />
+          <path d="M101.497 342.114C149.339 289.624 354.982 275.113 458.078 151.132" class="inverse-hero-art__curve inverse-hero-art__curve--forward" />
+          <path d="M157.886 398.503C210.376 350.661 224.887 145.018 348.868 41.922" class="inverse-hero-art__curve inverse-hero-art__curve--inverse" />
+          <circle cx="259.1" cy="273.4" r="9" class="inverse-hero-art__point inverse-hero-art__point--forward" />
+          <circle cx="226.6" cy="240.9" r="9" class="inverse-hero-art__point inverse-hero-art__point--inverse" />
         </svg>
         <span class="inverse-hero-art__tag inverse-hero-art__tag--forward">${mathMarkup(String.raw`(a,b)`)}</span>
         <span class="inverse-hero-art__tag inverse-hero-art__tag--inverse">${mathMarkup(String.raw`(b,a)`)}</span>
@@ -118,7 +118,7 @@ root.innerHTML = `
             <button type="button" data-horizontal="cubic" role="tab" aria-selected="false">Always rising</button>
           </div>
           <div class="horizontal-equation" id="horizontal-equation"></div>
-          <label for="horizontal-y">Move the line to ${mathMarkup(String.raw`y=`)} <output id="horizontal-y-output">0</output></label>
+          <label for="horizontal-y"><span>Move the line to ${mathMarkup(String.raw`y=`)}</span><output id="horizontal-y-output">0</output></label>
           <input id="horizontal-y" type="range" min="-1" max="4" step="0.1" value="0" />
           <div class="horizontal-result" id="horizontal-result" aria-live="polite"></div>
         </div>
@@ -158,10 +158,10 @@ root.innerHTML = `
             <article><span>Point on ${mathMarkup(String.raw`f^{-1}`)}</span><strong id="reflection-inverse-point"></strong></article>
           </div>
           <dl class="inverse-domain-swap">
-            <div><dt>${mathMarkup(String.raw`D_f`)}</dt><dd>${mathMarkup(String.raw`[-4,4]`)}</dd></div>
-            <div><dt>${mathMarkup(String.raw`R_f`)}</dt><dd>${mathMarkup(String.raw`[-3,4]`)}</dd></div>
-            <div><dt>${mathMarkup(String.raw`D_{f^{-1}}`)}</dt><dd>${mathMarkup(String.raw`[-3,4]`)}</dd></div>
-            <div><dt>${mathMarkup(String.raw`R_{f^{-1}}`)}</dt><dd>${mathMarkup(String.raw`[-4,4]`)}</dd></div>
+            <div><dt>${mathMarkup(String.raw`D_f`)}</dt><dd>${mathMarkup(String.raw`[-3,4]`)}</dd></div>
+            <div><dt>${mathMarkup(String.raw`R_f`)}</dt><dd>${mathMarkup(String.raw`[-2,2]`)}</dd></div>
+            <div><dt>${mathMarkup(String.raw`D_{f^{-1}}`)}</dt><dd>${mathMarkup(String.raw`[-2,2]`)}</dd></div>
+            <div><dt>${mathMarkup(String.raw`R_{f^{-1}}`)}</dt><dd>${mathMarkup(String.raw`[-3,4]`)}</dd></div>
           </dl>
         </div>
       </div>
@@ -249,10 +249,10 @@ root.innerHTML = `
         <article class="inverse-check" data-reveal>
           <span>One-to-one</span>
           <h3>Classify each domain choice.</h3>
-          <label>${mathMarkup(String.raw`r(t)=t^4-1`)} on all reals
+          <label><span>${mathMarkup(String.raw`r(t)=t^4-1`)} on all reals</span>
             <select id="check-quartic-full"><option value="">Choose…</option><option value="correct">Not one-to-one</option><option value="a">One-to-one</option></select>
           </label>
-          <label>${mathMarkup(String.raw`f(x)=x^4+5,\ 0\le x\le2`)}
+          <label><span>${mathMarkup(String.raw`f(x)=x^4+5,\ 0\le x\le2`)}</span>
             <select id="check-quartic-restricted"><option value="">Choose…</option><option value="a">Not one-to-one</option><option value="correct">One-to-one</option></select>
           </label>
           <button id="check-one-to-one" type="button">Check classifications</button>
@@ -302,6 +302,40 @@ root.innerHTML = `
 `;
 
 typesetMath(root);
+
+const heroForwardCurve = document.querySelector(".inverse-hero-art__curve--forward");
+const heroForwardPoint = document.querySelector(".inverse-hero-art__point--forward");
+const heroInversePoint = document.querySelector(".inverse-hero-art__point--inverse");
+const heroReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const heroCurveLength = heroForwardCurve.getTotalLength();
+let heroPointFrame = 0;
+let heroPointStart = 0;
+
+function positionHeroPoints(progress) {
+  const point = heroForwardCurve.getPointAtLength(heroCurveLength * progress);
+  heroForwardPoint.setAttribute("cx", point.x);
+  heroForwardPoint.setAttribute("cy", point.y);
+  heroInversePoint.setAttribute("cx", 500 - point.y);
+  heroInversePoint.setAttribute("cy", 500 - point.x);
+}
+
+function animateHeroPoints(timestamp) {
+  const elapsed = timestamp - heroPointStart;
+  const progress = 0.5 + 0.45 * Math.sin((elapsed / 12000) * Math.PI * 2);
+  positionHeroPoints(progress);
+  heroPointFrame = window.requestAnimationFrame(animateHeroPoints);
+}
+
+function syncHeroPointMotion() {
+  window.cancelAnimationFrame(heroPointFrame);
+  positionHeroPoints(0.5);
+  if (heroReducedMotion.matches) return;
+  heroPointStart = performance.now();
+  heroPointFrame = window.requestAnimationFrame(animateHeroPoints);
+}
+
+heroReducedMotion.addEventListener("change", syncHeroPointMotion);
+syncHeroPointMotion();
 
 function formatValue(value, digits = 2) {
   if (!Number.isFinite(value)) return "—";
@@ -393,35 +427,72 @@ document.querySelectorAll("[data-mapping]").forEach((button) => {
 });
 renderMapping("injective");
 
-function createMapper({ width, height, padding, xMin, xMax, yMin, yMax }) {
+function createMapper({ width, height, padding, xMin, xMax, yMin, yMax, equalScale = false }) {
+  let resolvedXMin = xMin;
+  let resolvedXMax = xMax;
+  let resolvedYMin = yMin;
+  let resolvedYMax = yMax;
+  const plotWidth = width - 2 * padding;
+  const plotHeight = height - 2 * padding;
+
+  if (equalScale) {
+    const xCenter = (xMin + xMax) / 2;
+    const yCenter = (yMin + yMax) / 2;
+    const xRange = xMax - xMin;
+    const yRange = yMax - yMin;
+    const plotRatio = plotWidth / plotHeight;
+
+    if (xRange / yRange < plotRatio) {
+      const expandedXRange = yRange * plotRatio;
+      resolvedXMin = xCenter - expandedXRange / 2;
+      resolvedXMax = xCenter + expandedXRange / 2;
+    } else {
+      const expandedYRange = xRange / plotRatio;
+      resolvedYMin = yCenter - expandedYRange / 2;
+      resolvedYMax = yCenter + expandedYRange / 2;
+    }
+  }
+
   return {
     width,
     height,
     padding,
-    xMin,
-    xMax,
-    yMin,
-    yMax,
+    xMin: resolvedXMin,
+    xMax: resolvedXMax,
+    yMin: resolvedYMin,
+    yMax: resolvedYMax,
+    equalScale,
     left: padding,
     right: width - padding,
     top: padding,
     bottom: height - padding,
     x(value) {
-      return padding + ((value - xMin) / (xMax - xMin)) * (width - 2 * padding);
+      return padding + ((value - resolvedXMin) / (resolvedXMax - resolvedXMin)) * plotWidth;
     },
     y(value) {
-      return height - padding - ((value - yMin) / (yMax - yMin)) * (height - 2 * padding);
+      return height - padding - ((value - resolvedYMin) / (resolvedYMax - resolvedYMin)) * plotHeight;
     },
   };
 }
 
 function graphGrid(mapper) {
   const parts = [];
-  for (let index = 0; index <= 10; index += 1) {
-    const x = mapper.left + (index / 10) * (mapper.right - mapper.left);
-    const y = mapper.top + (index / 10) * (mapper.bottom - mapper.top);
-    parts.push(`<line x1="${x}" y1="${mapper.top}" x2="${x}" y2="${mapper.bottom}" class="inverse-grid-line"/>`);
-    parts.push(`<line x1="${mapper.left}" y1="${y}" x2="${mapper.right}" y2="${y}" class="inverse-grid-line"/>`);
+  if (mapper.equalScale) {
+    for (let value = Math.ceil(mapper.xMin); value <= Math.floor(mapper.xMax); value += 1) {
+      const x = mapper.x(value);
+      parts.push(`<line x1="${x}" y1="${mapper.top}" x2="${x}" y2="${mapper.bottom}" class="inverse-grid-line"/>`);
+    }
+    for (let value = Math.ceil(mapper.yMin); value <= Math.floor(mapper.yMax); value += 1) {
+      const y = mapper.y(value);
+      parts.push(`<line x1="${mapper.left}" y1="${y}" x2="${mapper.right}" y2="${y}" class="inverse-grid-line"/>`);
+    }
+  } else {
+    for (let index = 0; index <= 10; index += 1) {
+      const x = mapper.left + (index / 10) * (mapper.right - mapper.left);
+      const y = mapper.top + (index / 10) * (mapper.bottom - mapper.top);
+      parts.push(`<line x1="${x}" y1="${mapper.top}" x2="${x}" y2="${mapper.bottom}" class="inverse-grid-line"/>`);
+      parts.push(`<line x1="${mapper.left}" y1="${y}" x2="${mapper.right}" y2="${y}" class="inverse-grid-line"/>`);
+    }
   }
   if (mapper.xMin <= 0 && mapper.xMax >= 0) parts.push(`<line x1="${mapper.x(0)}" y1="${mapper.top}" x2="${mapper.x(0)}" y2="${mapper.bottom}" class="inverse-axis"/>`);
   if (mapper.yMin <= 0 && mapper.yMax >= 0) parts.push(`<line x1="${mapper.left}" y1="${mapper.y(0)}" x2="${mapper.right}" y2="${mapper.y(0)}" class="inverse-axis"/>`);
@@ -505,7 +576,7 @@ const horizontalInput = document.querySelector("#horizontal-y");
 function renderHorizontalLab() {
   const selected = horizontalCases[horizontalCase];
   const y = Number(horizontalInput.value);
-  const mapper = createMapper({ width: 640, height: 500, padding: 48, xMin: selected.xMin, xMax: selected.xMax, yMin: selected.yMin, yMax: selected.yMax });
+  const mapper = createMapper({ width: 640, height: 500, padding: 24, xMin: selected.xMin, xMax: selected.xMax, yMin: selected.yMin, yMax: selected.yMax, equalScale: true });
   const curveMin = selected.curveMin ?? selected.xMin;
   const curveMax = selected.curveMax ?? selected.xMax;
   const intersections = selected.intersections(y).filter((x) => x >= curveMin - 0.001 && x <= curveMax + 0.001);
@@ -543,45 +614,36 @@ document.querySelectorAll("[data-horizontal]").forEach((button) => {
 horizontalInput.addEventListener("input", renderHorizontalLab);
 renderHorizontalLab();
 
-const reflectionPoints = [[-4, -3], [1, -1], [2, 2], [4, 4]];
+const reflectionCurve = [[-3, -2], [-2, -0.75], [2, -0.5], [4, 2]];
 const reflectionInput = document.querySelector("#reflection-point");
 let inverseVisible = true;
 const reflectionMapper = createMapper({ width: 620, height: 620, padding: 48, xMin: -5, xMax: 5, yMin: -5, yMax: 5 });
 
-function polylinePath(points, mapper) {
-  return points.map(([x, y], index) => `${index ? "L" : "M"}${mapper.x(x)} ${mapper.y(y)}`).join(" ");
+function cubicPath(points, mapper) {
+  return `M${mapper.x(points[0][0])} ${mapper.y(points[0][1])}C${mapper.x(points[1][0])} ${mapper.y(points[1][1])} ${mapper.x(points[2][0])} ${mapper.y(points[2][1])} ${mapper.x(points[3][0])} ${mapper.y(points[3][1])}`;
 }
 
-function pointAlongPolyline(points, ratio) {
-  const lengths = points.slice(1).map((point, index) => Math.hypot(point[0] - points[index][0], point[1] - points[index][1]));
-  const total = lengths.reduce((sum, length) => sum + length, 0);
-  let remaining = ratio * total;
-  for (let index = 0; index < lengths.length; index += 1) {
-    if (remaining <= lengths[index] || index === lengths.length - 1) {
-      const local = lengths[index] ? remaining / lengths[index] : 0;
-      return {
-        x: points[index][0] + (points[index + 1][0] - points[index][0]) * local,
-        y: points[index][1] + (points[index + 1][1] - points[index][1]) * local,
-      };
-    }
-    remaining -= lengths[index];
-  }
-  return { x: points[0][0], y: points[0][1] };
+function pointAlongCubic(points, ratio) {
+  const inverseRatio = 1 - ratio;
+  const weights = [inverseRatio ** 3, 3 * inverseRatio ** 2 * ratio, 3 * inverseRatio * ratio ** 2, ratio ** 3];
+  return {
+    x: points.reduce((sum, point, index) => sum + point[0] * weights[index], 0),
+    y: points.reduce((sum, point, index) => sum + point[1] * weights[index], 0),
+  };
 }
 
 function renderReflection() {
   const ratio = Number(reflectionInput.value) / 100;
-  const point = pointAlongPolyline(reflectionPoints, ratio);
-  const inversePoints = reflectionPoints.map(([x, y]) => [y, x]);
+  const point = pointAlongCubic(reflectionCurve, ratio);
+  const inverseCurve = reflectionCurve.map(([x, y]) => [y, x]);
   document.querySelector("#reflection-chart").innerHTML = `
     ${graphGrid(reflectionMapper)}
     <line x1="${reflectionMapper.x(-5)}" y1="${reflectionMapper.y(-5)}" x2="${reflectionMapper.x(5)}" y2="${reflectionMapper.y(5)}" class="reflection-mirror"/>
-    <path d="${polylinePath(reflectionPoints, reflectionMapper)}" class="reflection-curve reflection-curve--forward"/>
-    <path d="${polylinePath(inversePoints, reflectionMapper)}" class="reflection-curve reflection-curve--inverse${inverseVisible ? " is-visible" : ""}"/>
+    <path d="${cubicPath(reflectionCurve, reflectionMapper)}" class="reflection-curve reflection-curve--forward"/>
+    <path d="${cubicPath(inverseCurve, reflectionMapper)}" class="reflection-curve reflection-curve--inverse${inverseVisible ? " is-visible" : ""}"/>
     <circle cx="${reflectionMapper.x(point.x)}" cy="${reflectionMapper.y(point.y)}" r="10" class="reflection-point reflection-point--forward"/>
     <circle cx="${reflectionMapper.x(point.y)}" cy="${reflectionMapper.y(point.x)}" r="10" class="reflection-point reflection-point--inverse${inverseVisible ? " is-visible" : ""}"/>
     <line x1="${reflectionMapper.x(point.x)}" y1="${reflectionMapper.y(point.y)}" x2="${reflectionMapper.x(point.y)}" y2="${reflectionMapper.y(point.x)}" class="reflection-connector${inverseVisible ? " is-visible" : ""}"/>
-    <text x="${reflectionMapper.x(4.25)}" y="${reflectionMapper.y(4.65)}" class="reflection-mirror-label">y = x</text>
   `;
   document.querySelector("#reflection-point-output").textContent = `${Math.round(ratio * 100)}%`;
   setMath(document.querySelector("#reflection-forward-point"), String.raw`(${formatValue(point.x)},${formatValue(point.y)})`);

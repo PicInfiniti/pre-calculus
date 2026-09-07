@@ -41,6 +41,8 @@
 .inverse-hero-art__point
   stroke: var(--ink)
   stroke-width: 4
+  transform-box: fill-box
+  transform-origin: center
 
 .inverse-hero-art__point--forward
   fill: var(--coral)
@@ -61,13 +63,13 @@
   box-shadow: 5px 6px 0 rgba(7, 29, 51, .13)
 
 .inverse-hero-art__tag--forward
-  top: 48%
-  left: 48%
+  right: 16%
+  bottom: 22%
   background: var(--coral)
 
 .inverse-hero-art__tag--inverse
-  top: 34%
-  left: 30%
+  top: 18%
+  left: 18%
   background: var(--violet)
 
 .inverse-hero-art__tag--mirror
@@ -270,7 +272,7 @@
 
 .horizontal-lab__graph
   min-height: 570px
-  padding: 1rem
+  padding: .5rem
   display: grid
   place-items: center
   background: var(--paper)
@@ -320,6 +322,11 @@
     color: var(--white)
     font-size: .9rem
     font-weight: 700
+
+    > span
+      display: inline-flex
+      align-items: center
+      gap: .35rem
 
   > input
     width: 100%
@@ -439,13 +446,13 @@
 
 .reflection-lab__stage
   min-height: 640px
-  padding: 1rem
+  padding: .5rem
   display: grid
   place-items: center
   background: var(--ink)
 
   svg
-    width: min(100%, 620px)
+    width: min(100%, 750px)
 
   .inverse-grid-line
     stroke: rgba(255, 255, 255, .08)
@@ -457,11 +464,6 @@
   stroke: var(--gold)
   stroke-dasharray: 10 8
   stroke-width: 3
-
-.reflection-mirror-label
-  fill: var(--gold)
-  font-size: 15px
-  font-weight: 700
 
 .reflection-curve
   fill: none
@@ -544,7 +546,7 @@
     align-items: center
     gap: .35rem
     color: var(--ink-soft)
-    font-size: .85rem
+    font-size: 1.1rem
     font-weight: 700
 
   > span > i
@@ -696,6 +698,11 @@
     > span, > strong
       color: var(--ink)
 
+    > span
+      font-size: 1.1rem
+      letter-spacing: 0
+      text-transform: none
+
 .undo-track--reverse
   margin-top: 1rem
 
@@ -792,7 +799,7 @@
 .inverse-warning
   margin-top: .9rem
   color: var(--ink-soft)
-  font-size: .82rem
+  font-size: 1rem
   line-height: 1.5
 
 .inverse-step-lab
@@ -983,6 +990,12 @@
     font-size: .86rem
     font-weight: 700
 
+    > span
+      min-width: 0
+
+    > .lesson-math, > span > .lesson-math
+      font-size: 1.1rem
+
   input, select
     min-width: 0
     width: 100%
@@ -1021,10 +1034,8 @@
 @keyframes inverse-point-pulse
   0%, 100%
     transform: scale(1)
-    transform-origin: center
   50%
     transform: scale(1.35)
-    transform-origin: center
 
 @media (max-width: 1080px)
   .inverse-hero-art
@@ -1108,9 +1119,6 @@
 @media (max-width: 480px)
   .inverse-hero-art__tag--mirror
     right: 2%
-
-  .inverse-hero-art__tag--forward
-    left: 44%
 
   .inverse-domain-swap
     grid-template-columns: 1fr
