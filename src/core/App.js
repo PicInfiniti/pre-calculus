@@ -176,10 +176,10 @@ export default class App {
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="#course-map">Course map</a>
           <a href="#study-loop">How to study</a>
-          <a href="#mathboard">MathBoard</a>
+          <a href="#mathboard">Mathboard</a>
           <a href="#textbook">Textbook</a>
         </nav>
-        <a class="header-cta" href="${mathboardUrl}" target="_blank" rel="noreferrer">Open mathboard <span aria-hidden="true">↗</span></a>
+        <a class="header-cta" href="${mathboardUrl}" target="_blank" rel="noreferrer">Open Mathboard <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="top">
@@ -285,7 +285,7 @@ export default class App {
               mathematical canvas. Choose a blank page, square grid, or coordinate plane.
             </p>
             <div class="mathboard-promo__actions">
-              <a class="button button--primary" href="${mathboardUrl}" target="_blank" rel="noreferrer">Open the mathboard</a>
+              <a class="button button--primary" href="${mathboardUrl}" target="_blank" rel="noreferrer">Open the Mathboard</a>
               <span>Saved automatically on this device.</span>
             </div>
           </div>
@@ -346,7 +346,7 @@ export default class App {
           <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
         </p>
         <nav class="footer-links" aria-label="Project links">
-          <a href="${mathboardUrl}" target="_blank" rel="noreferrer">mathboard <span aria-hidden="true">↗</span></a>
+          <a href="${mathboardUrl}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
           <a
             class="github-link"
             href="https://github.com/PicInfiniti/pre-calculus"

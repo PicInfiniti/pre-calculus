@@ -47,7 +47,7 @@ button, [role='button'], [role='slider'], canvas, svg
   margin: 0 auto
   padding: 1.25rem 0
   display: grid
-  grid-template-columns: 1fr auto 1fr
+  grid-template-columns: auto minmax(0, 1fr) auto
   align-items: center
   border-bottom: 1px solid var(--line)
 
@@ -85,6 +85,7 @@ button, [role='button'], [role='slider'], canvas, svg
   font-style: italic
 
 .lesson-nav
+  justify-self: center
   display: flex
   align-items: center
   gap: .35rem

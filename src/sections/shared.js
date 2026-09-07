@@ -39,7 +39,7 @@ export function renderLessonHeader(activeSection) {
         ${navigation}
       </nav>
       <div class="lesson-header__actions">
-        <a class="lesson-header__tool" href="${mathboardUrl}" target="_blank" rel="noreferrer">mathboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__tool" href="${mathboardUrl}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
         <a class="lesson-header__home" href="${sitePath()}">Course map <span aria-hidden="true">↗</span></a>
       </div>
     </header>
