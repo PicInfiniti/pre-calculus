@@ -1,3 +1,5 @@
+import { initReadingMagnifier } from "../core/magnifier";
+
 export function sitePath(path = "") {
   return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 }
@@ -62,6 +64,7 @@ export function renderLessonFooter({ previous, next }) {
 }
 
 export function initLessonChrome() {
+  initReadingMagnifier();
   const progress = document.querySelector(".reading-progress span");
 
   const updateProgress = () => {
