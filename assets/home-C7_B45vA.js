@@ -34,10 +34,10 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="#course-map">Course map</a>
           <a href="#study-loop">How to study</a>
-          <a href="#mathboard">MathBoard</a>
+          <a href="#mathboard">Mathboard</a>
           <a href="#textbook">Textbook</a>
         </nav>
-        <a class="header-cta" href="${s}" target="_blank" rel="noreferrer">Open mathboard <span aria-hidden="true">↗</span></a>
+        <a class="header-cta" href="${s}" target="_blank" rel="noreferrer">Open Mathboard <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="top">
@@ -143,7 +143,7 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
               mathematical canvas. Choose a blank page, square grid, or coordinate plane.
             </p>
             <div class="mathboard-promo__actions">
-              <a class="button button--primary" href="${s}" target="_blank" rel="noreferrer">Open the mathboard</a>
+              <a class="button button--primary" href="${s}" target="_blank" rel="noreferrer">Open the Mathboard</a>
               <span>Saved automatically on this device.</span>
             </div>
           </div>
@@ -204,7 +204,7 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
           <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
         </p>
         <nav class="footer-links" aria-label="Project links">
-          <a href="${s}" target="_blank" rel="noreferrer">mathboard <span aria-hidden="true">↗</span></a>
+          <a href="${s}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
           <a
             class="github-link"
             href="https://github.com/PicInfiniti/pre-calculus"

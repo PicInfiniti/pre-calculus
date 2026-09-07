@@ -19,7 +19,7 @@ import{t as e}from"./magnifier-DbmAZ0E0.js";function t(e=``){return`/pre-calculu
         ${r}
       </nav>
       <div class="lesson-header__actions">
-        <a class="lesson-header__tool" href="${n}" target="_blank" rel="noreferrer">mathboard <span aria-hidden="true">↗</span></a>
+        <a class="lesson-header__tool" href="${n}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
         <a class="lesson-header__home" href="${t()}">Course map <span aria-hidden="true">↗</span></a>
       </div>
     </header>
