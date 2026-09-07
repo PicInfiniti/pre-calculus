@@ -136,10 +136,10 @@
   z-index: 10001
   width: 15rem
   height: 15rem
-  border: 1px solid #8c5b05
+  border: 3px solid rgba(227, 172, 50, .4)
   border-radius: 50%
-  background: conic-gradient(from 205deg, #9b6407, #f6cf55 12%, #fff1a2 22%, #c4870d 39%, #ffe37a 55%, #a96e08 72%, #f9d765 88%, #9b6407)
-  box-shadow: 0 25px 58px rgba(7, 29, 51, .3), inset 0 2px 3px rgba(255, 255, 255, .9), inset 0 -3px 5px rgba(99, 57, 0, .38), 0 0 0 2px rgba(255, 235, 143, .68)
+  background: linear-gradient(145deg, #ffe49a, var(--gold) 52%, #efb84c)
+  box-shadow: 0 20px 48px rgba(7, 29, 51, .24), 0 0 0 3px var(--gold), 0 0 0 6px rgba(255, 209, 102, .3)
   opacity: 0
   pointer-events: none
   visibility: hidden
@@ -152,12 +152,13 @@
 
 .reading-lens__glass
   position: absolute
-  inset: .68rem
+  inset: .72rem
   overflow: hidden
-  border: 2px solid rgba(255, 247, 196, .92)
+  border: 3px solid rgba(255, 209, 102, .4)
   border-radius: 50%
-  background: var(--white)
-  box-shadow: 0 0 0 2px rgba(111, 69, 3, .8), 0 0 0 5px rgba(255, 223, 101, .6), inset 0 0 34px rgba(66, 184, 213, .18)
+  background: transparent
+  background-clip: padding-box
+  box-shadow: 0 0 0 2px #e3ac32, inset 0 0 28px rgba(66, 184, 213, .1)
 
 .reading-lens__viewport
   position: absolute
