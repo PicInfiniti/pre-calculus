@@ -1,0 +1,1138 @@
+.lesson-hero--inverses
+  --hero-accent: var(--coral)
+
+.inverse-hero-art
+  position: relative
+  min-height: 500px
+
+  svg
+    width: 100%
+    height: 100%
+    min-height: 500px
+    overflow: visible
+
+.inverse-hero-art__paper
+  fill: rgba(255, 253, 248, .82)
+  stroke: var(--line)
+  stroke-width: 2
+  filter: drop-shadow(0 18px 28px rgba(7, 29, 51, .12))
+
+.inverse-hero-art__grid
+  color: rgba(7, 29, 51, .08)
+
+.inverse-hero-art__mirror
+  fill: none
+  stroke: var(--gold)
+  stroke-dasharray: 10 8
+  stroke-width: 4
+
+.inverse-hero-art__curve
+  fill: none
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 8
+
+.inverse-hero-art__curve--forward
+  stroke: var(--coral)
+
+.inverse-hero-art__curve--inverse
+  stroke: var(--violet)
+
+.inverse-hero-art__point
+  stroke: var(--ink)
+  stroke-width: 4
+
+.inverse-hero-art__point--forward
+  fill: var(--coral)
+  animation: inverse-point-pulse 3.4s ease-in-out infinite
+
+.inverse-hero-art__point--inverse
+  fill: var(--violet)
+  animation: inverse-point-pulse 3.4s .35s ease-in-out infinite
+
+.inverse-hero-art__tag, .inverse-hero-art__identity
+  position: absolute
+  z-index: 2
+  padding: .65rem .85rem
+  border: 2px solid var(--ink)
+  border-radius: .35rem
+  font-family: Georgia, serif
+  font-weight: 700
+  box-shadow: 5px 6px 0 rgba(7, 29, 51, .13)
+
+.inverse-hero-art__tag--forward
+  top: 48%
+  left: 48%
+  background: var(--coral)
+
+.inverse-hero-art__tag--inverse
+  top: 34%
+  left: 30%
+  background: var(--violet)
+
+.inverse-hero-art__tag--mirror
+  top: 14%
+  right: 10%
+  background: var(--gold)
+  transform: rotate(-8deg)
+
+.inverse-hero-art__identity
+  right: 3%
+  bottom: 1%
+  padding: .8rem 1rem
+  background: var(--ink)
+  color: var(--white)
+  transform: rotate(2deg)
+
+.inverse-section-lead
+  display: grid
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .8fr)
+  align-items: end
+  gap: 3rem
+
+.inverse-definition
+  padding: 1.4rem
+  border-top: 4px solid var(--green)
+  border-radius: .45rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--coral)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  > strong
+    margin-top: .9rem
+    font-size: clamp(1.1rem, 2vw, 1.45rem)
+
+  p
+    margin-top: .85rem
+    color: var(--ink-soft)
+    font-size: .88rem
+    line-height: 1.55
+
+.mapping-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(270px, .36fr) minmax(0, .64fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.mapping-lab__controls
+  padding: clamp(1.5rem, 3.2vw, 2.6rem)
+  border-right: 1px solid var(--line)
+
+.mapping-options
+  margin-top: 1rem
+  display: grid
+  gap: .55rem
+
+  button
+    min-height: 3rem
+    padding: .65rem .8rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--paper)
+    color: var(--ink)
+    font-size: .88rem
+    font-weight: 700
+    text-align: left
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--ink)
+      color: var(--white)
+
+.mapping-rule
+  margin-top: 1.4rem
+  padding-top: 1.2rem
+  border-top: 1px solid var(--line)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--coral)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  > strong
+    margin-top: .7rem
+    font-size: 1.35rem
+
+  p
+    margin-top: .7rem
+    color: var(--ink-soft)
+    font-size: .86rem
+    line-height: 1.55
+
+.mapping-lab__stage
+  min-height: 480px
+  padding: 1.25rem
+  display: grid
+  grid-template-rows: 1fr auto
+  background: var(--paper)
+
+  svg
+    width: 100%
+    align-self: center
+
+.mapping-set
+  stroke-width: 3
+
+.mapping-set--input
+  fill: rgba(159, 137, 230, .16)
+  stroke: var(--violet)
+
+.mapping-set--output
+  fill: rgba(69, 183, 213, .14)
+  stroke: var(--blue)
+
+.mapping-set-label
+  fill: var(--ink-soft)
+  font-size: 13px
+  font-weight: 700
+  letter-spacing: 2px
+  text-anchor: middle
+
+.mapping-arrow
+  fill: none
+  stroke: var(--ink-soft)
+  stroke-width: 3
+
+  &.is-collision
+    stroke: var(--coral)
+    stroke-width: 4
+
+.mapping-node
+  circle
+    stroke: var(--ink)
+    stroke-width: 3
+
+  text
+    fill: var(--ink)
+    font-size: 16px
+    font-weight: 700
+    text-anchor: middle
+
+.mapping-node--input circle
+  fill: var(--violet)
+
+.mapping-node--output circle
+  fill: var(--blue)
+
+.mapping-verdict
+  min-height: 4.5rem
+  padding: .9rem 1rem
+  border-left: 5px solid var(--green)
+  background: var(--white)
+
+  > strong, > span
+    display: block
+
+  > strong
+    font-size: 1rem
+
+  > span
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .84rem
+    line-height: 1.45
+
+  &.is-warn
+    border-left-color: var(--gold)
+
+  &.is-bad
+    border-left-color: var(--coral)
+
+.lesson-section--ink .lesson-math
+  color: inherit
+
+.horizontal-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr)
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: rgba(255, 255, 255, .06)
+
+.horizontal-lab__graph
+  min-height: 570px
+  padding: 1rem
+  display: grid
+  place-items: center
+  background: var(--paper)
+
+  svg
+    width: min(100%, 690px)
+
+.inverse-grid-line
+  stroke: rgba(7, 29, 51, .09)
+  stroke-width: 1
+
+.inverse-axis
+  stroke: rgba(7, 29, 51, .52)
+  stroke-width: 2
+
+.horizontal-curve
+  fill: none
+  stroke: var(--violet)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 7
+
+.horizontal-scan-line
+  stroke: var(--coral)
+  stroke-dasharray: 10 7
+  stroke-width: 4
+
+.horizontal-intersection
+  fill: var(--green)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.horizontal-scan-label
+  fill: var(--coral)
+  font-size: 14px
+  font-weight: 700
+
+.horizontal-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  > label
+    margin-top: 1.4rem
+    display: flex
+    align-items: center
+    justify-content: space-between
+    color: var(--white)
+    font-size: .9rem
+    font-weight: 700
+
+  > input
+    width: 100%
+    margin-top: .7rem
+    accent-color: var(--coral)
+
+.horizontal-options
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .45rem
+
+  button
+    min-height: 3rem
+    padding: .55rem
+    border: 1px solid rgba(255, 255, 255, .22)
+    border-radius: .35rem
+    background: transparent
+    color: var(--white)
+    font-size: .8rem
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+.horizontal-equation
+  min-height: 5rem
+  margin-top: 1rem
+  padding: .9rem
+  display: grid
+  place-items: center
+  border-radius: .4rem
+  background: rgba(255, 255, 255, .08)
+  color: rgba(255, 255, 255, .9)
+  font-size: clamp(1.25rem, 2.5vw, 1.8rem)
+  overflow-x: auto
+
+.horizontal-result
+  min-height: 9.5rem
+  margin-top: 1.1rem
+  padding: 1.1rem
+  border-left: 5px solid var(--green)
+  border-radius: .35rem
+  background: rgba(255, 255, 255, .09)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--green)
+    font-size: .78rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  > strong
+    margin-top: .65rem
+    color: var(--white)
+    font-size: 1.05rem
+
+  p
+    margin-top: .55rem
+    color: rgba(255, 255, 255, .7)
+    font-size: .86rem
+    line-height: 1.5
+
+  &.is-collision
+    border-left-color: var(--coral)
+
+    > span
+      color: var(--coral)
+
+.horizontal-rule-cards
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 1px
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .55rem
+  background: rgba(255, 255, 255, .18)
+
+  article
+    padding: 1.2rem
+    background: var(--ink)
+
+  article > span, article > strong
+    display: block
+
+  article > span
+    color: var(--gold)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  article > strong
+    margin-top: .5rem
+    color: var(--white)
+
+  p
+    margin-top: .4rem
+    color: rgba(255, 255, 255, .68)
+    font-size: .84rem
+
+.reflection-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.reflection-lab__stage
+  min-height: 640px
+  padding: 1rem
+  display: grid
+  place-items: center
+  background: var(--ink)
+
+  svg
+    width: min(100%, 620px)
+
+  .inverse-grid-line
+    stroke: rgba(255, 255, 255, .08)
+
+  .inverse-axis
+    stroke: rgba(255, 255, 255, .48)
+
+.reflection-mirror
+  stroke: var(--gold)
+  stroke-dasharray: 10 8
+  stroke-width: 3
+
+.reflection-mirror-label
+  fill: var(--gold)
+  font-size: 15px
+  font-weight: 700
+
+.reflection-curve
+  fill: none
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 7
+
+.reflection-curve--forward
+  stroke: var(--coral)
+
+.reflection-curve--inverse
+  opacity: 0
+  stroke: var(--violet)
+  transition: opacity .3s ease
+
+  &.is-visible
+    opacity: 1
+
+.reflection-point
+  stroke: var(--ink)
+  stroke-width: 4
+
+.reflection-point--forward
+  fill: var(--coral)
+
+.reflection-point--inverse
+  opacity: 0
+  fill: var(--violet)
+  transition: opacity .3s ease
+
+  &.is-visible
+    opacity: 1
+
+.reflection-connector
+  opacity: 0
+  stroke: var(--green)
+  stroke-dasharray: 6 6
+  stroke-width: 3
+  transition: opacity .3s ease
+
+  &.is-visible
+    opacity: 1
+
+.reflection-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.6rem)
+  align-self: center
+
+  > button
+    width: 100%
+    min-height: 2.8rem
+    margin-top: 1rem
+    border: 0
+    border-radius: .35rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .85rem
+    font-weight: 700
+
+  > label
+    margin-top: 1.2rem
+    display: flex
+    justify-content: space-between
+    color: var(--ink-soft)
+    font-size: .85rem
+    font-weight: 700
+
+  > input
+    width: 100%
+    margin-top: .7rem
+    accent-color: var(--violet)
+
+.reflection-legend
+  margin-top: 1rem
+  display: flex
+  flex-wrap: wrap
+  gap: .9rem
+
+  > span
+    display: flex
+    align-items: center
+    gap: .35rem
+    color: var(--ink-soft)
+    font-size: .85rem
+    font-weight: 700
+
+  > span > i
+    width: 1.6rem
+    height: 4px
+    border-radius: 999px
+    background: var(--coral)
+
+  > span:nth-child(2) > i
+    background: var(--violet)
+
+  > span:nth-child(3) > i
+    height: 2px
+    background: var(--gold)
+
+.coordinate-swap
+  margin-top: 1.2rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr
+  align-items: stretch
+  gap: .55rem
+
+  article
+    min-width: 0
+    padding: .85rem
+    display: grid
+    align-content: center
+    border: 1px solid var(--line)
+    border-radius: .4rem
+    background: var(--paper)
+    text-align: center
+
+  article > span, article > strong
+    display: block
+
+  article > span
+    color: var(--ink-soft)
+    font-size: .75rem
+
+  article > strong
+    margin-top: .45rem
+    font-size: 1.15rem
+
+  > i
+    align-self: center
+    color: var(--coral)
+    font-size: 1.4rem
+    font-style: normal
+    font-weight: 700
+
+.inverse-domain-swap
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  border: 1px solid var(--line)
+  border-radius: .4rem
+
+  div
+    padding: .7rem
+    display: flex
+    justify-content: space-between
+    gap: .5rem
+
+    &:nth-child(odd)
+      border-right: 1px solid var(--line)
+
+    &:nth-child(-n+2)
+      border-bottom: 1px solid var(--line)
+
+  dt
+    color: var(--ink-soft)
+    font-size: .78rem
+    font-weight: 700
+
+  dd
+    font-size: .82rem
+    font-weight: 700
+
+.undo-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.undo-lab__machine
+  min-height: 500px
+  padding: clamp(1.5rem, 4vw, 3rem)
+  display: grid
+  align-content: center
+  border-right: 1px solid var(--line)
+  background: var(--paper)
+
+.undo-formula
+  margin-bottom: 1.5rem
+  color: var(--ink)
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem)
+  text-align: center
+
+.undo-track
+  display: grid
+  grid-template-columns: 1fr auto 1.15fr auto 1fr
+  align-items: stretch
+  gap: .55rem
+
+  article
+    min-width: 0
+    min-height: 6.2rem
+    padding: .8rem
+    display: grid
+    place-items: center
+    align-content: center
+    border: 2px solid var(--ink)
+    border-radius: .65rem
+    background: var(--white)
+
+  article > span, article > strong
+    display: block
+
+  article > span
+    color: var(--ink-soft)
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  article > strong
+    margin-top: .4rem
+    font-size: 1.4rem
+
+  > i
+    align-self: center
+    color: var(--ink)
+    font-style: normal
+    font-weight: 700
+
+  .undo-track__function
+    border-color: var(--coral)
+    background: var(--coral)
+
+  .undo-track__inverse
+    border-color: var(--violet)
+    background: var(--violet)
+
+  .undo-track__function, .undo-track__inverse
+    > span, > strong
+      color: var(--ink)
+
+.undo-track--reverse
+  margin-top: 1rem
+
+  > i
+    transform: rotate(180deg)
+
+.undo-lab__controls
+  padding: clamp(1.5rem, 3.5vw, 2.8rem)
+  align-self: center
+
+  > label
+    margin-top: 1.3rem
+    display: flex
+    justify-content: space-between
+    color: var(--ink-soft)
+    font-size: .9rem
+    font-weight: 700
+
+  > input
+    width: 100%
+    margin-top: .7rem
+    accent-color: var(--coral)
+
+.undo-target
+  margin-top: 1rem
+  padding: .9rem
+  position: relative
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: var(--paper)
+
+  > span, > strong
+    position: relative
+    z-index: 2
+
+  > span
+    color: var(--ink-soft)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  > strong
+    float: right
+    font-size: 1.15rem
+
+  i
+    position: absolute
+    z-index: 1
+    height: 4px
+    bottom: 0
+    left: 0
+    background: var(--green)
+    transition: width .2s ease
+
+.undo-verdict
+  min-height: 5.6rem
+  margin-top: .8rem
+  padding: .9rem
+  border-left: 5px solid var(--gold)
+  border-radius: .35rem
+  background: rgba(255, 209, 102, .18)
+
+  > strong, > span, > .lesson-math
+    display: block
+
+  > strong
+    font-size: .95rem
+
+  > span, > .lesson-math
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .85rem
+
+  &.is-correct
+    border-left-color: var(--green)
+    background: rgba(169, 223, 114, .25)
+
+.inverse-identities
+  margin-top: .9rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .5rem
+
+  > span
+    padding: .75rem .45rem
+    border-radius: .35rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .85rem
+    text-align: center
+
+.inverse-warning
+  margin-top: .9rem
+  color: var(--ink-soft)
+  font-size: .82rem
+  line-height: 1.5
+
+.inverse-step-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(280px, .38fr) minmax(0, .62fr)
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .65rem
+  background: rgba(255, 255, 255, .06)
+
+.inverse-step-lab__menu
+  padding: clamp(1.5rem, 3vw, 2.5rem)
+  border-right: 1px solid rgba(255, 255, 255, .18)
+
+.inverse-step-options
+  margin-top: 1rem
+  display: grid
+  gap: .5rem
+
+  button
+    min-height: 3rem
+    padding: .6rem .8rem
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: .35rem
+    background: transparent
+    color: var(--white)
+    font-size: .85rem
+    font-weight: 700
+    text-align: left
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+.inverse-step-target
+  margin-top: 1.4rem
+  padding-top: 1.2rem
+  border-top: 1px solid rgba(255, 255, 255, .16)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--coral)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  > strong
+    margin-top: .8rem
+    color: var(--white)
+    font-size: 1.3rem
+
+  p
+    margin-top: .75rem
+    color: rgba(255, 255, 255, .7)
+    font-size: .84rem
+    line-height: 1.5
+
+.inverse-step-lab__workspace
+  min-height: 500px
+  padding: clamp(1.5rem, 3.5vw, 3rem)
+  display: flex
+  flex-direction: column
+  background: var(--white)
+
+.inverse-steps
+  display: grid
+  gap: .65rem
+
+  li
+    min-height: 4.4rem
+    padding: .75rem
+    display: grid
+    grid-template-columns: 2rem 1fr
+    align-items: center
+    gap: .75rem
+    border: 1px dashed var(--line)
+    border-radius: .4rem
+    color: rgba(7, 29, 51, .32)
+
+    > span
+      width: 2rem
+      height: 2rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--paper)
+      font-size: .78rem
+      font-weight: 700
+
+    small, strong
+      display: block
+
+    small
+      font-size: .7rem
+      font-weight: 700
+      letter-spacing: .07em
+      text-transform: uppercase
+
+    strong
+      margin-top: .35rem
+      font-size: 1rem
+
+    &.is-visible
+      border-style: solid
+      border-color: var(--line)
+      color: var(--ink)
+      background: var(--paper)
+
+      > span
+        background: var(--green)
+
+.inverse-step-actions
+  margin-top: 1rem
+  display: flex
+  gap: .55rem
+
+  button
+    min-height: 2.8rem
+    padding: .6rem .9rem
+    border: 0
+    border-radius: .3rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .84rem
+    font-weight: 700
+
+    &:last-child
+      border: 1px solid var(--line)
+      background: transparent
+      color: var(--ink)
+
+    &:disabled
+      opacity: .55
+
+.inverse-step-check
+  min-height: 3.4rem
+  margin-top: 1rem
+  padding: .8rem
+  border-left: 4px solid var(--violet)
+  background: rgba(159, 137, 230, .12)
+  color: var(--ink-soft)
+  font-size: .85rem
+  overflow-x: auto
+
+.readiness--inverses
+  --hero-accent: var(--coral)
+
+.inverse-check-grid
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+.inverse-check
+  min-width: 0
+  padding: 1.6rem
+  display: flex
+  flex-direction: column
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  > span
+    color: var(--coral)
+    font-size: .78rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  h3
+    margin-top: .7rem
+    font-family: Georgia, serif
+    font-size: 1.08rem
+    line-height: 1.45
+
+  label
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: minmax(0, 1fr) minmax(150px, .9fr)
+    align-items: center
+    gap: .7rem
+    color: var(--ink-soft)
+    font-size: .86rem
+    font-weight: 700
+
+  input, select
+    min-width: 0
+    width: 100%
+    min-height: 2.8rem
+    padding: .45rem .6rem
+    border: 1px solid var(--line)
+    border-radius: .28rem
+    background: var(--paper)
+
+  button
+    min-height: 2.8rem
+    margin-top: .8rem
+    border: 0
+    border-radius: .28rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .85rem
+    font-weight: 700
+
+  .answer-feedback
+    font-size: .85rem
+
+.inverse-coordinate-answer
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .7rem
+
+  label
+    margin-top: 0
+    grid-template-columns: auto 1fr
+
+.ready-banner--inverses
+  background: var(--coral)
+
+@keyframes inverse-point-pulse
+  0%, 100%
+    transform: scale(1)
+    transform-origin: center
+  50%
+    transform: scale(1.35)
+    transform-origin: center
+
+@media (max-width: 1080px)
+  .inverse-hero-art
+    width: min(100%, 660px)
+    margin: 0 auto
+
+  .inverse-section-lead
+    grid-template-columns: 1fr
+
+  .mapping-lab, .horizontal-lab, .reflection-lab, .undo-lab, .inverse-step-lab
+    grid-template-columns: 1fr
+
+  .mapping-lab__controls, .inverse-step-lab__menu
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+  .horizontal-lab__graph, .reflection-lab__stage
+    min-height: 520px
+
+  .undo-lab__machine
+    min-height: 420px
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+@media (max-width: 760px)
+  .inverse-hero-art
+    min-height: 390px
+
+    svg
+      min-height: 390px
+
+  .inverse-hero-art__tag
+    font-size: .8rem
+
+  .inverse-hero-art__identity
+    right: 0
+    font-size: .8rem
+
+  .mapping-lab__stage, .horizontal-lab__graph, .reflection-lab__stage
+    min-height: 390px
+    padding: .55rem
+
+  .horizontal-options
+    grid-template-columns: 1fr
+
+  .horizontal-rule-cards
+    grid-template-columns: 1fr
+
+  .coordinate-swap
+    grid-template-columns: 1fr
+
+    > i
+      justify-self: center
+      transform: rotate(90deg)
+
+  .undo-track
+    grid-template-columns: 1fr
+
+    > i
+      justify-self: center
+      transform: rotate(90deg)
+
+  .undo-track--reverse > i
+    transform: rotate(90deg)
+
+  .inverse-identities
+    grid-template-columns: 1fr
+
+  .inverse-check-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .inverse-check label
+    grid-template-columns: 1fr
+
+  .inverse-coordinate-answer
+    grid-template-columns: 1fr 1fr
+
+    label
+      grid-template-columns: auto 1fr
+
+@media (max-width: 480px)
+  .inverse-hero-art__tag--mirror
+    right: 2%
+
+  .inverse-hero-art__tag--forward
+    left: 44%
+
+  .inverse-domain-swap
+    grid-template-columns: 1fr
+
+    div
+      border-bottom: 1px solid var(--line)
+
+      &:nth-child(odd)
+        border-right: 0
+
+      &:last-child
+        border-bottom: 0
+
+  .inverse-step-actions
+    flex-direction: column
+
+    button
+      width: 100%
+
+@media (prefers-reduced-motion: reduce)
+  .inverse-hero-art__point
+    animation: none
+
+  .reflection-curve--inverse, .reflection-point--inverse, .reflection-connector, .undo-target i
+    transition: none

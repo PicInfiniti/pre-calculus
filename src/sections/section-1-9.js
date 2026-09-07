@@ -71,7 +71,7 @@ root.innerHTML = `
       <div class="formula-ribbon" data-reveal>
         <div><span>Horizontal change</span><strong>${mathMarkup(String.raw`\Delta x=x_2-x_1`)}</strong></div>
         <div><span>Vertical change</span><strong>${mathMarkup(String.raw`\Delta y=y_2-y_1`)}</strong></div>
-        <div><span>Midpoint</span><strong>${mathMarkup(String.raw`M=\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)`)}</strong></div>
+        <div><span>Midpoint</span><strong>${mathMarkup(String.raw`M=\frac{A+B}{2}`)}</strong></div>
         <div><span>Distance</span><strong>${mathMarkup(String.raw`d=\sqrt{(\Delta x)^2+(\Delta y)^2}`)}</strong></div>
       </div>
 

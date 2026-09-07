@@ -287,7 +287,7 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({
     previous: { href: "pages/sections/2-6.html", label: "Section 2.6 · Transformations of functions" },
-    next: null,
+    next: { href: "pages/sections/2-8.html", label: "Section 2.8 · One-to-one functions and inverses" },
   })}
 `;
 

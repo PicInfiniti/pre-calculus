@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -88,6 +88,13 @@ The mathboard is maintained and deployed as a separate app.
 - Live function-order comparison and contextual composition models
 - Balloon-volume and discount-versus-rebate simulations
 
+### 2.8 · One-to-One Functions and Inverses
+
+- Mapping-collision detector and horizontal-line scanner
+- Full-versus-restricted quartic comparisons
+- Inverse graph reflection and coordinate-swapping studio
+- Backward value finder, algebraic inverse stepper, and readiness checks
+
 ## Course roadmap
 
 Every course topic has its own standalone page, beginning with the notation guide.
@@ -97,7 +104,7 @@ Every course topic has its own standalone page, beginning with the notation guid
 | Course language                       | 00                           | Available                                 |
 | Systems of linear equations           | 9.1, 9.2                     | Available                                 |
 | The coordinate plane                  | 1.9                          | Available                                 |
-| Functions                             | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | 2.1–2.3 and 2.6–2.7 available; 2.8 planned |
+| Functions                             | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | Available                                 |
 | Polynomial and rational functions     | 3.1, 3.2, 3.6, 3.7           | Planned                                   |
 | Exponential and logarithmic functions | 4.1–4.5                      | Planned                                   |
 | Right-triangle trigonometry           | 6.1–6.4                      | Planned                                   |

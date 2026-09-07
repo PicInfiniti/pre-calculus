@@ -10,13 +10,14 @@ export function renderLessonHeader(activeSection) {
     navigation = `<a class="is-current" href="${sitePath("pages/sections/0-0.html")}">00 · Notation</a>`;
   } else if (activeSection === "1.9") {
     navigation = `<a class="is-current" href="${sitePath("pages/sections/1-9.html")}">1.9 · Coordinate plane</a>`;
-  } else if (["2.1", "2.2", "2.3", "2.6", "2.7"].includes(activeSection)) {
+  } else if (["2.1", "2.2", "2.3", "2.6", "2.7", "2.8"].includes(activeSection)) {
     navigation = `
       <a class="${activeSection === "2.1" ? "is-current" : ""}" href="${sitePath("pages/sections/2-1.html")}">2.1 · Functions</a>
       <a class="${activeSection === "2.2" ? "is-current" : ""}" href="${sitePath("pages/sections/2-2.html")}">2.2 · Graphs</a>
       <a class="${activeSection === "2.3" ? "is-current" : ""}" href="${sitePath("pages/sections/2-3.html")}">2.3 · Information</a>
       <a class="${activeSection === "2.6" ? "is-current" : ""}" href="${sitePath("pages/sections/2-6.html")}">2.6 · Transformations</a>
       <a class="${activeSection === "2.7" ? "is-current" : ""}" href="${sitePath("pages/sections/2-7.html")}">2.7 · Combining</a>
+      <a class="${activeSection === "2.8" ? "is-current" : ""}" href="${sitePath("pages/sections/2-8.html")}">2.8 · Inverses</a>
     `;
   } else {
     navigation = `

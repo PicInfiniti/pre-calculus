@@ -1741,7 +1741,7 @@ input[type='range']
   > div > strong
     margin-top: .55rem
     font-family: Georgia, serif
-    font-size: .9rem
+    font-size: clamp(1.05rem, 1.25vw, 1.2rem)
     line-height: 1.45
 
 .coordinate-lab__body, .diameter-lab__body
@@ -1935,6 +1935,7 @@ input[type='range']
 .reverse-midpoint
   margin-top: 1rem
   padding: clamp(1.4rem, 3vw, 2.2rem)
+  padding-bottom: clamp(.9rem, 1.5vw, 1.25rem)
   display: grid
   grid-template-columns: 1fr auto
   align-items: center
@@ -1950,7 +1951,7 @@ input[type='range']
   > div:first-child > p:last-child
     margin-top: .6rem
     color: var(--ink-soft)
-    font-size: .85rem
+    font-size: 1rem
     line-height: 1.55
 
 .compact-answer

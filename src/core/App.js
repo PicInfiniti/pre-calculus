@@ -13,7 +13,7 @@ const courseUnits = [
     layout: "primer",
   },
   {
-    number: "01",
+    number: "09",
     eyebrow: "Opening week",
     title: "Systems of linear equations",
     description:
@@ -22,7 +22,7 @@ const courseUnits = [
     accent: "coral",
   },
   {
-    number: "02",
+    number: "01",
     eyebrow: "Coordinate foundations",
     title: "The coordinate plane",
     description:
@@ -31,7 +31,7 @@ const courseUnits = [
     accent: "gold",
   },
   {
-    number: "03",
+    number: "02",
     eyebrow: "Function toolkit",
     title: "Functions",
     description:
@@ -40,7 +40,7 @@ const courseUnits = [
     accent: "blue",
   },
   {
-    number: "04",
+    number: "03",
     eyebrow: "Shape & behavior",
     title: "Polynomial & rational functions",
     description:
@@ -49,7 +49,7 @@ const courseUnits = [
     accent: "gold",
   },
   {
-    number: "05",
+    number: "04",
     eyebrow: "Growth & inverse thinking",
     title: "Exponential & logarithmic functions",
     description:
@@ -67,7 +67,7 @@ const courseUnits = [
     accent: "violet",
   },
   {
-    number: "07",
+    number: "05",
     eyebrow: "Circular motion",
     title: "Unit-circle trigonometry",
     description:
@@ -76,7 +76,7 @@ const courseUnits = [
     accent: "blue",
   },
   {
-    number: "08",
+    number: "07",
     eyebrow: "Identity & proof",
     title: "Analytic trigonometry",
     description:
@@ -103,6 +103,7 @@ const sectionPages = {
   2.3: `${baseUrl}pages/sections/2-3.html`,
   2.6: `${baseUrl}pages/sections/2-6.html`,
   2.7: `${baseUrl}pages/sections/2-7.html`,
+  2.8: `${baseUrl}pages/sections/2-8.html`,
 };
 
 const sectionLabels = {
