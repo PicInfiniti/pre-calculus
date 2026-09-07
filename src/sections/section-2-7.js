@@ -664,7 +664,7 @@ function renderBalloon() {
     safe: "Stable",
     caution: "Pressure rising",
     danger: "Near its limit",
-    popped: "Limit reached",
+    popped: "Surprise!",
   }[pressureState];
   pressure.className = `balloon-pressure is-${pressureState}`;
   pressure.querySelector("strong").textContent = pressureCopy;
