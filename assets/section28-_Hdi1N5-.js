@@ -1,4 +1,4 @@
-import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,o as a,r as o,s}from"./shared-BEyMclnh.js";var c=document.querySelector(`#app`);function l(t,n,r){s(t,n,``),t.innerHTML=r,e(t)}c.innerHTML=`
+import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,o as a,r as o,s}from"./shared-DRKUi25c.js";var c=document.querySelector(`#app`);function l(t,n,r){s(t,n,``),t.innerHTML=r,e(t)}c.innerHTML=`
   ${a(`2.8`)}
   <main>
     <section class="lesson-hero lesson-hero--inverses">
