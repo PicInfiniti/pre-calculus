@@ -261,27 +261,61 @@ function formatNumber(value, digits = 3) {
   return String(Number(value.toFixed(digits))).replace("-", "−");
 }
 
-function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax }) {
+function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1, yStep = 1 }) {
+  const horizontalIntervals = (xMax - xMin) / xStep;
+  const verticalIntervals = (yMax - yMin) / yStep;
+  const gridSize = Math.min(
+    (width - padding * 2) / horizontalIntervals,
+    (height - padding * 2) / verticalIntervals,
+  );
+  const plotWidth = horizontalIntervals * gridSize;
+  const plotHeight = verticalIntervals * gridSize;
+  const plotLeft = (width - plotWidth) / 2;
+  const plotTop = (height - plotHeight) / 2;
+  const plotRight = plotLeft + plotWidth;
+  const plotBottom = plotTop + plotHeight;
+
   return {
-    x: (value) => padding + ((value - xMin) / (xMax - xMin)) * (width - padding * 2),
-    y: (value) => height - padding - ((value - yMin) / (yMax - yMin)) * (height - padding * 2),
-    width, height, padding, xMin, xMax, yMin, yMax,
+    x: (value) => plotLeft + ((value - xMin) / xStep) * gridSize,
+    y: (value) => plotBottom - ((value - yMin) / yStep) * gridSize,
+    width, height, padding, plotLeft, plotTop, plotRight, plotBottom, plotWidth, plotHeight,
+    gridSize, xStep, yStep, xMin, xMax, yMin, yMax,
   };
 }
 
-function graphScaffold(mapper, { xStep = 1, yStep = 1, labels = true } = {}) {
+function graphScaffold(mapper, {
+  xStep = mapper.xStep,
+  yStep = mapper.yStep,
+  labels = true,
+  clipId,
+} = {}) {
   const lines = [];
   const text = [];
   for (let x = Math.ceil(mapper.xMin / xStep) * xStep; x <= mapper.xMax + 1e-8; x += xStep) {
     const axis = Math.abs(x) < 1e-8;
-    lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.padding}" x2="${mapper.x(x)}" y2="${mapper.height - mapper.padding}" class="rational-grid${axis ? " rational-grid--axis" : ""}"/>`);
-    if (labels && !axis) text.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 19}" text-anchor="middle" class="rational-grid-label">${formatNumber(x)}</text>`);
+    const boundary = nearlyEqual(x, mapper.xMin) || nearlyEqual(x, mapper.xMax);
+    if (!boundary || axis) lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.plotTop}" x2="${mapper.x(x)}" y2="${mapper.plotBottom}" class="rational-grid${axis ? " rational-grid--axis" : ""}"/>`);
+    if (labels && !axis && Math.abs(x / xStep) % 2 === 0) text.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 20}" text-anchor="middle" class="rational-grid-label">${formatNumber(x)}</text>`);
   }
   for (let y = Math.ceil(mapper.yMin / yStep) * yStep; y <= mapper.yMax + 1e-8; y += yStep) {
     const axis = Math.abs(y) < 1e-8;
-    lines.push(`<line x1="${mapper.padding}" y1="${mapper.y(y)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(y)}" class="rational-grid${axis ? " rational-grid--axis" : ""}"/>`);
+    const boundary = nearlyEqual(y, mapper.yMin) || nearlyEqual(y, mapper.yMax);
+    if (!boundary || axis) lines.push(`<line x1="${mapper.plotLeft}" y1="${mapper.y(y)}" x2="${mapper.plotRight}" y2="${mapper.y(y)}" class="rational-grid${axis ? " rational-grid--axis" : ""}"/>`);
+    if (labels && !axis && Math.abs(y / yStep) % 2 === 0) text.push(`<text x="${mapper.x(0) - 10}" y="${mapper.y(y) + 4}" text-anchor="end" class="rational-grid-label">${formatNumber(y)}</text>`);
   }
-  return `<rect x="${mapper.padding}" y="${mapper.padding}" width="${mapper.width - 2 * mapper.padding}" height="${mapper.height - 2 * mapper.padding}" class="rational-plot-bg"/>${lines.join("")}${text.join("")}`;
+  if (labels) {
+    text.push(`<text x="${mapper.plotRight + 10}" y="${mapper.y(0) + 5}" class="rational-axis-label">x</text>`);
+    text.push(`<text x="${mapper.x(0)}" y="${mapper.plotTop - 12}" text-anchor="middle" class="rational-axis-label">y</text>`);
+  }
+  const curveOverflow = 18;
+  const clipPath = clipId
+    ? `<defs><clipPath id="${clipId}"><rect x="${mapper.plotLeft - curveOverflow}" y="${mapper.plotTop - curveOverflow}" width="${mapper.plotWidth + curveOverflow * 2}" height="${mapper.plotHeight + curveOverflow * 2}"/></clipPath></defs>`
+    : "";
+  return `${clipPath}<rect x="${mapper.plotLeft}" y="${mapper.plotTop}" width="${mapper.plotWidth}" height="${mapper.plotHeight}" class="rational-plot-bg"/>${lines.join("")}${text.join("")}`;
+}
+
+function frameChart(chart, mapper, margin = 24) {
+  chart.setAttribute("viewBox", `${mapper.plotLeft - margin} ${mapper.plotTop - margin} ${mapper.plotWidth + margin * 2} ${mapper.plotHeight + margin * 2}`);
 }
 
 function rationalPath(mapper, fn, poles = [], samples = 520) {
@@ -289,11 +323,12 @@ function rationalPath(mapper, fn, poles = [], samples = 520) {
   let drawing = false;
   let previousY = null;
   const ySpan = mapper.yMax - mapper.yMin;
+  const overflow = (10 / mapper.gridSize) * mapper.yStep;
   for (let index = 0; index <= samples; index += 1) {
     const x = mapper.xMin + ((mapper.xMax - mapper.xMin) * index) / samples;
     const y = fn(x);
     const nearPole = poles.some((pole) => Math.abs(x - pole) < (mapper.xMax - mapper.xMin) / samples * 1.5);
-    const visible = Number.isFinite(y) && y >= mapper.yMin - ySpan * .25 && y <= mapper.yMax + ySpan * .25 && !nearPole;
+    const visible = Number.isFinite(y) && y >= mapper.yMin - overflow && y <= mapper.yMax + overflow && !nearPole;
     const jumped = previousY !== null && Math.abs(y - previousY) > ySpan * .65;
     if (visible) {
       path += `${drawing && !jumped ? "L" : "M"}${mapper.x(x).toFixed(2)} ${mapper.y(y).toFixed(2)}`;
@@ -307,7 +342,7 @@ function rationalPath(mapper, fn, poles = [], samples = 520) {
 }
 
 function asymptoteLines(mapper, vertical = [], horizontal = []) {
-  return `${vertical.map((x) => `<line x1="${mapper.x(x)}" y1="${mapper.padding}" x2="${mapper.x(x)}" y2="${mapper.height - mapper.padding}" class="rational-asymptote rational-asymptote--vertical"/>`).join("")}${horizontal.map((y) => `<line x1="${mapper.padding}" y1="${mapper.y(y)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(y)}" class="rational-asymptote rational-asymptote--horizontal"/>`).join("")}`;
+  return `${vertical.map((x) => `<line x1="${mapper.x(x)}" y1="${mapper.plotTop}" x2="${mapper.x(x)}" y2="${mapper.plotBottom}" class="rational-asymptote rational-asymptote--vertical"/>`).join("")}${horizontal.map((y) => `<line x1="${mapper.plotLeft}" y1="${mapper.y(y)}" x2="${mapper.plotRight}" y2="${mapper.y(y)}" class="rational-asymptote rational-asymptote--horizontal"/>`).join("")}`;
 }
 
 const heroPoint = document.querySelector("#rational-hero-point");
@@ -394,7 +429,7 @@ let approachWall = -3;
 let approachSide = "left";
 const approachDistance = document.querySelector("#approach-distance");
 const approachFn = (x) => x / ((x + 3) * (x - 1));
-const approachMapper = makeMapper({ width: 720, height: 540, padding: 54, xMin: -6, xMax: 5, yMin: -7, yMax: 7 });
+const approachMapper = makeMapper({ width: 720, height: 540, padding: 54, xMin: -6, xMax: 5, yMin: -7, yMax: 7, xStep: 1, yStep: 2 });
 
 function renderApproach() {
   const distance = 10 ** (-Number(approachDistance.value) / 50);
@@ -403,10 +438,12 @@ function renderApproach() {
   const y = approachFn(x);
   const trend = y > 0 ? "∞" : "−∞";
   const visibleY = Math.max(approachMapper.yMin, Math.min(approachMapper.yMax, y));
-  document.querySelector("#approach-chart").innerHTML = `
-    ${graphScaffold(approachMapper, { xStep: 1, yStep: 1 })}
+  const chart = document.querySelector("#approach-chart");
+  frameChart(chart, approachMapper);
+  chart.innerHTML = `
+    ${graphScaffold(approachMapper, { clipId: "rational-approach-clip" })}
     ${asymptoteLines(approachMapper, [-3, 1], [0])}
-    <path d="${rationalPath(approachMapper, approachFn, [-3, 1])}" class="rational-curve"/>
+    <path d="${rationalPath(approachMapper, approachFn, [-3, 1])}" class="rational-curve" clip-path="url(#rational-approach-clip)"/>
     <line x1="${approachMapper.x(x)}" y1="${approachMapper.y(0)}" x2="${approachMapper.x(x)}" y2="${approachMapper.y(visibleY)}" class="approach-guide"/>
     <circle cx="${approachMapper.x(x)}" cy="${approachMapper.y(visibleY)}" r="10" class="approach-point"/>
   `;
@@ -467,15 +504,17 @@ let discontinuityCase = "two-walls";
 
 function renderDiscontinuity() {
   const selected = discontinuityCases[discontinuityCase];
-  const mapper = makeMapper({ width: 700, height: 540, padding: 54, ...selected.bounds });
+  const mapper = makeMapper({ width: 700, height: 540, padding: 54, ...selected.bounds, xStep: 1, yStep: 2 });
   document.querySelector("#discontinuity-source").innerHTML = `<span>Original rule</span>${math(`<var>f</var>(<var>x</var>) = ${selected.source}`, true)}`;
   document.querySelector("#discontinuity-factor").innerHTML = `<span>Factor or divide</span>${math(selected.factor, true)}`;
   document.querySelector("#discontinuity-results").innerHTML = selected.results.map(([label, value]) => `<div><dt>${label}</dt><dd>${math(value)}</dd></div>`).join("");
   document.querySelector("#discontinuity-note").textContent = selected.note;
-  document.querySelector("#discontinuity-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep: 1 })}
+  const chart = document.querySelector("#discontinuity-chart");
+  frameChart(chart, mapper);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { clipId: "rational-discontinuity-clip" })}
     ${asymptoteLines(mapper, selected.poles, selected.horizontal)}
-    <path d="${rationalPath(mapper, selected.fn, selected.poles)}" class="rational-curve"/>
+    <path d="${rationalPath(mapper, selected.fn, selected.poles)}" class="rational-curve" clip-path="url(#rational-discontinuity-clip)"/>
     ${selected.holes.map(([x, y]) => `<circle cx="${mapper.x(x)}" cy="${mapper.y(y)}" r="10" class="rational-hole"/>`).join("")}
   `;
 }
@@ -539,13 +578,15 @@ const analysisSteps = [
 ];
 let analysisStep = 1;
 const analysisFn = (x) => 1 / (x + 3);
-const analysisMapper = makeMapper({ width: 720, height: 560, padding: 58, xMin: -8, xMax: 6, yMin: -6, yMax: 6 });
+const analysisMapper = makeMapper({ width: 720, height: 560, padding: 58, xMin: -8, xMax: 6, yMin: -6, yMax: 6, xStep: 1, yStep: 2 });
 
 function renderAnalysis() {
-  document.querySelector("#analysis-chart").innerHTML = `
-    ${graphScaffold(analysisMapper, { xStep: 1, yStep: 1 })}
+  const chart = document.querySelector("#analysis-chart");
+  frameChart(chart, analysisMapper);
+  chart.innerHTML = `
+    ${graphScaffold(analysisMapper, { clipId: "rational-analysis-clip" })}
     ${asymptoteLines(analysisMapper, [-3], [0])}
-    <path d="${rationalPath(analysisMapper, analysisFn, [-3])}" class="analysis-curve"/>
+    <path d="${rationalPath(analysisMapper, analysisFn, [-3])}" class="analysis-curve" clip-path="url(#rational-analysis-clip)"/>
     <circle cx="${analysisMapper.x(1)}" cy="${analysisMapper.y(.25)}" r="10" class="rational-hole"/>
     <circle cx="${analysisMapper.x(0)}" cy="${analysisMapper.y(1 / 3)}" r="7" class="analysis-intercept"/>
   `;

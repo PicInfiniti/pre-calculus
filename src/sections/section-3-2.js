@@ -9,6 +9,10 @@ import {
 const root = document.querySelector("#app");
 const math = (content, display = false) =>
   `<span class="native-math${display ? " native-math--display" : ""}">${content}</span>`;
+const fraction = (top, bottom) =>
+  `<span class="native-frac"><span>${top}</span><span>${bottom}</span></span>`;
+const radical = (content) =>
+  `<span class="native-radical"><span>${content}</span></span>`;
 
 root.innerHTML = `
   ${renderLessonHeader("3.2")}
@@ -84,10 +88,10 @@ root.innerHTML = `
 
       <div class="identity-lab" data-reveal>
         <div class="identity-lab__list" role="tablist" aria-label="Expressions to classify">
-          <button class="is-active" type="button" data-identity="fractional" role="tab" aria-selected="true">${math("3<var>x</var><sup>1/4</sup> + 5")}</button>
-          <button type="button" data-identity="negative" role="tab" aria-selected="false">${math("−<span class=\"native-frac\"><span>1</span><span>4</span></span><var>x</var><sup>−3</sup> + 5<var>x</var>")}</button>
+          <button class="is-active" type="button" data-identity="fractional" role="tab" aria-selected="true">${math(`3<var>x</var><sup>${fraction("1", "4")}</sup> + 5`)}</button>
+          <button type="button" data-identity="negative" role="tab" aria-selected="false">${math(`−${fraction("1", "4")}<var>x</var><sup>−3</sup> + 5<var>x</var>`)}</button>
           <button type="button" data-identity="constant" role="tab" aria-selected="false">${math("6")}</button>
-          <button type="button" data-identity="radical" role="tab" aria-selected="false">${math("√3<var>x</var><sup>3</sup> + 5<var>x</var> − 1")}</button>
+          <button type="button" data-identity="radical" role="tab" aria-selected="false">${math(`${radical("3")}<var>x</var><sup>3</sup> + 5<var>x</var> − 1`)}</button>
           <button type="button" data-identity="factored" role="tab" aria-selected="false">${math("−π<var>x</var><sup>4</sup>(<var>x</var> − 3)<sup>2</sup>(<var>x</var> + 5)<sup>3</sup>")}</button>
         </div>
         <div class="identity-lab__result" id="identity-result" aria-live="polite"></div>
@@ -359,33 +363,67 @@ function formatNumber(value, digits = 2) {
   return String(Number(value.toFixed(digits))).replace("-", "−");
 }
 
-function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax }) {
+function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1, yStep = 1 }) {
+  const horizontalIntervals = (xMax - xMin) / xStep;
+  const verticalIntervals = (yMax - yMin) / yStep;
+  const gridSize = Math.min(
+    (width - padding * 2) / horizontalIntervals,
+    (height - padding * 2) / verticalIntervals,
+  );
+  const plotWidth = horizontalIntervals * gridSize;
+  const plotHeight = verticalIntervals * gridSize;
+  const plotLeft = (width - plotWidth) / 2;
+  const plotTop = (height - plotHeight) / 2;
+  const plotRight = plotLeft + plotWidth;
+  const plotBottom = plotTop + plotHeight;
+
   return {
-    x: (value) => padding + ((value - xMin) / (xMax - xMin)) * (width - padding * 2),
-    y: (value) => height - padding - ((value - yMin) / (yMax - yMin)) * (height - padding * 2),
-    width, height, padding, xMin, xMax, yMin, yMax,
+    x: (value) => plotLeft + ((value - xMin) / xStep) * gridSize,
+    y: (value) => plotBottom - ((value - yMin) / yStep) * gridSize,
+    width, height, padding, plotLeft, plotTop, plotRight, plotBottom, plotWidth, plotHeight,
+    gridSize, xStep, yStep, xMin, xMax, yMin, yMax,
   };
 }
 
-function graphScaffold(mapper, { xStep = 1, yStep = 1, labels = true } = {}) {
+function graphScaffold(mapper, {
+  xStep = mapper.xStep,
+  yStep = mapper.yStep,
+  labels = true,
+  clipId,
+} = {}) {
   const lines = [];
   const text = [];
   for (let x = Math.ceil(mapper.xMin / xStep) * xStep; x <= mapper.xMax + 1e-8; x += xStep) {
     const axis = Math.abs(x) < 1e-8;
-    lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.padding}" x2="${mapper.x(x)}" y2="${mapper.height - mapper.padding}" class="polynomial-grid${axis ? " polynomial-grid--axis" : ""}"/>`);
-    if (labels && !axis) text.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 19}" text-anchor="middle" class="polynomial-grid-label">${formatNumber(x)}</text>`);
+    const boundary = Math.abs(x - mapper.xMin) < 1e-8 || Math.abs(x - mapper.xMax) < 1e-8;
+    if (!boundary || axis) lines.push(`<line x1="${mapper.x(x)}" y1="${mapper.plotTop}" x2="${mapper.x(x)}" y2="${mapper.plotBottom}" class="polynomial-grid${axis ? " polynomial-grid--axis" : ""}"/>`);
+    if (labels && !axis && Math.abs(x / xStep) % 2 === 0) text.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 20}" text-anchor="middle" class="polynomial-grid-label">${formatNumber(x)}</text>`);
   }
   for (let y = Math.ceil(mapper.yMin / yStep) * yStep; y <= mapper.yMax + 1e-8; y += yStep) {
     const axis = Math.abs(y) < 1e-8;
-    lines.push(`<line x1="${mapper.padding}" y1="${mapper.y(y)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(y)}" class="polynomial-grid${axis ? " polynomial-grid--axis" : ""}"/>`);
+    const boundary = Math.abs(y - mapper.yMin) < 1e-8 || Math.abs(y - mapper.yMax) < 1e-8;
+    if (!boundary || axis) lines.push(`<line x1="${mapper.plotLeft}" y1="${mapper.y(y)}" x2="${mapper.plotRight}" y2="${mapper.y(y)}" class="polynomial-grid${axis ? " polynomial-grid--axis" : ""}"/>`);
+    if (labels && !axis && Math.abs(y / yStep) % 2 === 0) text.push(`<text x="${mapper.x(0) - 10}" y="${mapper.y(y) + 4}" text-anchor="end" class="polynomial-grid-label">${formatNumber(y)}</text>`);
   }
-  return `<rect x="${mapper.padding}" y="${mapper.padding}" width="${mapper.width - 2 * mapper.padding}" height="${mapper.height - 2 * mapper.padding}" class="polynomial-plot-bg"/>${lines.join("")}${text.join("")}`;
+  if (labels) {
+    text.push(`<text x="${mapper.plotRight + 10}" y="${mapper.y(0) + 5}" class="polynomial-axis-label">x</text>`);
+    text.push(`<text x="${mapper.x(0)}" y="${mapper.plotTop - 12}" text-anchor="middle" class="polynomial-axis-label">y</text>`);
+  }
+  const curveOverflow = 18;
+  const clipPath = clipId
+    ? `<defs><clipPath id="${clipId}"><rect x="${mapper.plotLeft - curveOverflow}" y="${mapper.plotTop - curveOverflow}" width="${mapper.plotWidth + curveOverflow * 2}" height="${mapper.plotHeight + curveOverflow * 2}"/></clipPath></defs>`
+    : "";
+  return `${clipPath}<rect x="${mapper.plotLeft}" y="${mapper.plotTop}" width="${mapper.plotWidth}" height="${mapper.plotHeight}" class="polynomial-plot-bg"/>${lines.join("")}${text.join("")}`;
+}
+
+function frameChart(chart, mapper, margin = 24) {
+  chart.setAttribute("viewBox", `${mapper.plotLeft - margin} ${mapper.plotTop - margin} ${mapper.plotWidth + margin * 2} ${mapper.plotHeight + margin * 2}`);
 }
 
 function functionPath(mapper, fn, samples = 320, transform = (value) => value) {
   let path = "";
   let drawing = false;
-  const margin = (mapper.yMax - mapper.yMin) * 0.35;
+  const margin = (10 / mapper.gridSize) * mapper.yStep;
   for (let index = 0; index <= samples; index += 1) {
     const x = mapper.xMin + ((mapper.xMax - mapper.xMin) * index) / samples;
     const y = transform(fn(x));
@@ -430,14 +468,14 @@ syncHeroMotion();
 
 const identityCases = {
   fractional: {
-    expression: "3<var>x</var><sup>1/4</sup> + 5",
+    expression: `3<var>x</var><sup>${fraction("1", "4")}</sup> + 5`,
     valid: false,
     headline: "Not a polynomial",
-    reason: "The exponent 1/4 is not a nonnegative integer. Fractional powers are not allowed.",
+    reason: `The exponent ${math(fraction("1", "4"))} is not a nonnegative integer. Fractional powers are not allowed.`,
     badge: "fractional exponent",
   },
   negative: {
-    expression: "−¼<var>x</var><sup>−3</sup> + 5<var>x</var>",
+    expression: `−${fraction("1", "4")}<var>x</var><sup>−3</sup> + 5<var>x</var>`,
     valid: false,
     headline: "Not a polynomial",
     reason: "The exponent −3 is negative. A polynomial cannot contain a variable in a denominator.",
@@ -451,7 +489,7 @@ const identityCases = {
     badge: "constant polynomial",
   },
   radical: {
-    expression: "√3<var>x</var><sup>3</sup> + 5<var>x</var> − 1",
+    expression: `${radical("3")}<var>x</var><sup>3</sup> + 5<var>x</var> − 1`,
     valid: true,
     headline: "Polynomial · degree 3",
     reason: "The coefficient √3 is a real number, so it is allowed. The greatest exponent is 3.",
@@ -516,10 +554,12 @@ function renderEndLab() {
   const degree = even ? 4 : 5;
   const coefficient = positive ? 1 : -1;
   const fn = (x) => coefficient * (even ? 0.085 * x ** 4 - 0.52 * x ** 2 + 0.35 : 0.035 * x ** 5 - 0.27 * x ** 3 + 0.45 * x);
-  const mapper = makeMapper({ width: 680, height: 500, padding: 54, xMin: -4, xMax: 4, yMin: -7, yMax: 7 });
-  document.querySelector("#end-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep: 1, labels: false })}
-    <path d="${functionPath(mapper, fn)}" class="end-curve"/>
+  const mapper = makeMapper({ width: 680, height: 500, padding: 54, xMin: -4, xMax: 4, yMin: -7, yMax: 7, xStep: 1, yStep: 2 });
+  const chart = document.querySelector("#end-chart");
+  frameChart(chart, mapper);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { labels: false, clipId: "polynomial-end-clip" })}
+    <path d="${functionPath(mapper, fn)}" class="end-curve" clip-path="url(#polynomial-end-clip)"/>
     <circle cx="${mapper.x(-3.2)}" cy="${mapper.y(fn(-3.2))}" r="7" class="end-point"/>
     <circle cx="${mapper.x(3.2)}" cy="${mapper.y(fn(3.2))}" r="7" class="end-point"/>
   `;
@@ -557,7 +597,7 @@ const multiplicityInput = document.querySelector("#multiplicity-value");
 
 function renderMultiplicity() {
   const multiplicity = Number(multiplicityInput.value);
-  const mapper = makeMapper({ width: 620, height: 500, padding: 54, xMin: -2.5, xMax: 2.5, yMin: -5, yMax: 5 });
+  const mapper = makeMapper({ width: 620, height: 500, padding: 54, xMin: -2.5, xMax: 2.5, yMin: -5, yMax: 5, xStep: 1, yStep: 2 });
   const scale = multiplicity === 1 ? 1.5 : multiplicity === 2 ? 0.75 : multiplicity === 3 ? 0.42 : 0.12;
   const fn = (x) => scale * x ** multiplicity;
   const behavior = multiplicity % 2 === 0 ? "Bounces and turns" : multiplicity === 1 ? "Crosses directly" : "Crosses with a wiggle";
@@ -566,9 +606,11 @@ function renderMultiplicity() {
     : multiplicity === 1
       ? "Multiplicity 1 changes sign with a nonzero crossing slope."
       : "Odd multiplicity changes sign, but the repeated factor flattens the crossing.";
-  document.querySelector("#multiplicity-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep: 1 })}
-    <path d="${functionPath(mapper, fn)}" class="multiplicity-curve"/>
+  const chart = document.querySelector("#multiplicity-chart");
+  frameChart(chart, mapper);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { clipId: "polynomial-multiplicity-clip" })}
+    <path d="${functionPath(mapper, fn)}" class="multiplicity-curve" clip-path="url(#polynomial-multiplicity-clip)"/>
     <circle cx="${mapper.x(0)}" cy="${mapper.y(0)}" r="10" class="multiplicity-zero"/>
     <line x1="${mapper.x(-.65)}" y1="${mapper.y(fn(-.65))}" x2="${mapper.x(.65)}" y2="${mapper.y(fn(.65))}" class="multiplicity-slope"/>
   `;
@@ -581,7 +623,7 @@ multiplicityInput.addEventListener("input", renderMultiplicity);
 renderMultiplicity();
 
 const factorFn = (x) => (x - 2) ** 3 * (x + 1) ** 2 * (x + 4);
-const factorMapper = makeMapper({ width: 720, height: 540, padding: 54, xMin: -5.2, xMax: 3.2, yMin: -620, yMax: 620 });
+const factorMapper = makeMapper({ width: 720, height: 540, padding: 54, xMin: -5.2, xMax: 3.2, yMin: -620, yMax: 620, xStep: 1, yStep: 200 });
 const factorTransform = (value) => Math.sign(value) * Math.log1p(Math.abs(value)) * 78;
 const factorBehaviors = {
   2: { behavior: "Crosses with a wiggle", copy: "The factor (x − 2)³ has odd multiplicity greater than 1, so the graph changes sign and flattens at the axis." },
@@ -595,9 +637,11 @@ function renderFactorLab(activeRoot = "2") {
     { value: -1, kind: "bounce" },
     { value: -4, kind: "cross" },
   ];
-  document.querySelector("#factor-chart").innerHTML = `
-    ${graphScaffold(factorMapper, { xStep: 1, yStep: 200 })}
-    <path d="${functionPath(factorMapper, factorFn, 500, factorTransform)}" class="factor-curve"/>
+  const chart = document.querySelector("#factor-chart");
+  frameChart(chart, factorMapper);
+  chart.innerHTML = `
+    ${graphScaffold(factorMapper, { clipId: "polynomial-factor-clip" })}
+    <path d="${functionPath(factorMapper, factorFn, 500, factorTransform)}" class="factor-curve" clip-path="url(#polynomial-factor-clip)"/>
     ${roots.map(({ value }) => `<circle cx="${factorMapper.x(value)}" cy="${factorMapper.y(0)}" r="${String(value) === activeRoot ? 12 : 8}" class="factor-zero${String(value) === activeRoot ? " is-active" : ""}"/>`).join("")}
     <circle cx="${factorMapper.x(0)}" cy="${factorMapper.y(factorTransform(-32))}" r="7" class="factor-y-intercept"/>
   `;
@@ -635,13 +679,15 @@ let matchCase = "q";
 let selectedMatchGraph = "";
 
 function miniGraph(element, fn, bounds) {
-  const mapper = makeMapper({ width: 300, height: 220, padding: 26, ...bounds });
-  element.innerHTML = `${graphScaffold(mapper, { xStep: 1, yStep: 2, labels: false })}<path d="${functionPath(mapper, fn, 220)}" class="match-curve"/>`;
+  const mapper = makeMapper({ width: 300, height: 220, padding: 26, xStep: 1, ...bounds });
+  const clipId = `${element.id}-clip`;
+  frameChart(element, mapper, 12);
+  element.innerHTML = `${graphScaffold(mapper, { labels: false, clipId })}<path d="${functionPath(mapper, fn, 220)}" class="match-curve" clip-path="url(#${clipId})"/>`;
 }
 
-miniGraph(document.querySelector("#match-graph-a"), (x) => -(x ** 2) * (x ** 2 - 4), { xMin: -3, xMax: 3, yMin: -10, yMax: 6 });
-miniGraph(document.querySelector("#match-graph-b"), (x) => 0.5 * x ** 6 - 2 * x ** 4, { xMin: -2.6, xMax: 2.6, yMin: -10, yMax: 13 });
-miniGraph(document.querySelector("#match-graph-c"), (x) => -(x ** 3) + 2 * x ** 2, { xMin: -2, xMax: 4, yMin: -18, yMax: 12 });
+miniGraph(document.querySelector("#match-graph-a"), (x) => -(x ** 2) * (x ** 2 - 4), { xMin: -3, xMax: 3, yMin: -10, yMax: 6, yStep: 4 });
+miniGraph(document.querySelector("#match-graph-b"), (x) => 0.5 * x ** 6 - 2 * x ** 4, { xMin: -2.6, xMax: 2.6, yMin: -10, yMax: 13, yStep: 6 });
+miniGraph(document.querySelector("#match-graph-c"), (x) => -(x ** 3) + 2 * x ** 2, { xMin: -2, xMax: 4, yMin: -18, yMax: 12, yStep: 6 });
 
 function renderMatchPrompt() {
   document.querySelector("#matching-clues").innerHTML = `<span>Factored fingerprint</span><p>${matchCases[matchCase].clues}</p>`;
@@ -658,7 +704,7 @@ document.querySelectorAll("[data-match-case]").forEach((button) => {
       candidate.classList.toggle("is-active", active);
       candidate.setAttribute("aria-selected", String(active));
     });
-    document.querySelectorAll("[data-match-graph]").forEach((candidate) => candidate.classList.remove("is-selected"));
+    document.querySelectorAll("[data-match-graph]").forEach((candidate) => candidate.classList.remove("is-selected", "is-correct", "is-incorrect"));
     renderMatchPrompt();
   });
 });
@@ -666,13 +712,19 @@ document.querySelectorAll("[data-match-case]").forEach((button) => {
 document.querySelectorAll("[data-match-graph]").forEach((button) => {
   button.addEventListener("click", () => {
     selectedMatchGraph = button.dataset.matchGraph;
-    document.querySelectorAll("[data-match-graph]").forEach((candidate) => candidate.classList.toggle("is-selected", candidate === button));
+    document.querySelectorAll("[data-match-graph]").forEach((candidate) => {
+      candidate.classList.toggle("is-selected", candidate === button);
+      candidate.classList.remove("is-correct", "is-incorrect");
+    });
   });
 });
 
 document.querySelector("#matching-check").addEventListener("click", () => {
   const feedback = document.querySelector("#matching-feedback");
   const correct = selectedMatchGraph === matchCases[matchCase].answer;
+  const selectedGraph = document.querySelector(`[data-match-graph="${selectedMatchGraph}"]`);
+  document.querySelectorAll("[data-match-graph]").forEach((candidate) => candidate.classList.remove("is-correct", "is-incorrect"));
+  if (selectedGraph) selectedGraph.classList.add(correct ? "is-correct" : "is-incorrect");
   feedback.className = correct ? "is-correct" : "is-incorrect";
   feedback.textContent = correct
     ? "Match confirmed. The tails and every axis contact agree with the factored fingerprint."
@@ -715,10 +767,13 @@ let reconstructStep = 1;
 
 function renderReconstruct() {
   const selected = reconstructCases[reconstructCase];
-  const mapper = makeMapper({ width: 680, height: 520, padding: 52, ...selected.bounds });
-  document.querySelector("#reconstruct-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep: reconstructCase === "ridge" ? 5 : 50 })}
-    <path d="${functionPath(mapper, selected.fn, 500)}" class="reconstruct-curve"/>
+  const yStep = reconstructCase === "ridge" ? 5 : 50;
+  const mapper = makeMapper({ width: 680, height: 520, padding: 52, ...selected.bounds, xStep: 1, yStep });
+  const chart = document.querySelector("#reconstruct-chart");
+  frameChart(chart, mapper);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { clipId: "polynomial-reconstruct-clip" })}
+    <path d="${functionPath(mapper, selected.fn, 500)}" class="reconstruct-curve" clip-path="url(#polynomial-reconstruct-clip)"/>
     ${selected.roots.map((value) => `<circle cx="${mapper.x(value)}" cy="${mapper.y(0)}" r="8" class="reconstruct-zero"/><text x="${mapper.x(value)}" y="${mapper.y(0) - 14}" text-anchor="middle" class="reconstruct-label">${formatNumber(value)}</text>`).join("")}
     <circle cx="${mapper.x(0)}" cy="${mapper.y(selected.yIntercept)}" r="8" class="reconstruct-y"/>
   `;

@@ -192,6 +192,10 @@
     background: #ffb4a3
     color: var(--ink)
 
+.identity-lab sup .native-frac
+  margin-inline: .04em
+  font-size: .9em
+
 .curve-rules
   margin-top: 1.2rem
   display: grid
@@ -339,11 +343,11 @@
 .end-lab__stage, .multiplicity-lab__stage, .factor-lab__stage, .reconstruct-lab__stage
   position: relative
   min-width: 0
-  min-height: 500px
-  padding: clamp(.7rem, 2vw, 1.5rem)
+  min-height: 460px
+  padding: clamp(.5rem, .8vw, .9rem)
   display: grid
   place-items: center
-  background: #e7efec
+  background: var(--white)
 
   svg
     width: 100%
@@ -352,7 +356,7 @@
 
 .polynomial-plot-bg
   fill: var(--white)
-  stroke: var(--line)
+  stroke: none
 
 .polynomial-grid
   stroke: rgba(7, 29, 51, .08)
@@ -362,11 +366,14 @@
   stroke: rgba(7, 29, 51, .58)
   stroke-width: 1.8
 
-.polynomial-grid-label, .reconstruct-label
+.polynomial-grid-label, .polynomial-axis-label, .reconstruct-label
   fill: rgba(7, 29, 51, .58)
   font-family: Ubuntu, sans-serif
-  font-size: 11px
+  font-size: 12px
   font-weight: 700
+
+.polynomial-axis-label
+  font-size: 13px
 
 .end-curve, .multiplicity-curve, .factor-curve, .match-curve, .reconstruct-curve
   fill: none
@@ -610,8 +617,6 @@
   border: 1px solid var(--line)
 
 .factor-lab__stage
-  background: #e8efea
-
   > p
     position: absolute
     right: 1.5rem
@@ -816,6 +821,22 @@
         background: var(--violet)
         color: var(--ink)
 
+    &.is-correct
+      border-color: var(--green)
+      box-shadow: 0 0 0 4px rgba(169, 223, 114, .2)
+
+      > span
+        background: var(--green)
+        color: var(--ink)
+
+    &.is-incorrect
+      border-color: var(--coral)
+      box-shadow: 0 0 0 4px rgba(255, 107, 72, .2)
+
+      > span
+        background: var(--coral)
+        color: var(--ink)
+
 .match-curve
   stroke-width: 4
 
@@ -975,7 +996,6 @@
 
 .degree-lab__controls
   padding: clamp(1.5rem, 3vw, 2.4rem)
-  border-right: 1px solid var(--line)
   background: var(--paper)
 
   > label
@@ -1158,7 +1178,7 @@
     grid-template-columns: 1fr
 
   .end-lab__stage, .multiplicity-lab__stage, .factor-lab__stage, .reconstruct-lab__stage
-    min-height: 490px
+    min-height: 460px
 
   .multiplicity-lab__controls
     border-right: 0
@@ -1184,8 +1204,7 @@
     grid-column: auto
 
   .degree-lab__controls
-    border-right: 0
-    border-bottom: 1px solid var(--line)
+    border-bottom: 0
 
   .curve-screening__choices
     grid-template-columns: 1fr 1fr

@@ -234,11 +234,11 @@
 .approach-lab__stage, .discontinuity-lab__stage, .analysis-lab__stage
   position: relative
   min-width: 0
-  min-height: 520px
-  padding: clamp(.7rem, 2vw, 1.5rem)
+  min-height: 460px
+  padding: clamp(.5rem, .8vw, .9rem)
   display: grid
   place-items: center
-  background: #e6efed
+  background: var(--white)
 
   svg
     width: 100%
@@ -247,7 +247,7 @@
 
 .rational-plot-bg
   fill: var(--white)
-  stroke: var(--line)
+  stroke: none
 
 .rational-grid
   stroke: rgba(7, 29, 51, .08)
@@ -257,11 +257,14 @@
   stroke: rgba(7, 29, 51, .6)
   stroke-width: 1.8
 
-.rational-grid-label
+.rational-grid-label, .rational-axis-label
   fill: rgba(7, 29, 51, .58)
   font-family: Ubuntu, sans-serif
-  font-size: 11px
+  font-size: 12px
   font-weight: 700
+
+.rational-axis-label
+  font-size: 13px
 
 .rational-curve, .analysis-curve
   fill: none
@@ -649,7 +652,7 @@
   border: 1px solid rgba(255, 255, 255, .18)
 
 .analysis-lab__stage
-  background: #dfeae7
+  background: var(--white)
 
 .analysis-curve
   stroke-width: 6
@@ -881,7 +884,7 @@
     grid-template-columns: 1fr
 
   .approach-lab__stage, .discontinuity-lab__stage, .analysis-lab__stage
-    min-height: 490px
+    min-height: 460px
 
   .discontinuity-lab__menu
     border-right: 0
