@@ -1,0 +1,933 @@
+.lesson-hero--inequalities
+  --hero-accent: var(--gold)
+
+.inequality-hero-art
+  position: relative
+  min-width: 0
+  min-height: 500px
+  display: grid
+  place-items: center
+
+.inequality-hero-art__card
+  width: min(100%, 590px)
+  padding: clamp(2rem, 5vw, 3.4rem) clamp(1.2rem, 4vw, 2.6rem)
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: 14px 16px 0 var(--violet), var(--shadow)
+  transform: rotate(-1.5deg)
+
+.inequality-hero-art__label, .inequality-hero-art__answer
+  color: var(--ink-soft)
+  font-size: .72rem
+  font-weight: 700
+  letter-spacing: .1em
+  text-transform: uppercase
+
+.inequality-hero-art__formula
+  margin-top: 1rem
+  color: var(--ink)
+  font-size: clamp(1.15rem, 2.5vw, 1.55rem)
+  text-align: center
+
+.inequality-hero-line
+  margin: 4rem 0 3.5rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr
+  align-items: center
+
+  &::before
+    content: ''
+    position: absolute
+
+  i
+    position: relative
+    width: 1rem
+    height: 1rem
+    border: 4px solid var(--ink)
+    border-radius: 50%
+    background: var(--gold)
+
+    b
+      position: absolute
+      top: 1.25rem
+      left: 50%
+      color: var(--ink)
+      font-size: .8rem
+      font-style: normal
+      transform: translateX(-50%)
+
+.inequality-hero-line__ray
+  min-height: 3.1rem
+  display: grid
+  place-items: center
+  border-bottom: 5px solid
+  font-size: 1.25rem
+  font-weight: 800
+
+.inequality-hero-line__ray--positive
+  border-color: var(--green)
+  color: #187754
+
+.inequality-hero-line__ray--negative
+  border-color: var(--coral)
+  color: var(--coral)
+
+.inequality-hero-art__answer
+  text-align: center
+
+.inequality-hero-art__tag
+  position: absolute
+  padding: .45rem .7rem
+  border-radius: 999px
+  background: var(--ink)
+  color: var(--white)
+  font-size: .76rem
+  font-weight: 700
+
+.inequality-hero-art__tag--cut
+  top: 4rem
+  left: 0
+
+.inequality-hero-art__tag--test
+  right: 0
+  bottom: 4rem
+  background: var(--coral)
+
+.inequality-section-lead
+  display: grid
+  grid-template-columns: 1.1fr .9fr
+  align-items: end
+  gap: clamp(2rem, 6vw, 6rem)
+
+.inequality-recipe
+  padding: clamp(1.1rem, 3vw, 1.8rem)
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .7rem
+  border: 1px solid var(--line)
+  border-top: 6px solid var(--gold)
+  border-radius: .45rem
+  background: var(--white)
+
+  li
+    min-width: 0
+    display: flex
+    gap: .7rem
+
+    > span
+      width: 1.8rem
+      height: 1.8rem
+      flex: 0 0 auto
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: var(--ink)
+      color: var(--white)
+      font-size: .72rem
+      font-weight: 700
+
+  strong, p
+    display: block
+
+  p
+    margin-top: .2rem
+    color: var(--ink-soft)
+    font-size: .78rem
+    line-height: 1.4
+
+.sign-lab, .multiplicity-lab, .radical-lab, .rational-sign-lab
+  margin-top: 3rem
+  overflow: hidden
+  border-radius: .65rem
+  box-shadow: var(--shadow)
+
+.sign-lab
+  display: grid
+  grid-template-columns: minmax(310px, .78fr) minmax(0, 1.22fr)
+  border: 1px solid var(--line)
+  background: var(--white)
+
+.sign-lab__controls
+  padding: clamp(1.4rem, 3vw, 2.3rem)
+  border-right: 1px solid var(--line)
+  background: var(--paper)
+
+.sign-lab__problem
+  margin-top: .9rem
+  padding: .9rem
+  border-radius: .35rem
+  background: var(--ink)
+  color: var(--white)
+  text-align: center
+
+.sign-lab__step
+  margin-top: .65rem
+  padding: .7rem .85rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .25rem
+    overflow-wrap: anywhere
+
+.sign-lab__controls > label, .radical-lab__test > label
+  margin-top: 1.1rem
+  display: flex
+  justify-content: space-between
+  gap: 1rem
+  color: var(--ink-soft)
+  font-size: .85rem
+  font-weight: 700
+
+  output
+    min-width: 3.2rem
+    padding: .2rem .45rem
+    border-radius: 999px
+    background: var(--gold)
+    color: var(--ink)
+    text-align: center
+
+.sign-lab__controls input[type='range'], .radical-lab__test input[type='range']
+  width: 100%
+  margin-top: .55rem
+  accent-color: var(--coral)
+
+.factor-reading
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  border: 1px solid var(--line)
+  border-radius: .35rem
+  background: var(--white)
+
+  div
+    min-width: 0
+    padding: .7rem
+
+    &:nth-child(odd)
+      border-right: 1px solid var(--line)
+
+    &:last-child
+      grid-column: 1 / -1
+      border-top: 1px solid var(--line)
+      border-right: 0
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .72rem
+
+  strong
+    margin-top: .25rem
+    font-size: .86rem
+
+.is-positive
+  color: #187754
+
+.is-negative
+  color: #c7442c
+
+.is-zero
+  color: #705cc5
+
+.sign-lab__map
+  position: relative
+  min-height: 450px
+  padding: clamp(1.5rem, 4vw, 3rem)
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.sign-track
+  position: relative
+  display: grid
+  grid-template-columns: 4fr auto 3fr auto 4fr
+  align-items: center
+
+.sign-track__region
+  height: 5rem
+  display: grid
+  place-items: center
+  border-bottom: 7px solid var(--coral)
+  color: var(--coral)
+
+  span
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  b
+    font-size: 1.4rem
+
+.sign-track__region--positive
+  border-color: var(--green)
+  color: #187754
+
+.sign-track__cut
+  position: relative
+  width: 1rem
+  height: 1rem
+  margin-top: 5rem
+  border: 4px solid var(--ink)
+  border-radius: 50%
+  background: var(--gold)
+
+  span
+    position: absolute
+    top: 1.25rem
+    left: 50%
+    color: var(--ink)
+    font-size: .8rem
+    font-style: normal
+    transform: translateX(-50%)
+
+.sign-pointer
+  position: absolute
+  top: 31%
+  transition: left .12s ease
+  transform: translateX(-50%)
+
+  span
+    width: 0
+    height: 0
+    display: block
+    border-right: 7px solid transparent
+    border-bottom: 12px solid var(--violet)
+    border-left: 7px solid transparent
+
+  b
+    position: absolute
+    top: -1.6rem
+    left: 50%
+    width: max-content
+    padding: .2rem .4rem
+    border-radius: .2rem
+    background: var(--violet)
+    color: var(--ink)
+    font-size: .72rem
+    transform: translateX(-50%)
+
+.sign-lab__answer
+  margin-top: 4.5rem
+  padding: 1rem
+  border-left: 5px solid var(--green)
+  background: rgba(109, 207, 166, .12)
+
+  span, strong
+    display: block
+
+  span
+    color: #187754
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .3rem
+    font-size: 1.15rem
+
+  p
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .84rem
+    line-height: 1.5
+
+.fraction-boundary
+  margin-top: 1rem
+  padding: 1rem
+  display: grid
+  grid-template-columns: 1fr auto 1fr auto 1fr
+  align-items: center
+  gap: 1rem
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: rgba(255, 253, 248, .7)
+
+  div
+    min-width: 0
+    text-align: center
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .68rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+    overflow-wrap: anywhere
+
+  > i
+    color: var(--coral)
+    font-style: normal
+    font-size: 1.3rem
+
+  > p
+    grid-column: 1 / -1
+    color: var(--ink-soft)
+    font-size: .82rem
+    line-height: 1.5
+    text-align: center
+
+.multiplicity-lab
+  display: grid
+  grid-template-columns: minmax(330px, .9fr) minmax(0, 1.1fr)
+  border: 1px solid rgba(255, 255, 255, .18)
+  background: rgba(255, 255, 255, .06)
+
+.multiplicity-lab__controls, .multiplicity-lab__map
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+
+.multiplicity-lab__controls
+  border-right: 1px solid rgba(255, 255, 255, .16)
+
+.multiplicity-equation
+  margin-top: .9rem
+  padding: .9rem .5rem
+  border-radius: .35rem
+  background: var(--paper)
+  color: var(--ink)
+  text-align: center
+  overflow-wrap: anywhere
+
+.root-switches
+  margin-top: .8rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .4rem
+
+  button
+    min-width: 0
+    min-height: 3.5rem
+    padding: .5rem
+    border: 1px solid rgba(255, 255, 255, .25)
+    border-radius: .3rem
+    background: transparent
+    color: var(--white)
+
+    small
+      margin-top: .25rem
+      display: block
+      color: rgba(255, 255, 255, .64)
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+      small
+        color: var(--ink-soft)
+
+.root-verdict
+  margin-top: .8rem
+  padding: 1rem
+  border-left: 5px solid var(--violet)
+  background: rgba(255, 255, 255, .08)
+
+  span
+    color: var(--gold)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong, p
+    margin-top: .4rem
+    display: block
+
+  strong
+    color: var(--white)
+
+  p
+    color: rgba(255, 255, 255, .76)
+    font-size: .84rem
+    line-height: 1.5
+
+.multiplicity-lab__map
+  display: grid
+  align-content: center
+
+.multiplicity-chart__signs, .multiplicity-chart__labels
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  text-align: center
+
+.multiplicity-chart__signs
+  color: var(--gold)
+  font-size: 1.35rem
+  font-weight: 800
+
+.multiplicity-chart__line
+  height: 2.4rem
+  margin: .4rem 0
+  display: grid
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr 1fr
+  align-items: center
+  border-bottom: 3px solid rgba(255, 255, 255, .55)
+
+  i
+    width: 1rem
+    height: 1rem
+    border: 3px solid var(--white)
+    border-radius: 50%
+    background: var(--ink)
+    transition: transform .2s ease, background .2s ease
+
+    &:nth-child(1)
+      grid-column: 2
+    &:nth-child(2)
+      grid-column: 4
+    &:nth-child(3)
+      grid-column: 6
+    &.is-active
+      background: var(--gold)
+      transform: scale(1.45)
+
+.multiplicity-chart__labels
+  grid-template-columns: 1fr 1fr 1fr
+  color: rgba(255, 255, 255, .72)
+  font-size: .8rem
+
+.multiplicity-answer
+  margin-top: 2.2rem
+  padding: 1rem
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .35rem
+  background: rgba(255, 255, 255, .07)
+  text-align: center
+
+  span, strong, p
+    display: block
+
+  span
+    color: var(--gold)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .4rem
+    color: var(--white)
+    font-size: 1.1rem
+
+  p
+    margin-top: .45rem
+    color: rgba(255, 255, 255, .76)
+    font-size: .84rem
+    line-height: 1.5
+
+.radical-lab
+  display: grid
+  grid-template-columns: 1fr 1fr
+  border: 1px solid var(--line)
+  background: var(--white)
+
+.radical-lab__story, .radical-lab__test
+  padding: clamp(1.4rem, 4vw, 2.7rem)
+
+.radical-lab__story
+  border-right: 1px solid var(--line)
+  background: var(--paper)
+
+.radical-equation
+  margin-top: 1rem
+  padding: 1rem
+  background: var(--ink)
+  color: var(--white)
+  text-align: center
+
+.radical-bar
+  display: inline-block
+  border-top: 1px solid currentColor
+
+.radical-lab__story ol
+  margin-top: 1rem
+  display: grid
+  gap: .5rem
+
+  li
+    padding: .65rem
+    display: grid
+    grid-template-columns: 5.5rem 1fr
+    gap: .6rem
+    border: 1px solid var(--line)
+    background: var(--white)
+    overflow-wrap: anywhere
+
+    > span
+      color: #705cc5
+      font-size: .7rem
+      font-weight: 700
+      letter-spacing: .07em
+      text-transform: uppercase
+
+.radical-meter
+  height: .7rem
+  margin-top: 1.2rem
+  overflow: hidden
+  border-radius: 999px
+  background: rgba(255, 107, 72, .2)
+
+  span
+    height: 100%
+    display: block
+    border-radius: inherit
+    background: linear-gradient(90deg, var(--violet), var(--green))
+    transition: width .15s ease
+
+.radical-verdict
+  margin-top: 1rem
+  padding: 1rem
+  border-left: 5px solid
+
+  span, strong, p
+    display: block
+
+  span
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .06em
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+
+  p
+    margin-top: .3rem
+    color: var(--ink-soft)
+    font-size: .82rem
+
+  &.is-allowed
+    border-color: var(--green)
+    background: rgba(109, 207, 166, .13)
+  &.is-blocked
+    border-color: var(--coral)
+    background: rgba(255, 107, 72, .1)
+
+.radical-answer
+  margin-top: 1rem
+  padding: .8rem
+  border: 1px solid var(--line)
+  text-align: center
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .7rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .3rem
+
+.cut-point-key
+  padding: 1.3rem
+  display: grid
+  gap: 1rem
+  border: 1px solid var(--line)
+  border-top: 6px solid var(--coral)
+  background: var(--white)
+
+  > div
+    display: flex
+    align-items: center
+    gap: .8rem
+
+  i
+    width: 1.15rem
+    height: 1.15rem
+    flex: 0 0 auto
+    border: 3px solid var(--ink)
+    border-radius: 50%
+
+  .cut-point-key__closed
+    background: var(--gold)
+
+  strong, span
+    display: block
+
+  span
+    margin-top: .2rem
+    color: var(--ink-soft)
+    font-size: .8rem
+
+.rational-sign-lab
+  border: 1px solid var(--line)
+  background: var(--white)
+
+.rational-sign-lab__tabs
+  padding: .65rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .5rem
+  border-bottom: 1px solid var(--line)
+  background: var(--paper)
+
+  button
+    min-height: 3rem
+    padding: .5rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--ink)
+      color: var(--white)
+
+.rational-sign-lab__work
+  display: grid
+  grid-template-columns: minmax(300px, .8fr) minmax(0, 1.2fr)
+
+.rational-workflow, .rational-neighborhoods
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+
+.rational-workflow
+  border-right: 1px solid var(--line)
+
+  > div
+    margin-top: .75rem
+    padding: .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    overflow-wrap: anywhere
+
+    span, strong
+      display: block
+
+    > span
+      color: var(--ink-soft)
+      font-size: .68rem
+      font-weight: 700
+      letter-spacing: .07em
+      text-transform: uppercase
+
+    strong
+      margin-top: .3rem
+
+    small
+      color: var(--ink-soft)
+      font-size: .65rem
+      font-weight: 400
+
+.rational-intervals
+  margin-top: .8rem
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: .4rem
+
+  button
+    min-width: 0
+    min-height: 5.5rem
+    padding: .55rem .25rem
+    border: 1px solid var(--line)
+    border-bottom: 5px solid var(--coral)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+
+    span, b, small
+      display: block
+
+    span
+      font-size: .72rem
+
+    b
+      margin-top: .2rem
+      color: var(--coral)
+      font-size: 1.2rem
+
+    small
+      margin-top: .1rem
+      color: var(--ink-soft)
+
+    &.is-kept
+      border-bottom-color: var(--green)
+      b
+        color: #187754
+
+    &.is-active
+      outline: 3px solid var(--violet)
+      outline-offset: 2px
+
+.rational-test-result
+  min-height: 4.8rem
+  margin-top: 1rem
+  padding: .85rem
+  border-left: 4px solid var(--violet)
+  background: rgba(188, 174, 255, .13)
+  color: var(--ink-soft)
+  font-size: .84rem
+  line-height: 1.5
+
+  strong, b
+    color: var(--ink)
+
+.rational-final
+  margin-top: .8rem
+  padding: .85rem
+  border: 1px solid var(--line)
+  text-align: center
+
+  span, strong, p
+    display: block
+
+  span
+    color: #187754
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  strong
+    margin-top: .3rem
+    font-size: 1rem
+
+  p
+    margin-top: .35rem
+    color: var(--ink-soft)
+    font-size: .8rem
+
+.inequality-check-grid
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+.inequality-check
+  padding: clamp(1.2rem, 3vw, 1.8rem)
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .4rem
+  background: rgba(255, 255, 255, .06)
+
+  > span
+    color: var(--gold)
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  h3
+    min-height: 3.5rem
+    margin-top: .55rem
+    color: var(--white)
+    font-size: 1rem
+    line-height: 1.45
+
+  select
+    width: 100%
+    min-height: 3rem
+    margin-top: .7rem
+    padding: .55rem
+    border: 1px solid rgba(255, 255, 255, .3)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+
+  button
+    min-height: 2.8rem
+    margin-top: .65rem
+    padding: .55rem .9rem
+    border: 0
+    border-radius: .3rem
+    background: var(--gold)
+    color: var(--ink)
+    font-weight: 700
+
+  .answer-feedback
+    color: rgba(255, 255, 255, .82)
+
+    &.is-correct
+      border-color: var(--green)
+      background: rgba(109, 207, 166, .13)
+
+    &.is-incorrect
+      border-color: var(--coral)
+      background: rgba(255, 107, 72, .13)
+
+.ready-banner--inequalities
+  border-color: var(--gold)
+
+@media (max-width: 900px)
+  .inequality-section-lead, .sign-lab, .multiplicity-lab, .radical-lab, .rational-sign-lab__work
+    grid-template-columns: 1fr
+
+  .sign-lab__controls, .multiplicity-lab__controls, .radical-lab__story, .rational-workflow
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+  .multiplicity-lab__controls
+    border-bottom-color: rgba(255, 255, 255, .16)
+
+  .sign-lab__map
+    min-height: 400px
+
+@media (max-width: 620px)
+  .inequality-hero-art
+    min-height: 390px
+
+  .inequality-hero-art__card
+    box-shadow: 8px 10px 0 var(--violet), var(--shadow)
+
+  .inequality-hero-art__tag
+    display: none
+
+  .inequality-recipe, .inequality-check-grid
+    grid-template-columns: 1fr
+
+  .fraction-boundary
+    grid-template-columns: 1fr
+
+    > i
+      transform: rotate(90deg)
+
+    > p
+      grid-column: 1
+
+  .root-switches
+    grid-template-columns: 1fr
+
+  .multiplicity-chart__signs
+    font-size: 1rem
+
+  .rational-sign-lab__tabs
+    grid-template-columns: 1fr
+
+  .rational-intervals
+    grid-template-columns: 1fr 1fr
+
+  .radical-lab__story ol li
+    grid-template-columns: 1fr
+
+  .sign-pointer
+    top: 34%
+
+@media (prefers-reduced-motion: reduce)
+  .sign-pointer, .multiplicity-chart__line i, .radical-meter span
+    transition: none

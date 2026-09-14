@@ -21,6 +21,13 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "2.7" ? "is-current" : ""}" href="${sitePath("pages/sections/2-7.html")}">2.7 · Combining</a>
       <a class="${activeSection === "2.8" ? "is-current" : ""}" href="${sitePath("pages/sections/2-8.html")}">2.8 · Inverses</a>
     `;
+  } else if (["3.1", "3.2", "3.6", "3.7"].includes(activeSection)) {
+    navigation = `
+      <a class="${activeSection === "3.1" ? "is-current" : ""}" href="${sitePath("pages/sections/3-1.html")}">3.1 · Quadratics</a>
+      <a class="${activeSection === "3.2" ? "is-current" : ""}" href="${sitePath("pages/sections/3-2.html")}">3.2 · Polynomials</a>
+      <a class="${activeSection === "3.6" ? "is-current" : ""}" href="${sitePath("pages/sections/3-6.html")}">3.6 · Rational functions</a>
+      <a class="${activeSection === "3.7" ? "is-current" : ""}" href="${sitePath("pages/sections/3-7.html")}">3.7 · Inequalities</a>
+    `;
   } else {
     navigation = `
         <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>

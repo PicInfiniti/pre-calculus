@@ -297,7 +297,7 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({
     previous: { href: "pages/sections/2-7.html", label: "Section 2.7 · Combining functions" },
-    next: null,
+    next: { href: "pages/sections/3-1.html", label: "Section 3.1 · Quadratic functions" },
   })}
 `;
 

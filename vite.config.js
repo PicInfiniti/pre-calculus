@@ -40,6 +40,18 @@ export default defineConfig({
         section28: fileURLToPath(
           new URL("./pages/sections/2-8.html", import.meta.url),
         ),
+        section31: fileURLToPath(
+          new URL("./pages/sections/3-1.html", import.meta.url),
+        ),
+        section32: fileURLToPath(
+          new URL("./pages/sections/3-2.html", import.meta.url),
+        ),
+        section36: fileURLToPath(
+          new URL("./pages/sections/3-6.html", import.meta.url),
+        ),
+        section37: fileURLToPath(
+          new URL("./pages/sections/3-7.html", import.meta.url),
+        ),
       },
     },
   },

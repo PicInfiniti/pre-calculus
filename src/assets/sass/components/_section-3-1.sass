@@ -1,0 +1,857 @@
+.native-math
+  display: inline-block
+  font-family: Georgia, 'Times New Roman', serif
+  font-size: 1.05em
+  font-style: normal
+  letter-spacing: .01em
+
+  var
+    font-family: inherit
+    font-style: italic
+
+  sup
+    font-size: .7em
+    line-height: 0
+
+.native-math--display
+  display: block
+  font-size: clamp(1.2rem, 2.4vw, 1.75rem)
+  line-height: 1.45
+
+.native-frac
+  margin-inline: .18em
+  display: inline-grid
+  grid-template-rows: auto auto
+  vertical-align: middle
+  text-align: center
+  line-height: 1.05
+
+  > span:first-child
+    padding: 0 .18em .08em
+    border-bottom: 1px solid currentColor
+
+  > span:last-child
+    padding: .08em .18em 0
+
+.lesson-hero--quadratics
+  --hero-accent: var(--gold)
+
+.quadratic-hero-art
+  position: relative
+  min-width: 0
+  min-height: 520px
+  color: rgba(7, 29, 51, .12)
+
+  svg
+    width: 100%
+    height: auto
+    overflow: visible
+    filter: drop-shadow(0 24px 44px rgba(7, 29, 51, .13))
+
+.quadratic-hero-art__paper
+  fill: var(--white)
+  stroke: var(--line)
+
+.quadratic-hero-art__grid
+  opacity: .75
+
+.quadratic-hero-art__axis
+  fill: none
+  stroke: rgba(7, 29, 51, .5)
+  stroke-width: 2
+
+.quadratic-hero-art__curve
+  fill: none
+  stroke: url(#quadratic-hero-curve)
+  stroke-linecap: round
+  stroke-width: 9
+
+.quadratic-hero-art__symmetry
+  stroke: var(--violet)
+  stroke-dasharray: 9 8
+  stroke-width: 2
+
+.quadratic-hero-art__point
+  fill: var(--coral)
+  stroke: var(--white)
+  stroke-width: 4
+
+.quadratic-hero-art__vertex
+  fill: var(--ink)
+
+.quadratic-hero-art__label
+  position: absolute
+  padding: .42rem .62rem
+  border: 1px solid var(--line)
+  border-radius: 999px
+  background: var(--white)
+  color: var(--ink)
+  font-size: .78rem
+  font-weight: 700
+
+.quadratic-hero-art__label--vertex
+  left: 46%
+  bottom: 2.6rem
+
+.quadratic-hero-art__label--axis
+  top: 5.8rem
+  left: 53%
+
+.quadratic-hero-art__formula
+  position: absolute
+  right: -1rem
+  bottom: .3rem
+  padding: .9rem 1.1rem
+  border-radius: .35rem
+  background: var(--ink)
+  color: var(--white)
+  box-shadow: 8px 8px 0 var(--gold)
+  font-size: .94rem
+
+.quadratic-section-lead
+  display: grid
+  grid-template-columns: 1.25fr .75fr
+  align-items: end
+  gap: clamp(2rem, 6vw, 6rem)
+
+.quadratic-definition
+  padding: clamp(1.4rem, 3vw, 2.2rem)
+  border: 1px solid var(--line)
+  border-left: 6px solid var(--coral)
+  border-radius: .45rem
+  background: var(--white)
+
+  > span
+    color: var(--coral)
+    font-size: .78rem
+    font-weight: 700
+    letter-spacing: .11em
+    text-transform: uppercase
+
+  strong
+    margin-top: .9rem
+    display: block
+    color: var(--ink)
+
+  p
+    margin-top: .8rem
+    color: var(--ink-soft)
+    font-size: .9rem
+    line-height: 1.6
+
+.quadratic-shape-lab, .passport-lab, .fit-lab, .model-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(0, 1.18fr) minmax(330px, .82fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.quadratic-shape-lab__stage, .passport-lab__stage, .fit-lab__stage, .model-lab__stage
+  min-width: 0
+  min-height: 520px
+  padding: clamp(.8rem, 2vw, 1.6rem)
+  display: grid
+  place-items: center
+  background: #e9efec
+
+  svg
+    width: 100%
+    height: auto
+    max-height: 590px
+
+.quadratic-plot-bg
+  fill: var(--white)
+  stroke: var(--line)
+
+.quadratic-grid
+  stroke: rgba(7, 29, 51, .08)
+  stroke-width: 1
+
+.quadratic-grid--axis
+  stroke: rgba(7, 29, 51, .58)
+  stroke-width: 1.8
+
+.quadratic-grid-label, .quadratic-axis-label, .quadratic-point-label
+  fill: rgba(7, 29, 51, .66)
+  font-family: Ubuntu, sans-serif
+  font-size: 12px
+  font-weight: 700
+
+.quadratic-axis-label
+  font-size: 13px
+
+.quadratic-point-label
+  fill: var(--ink)
+  font-size: 13px
+
+.quadratic-curve
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-width: 5
+
+  &.is-invalid
+    stroke-dasharray: 9 7
+    opacity: .65
+
+.quadratic-symmetry
+  stroke: var(--violet)
+  stroke-dasharray: 8 7
+  stroke-width: 2
+
+.quadratic-vertex
+  fill: var(--gold)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.quadratic-intercept
+  fill: var(--blue)
+  stroke: var(--ink)
+  stroke-width: 3
+
+.quadratic-intercept--y
+  fill: var(--green)
+
+.quadratic-fit-point
+  fill: var(--violet)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.quadratic-shape-lab__controls, .passport-lab__controls, .fit-lab__controls, .model-lab__controls
+  padding: clamp(1.5rem, 3vw, 2.5rem)
+
+  > label
+    margin-top: 1.2rem
+    display: flex
+    justify-content: space-between
+    gap: 1rem
+    color: var(--ink-soft)
+    font-size: .88rem
+    font-weight: 700
+
+    output
+      min-width: 2.5rem
+      padding: .2rem .4rem
+      border-radius: 999px
+      background: var(--paper-deep)
+      color: var(--ink)
+      text-align: center
+
+  input[type='range']
+    width: 100%
+    margin-top: .55rem
+    accent-color: var(--coral)
+
+.shape-equation, .passport-equation, .model-equation
+  margin-top: .8rem
+  padding: 1rem
+  border-radius: .35rem
+  background: var(--paper)
+  text-align: center
+
+.shape-presets
+  margin-top: 1.4rem
+  display: flex
+  flex-wrap: wrap
+  gap: .45rem
+
+  button
+    min-height: 2.5rem
+    padding: .45rem .75rem
+    border: 1px solid var(--line)
+    border-radius: 999px
+    background: transparent
+    font-size: .82rem
+    font-weight: 700
+
+    &:hover, &:focus-visible
+      border-color: var(--coral)
+      background: var(--paper)
+
+.shape-readout
+  margin-top: 1.5rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  border: 1px solid var(--line)
+  border-radius: .4rem
+
+  div
+    min-width: 0
+    padding: .9rem
+
+    &:nth-child(odd)
+      border-right: 1px solid var(--line)
+
+    &:nth-child(-n+2)
+      border-bottom: 1px solid var(--line)
+
+  dt
+    color: var(--ink-soft)
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  dd
+    margin-top: .35rem
+    color: var(--ink)
+    font-size: .92rem
+    font-weight: 700
+
+.square-lab
+  margin-top: 3rem
+  display: grid
+  grid-template-columns: minmax(290px, .72fr) minmax(0, 1.28fr)
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .18)
+  border-radius: .6rem
+
+.square-lab__menu
+  padding: clamp(1.5rem, 3vw, 2.4rem)
+  border-right: 1px solid rgba(255, 255, 255, .18)
+  background: rgba(255, 255, 255, .04)
+
+.square-options
+  margin-top: 1rem
+  display: grid
+  gap: .55rem
+
+  button
+    min-height: 2.8rem
+    padding: .65rem .8rem
+    border: 1px solid rgba(255, 255, 255, .18)
+    border-radius: .3rem
+    background: transparent
+    color: rgba(255, 255, 255, .72)
+    font-size: .85rem
+    font-weight: 700
+    text-align: left
+
+    &.is-active
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+.square-source
+  margin-top: 1.5rem
+  padding: 1.1rem
+  border-radius: .35rem
+  background: var(--white)
+  color: var(--ink)
+
+  span, strong
+    display: block
+
+  > span
+    color: var(--ink-soft)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  strong
+    margin-top: .55rem
+
+.square-recipe
+  margin-top: 1rem
+  color: rgba(255, 255, 255, .72)
+
+  > span
+    color: var(--green)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  p
+    margin-top: .45rem
+    font-size: .87rem
+    line-height: 1.6
+
+.square-lab__workspace
+  padding: clamp(1.5rem, 4vw, 3rem)
+  background: rgba(255, 255, 255, .025)
+
+.square-steps
+  display: grid
+  gap: .75rem
+
+  li
+    min-height: 4.7rem
+    padding: .9rem 1rem
+    display: grid
+    grid-template-columns: 2.2rem 1fr
+    align-items: center
+    gap: .8rem
+    border: 1px dashed rgba(255, 255, 255, .15)
+    border-radius: .4rem
+    color: rgba(255, 255, 255, .42)
+
+    > span
+      width: 2rem
+      height: 2rem
+      display: grid
+      place-items: center
+      border-radius: 50%
+      background: rgba(255, 255, 255, .08)
+      font-size: .78rem
+      font-weight: 700
+
+    small, strong
+      display: block
+
+    small
+      font-size: .74rem
+      letter-spacing: .08em
+      text-transform: uppercase
+
+    strong
+      margin-top: .25rem
+      font-size: 1rem
+
+    &.is-visible
+      border-style: solid
+      border-color: rgba(255, 209, 102, .35)
+      background: rgba(255, 255, 255, .06)
+      color: var(--white)
+
+      > span
+        background: var(--gold)
+        color: var(--ink)
+
+.square-actions
+  margin-top: 1rem
+  display: flex
+  gap: .6rem
+
+  button
+    min-height: 2.8rem
+    padding: .55rem .9rem
+    border: 1px solid rgba(255, 255, 255, .22)
+    border-radius: .3rem
+    background: transparent
+    color: var(--white)
+    font-size: .84rem
+    font-weight: 700
+
+    &:first-child
+      border-color: var(--gold)
+      background: var(--gold)
+      color: var(--ink)
+
+    &:disabled
+      cursor: default
+      opacity: .62
+
+.square-result
+  margin-top: 1rem
+  padding: 1rem
+  border-left: 4px solid var(--green)
+  background: rgba(169, 223, 114, .08)
+  color: rgba(255, 255, 255, .8)
+  font-size: .88rem
+  line-height: 1.55
+
+.vertex-shortcut
+  margin-top: 1.5rem
+  padding: 1.25rem 1.5rem
+  display: grid
+  grid-template-columns: auto minmax(0, 1fr)
+  align-items: center
+  gap: 1.5rem
+  border: 1px solid rgba(255, 255, 255, .16)
+  border-radius: .45rem
+  background: rgba(255, 255, 255, .05)
+
+  > div
+    min-width: 11rem
+
+  span, strong
+    display: block
+
+  > div > span
+    color: var(--gold)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .09em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    color: var(--white)
+    font-size: 1.3rem
+
+  p
+    color: rgba(255, 255, 255, .72)
+    font-size: .9rem
+    line-height: 1.6
+
+.passport-lab
+  grid-template-columns: minmax(0, 1.05fr) minmax(350px, .95fr)
+
+.passport-options
+  margin-top: .9rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .35rem
+
+  button
+    min-width: 0
+    min-height: 2.75rem
+    padding: .45rem .35rem
+    border: 1px solid var(--line)
+    border-radius: .28rem
+    background: transparent
+    font-size: .75rem
+    font-weight: 700
+
+    &.is-active
+      background: var(--ink)
+      color: var(--white)
+
+.passport-equation
+  overflow-wrap: anywhere
+
+.passport-facts
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  border: 1px solid var(--line)
+  border-radius: .4rem
+
+  div
+    min-width: 0
+    padding: .8rem
+    border-bottom: 1px solid var(--line)
+
+    &:nth-child(odd)
+      border-right: 1px solid var(--line)
+
+    &:last-child
+      grid-column: 1 / -1
+      border-bottom: 0
+
+  dt
+    color: var(--ink-soft)
+    font-size: .7rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  dd
+    margin-top: .32rem
+    color: var(--ink)
+    font-size: .86rem
+    font-weight: 700
+    overflow-wrap: anywhere
+
+.passport-note
+  margin-top: 1rem
+  padding: .9rem
+  border-left: 4px solid var(--violet)
+  background: rgba(166, 146, 232, .11)
+  color: var(--ink-soft)
+  font-size: .85rem
+  line-height: 1.55
+
+.fit-lab
+  grid-template-columns: minmax(350px, .82fr) minmax(0, 1.18fr)
+
+.fit-lab__controls
+  border-right: 1px solid var(--line)
+
+.fit-vertex
+  margin-top: .8rem
+  padding: 1rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  border-radius: .35rem
+  background: var(--ink)
+  color: var(--white)
+
+  span
+    color: rgba(255, 255, 255, .62)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    font-size: 1.2rem
+
+.fit-derivation
+  margin-top: 1.4rem
+  padding: 1.1rem
+  display: grid
+  gap: .55rem
+  border-radius: .35rem
+  background: var(--paper)
+
+  span, strong
+    display: block
+
+  strong
+    padding-top: .55rem
+    border-top: 1px solid var(--line)
+
+.fit-warning
+  margin-top: .85rem
+  color: var(--ink-soft)
+  font-size: .84rem
+  line-height: 1.55
+
+.model-tabs
+  width: max-content
+  max-width: 100%
+  margin-top: 2.5rem
+  padding: .3rem
+  display: flex
+  gap: .3rem
+  border: 1px solid rgba(255, 255, 255, .2)
+  border-radius: 999px
+
+  button
+    min-height: 2.7rem
+    padding: .55rem 1rem
+    border: 0
+    border-radius: 999px
+    background: transparent
+    color: rgba(255, 255, 255, .68)
+    font-size: .85rem
+    font-weight: 700
+
+    &.is-active
+      background: var(--gold)
+      color: var(--ink)
+
+.model-lab
+  margin-top: 1rem
+  border-color: rgba(255, 255, 255, .18)
+  background: var(--white)
+
+.model-lab__stage
+  background: #dfe9e6
+
+.quadratic-model-curve
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-width: 6
+
+.quadratic-model-guide
+  stroke: var(--violet)
+  stroke-dasharray: 8 7
+  stroke-width: 2
+
+.quadratic-model-maximum
+  fill: var(--gold)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.quadratic-model-point
+  fill: var(--blue)
+  stroke: var(--ink)
+  stroke-width: 4
+
+.model-lab__controls
+  color: var(--ink)
+
+  > p:not(.tool-label)
+    margin-top: 1rem
+    color: var(--ink-soft)
+    font-size: .88rem
+    line-height: 1.6
+
+.model-current, .model-maximum
+  margin-top: 1rem
+  padding: 1rem
+  border-radius: .35rem
+  font-size: .9rem
+  font-weight: 700
+  line-height: 1.5
+
+.model-current
+  background: var(--paper)
+
+.model-maximum
+  border-left: 5px solid var(--gold)
+  background: rgba(255, 209, 102, .25)
+
+.quadratic-check-grid
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+.quadratic-check
+  min-width: 0
+  padding: clamp(1.25rem, 2.5vw, 1.8rem)
+  display: flex
+  flex-direction: column
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  > span
+    color: var(--coral)
+    font-size: .76rem
+    font-weight: 700
+    letter-spacing: .1em
+    text-transform: uppercase
+
+  h3
+    margin-top: .7rem
+    font-family: Georgia, serif
+    font-size: 1.08rem
+    line-height: 1.5
+
+  > label
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: minmax(0, 1fr) minmax(150px, .8fr)
+    align-items: center
+    gap: .7rem
+    color: var(--ink-soft)
+    font-size: .86rem
+    font-weight: 700
+
+  input, select
+    min-width: 0
+    width: 100%
+    min-height: 2.8rem
+    padding: .45rem .6rem
+    border: 1px solid var(--line)
+    border-radius: .28rem
+    background: var(--paper)
+
+  button
+    min-height: 2.8rem
+    margin-top: .8rem
+    border: 0
+    border-radius: .28rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: .85rem
+    font-weight: 700
+
+  .answer-feedback
+    font-size: .85rem
+
+.quadratic-coordinate-answer
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: .7rem
+
+  label
+    display: grid
+    grid-template-columns: auto 1fr
+    align-items: center
+    gap: .45rem
+    color: var(--ink-soft)
+    font-size: .84rem
+    font-weight: 700
+
+.ready-banner--quadratics
+  background: var(--gold)
+
+@media (max-width: 1080px)
+  .quadratic-hero-art
+    width: min(100%, 660px)
+    margin: 0 auto
+
+  .quadratic-section-lead
+    grid-template-columns: 1fr
+
+  .quadratic-shape-lab, .passport-lab, .fit-lab, .model-lab, .square-lab
+    grid-template-columns: 1fr
+
+  .quadratic-shape-lab__stage, .passport-lab__stage, .fit-lab__stage, .model-lab__stage
+    min-height: 500px
+
+  .square-lab__menu, .fit-lab__controls
+    border-right: 0
+    border-bottom: 1px solid var(--line)
+
+  .square-lab__menu
+    border-bottom-color: rgba(255, 255, 255, .18)
+
+  .square-options
+    grid-template-columns: repeat(3, 1fr)
+
+@media (max-width: 760px)
+  .quadratic-hero-art
+    min-height: 400px
+
+    svg
+      min-height: 390px
+
+  .quadratic-hero-art__formula
+    right: 0
+    font-size: .78rem
+
+  .quadratic-hero-art__label--axis
+    top: 4.5rem
+
+  .quadratic-shape-lab__stage, .passport-lab__stage, .fit-lab__stage, .model-lab__stage
+    min-height: 390px
+    padding: .5rem
+
+  .square-options, .passport-options
+    grid-template-columns: 1fr
+
+  .vertex-shortcut
+    grid-template-columns: 1fr
+
+  .passport-facts
+    grid-template-columns: 1fr
+
+    div, div:nth-child(odd)
+      border-right: 0
+
+    div:last-child
+      grid-column: auto
+
+  .quadratic-check-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .quadratic-check > label
+    grid-template-columns: 1fr
+
+@media (max-width: 480px)
+  .quadratic-hero-art__label
+    display: none
+
+  .quadratic-hero-art__formula
+    left: .5rem
+    right: .5rem
+    text-align: center
+
+  .shape-readout
+    grid-template-columns: 1fr
+
+    div, div:nth-child(odd), div:nth-child(-n+2)
+      border-right: 0
+      border-bottom: 1px solid var(--line)
+
+    div:last-child
+      border-bottom: 0
+
+  .square-actions, .model-tabs
+    width: 100%
+    flex-direction: column
+    border-radius: .4rem
+
+    button
+      width: 100%
+
+  .quadratic-coordinate-answer
+    grid-template-columns: 1fr
+
+@media (prefers-reduced-motion: reduce)
+  .quadratic-hero-art__point
+    animation: none
