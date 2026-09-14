@@ -94,9 +94,18 @@ root.innerHTML = `
       </div>
 
       <div class="curve-rules" data-reveal>
-        <article><i class="curve-rule-icon curve-rule-icon--smooth"></i><span>Shape</span><strong>Smooth and continuous</strong><p>No breaks, holes, corners, or sharp cusps.</p></article>
-        <article><i class="curve-rule-icon curve-rule-icon--turns"></i><span>Turning limit</span><strong>At most ${math("<var>n</var> − 1")} local extrema</strong><p>A degree-4 polynomial cannot have five turning points.</p></article>
-        <article><i class="curve-rule-icon curve-rule-icon--domain"></i><span>Domain</span><strong>${math("(−∞, ∞)")}</strong><p>Every real input is allowed in a polynomial.</p></article>
+        <article>
+          <svg class="curve-rule-icon curve-rule-icon--smooth" viewBox="0 0 120 52" aria-hidden="true"><path d="M4 34C20 45 41 45 57 31S88 9 116 18" /></svg>
+          <span>Shape</span><strong>Smooth and continuous</strong><p>No breaks, holes, corners, or sharp cusps.</p>
+        </article>
+        <article>
+          <svg class="curve-rule-icon curve-rule-icon--turns" viewBox="0 0 120 52" aria-hidden="true"><path d="M4 38C18 5 36 5 49 29S75 50 89 22S108 7 116 19" /></svg>
+          <span>Turning limit</span><strong>At most ${math("<var>n</var> − 1")} local extrema</strong><p>A degree-4 polynomial cannot have five turning points.</p>
+        </article>
+        <article>
+          <svg class="curve-rule-icon curve-rule-icon--domain" viewBox="0 0 120 52" aria-hidden="true"><path d="M8 26H112M8 26L18 18M8 26L18 34M112 26L102 18M112 26L102 34" /></svg>
+          <span>Domain</span><strong>${math("(−∞, ∞)")}</strong><p>Every real input is allowed in a polynomial.</p>
+        </article>
       </div>
 
       <div class="curve-screening" data-reveal>

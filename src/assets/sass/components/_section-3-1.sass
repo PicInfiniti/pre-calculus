@@ -33,6 +33,22 @@
   > span:last-child
     padding: .08em .18em 0
 
+.native-radical
+  display: inline-flex
+  align-items: flex-start
+  white-space: nowrap
+
+  &::before
+    content: '√'
+    font-size: 1.08em
+    line-height: 1
+
+  > span
+    margin-left: -.08em
+    padding: .02em .08em 0
+    border-top: 1px solid currentColor
+    line-height: 1
+
 .lesson-hero--quadratics
   --hero-accent: var(--gold)
 
@@ -155,16 +171,20 @@
   padding: clamp(.8rem, 2vw, 1.6rem)
   display: grid
   place-items: center
-  background: #e9efec
+  background: var(--white)
 
   svg
     width: 100%
     height: auto
     max-height: 590px
 
+.quadratic-shape-lab__stage, .passport-lab__stage, .fit-lab__stage
+  min-height: 460px
+  padding: clamp(.5rem, .8vw, .9rem)
+
 .quadratic-plot-bg
   fill: var(--white)
-  stroke: var(--line)
+  stroke: none
 
 .quadratic-grid
   stroke: rgba(7, 29, 51, .08)
@@ -206,6 +226,9 @@
   fill: var(--gold)
   stroke: var(--ink)
   stroke-width: 4
+
+.quadratic-vertex--compact
+  stroke-width: 2
 
 .quadratic-intercept
   fill: var(--blue)
@@ -469,7 +492,7 @@
   > div
     min-width: 11rem
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
   > div > span
@@ -561,7 +584,7 @@
   grid-template-columns: minmax(350px, .82fr) minmax(0, 1.18fr)
 
 .fit-lab__controls
-  border-right: 1px solid var(--line)
+  border-right: 0
 
 .fit-vertex
   margin-top: .8rem
@@ -592,7 +615,7 @@
   border-radius: .35rem
   background: var(--paper)
 
-  span, strong
+  > span, > strong
     display: block
 
   strong
@@ -635,7 +658,7 @@
   background: var(--white)
 
 .model-lab__stage
-  background: #dfe9e6
+  background: var(--white)
 
 .quadratic-model-curve
   fill: none

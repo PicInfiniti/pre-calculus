@@ -85,11 +85,11 @@ root.innerHTML = `
           <p class="tool-label">Vertex-form drafting table</p>
           <div class="shape-equation" id="shape-equation"></div>
           <label for="shape-a"><span>Opening and width · ${math("<var>a</var>")}</span><output id="shape-a-output"></output></label>
-          <input id="shape-a" type="range" min="-3" max="3" step="0.25" value="1" />
+          <input id="shape-a" type="range" min="-3" max="3" step="0.1" value="1" />
           <label for="shape-h"><span>Horizontal position · ${math("<var>h</var>")}</span><output id="shape-h-output"></output></label>
-          <input id="shape-h" type="range" min="-4" max="4" step="0.5" value="-1" />
+          <input id="shape-h" type="range" min="-4" max="4" step="0.1" value="-1" />
           <label for="shape-k"><span>Vertical position · ${math("<var>k</var>")}</span><output id="shape-k-output"></output></label>
-          <input id="shape-k" type="range" min="-4" max="4" step="0.5" value="2" />
+          <input id="shape-k" type="range" min="-4" max="4" step="0.1" value="2" />
           <div class="shape-presets" aria-label="Parabola presets">
             <button type="button" data-shape-preset="minimum">Minimum</button>
             <button type="button" data-shape-preset="maximum">Maximum</button>
@@ -179,9 +179,9 @@ root.innerHTML = `
           <p class="tool-label">Parabola fitter</p>
           <div class="fit-vertex"><span>Fixed vertex</span><strong>${math("(−1, 5)")}</strong></div>
           <label for="fit-x"><span>Point’s ${math("<var>x</var>")}-coordinate</span><output id="fit-x-output">−3</output></label>
-          <input id="fit-x" type="range" min="-5" max="3" step="1" value="-3" />
+          <input id="fit-x" type="range" min="-5" max="3" step="0.1" value="-3" />
           <label for="fit-y"><span>Point’s ${math("<var>y</var>")}-coordinate</span><output id="fit-y-output">−7</output></label>
-          <input id="fit-y" type="range" min="-12" max="14" step="1" value="-7" />
+          <input id="fit-y" type="range" min="-12" max="14" step="0.1" value="-7" />
           <div class="fit-derivation" id="fit-derivation" aria-live="polite"></div>
           <p class="fit-warning" id="fit-warning"></p>
         </div>
@@ -284,13 +284,35 @@ function vertexExpression(a, h, k) {
   return `<var>f</var>(<var>x</var>) = ${coefficient}(${inside})<sup>2</sup>${constant}`;
 }
 
-function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax }) {
+function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1, yStep = 1 }) {
+  const horizontalIntervals = (xMax - xMin) / xStep;
+  const verticalIntervals = (yMax - yMin) / yStep;
+  const gridSize = Math.min(
+    (width - padding * 2) / horizontalIntervals,
+    (height - padding * 2) / verticalIntervals,
+  );
+  const plotWidth = horizontalIntervals * gridSize;
+  const plotHeight = verticalIntervals * gridSize;
+  const plotLeft = (width - plotWidth) / 2;
+  const plotTop = (height - plotHeight) / 2;
+  const plotRight = plotLeft + plotWidth;
+  const plotBottom = plotTop + plotHeight;
+
   return {
-    x: (value) => padding + ((value - xMin) / (xMax - xMin)) * (width - padding * 2),
-    y: (value) => height - padding - ((value - yMin) / (yMax - yMin)) * (height - padding * 2),
+    x: (value) => plotLeft + ((value - xMin) / xStep) * gridSize,
+    y: (value) => plotBottom - ((value - yMin) / yStep) * gridSize,
     width,
     height,
     padding,
+    plotLeft,
+    plotTop,
+    plotRight,
+    plotBottom,
+    plotWidth,
+    plotHeight,
+    gridSize,
+    xStep,
+    yStep,
     xMin,
     xMax,
     yMin,
@@ -298,7 +320,13 @@ function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax }) {
   };
 }
 
-function graphScaffold(mapper, { xStep = 1, yStep = 1, xLabel = "x", yLabel = "y" } = {}) {
+function graphScaffold(mapper, {
+  xStep = mapper.xStep,
+  yStep = mapper.yStep,
+  xLabel = "x",
+  yLabel = "y",
+  clipId,
+} = {}) {
   const vertical = [];
   const horizontal = [];
   const labels = [];
@@ -306,23 +334,36 @@ function graphScaffold(mapper, { xStep = 1, yStep = 1, xLabel = "x", yLabel = "y
   const firstY = Math.ceil(mapper.yMin / yStep) * yStep;
   for (let x = firstX; x <= mapper.xMax + 1e-8; x += xStep) {
     const major = Math.abs(x) < 1e-8;
-    vertical.push(`<line x1="${mapper.x(x)}" y1="${mapper.padding}" x2="${mapper.x(x)}" y2="${mapper.height - mapper.padding}" class="quadratic-grid${major ? " quadratic-grid--axis" : ""}"/>`);
+    const boundary = nearlyEqual(x, mapper.xMin) || nearlyEqual(x, mapper.xMax);
+    if (!boundary || major) vertical.push(`<line x1="${mapper.x(x)}" y1="${mapper.plotTop}" x2="${mapper.x(x)}" y2="${mapper.plotBottom}" class="quadratic-grid${major ? " quadratic-grid--axis" : ""}"/>`);
     if (!major && Math.abs(x / xStep) % 2 === 0) labels.push(`<text x="${mapper.x(x)}" y="${mapper.y(0) + 20}" class="quadratic-grid-label" text-anchor="middle">${formatNumber(x)}</text>`);
   }
   for (let y = firstY; y <= mapper.yMax + 1e-8; y += yStep) {
     const major = Math.abs(y) < 1e-8;
-    horizontal.push(`<line x1="${mapper.padding}" y1="${mapper.y(y)}" x2="${mapper.width - mapper.padding}" y2="${mapper.y(y)}" class="quadratic-grid${major ? " quadratic-grid--axis" : ""}"/>`);
+    const boundary = nearlyEqual(y, mapper.yMin) || nearlyEqual(y, mapper.yMax);
+    if (!boundary || major) horizontal.push(`<line x1="${mapper.plotLeft}" y1="${mapper.y(y)}" x2="${mapper.plotRight}" y2="${mapper.y(y)}" class="quadratic-grid${major ? " quadratic-grid--axis" : ""}"/>`);
     if (!major && Math.abs(y / yStep) % 2 === 0) labels.push(`<text x="${mapper.x(0) - 10}" y="${mapper.y(y) + 4}" class="quadratic-grid-label" text-anchor="end">${formatNumber(y)}</text>`);
   }
-  labels.push(`<text x="${mapper.width - mapper.padding + 10}" y="${mapper.y(0) + 5}" class="quadratic-axis-label">${xLabel}</text>`);
-  labels.push(`<text x="${mapper.x(0)}" y="${mapper.padding - 12}" class="quadratic-axis-label" text-anchor="middle">${yLabel}</text>`);
-  return `<rect x="${mapper.padding}" y="${mapper.padding}" width="${mapper.width - mapper.padding * 2}" height="${mapper.height - mapper.padding * 2}" class="quadratic-plot-bg"/>${vertical.join("")}${horizontal.join("")}${labels.join("")}`;
+  labels.push(`<text x="${mapper.plotRight + 10}" y="${mapper.y(0) + 5}" class="quadratic-axis-label">${xLabel}</text>`);
+  labels.push(`<text x="${mapper.x(0)}" y="${mapper.plotTop - 12}" class="quadratic-axis-label" text-anchor="middle">${yLabel}</text>`);
+  const curveOverflow = 18;
+  const clipPath = clipId
+    ? `<defs><clipPath id="${clipId}"><rect x="${mapper.plotLeft - curveOverflow}" y="${mapper.plotTop - curveOverflow}" width="${mapper.plotWidth + curveOverflow * 2}" height="${mapper.plotHeight + curveOverflow * 2}"/></clipPath></defs>`
+    : "";
+  return `${clipPath}<rect x="${mapper.plotLeft}" y="${mapper.plotTop}" width="${mapper.plotWidth}" height="${mapper.plotHeight}" class="quadratic-plot-bg"/>${vertical.join("")}${horizontal.join("")}${labels.join("")}`;
+}
+
+function frameChart(chart, mapper, margin = 30) {
+  chart.setAttribute(
+    "viewBox",
+    `${mapper.plotLeft - margin} ${mapper.plotTop - margin} ${mapper.plotWidth + margin * 2} ${mapper.plotHeight + margin * 2}`,
+  );
 }
 
 function quadraticPath(mapper, fn, samples = 240) {
   let path = "";
   let drawing = false;
-  const margin = (mapper.yMax - mapper.yMin) * 0.2;
+  const margin = (10 / mapper.gridSize) * mapper.yStep;
   for (let index = 0; index <= samples; index += 1) {
     const x = mapper.xMin + ((mapper.xMax - mapper.xMin) * index) / samples;
     const y = fn(x);
@@ -382,11 +423,12 @@ function renderShapeLab() {
   const mapper = makeMapper({ width: 660, height: 540, padding: 48, xMin: -7, xMax: 7, yMin: -7, yMax: 7 });
   const fn = (x) => a * (x - h) ** 2 + k;
   const chart = document.querySelector("#shape-chart");
+  frameChart(chart, mapper, 24);
   chart.innerHTML = `
-    ${graphScaffold(mapper)}
-    <line x1="${mapper.x(h)}" y1="${mapper.padding}" x2="${mapper.x(h)}" y2="${mapper.height - mapper.padding}" class="quadratic-symmetry"/>
-    <path d="${quadraticPath(mapper, fn)}" class="quadratic-curve"/>
-    <circle cx="${mapper.x(h)}" cy="${mapper.y(k)}" r="10" class="quadratic-vertex"/>
+    ${graphScaffold(mapper, { clipId: "shape-plot-clip" })}
+    <line x1="${mapper.x(h)}" y1="${mapper.plotTop}" x2="${mapper.x(h)}" y2="${mapper.plotBottom}" class="quadratic-symmetry"/>
+    <path d="${quadraticPath(mapper, fn)}" class="quadratic-curve" clip-path="url(#shape-plot-clip)"/>
+    <circle cx="${mapper.x(h)}" cy="${mapper.y(k)}" r="6" class="quadratic-vertex quadratic-vertex--compact"/>
     <text x="${mapper.x(h) + 14}" y="${mapper.y(k) - 14}" class="quadratic-point-label">(${formatNumber(h)}, ${formatNumber(k)})</text>
   `;
   document.querySelector("#shape-equation").innerHTML = math(vertexExpression(a, h, k), true);
@@ -403,7 +445,7 @@ Object.values(shapeInputs).forEach((input) => input.addEventListener("input", re
 const shapePresets = {
   minimum: [1, -1, 2],
   maximum: [-1, 2, 3],
-  wide: [0.25, -2, -1],
+  wide: [0.3, -2, -1],
 };
 document.querySelectorAll("[data-shape-preset]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -500,13 +542,13 @@ const passportCases = {
     equation: "<var>f</var>(<var>x</var>) = −3<var>x</var><sup>2</sup> + 6<var>x</var> − 2 = −3(<var>x</var> − 1)<sup>2</sup> + 1",
     a: -3, h: 1, k: 1, c: -2, roots: [1 - Math.sqrt(3) / 3, 1 + Math.sqrt(3) / 3],
     bounds: { xMin: -3, xMax: 5, yMin: -12, yMax: 5, yStep: 2 },
-    note: "The exact zeros are 1 − √3/3 and 1 + √3/3.",
+    note: `The exact zeros are ${math(`1 − <span class="native-frac"><span><span class="native-radical"><span>3</span></span></span><span>3</span></span> and 1 + <span class="native-frac"><span><span class="native-radical"><span>3</span></span></span><span>3</span></span>`)}`,
   },
   third: {
     equation: "<var>f</var>(<var>x</var>) = 5<var>x</var><sup>2</sup> + 30<var>x</var> + 4 = 5(<var>x</var> + 3)<sup>2</sup> − 41",
     a: 5, h: -3, k: -41, c: 4, roots: [(-15 - Math.sqrt(205)) / 5, (-15 + Math.sqrt(205)) / 5],
     bounds: { xMin: -7, xMax: 1, yMin: -48, yMax: 12, yStep: 10 },
-    note: "The exact zeros are (−15 − √205)/5 and (−15 + √205)/5.",
+    note: `The exact zeros are ${math(`<span class="native-frac"><span>−15 − <span class="native-radical"><span>205</span></span></span><span>5</span></span> and <span class="native-frac"><span>−15 + <span class="native-radical"><span>205</span></span></span><span>5</span></span>`)}`,
   },
 };
 
@@ -515,12 +557,14 @@ let passportCase = "first";
 function renderPassport() {
   const selected = passportCases[passportCase];
   const { xMin, xMax, yMin, yMax, yStep } = selected.bounds;
-  const mapper = makeMapper({ width: 660, height: 540, padding: 52, xMin, xMax, yMin, yMax });
+  const mapper = makeMapper({ width: 660, height: 540, padding: 52, xMin, xMax, yMin, yMax, xStep: 1, yStep });
   const fn = (x) => selected.a * (x - selected.h) ** 2 + selected.k;
-  document.querySelector("#passport-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep })}
-    <line x1="${mapper.x(selected.h)}" y1="${mapper.padding}" x2="${mapper.x(selected.h)}" y2="${mapper.height - mapper.padding}" class="quadratic-symmetry"/>
-    <path d="${quadraticPath(mapper, fn)}" class="quadratic-curve"/>
+  const chart = document.querySelector("#passport-chart");
+  frameChart(chart, mapper, 24);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { xStep: 1, yStep, clipId: "passport-plot-clip" })}
+    <line x1="${mapper.x(selected.h)}" y1="${mapper.plotTop}" x2="${mapper.x(selected.h)}" y2="${mapper.plotBottom}" class="quadratic-symmetry"/>
+    <path d="${quadraticPath(mapper, fn)}" class="quadratic-curve" clip-path="url(#passport-plot-clip)"/>
     <circle cx="${mapper.x(selected.h)}" cy="${mapper.y(selected.k)}" r="9" class="quadratic-vertex"/>
     <circle cx="${mapper.x(0)}" cy="${mapper.y(selected.c)}" r="7" class="quadratic-intercept quadratic-intercept--y"/>
     ${selected.roots.map((rootValue) => `<circle cx="${mapper.x(rootValue)}" cy="${mapper.y(0)}" r="7" class="quadratic-intercept"/>`).join("")}
@@ -535,7 +579,7 @@ function renderPassport() {
     <div><dt>Domain</dt><dd>${math("(−∞, ∞)")}</dd></div>
     <div><dt>Range</dt><dd>${math(selected.a > 0 ? `[${formatNumber(selected.k)}, ∞)` : `(−∞, ${formatNumber(selected.k)}]`)}</dd></div>
   `;
-  document.querySelector("#passport-note").textContent = selected.note;
+  document.querySelector("#passport-note").innerHTML = selected.note;
 }
 
 document.querySelectorAll("[data-passport]").forEach((button) => {
@@ -577,12 +621,14 @@ function renderFitLab() {
     `;
     warning.textContent = valid ? "The vertex and selected point now lie on the same quadratic." : "When a = 0, the result is a horizontal line—not a quadratic. Move the point above or below the vertex.";
   }
-  const mapper = makeMapper({ width: 660, height: 540, padding: 48, xMin: -6, xMax: 4, yMin: -15, yMax: 16 });
+  const mapper = makeMapper({ width: 660, height: 540, padding: 48, xMin: -6, xMax: 4, yMin: -15, yMax: 16, xStep: 1, yStep: 5 });
   const fn = (value) => a * (value - h) ** 2 + k;
-  document.querySelector("#fit-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: 1, yStep: 5 })}
-    <line x1="${mapper.x(h)}" y1="${mapper.padding}" x2="${mapper.x(h)}" y2="${mapper.height - mapper.padding}" class="quadratic-symmetry"/>
-    ${Number.isFinite(a) ? `<path d="${quadraticPath(mapper, fn)}" class="quadratic-curve${valid ? "" : " is-invalid"}"/>` : ""}
+  const chart = document.querySelector("#fit-chart");
+  frameChart(chart, mapper, 24);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { xStep: 1, yStep: 5, clipId: "fit-plot-clip" })}
+    <line x1="${mapper.x(h)}" y1="${mapper.plotTop}" x2="${mapper.x(h)}" y2="${mapper.plotBottom}" class="quadratic-symmetry"/>
+    ${Number.isFinite(a) ? `<path d="${quadraticPath(mapper, fn)}" class="quadratic-curve${valid ? "" : " is-invalid"}" clip-path="url(#fit-plot-clip)"/>` : ""}
     <circle cx="${mapper.x(h)}" cy="${mapper.y(k)}" r="10" class="quadratic-vertex"/>
     <circle cx="${mapper.x(x)}" cy="${mapper.y(y)}" r="9" class="quadratic-fit-point"/>
     <text x="${mapper.x(h) + 12}" y="${mapper.y(k) - 14}" class="quadratic-point-label">vertex</text>
@@ -648,10 +694,22 @@ function renderModel() {
   const selected = modelCases[modelCase];
   const x = Number(modelInput.value);
   const y = selected.fn(x);
-  const mapper = makeMapper({ width: 720, height: 500, padding: 58, xMin: selected.xMin, xMax: selected.xMax, yMin: selected.yMin, yMax: selected.yMax });
-  document.querySelector("#model-chart").innerHTML = `
-    ${graphScaffold(mapper, { xStep: selected.xStep, yStep: selected.yStep, xLabel: selected.xLabel, yLabel: selected.yLabel })}
-    <path d="${quadraticPath(mapper, selected.fn)}" class="quadratic-model-curve"/>
+  const mapper = makeMapper({
+    width: 720,
+    height: 500,
+    padding: 58,
+    xMin: selected.xMin,
+    xMax: selected.xMax,
+    yMin: selected.yMin,
+    yMax: selected.yMax,
+    xStep: selected.xStep,
+    yStep: selected.yStep,
+  });
+  const chart = document.querySelector("#model-chart");
+  frameChart(chart, mapper);
+  chart.innerHTML = `
+    ${graphScaffold(mapper, { xStep: selected.xStep, yStep: selected.yStep, xLabel: selected.xLabel, yLabel: selected.yLabel, clipId: "model-plot-clip" })}
+    <path d="${quadraticPath(mapper, selected.fn)}" class="quadratic-model-curve" clip-path="url(#model-plot-clip)"/>
     <line x1="${mapper.x(selected.vertexX)}" y1="${mapper.y(selected.vertexY)}" x2="${mapper.x(selected.vertexX)}" y2="${mapper.y(selected.yMin)}" class="quadratic-model-guide"/>
     <circle cx="${mapper.x(selected.vertexX)}" cy="${mapper.y(selected.vertexY)}" r="10" class="quadratic-model-maximum"/>
     <circle cx="${mapper.x(x)}" cy="${mapper.y(y)}" r="9" class="quadratic-model-point"/>
