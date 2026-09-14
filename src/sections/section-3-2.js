@@ -809,6 +809,33 @@ const degreeTurns = document.querySelector("#degree-turns");
 const degreeRelation = document.querySelector("#degree-tail-relation");
 const degreeRightTail = document.querySelector("#degree-right-tail");
 
+function degreeCurvePath(degree, positiveLeading) {
+  const width = 560;
+  const centerY = 38;
+  const amplitude = 26;
+  const samples = 240;
+  const sign = positiveLeading ? 1 : -1;
+  const chebyshev = (x) => {
+    if (degree === 0) return 1;
+    if (degree === 1) return x;
+    let previous = 1;
+    let current = x;
+    for (let order = 2; order <= degree; order += 1) {
+      const next = 2 * x * current - previous;
+      previous = current;
+      current = next;
+    }
+    return current;
+  };
+
+  return Array.from({ length: samples + 1 }, (_, index) => {
+    const x = -1 + (2 * index) / samples;
+    const chartX = (index / samples) * width;
+    const chartY = centerY - sign * chebyshev(x) * amplitude;
+    return `${index === 0 ? "M" : "L"}${chartX.toFixed(2)} ${chartY.toFixed(2)}`;
+  }).join("");
+}
+
 function renderDegreeLab() {
   const turns = Number(degreeTurns.value);
   const even = degreeRelation.value === "same";
@@ -816,16 +843,22 @@ function renderDegreeLab() {
   if ((minimum % 2 === 0) !== even) minimum += 1;
   const positive = degreeRightTail.value === "up";
   const leftUp = even ? positive : !positive;
+  const representativeTurns = minimum - 1;
+  const curvePath = degreeCurvePath(minimum, positive);
   document.querySelector("#degree-turns-output").textContent = String(turns);
   document.querySelector("#degree-result").innerHTML = `
-    <div class="degree-tail-picture"><span>${leftUp ? "↖" : "↙"}</span><i>${turns} turn${turns === 1 ? "" : "s"}</i><span>${positive ? "↗" : "↘"}</span></div>
+    <div class="degree-tail-picture" role="img" aria-label="A degree ${minimum} sample with ${representativeTurns} turning point${representativeTurns === 1 ? "" : "s"}; its left tail ${leftUp ? "rises" : "falls"} and its right tail ${positive ? "rises" : "falls"}">
+      <span aria-hidden="true">${leftUp ? "↖" : "↙"}</span>
+      <div class="degree-tail-picture__curve" aria-hidden="true"><svg viewBox="0 0 560 76" preserveAspectRatio="none"><path d="${curvePath}"/></svg><i>${representativeTurns} turn${representativeTurns === 1 ? "" : "s"}</i></div>
+      <span aria-hidden="true">${positive ? "↗" : "↘"}</span>
+    </div>
     <dl>
       <div><dt>Turn bound</dt><dd>${math(`<var>n</var> ≥ ${turns + 1}`)}</dd></div>
       <div><dt>Required parity</dt><dd>${even ? "even" : "odd"}</dd></div>
       <div><dt>Smallest degree</dt><dd>${minimum}</dd></div>
       <div><dt>Leading coefficient</dt><dd>${positive ? "positive" : "negative"}</dd></div>
     </dl>
-    <p>${turns} turning point${turns === 1 ? "" : "s"} require at least degree ${turns + 1}. ${even ? "Matching tails require an even degree." : "Opposite tails require an odd degree."}</p>
+    <p>${turns} visible turning point${turns === 1 ? "" : "s"} require at least degree ${turns + 1}. ${even ? "Matching tails require an even degree." : "Opposite tails require an odd degree."}${representativeTurns > turns ? ` The minimum-degree profile shows one additional turn to connect those tails.` : ""}</p>
   `;
 }
 
