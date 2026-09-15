@@ -455,7 +455,9 @@ function renderApproach() {
 function bindChoice(attribute, update) {
   document.querySelectorAll(`[data-${attribute}]`).forEach((button) => {
     button.addEventListener("click", () => {
-      update(button.dataset[attribute]);
+      const value = button.getAttribute(`data-${attribute}`);
+      if (value === null) return;
+      update(value);
       document.querySelectorAll(`[data-${attribute}]`).forEach((candidate) => {
         const active = candidate === button;
         candidate.classList.toggle("is-active", active);

@@ -86,7 +86,6 @@ root.innerHTML = `
         <div class="sign-lab__map">
           <p class="tool-label">Neighborhood reading</p>
           <div class="sign-track" id="polynomial-sign-track"></div>
-          <div class="sign-pointer" id="sign-pointer"><span></span><b id="sign-pointer-label">x = −2</b></div>
           <div class="sign-lab__answer">
             <span>Solution</span>
             <strong>${math("[0, ∞)")}</strong>
@@ -251,15 +250,18 @@ const formatNumber = (value) => {
 };
 
 const signTest = document.querySelector("#sign-test-value");
-const signPointer = document.querySelector("#sign-pointer");
 const signTrack = document.querySelector("#polynomial-sign-track");
 signTrack.innerHTML = `
-  <div class="sign-track__region sign-track__region--negative"><span>negative</span><b>−</b></div>
-  <i class="sign-track__cut sign-track__cut--zero"><span>0</span></i>
-  <div class="sign-track__region sign-track__region--positive"><span>positive</span><b>+</b></div>
-  <i class="sign-track__cut sign-track__cut--three"><span>3</span></i>
-  <div class="sign-track__region sign-track__region--positive sign-track__region--last"><span>positive</span><b>+</b></div>
+  <div class="sign-track__region sign-track__region--negative"><b>−</b><span>negative</span></div>
+  <i class="sign-track__cut sign-track__cut--zero" aria-hidden="true"></i>
+  <span class="sign-track__value sign-track__value--zero">0</span>
+  <div class="sign-track__region sign-track__region--positive"><b>+</b><span>positive</span></div>
+  <i class="sign-track__cut sign-track__cut--three" aria-hidden="true"></i>
+  <span class="sign-track__value sign-track__value--three">3</span>
+  <div class="sign-track__region sign-track__region--positive sign-track__region--last"><b>+</b><span>positive</span></div>
+  <div class="sign-pointer" id="sign-pointer"><span></span><b id="sign-pointer-label">x = −2</b></div>
 `;
+const signPointer = document.querySelector("#sign-pointer");
 
 function renderPolynomialProbe() {
   const x = Number(signTest.value);
