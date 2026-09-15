@@ -760,7 +760,7 @@
     border-radius: .3rem
     overflow-wrap: anywhere
 
-    span, strong
+    > span, > strong
       display: block
 
     > span
@@ -770,13 +770,31 @@
       letter-spacing: .07em
       text-transform: uppercase
 
-    strong
+    > strong
       margin-top: .3rem
+      font-size: 1.1rem
+      line-height: 1.5
+      text-align: center
 
     small
       color: var(--ink-soft)
       font-size: .65rem
       font-weight: 400
+
+    > .rational-cut-list
+      display: flex
+      flex-wrap: wrap
+      justify-content: flex-start
+      gap: .35rem 1rem
+      text-align: left
+
+  .rational-cut
+    display: inline-flex
+    align-items: baseline
+    gap: .3rem
+
+    b
+      font-size: 1.05rem
 
 .rational-neighborhoods
   padding: clamp(1rem, 2vw, 1.6rem)
@@ -802,7 +820,7 @@
       display: block
 
     span
-      font-size: .72rem
+      font-size: 1rem
 
     b
       margin-top: .2rem

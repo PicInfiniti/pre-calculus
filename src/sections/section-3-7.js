@@ -178,7 +178,7 @@ root.innerHTML = `
 
       <div class="rational-sign-lab" data-reveal>
         <div class="rational-sign-lab__tabs" role="tablist" aria-label="Rational inequalities">
-          <button class="is-active" type="button" data-rational-case="one" role="tab" aria-selected="true">One cut</button>
+          <button class="is-active" type="button" data-rational-case="one" role="tab" aria-selected="true">Two cuts</button>
           <button type="button" data-rational-case="three" role="tab" aria-selected="false">Three cuts</button>
           <button type="button" data-rational-case="compare" role="tab" aria-selected="false">Compare fractions</button>
         </div>
@@ -373,7 +373,7 @@ function renderRationalCase() {
     <p class="tool-label">Single-fraction workflow</p>
     <div><span>Start</span><strong>${math(data.original)}</strong></div>
     <div><span>Move, combine, factor</span><strong>${math(data.combined)}</strong></div>
-    <div><span>Cut points</span><strong>${data.cuts.map((cut) => `${cut.label} <small>${cut.kind === "open" ? "denominator" : "numerator"}</small>`).join(" · ")}</strong></div>
+    <div><span>Cut points</span><strong class="rational-cut-list">${data.cuts.map((cut) => `<span class="rational-cut"><b>${cut.label}</b><small>${cut.kind === "open" ? "denominator" : "numerator"}</small></span>`).join("")}</strong></div>
   `;
   document.querySelector("#rational-intervals").innerHTML = data.intervals.map((interval, index) => `
     <button type="button" data-rational-interval="${index}" class="${interval.keep ? "is-kept" : ""}">
