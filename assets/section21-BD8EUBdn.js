@@ -1,4 +1,4 @@
-import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a,o,r as s,s as c}from"./shared-D45aE3CK.js";var l=document.querySelector(`#app`);l.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{n as e,r as t,t as n}from"./math-BBrN9Pw_.js";import{a as r,i,n as a,o,r as s,s as c}from"./shared-DVcn0svv.js";var l=document.querySelector(`#app`);l.innerHTML=`
   ${o(`2.1`)}
   <main>
     <section class="lesson-hero lesson-hero--functions">
@@ -15,16 +15,16 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
         </div>
       </div>
       <div class="function-hero-art" aria-hidden="true" data-reveal>
-        <span class="function-hero-art__input">${t(String.raw`x`)}</span>
+        <span class="function-hero-art__input">${n(String.raw`x`)}</span>
         <div class="function-hero-art__machine">
           <span>FUNCTION</span>
           <strong>f</strong>
           <p>choose · calculate · return</p>
         </div>
-        <span class="function-hero-art__output">${t(String.raw`f(x)`)}</span>
-        <div class="function-hero-art__rule function-hero-art__rule--one">${t(String.raw`x<0`)}</div>
-        <div class="function-hero-art__rule function-hero-art__rule--two">${t(String.raw`0\le x\le2`)}</div>
-        <div class="function-hero-art__rule function-hero-art__rule--three">${t(String.raw`x>2`)}</div>
+        <span class="function-hero-art__output">${n(String.raw`f(x)`)}</span>
+        <div class="function-hero-art__rule function-hero-art__rule--one">${n(String.raw`x<0`)}</div>
+        <div class="function-hero-art__rule function-hero-art__rule--two">${n(String.raw`0\le x\le2`)}</div>
+        <div class="function-hero-art__rule function-hero-art__rule--three">${n(String.raw`x>2`)}</div>
         <svg viewBox="0 0 620 430">
           <path d="M72 215H215M405 215H550" />
           <circle cx="72" cy="215" r="8" />
@@ -53,7 +53,7 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
       <div class="notation-lab" data-reveal>
         <div class="notation-lab__control">
           <p class="tool-label">Input laboratory</p>
-          <h3>Let ${t(String.raw`f(x)=3x-1`)}</h3>
+          <h3>Let ${n(String.raw`f(x)=3x-1`)}</h3>
           <label for="notation-x">Choose x <output id="notation-x-output">2</output></label>
           <input id="notation-x" type="range" min="-4" max="4" step="0.5" value="2" />
           <div class="function-pipeline" aria-live="polite">
@@ -64,13 +64,13 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
         <div class="notation-lab__compare">
           <article>
             <span>Change the input</span>
-            <h3>${t(String.raw`f(2x)=6x-1`)}</h3>
+            <h3>${n(String.raw`f(2x)=6x-1`)}</h3>
             <p>Replace every x in the rule with 2x.</p>
             <strong id="inside-value">At x = 2: f(4) = 11</strong>
           </article>
           <article>
             <span>Scale the output</span>
-            <h3>${t(String.raw`2f(x)=6x-2`)}</h3>
+            <h3>${n(String.raw`2f(x)=6x-2`)}</h3>
             <p>Evaluate f(x), then multiply the result by 2.</p>
             <strong id="outside-value">At x = 2: 2f(2) = 10</strong>
           </article>
@@ -89,10 +89,10 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
       <div class="piecewise-studio" data-reveal>
         <div class="piecewise-studio__rules">
           <p class="tool-label">Three rules · one output</p>
-          <h3>${t(String.raw`f(x)=`)}</h3>
-          <article data-piecewise-branch="negative"><strong>${t(String.raw`3x`)}</strong><span>if ${t(String.raw`x<0`)}</span></article>
-          <article data-piecewise-branch="middle"><strong>${t(String.raw`x+1`)}</strong><span>if ${t(String.raw`0\le x\le2`)}</span></article>
-          <article data-piecewise-branch="positive"><strong>${t(String.raw`(x-2)^2`)}</strong><span>if ${t(String.raw`x>2`)}</span></article>
+          <h3>${n(String.raw`f(x)=`)}</h3>
+          <article data-piecewise-branch="negative"><strong>${n(String.raw`3x`)}</strong><span>if ${n(String.raw`x<0`)}</span></article>
+          <article data-piecewise-branch="middle"><strong>${n(String.raw`x+1`)}</strong><span>if ${n(String.raw`0\le x\le2`)}</span></article>
+          <article data-piecewise-branch="positive"><strong>${n(String.raw`(x-2)^2`)}</strong><span>if ${n(String.raw`x>2`)}</span></article>
         </div>
         <div class="piecewise-studio__explorer">
           <div class="piecewise-number-line" aria-hidden="true">
@@ -129,9 +129,9 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
           <p class="tool-label">Speed-limit model</p>
           <h3>What fine belongs to this speed?</h3>
           <div class="fine-rules">
-            <span>${t(String.raw`15(40-x)`)} <i>if ${t(String.raw`0<x<40`)}</i></span>
-            <span>${t(String.raw`0`)} <i>if ${t(String.raw`40\le x\le65`)}</i></span>
-            <span>${t(String.raw`15(x-65)`)} <i>if ${t(String.raw`x>65`)}</i></span>
+            <span>${n(String.raw`15(40-x)`)} <i>if ${n(String.raw`0<x<40`)}</i></span>
+            <span>${n(String.raw`0`)} <i>if ${n(String.raw`40\le x\le65`)}</i></span>
+            <span>${n(String.raw`15(x-65)`)} <i>if ${n(String.raw`x>65`)}</i></span>
           </div>
           <div class="speed-road" aria-hidden="true">
             <span>below 40</span><span>legal 40–65</span><span>above 65</span>
@@ -149,7 +149,7 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
         <article class="net-change-lab" data-reveal>
           <p class="tool-label">Net-change explorer</p>
           <h3>Final output minus initial output.</h3>
-          <p class="function-definition">${t(String.raw`R(x)=\frac{13+7x^{0.4}}{1+4x^{0.4}}`,!0)}</p>
+          <p class="function-definition">${n(String.raw`R(x)=\frac{13+7x^{0.4}}{1+4x^{0.4}}`,!0)}</p>
           <svg id="net-change-chart" viewBox="0 0 640 300" role="img" aria-label="Graph of pupil radius as brightness increases"></svg>
           <div class="net-change-inputs">
             <label for="net-a">Start a <output id="net-a-output">10</output><input id="net-a" type="range" min="1" max="120" step="1" value="10" /></label>
@@ -173,13 +173,13 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
 
       <div class="quotient-studio" data-reveal>
         <div class="quotient-steps">
-          <p class="tool-label">For ${t(String.raw`f(x)=3x^2-4x`)}</p>
-          <h3>${t(String.raw`\frac{f(a+h)-f(a)}{h}`,!0)}</h3>
+          <p class="tool-label">For ${n(String.raw`f(x)=3x^2-4x`)}</p>
+          <h3>${n(String.raw`\frac{f(a+h)-f(a)}{h}`,!0)}</h3>
           <ol>
-            <li><span>1</span><p>${t(String.raw`f(a)=3a^2-4a`)}</p></li>
-            <li><span>2</span><p>${t(String.raw`f(a+h)=3(a+h)^2-4(a+h)`)}</p></li>
-            <li><span>3</span><p>Subtract: ${t(String.raw`6ah+3h^2-4h`)}</p></li>
-            <li><span>4</span><p>Factor ${t(String.raw`h`)} and divide: <strong>${t(String.raw`6a+3h-4`)}</strong>, ${t(String.raw`h\ne0`)}</p></li>
+            <li><span>1</span><p>${n(String.raw`f(a)=3a^2-4a`)}</p></li>
+            <li><span>2</span><p>${n(String.raw`f(a+h)=3(a+h)^2-4(a+h)`)}</p></li>
+            <li><span>3</span><p>Subtract: ${n(String.raw`6ah+3h^2-4h`)}</p></li>
+            <li><span>4</span><p>Factor ${n(String.raw`h`)} and divide: <strong>${n(String.raw`6a+3h-4`)}</strong>, ${n(String.raw`h\ne0`)}</p></li>
           </ol>
           <aside><strong>Why h ≠ 0?</strong> The original quotient divides by h. Cancellation simplifies it, but it does not make h = 0 legal.</aside>
         </div>
@@ -252,8 +252,8 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
         </article>
         <article class="check-card" data-reveal>
           <span>Difference quotient</span>
-          <h3>For ${t(String.raw`f(x)=3x^2-4x`)}</h3>
-          <label for="check-quotient">${t(String.raw`\frac{f(a+h)-f(a)}h=`)}</label>
+          <h3>For ${n(String.raw`f(x)=3x^2-4x`)}</h3>
+          <label for="check-quotient">${n(String.raw`\frac{f(a+h)-f(a)}h=`)}</label>
           <select id="check-quotient">
             <option value="">Choose…</option>
             <option value="correct">6a + 3h − 4</option>
@@ -266,13 +266,13 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
         <article class="check-card" data-reveal>
           <span>Domain restrictions</span>
           <h3>Match each function to its domain.</h3>
-          <label>${t(String.raw`\sqrt{7-3x}`)}
+          <label>${n(String.raw`\sqrt{7-3x}`)}
             <select id="check-domain-one"><option value="">Choose…</option><option value="correct">(−∞, 7/3]</option><option value="wrong-a">[7/3, ∞)</option><option value="wrong-b">(−∞, 7/3)</option></select>
           </label>
-          <label>${t(String.raw`\frac{x}{2x^2+x-1}`)}
+          <label>${n(String.raw`\frac{x}{2x^2+x-1}`)}
             <select id="check-domain-two"><option value="">Choose…</option><option value="wrong-a">(−1, 1/2)</option><option value="correct">All reals except −1 and 1/2</option><option value="wrong-b">All real numbers</option></select>
           </label>
-          <label>${t(String.raw`\frac{x}{\sqrt[4]{9-x^2}}`)}
+          <label>${n(String.raw`\frac{x}{\sqrt[4]{9-x^2}}`)}
             <select id="check-domain-three"><option value="">Choose…</option><option value="wrong-a">[−3, 3]</option><option value="correct">(−3, 3)</option><option value="wrong-b">(−∞, −3) ∪ (3, ∞)</option></select>
           </label>
           <button type="button" id="check-domains">Check domains</button>
@@ -287,17 +287,17 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
     </section>
   </main>
   ${r({previous:{href:`pages/sections/1-9.html`,label:`Section 1.9 · Coordinate plane`},next:{href:`pages/sections/2-2.html`,label:`Section 2.2 · Graphs of functions`}})}
-`,e(l);var u=e=>3*e-1;function d(e){let t=a(e);return t.startsWith(`-`)?`−${t.slice(1)}`:t}function f(e){return d(e).replace(`−`,`-`)}var p=document.querySelector(`#notation-x`);function m(){let r=Number(p.value),i=u(r);document.querySelector(`#notation-x-output`).textContent=d(r),document.querySelector(`#pipeline-input`).textContent=d(r),document.querySelector(`#pipeline-output`).textContent=d(i),n(document.querySelector(`#notation-readout`),String.raw`f(${f(r)})=3(${f(r)})-1=${f(i)}`);let a=document.querySelector(`#inside-value`);a.innerHTML=`At ${t(String.raw`x=${f(r)}:\quad f(${f(2*r)})=${f(u(2*r))}`)}`,e(a);let o=document.querySelector(`#outside-value`);o.innerHTML=`At ${t(String.raw`x=${f(r)}:\quad 2f(${f(r)})=${f(2*i)}`)}`,e(o)}p.addEventListener(`input`,m),m();var h=document.querySelector(`#piecewise-x`),g=!1;function _(){let r=g?-Math.PI:Number(h.value),i=r<0?`negative`:r<=2?`middle`:`positive`,a=i===`negative`?3*r:i===`middle`?r+1:(r-2)**2,o=g?`−π`:d(r),s=i===`negative`?`x < 0`:i===`middle`?`0 ≤ x ≤ 2`:`x > 2`;document.querySelectorAll(`[data-piecewise-branch]`).forEach(e=>e.classList.toggle(`is-active`,e.dataset.piecewiseBranch===i)),document.querySelector(`#piecewise-x-output`).textContent=o,document.querySelector(`#piecewise-marker`).style.left=`${(r+4)/9*100}%`;let c=document.querySelector(`#piecewise-decision`);c.innerHTML=`${t(g?String.raw`-\pi`:f(r))} belongs to ${t(s.replaceAll(`≤`,String.raw`\le`))}`,e(c),g?(n(document.querySelector(`#piecewise-result`),String.raw`f(-\pi)=3(-\pi)=-3\pi`),document.querySelector(`#piecewise-explanation`).textContent=`Exactly −3π; approximately ${d(a)}.`):i===`negative`?(n(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=3(${f(r)})=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=`Negative inputs use the first rule.`):i===`middle`?(n(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=${f(r)}+1=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=r===2?`The endpoint 2 is included because the condition uses ≤.`:`This input lies in the closed middle interval.`):(n(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=(${f(r)}-2)^2=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=`Inputs above 2 use the squared rule.`)}h.addEventListener(`input`,()=>{g=!1,_()}),document.querySelectorAll(`[data-piecewise-preset]`).forEach(e=>{e.addEventListener(`click`,()=>{g=e.dataset.piecewisePreset===`pi`,h.value=g?String(-Math.PI):e.dataset.piecewisePreset,_()})}),_();var v=document.querySelector(`#speed-x`);function y(){let e=Number(v.value),t=0,r=`Within the legal range`,i=`No fine: the speed is between 40 and 65 mi/h.`;e<40?(t=15*(40-e),r=`Below the minimum`,i=`The driver is ${40-e} mi/h below the minimum.`):e>65&&(t=15*(e-65),r=`Above the maximum`,i=`The driver is ${e-65} mi/h above the maximum.`),document.querySelector(`#speed-output`).textContent=`${e} mi/h`,document.querySelector(`#speed-car`).style.left=`${e}%`,document.querySelector(`#fine-rule`).textContent=r,n(document.querySelector(`#fine-output`),String.raw`F(${e})=\$${t}`),document.querySelector(`#fine-meaning`).textContent=i}v.addEventListener(`input`,y),document.querySelectorAll(`[data-speed-preset]`).forEach(e=>e.addEventListener(`click`,()=>{v.value=e.dataset.speedPreset,y()})),y();var b=e=>(13+7*e**.4)/(1+4*e**.4),x=document.querySelector(`#net-a`),S=document.querySelector(`#net-b`),C=document.querySelector(`#net-change-chart`);function w(){let e=Number(x.value),t=Number(S.value);e>t&&(t=e,S.value=String(t));let r=b(e),i=b(t),a=i-r,o=e=>45+(e-1)/149*560,s=e=>260-(e-2)/2.1*210,c=[];for(let e=1;e<=150;e+=2)c.push(`${o(e)},${s(b(e))}`);C.innerHTML=`
+`,t(l);var u=e=>3*e-1;function d(e){let t=a(e);return t.startsWith(`-`)?`−${t.slice(1)}`:t}function f(e){return d(e).replace(`−`,`-`)}var p=document.querySelector(`#notation-x`);function m(){let r=Number(p.value),i=u(r);document.querySelector(`#notation-x-output`).textContent=d(r),document.querySelector(`#pipeline-input`).textContent=d(r),document.querySelector(`#pipeline-output`).textContent=d(i),e(document.querySelector(`#notation-readout`),String.raw`f(${f(r)})=3(${f(r)})-1=${f(i)}`);let a=document.querySelector(`#inside-value`);a.innerHTML=`At ${n(String.raw`x=${f(r)}:\quad f(${f(2*r)})=${f(u(2*r))}`)}`,t(a);let o=document.querySelector(`#outside-value`);o.innerHTML=`At ${n(String.raw`x=${f(r)}:\quad 2f(${f(r)})=${f(2*i)}`)}`,t(o)}p.addEventListener(`input`,m),m();var h=document.querySelector(`#piecewise-x`),g=!1;function _(){let r=g?-Math.PI:Number(h.value),i=r<0?`negative`:r<=2?`middle`:`positive`,a=i===`negative`?3*r:i===`middle`?r+1:(r-2)**2,o=g?`−π`:d(r),s=i===`negative`?`x < 0`:i===`middle`?`0 ≤ x ≤ 2`:`x > 2`;document.querySelectorAll(`[data-piecewise-branch]`).forEach(e=>e.classList.toggle(`is-active`,e.dataset.piecewiseBranch===i)),document.querySelector(`#piecewise-x-output`).textContent=o,document.querySelector(`#piecewise-marker`).style.left=`${(r+4)/9*100}%`;let c=document.querySelector(`#piecewise-decision`);c.innerHTML=`${n(g?String.raw`-\pi`:f(r))} belongs to ${n(s.replaceAll(`≤`,String.raw`\le`))}`,t(c),g?(e(document.querySelector(`#piecewise-result`),String.raw`f(-\pi)=3(-\pi)=-3\pi`),document.querySelector(`#piecewise-explanation`).textContent=`Exactly −3π; approximately ${d(a)}.`):i===`negative`?(e(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=3(${f(r)})=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=`Negative inputs use the first rule.`):i===`middle`?(e(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=${f(r)}+1=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=r===2?`The endpoint 2 is included because the condition uses ≤.`:`This input lies in the closed middle interval.`):(e(document.querySelector(`#piecewise-result`),String.raw`f(${f(r)})=(${f(r)}-2)^2=${f(a)}`),document.querySelector(`#piecewise-explanation`).textContent=`Inputs above 2 use the squared rule.`)}h.addEventListener(`input`,()=>{g=!1,_()}),document.querySelectorAll(`[data-piecewise-preset]`).forEach(e=>{e.addEventListener(`click`,()=>{g=e.dataset.piecewisePreset===`pi`,h.value=g?String(-Math.PI):e.dataset.piecewisePreset,_()})}),_();var v=document.querySelector(`#speed-x`);function y(){let t=Number(v.value),n=0,r=`Within the legal range`,i=`No fine: the speed is between 40 and 65 mi/h.`;t<40?(n=15*(40-t),r=`Below the minimum`,i=`The driver is ${40-t} mi/h below the minimum.`):t>65&&(n=15*(t-65),r=`Above the maximum`,i=`The driver is ${t-65} mi/h above the maximum.`),document.querySelector(`#speed-output`).textContent=`${t} mi/h`,document.querySelector(`#speed-car`).style.left=`${t}%`,document.querySelector(`#fine-rule`).textContent=r,e(document.querySelector(`#fine-output`),String.raw`F(${t})=\$${n}`),document.querySelector(`#fine-meaning`).textContent=i}v.addEventListener(`input`,y),document.querySelectorAll(`[data-speed-preset]`).forEach(e=>e.addEventListener(`click`,()=>{v.value=e.dataset.speedPreset,y()})),y();var b=e=>(13+7*e**.4)/(1+4*e**.4),x=document.querySelector(`#net-a`),S=document.querySelector(`#net-b`),C=document.querySelector(`#net-change-chart`);function w(){let t=Number(x.value),n=Number(S.value);t>n&&(n=t,S.value=String(n));let r=b(t),i=b(n),a=i-r,o=e=>45+(e-1)/149*560,s=e=>260-(e-2)/2.1*210,c=[];for(let e=1;e<=150;e+=2)c.push(`${o(e)},${s(b(e))}`);C.innerHTML=`
     <path d="M45 30V260H610" class="function-chart-axis" />
     <path d="M${c.join(` L`)}" class="net-change-curve" />
-    <line x1="${o(e)}" y1="${s(r)}" x2="${o(t)}" y2="${s(i)}" class="net-change-line" />
-    <circle cx="${o(e)}" cy="${s(r)}" r="8" class="function-chart-point function-chart-point--start" />
-    <circle cx="${o(t)}" cy="${s(i)}" r="8" class="function-chart-point function-chart-point--end" />
-    <text x="${o(e)+10}" y="${s(r)-12}">R(${e})</text>
-    <text x="${o(t)-12}" y="${s(i)+26}" text-anchor="end">R(${t})</text>
+    <line x1="${o(t)}" y1="${s(r)}" x2="${o(n)}" y2="${s(i)}" class="net-change-line" />
+    <circle cx="${o(t)}" cy="${s(r)}" r="8" class="function-chart-point function-chart-point--start" />
+    <circle cx="${o(n)}" cy="${s(i)}" r="8" class="function-chart-point function-chart-point--end" />
+    <text x="${o(t)+10}" y="${s(r)-12}">R(${t})</text>
+    <text x="${o(n)-12}" y="${s(i)+26}" text-anchor="end">R(${n})</text>
     <text x="46" y="286">brightness x</text>
     <text x="16" y="40">R</text>
-  `,document.querySelector(`#net-a-output`).textContent=e,document.querySelector(`#net-b-output`).textContent=t,n(document.querySelector(`#net-values`),String.raw`R(${t})-R(${e})`);let l=a<0?`−${Math.abs(a).toFixed(3)}`:a.toFixed(3);n(document.querySelector(`#net-result`),String.raw`${i.toFixed(3)}-${r.toFixed(3)}=${l.replace(`−`,`-`)}\,\mathrm{mm}`),document.querySelector(`#net-meaning`).textContent=a<0?`The pupil radius decreases by about ${Math.abs(a).toFixed(3)} mm.`:`The pupil radius increases by about ${a.toFixed(3)} mm.`}x.addEventListener(`input`,w),S.addEventListener(`input`,()=>{Number(S.value)<Number(x.value)&&(x.value=S.value),w()}),w();var T=document.querySelector(`#secant-a`),E=document.querySelector(`#secant-h`),D=document.querySelector(`#secant-chart`),O=e=>3*e**2-4*e;function k(){let r=Number(T.value),i=Number(E.value),o=r+i,s=(O(o)-O(r))/i,c=e=>45+(e+3)/8*535,l=e=>320-(e+5)/65*280,u=[];for(let e=-3;e<=5;e+=.08)u.push(`${c(e)},${l(O(e))}`);D.innerHTML=`
+  `,document.querySelector(`#net-a-output`).textContent=t,document.querySelector(`#net-b-output`).textContent=n,e(document.querySelector(`#net-values`),String.raw`R(${n})-R(${t})`);let l=a<0?`−${Math.abs(a).toFixed(3)}`:a.toFixed(3);e(document.querySelector(`#net-result`),String.raw`${i.toFixed(3)}-${r.toFixed(3)}=${l.replace(`−`,`-`)}\,\mathrm{mm}`),document.querySelector(`#net-meaning`).textContent=a<0?`The pupil radius decreases by about ${Math.abs(a).toFixed(3)} mm.`:`The pupil radius increases by about ${a.toFixed(3)} mm.`}x.addEventListener(`input`,w),S.addEventListener(`input`,()=>{Number(S.value)<Number(x.value)&&(x.value=S.value),w()}),w();var T=document.querySelector(`#secant-a`),E=document.querySelector(`#secant-h`),D=document.querySelector(`#secant-chart`),O=e=>3*e**2-4*e;function k(){let r=Number(T.value),i=Number(E.value),o=r+i,s=(O(o)-O(r))/i,c=e=>45+(e+3)/8*535,l=e=>320-(e+5)/65*280,u=[];for(let e=-3;e<=5;e+=.08)u.push(`${c(e)},${l(O(e))}`);D.innerHTML=`
     <path d="M45 40V320H585" class="function-chart-axis" />
     <path d="M${u.join(` L`)}" class="secant-curve" />
     <line x1="${c(r)}" y1="${l(O(r))}" x2="${c(o)}" y2="${l(O(o))}" class="secant-line" />
@@ -305,7 +305,7 @@ import{i as e,n as t,r as n}from"./magnifier-DbmAZ0E0.js";import{a as r,i,n as a
     <circle cx="${c(o)}" cy="${l(O(o))}" r="8" class="function-chart-point function-chart-point--end" />
     <text x="${c(r)+10}" y="${l(O(r))-12}">a</text>
     <text x="${c(o)+10}" y="${l(O(o))-12}">a+h</text>
-  `,document.querySelector(`#secant-a-output`).textContent=d(r),document.querySelector(`#secant-h-output`).textContent=a(i);let p=document.querySelector(`#secant-points`);p.innerHTML=`Compare ${t(String.raw`f(${f(r)})`)} and ${t(String.raw`f(${f(o)})`)}`,e(p);let m=document.querySelector(`#secant-slope`);m.innerHTML=`Difference quotient ${t(String.raw`=${f(s)}`)}`,e(m),n(document.querySelector(`#secant-formula`),String.raw`6(${f(r)})+3(${a(i)})-4=${f(s)}`)}T.addEventListener(`input`,k),E.addEventListener(`input`,k),k();var A={radical:{type:`Even root`,formulaTex:String.raw`g(x)=\sqrt{7-3x}`,restriction:`Require ${t(String.raw`7-3x\ge0`)}, so ${t(String.raw`x\le\frac73`)}.`,interval:`Domain: ${t(String.raw`(-\infty,\frac73]`)}`,segments:[{start:0,width:73.33}],markers:[{position:73.33,label:`7/3`,closed:!0}]},rational:{type:`Denominator`,formulaTex:String.raw`g(x)=\frac{x}{2x^2+x-1}`,restriction:`Factor ${t(String.raw`(2x-1)(x+1)`)}. Exclude ${t(String.raw`x=\frac12`)} and ${t(String.raw`x=-1`)}.`,interval:`Domain: ${t(String.raw`(-\infty,-1)\cup(-1,\frac12)\cup(\frac12,\infty)`)}`,segments:[{start:0,width:40},{start:40,width:15},{start:55,width:45}],markers:[{position:40,label:`−1`,closed:!1},{position:55,label:`1/2`,closed:!1}]},"root-denominator":{type:`Fourth root in a denominator`,formulaTex:String.raw`f(x)=\frac{x}{\sqrt[4]{9-x^2}}`,restriction:`Require ${t(String.raw`9-x^2>0`)}. The strict inequality keeps the denominator nonzero.`,interval:`Domain: ${t(String.raw`(-3,3)`)}`,segments:[{start:20,width:60}],markers:[{position:20,label:`−3`,closed:!1},{position:80,label:`3`,closed:!1}]}};function j(t){let r=A[t];document.querySelectorAll(`[data-domain-case]`).forEach(e=>e.classList.toggle(`is-active`,e.dataset.domainCase===t)),document.querySelector(`#domain-type`).textContent=r.type,n(document.querySelector(`#domain-function`),r.formulaTex),document.querySelector(`#domain-restriction`).innerHTML=r.restriction,document.querySelector(`#domain-interval`).innerHTML=r.interval,e(document.querySelector(`.domain-stage`)),document.querySelector(`#domain-visual`).innerHTML=`
+  `,document.querySelector(`#secant-a-output`).textContent=d(r),document.querySelector(`#secant-h-output`).textContent=a(i);let p=document.querySelector(`#secant-points`);p.innerHTML=`Compare ${n(String.raw`f(${f(r)})`)} and ${n(String.raw`f(${f(o)})`)}`,t(p);let m=document.querySelector(`#secant-slope`);m.innerHTML=`Difference quotient ${n(String.raw`=${f(s)}`)}`,t(m),e(document.querySelector(`#secant-formula`),String.raw`6(${f(r)})+3(${a(i)})-4=${f(s)}`)}T.addEventListener(`input`,k),E.addEventListener(`input`,k),k();var A={radical:{type:`Even root`,formulaTex:String.raw`g(x)=\sqrt{7-3x}`,restriction:`Require ${n(String.raw`7-3x\ge0`)}, so ${n(String.raw`x\le\frac73`)}.`,interval:`Domain: ${n(String.raw`(-\infty,\frac73]`)}`,segments:[{start:0,width:73.33}],markers:[{position:73.33,label:`7/3`,closed:!0}]},rational:{type:`Denominator`,formulaTex:String.raw`g(x)=\frac{x}{2x^2+x-1}`,restriction:`Factor ${n(String.raw`(2x-1)(x+1)`)}. Exclude ${n(String.raw`x=\frac12`)} and ${n(String.raw`x=-1`)}.`,interval:`Domain: ${n(String.raw`(-\infty,-1)\cup(-1,\frac12)\cup(\frac12,\infty)`)}`,segments:[{start:0,width:40},{start:40,width:15},{start:55,width:45}],markers:[{position:40,label:`−1`,closed:!1},{position:55,label:`1/2`,closed:!1}]},"root-denominator":{type:`Fourth root in a denominator`,formulaTex:String.raw`f(x)=\frac{x}{\sqrt[4]{9-x^2}}`,restriction:`Require ${n(String.raw`9-x^2>0`)}. The strict inequality keeps the denominator nonzero.`,interval:`Domain: ${n(String.raw`(-3,3)`)}`,segments:[{start:20,width:60}],markers:[{position:20,label:`−3`,closed:!1},{position:80,label:`3`,closed:!1}]}};function j(n){let r=A[n];document.querySelectorAll(`[data-domain-case]`).forEach(e=>e.classList.toggle(`is-active`,e.dataset.domainCase===n)),document.querySelector(`#domain-type`).textContent=r.type,e(document.querySelector(`#domain-function`),r.formulaTex),document.querySelector(`#domain-restriction`).innerHTML=r.restriction,document.querySelector(`#domain-interval`).innerHTML=r.interval,t(document.querySelector(`.domain-stage`)),document.querySelector(`#domain-visual`).innerHTML=`
     <div class="domain-axis"></div>
     ${r.segments.map(e=>`<i class="domain-segment" style="left:${e.start}%;width:${e.width}%"></i>`).join(``)}
     ${r.markers.map(e=>`<span class="domain-marker ${e.closed?`is-closed`:``}" style="left:${e.position}%"><i></i><strong>${e.label}</strong></span>`).join(``)}

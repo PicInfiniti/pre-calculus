@@ -1,4 +1,4 @@
-import{i as e,n as t}from"./magnifier-DbmAZ0E0.js";import{a as n,i as r,n as i,o as a,r as o,s}from"./shared-D45aE3CK.js";var c=document.querySelector(`#app`);c.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{r as e,t}from"./math-BBrN9Pw_.js";import{a as n,i as r,n as i,o as a,r as o,s}from"./shared-DVcn0svv.js";var c=document.querySelector(`#app`);c.innerHTML=`
   ${a(`9.2`)}
   <main>
     <section class="lesson-hero lesson-hero--blue">

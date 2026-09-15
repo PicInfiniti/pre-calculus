@@ -1,10 +1,15 @@
-import{t as e}from"./magnifier-DbmAZ0E0.js";function t(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}var n=`https://picinfiniti.net/mathboard/`;function r(e){let r;return r=e===`0.0`?`<a class="is-current" href="${t(`pages/sections/0-0.html`)}">00 · Notation</a>`:e===`1.9`?`<a class="is-current" href="${t(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`].includes(e)?`
+import{t as e}from"./magnifier-B0Wyiml3.js";function t(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}var n=`https://picinfiniti.net/mathboard/`;function r(e){let r;return r=e===`0.0`?`<a class="is-current" href="${t(`pages/sections/0-0.html`)}">00 · Notation</a>`:e===`1.9`?`<a class="is-current" href="${t(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`].includes(e)?`
       <a class="${e===`2.1`?`is-current`:``}" href="${t(`pages/sections/2-1.html`)}">2.1 · Functions</a>
       <a class="${e===`2.2`?`is-current`:``}" href="${t(`pages/sections/2-2.html`)}">2.2 · Graphs</a>
       <a class="${e===`2.3`?`is-current`:``}" href="${t(`pages/sections/2-3.html`)}">2.3 · Information</a>
       <a class="${e===`2.6`?`is-current`:``}" href="${t(`pages/sections/2-6.html`)}">2.6 · Transformations</a>
       <a class="${e===`2.7`?`is-current`:``}" href="${t(`pages/sections/2-7.html`)}">2.7 · Combining</a>
       <a class="${e===`2.8`?`is-current`:``}" href="${t(`pages/sections/2-8.html`)}">2.8 · Inverses</a>
+    `:[`3.1`,`3.2`,`3.6`,`3.7`].includes(e)?`
+      <a class="${e===`3.1`?`is-current`:``}" href="${t(`pages/sections/3-1.html`)}">3.1 · Quadratics</a>
+      <a class="${e===`3.2`?`is-current`:``}" href="${t(`pages/sections/3-2.html`)}">3.2 · Polynomials</a>
+      <a class="${e===`3.6`?`is-current`:``}" href="${t(`pages/sections/3-6.html`)}">3.6 · Rational functions</a>
+      <a class="${e===`3.7`?`is-current`:``}" href="${t(`pages/sections/3-7.html`)}">3.7 · Inequalities</a>
     `:`
         <a class="${e===`9.1`?`is-current`:``}" href="${t(`pages/sections/9-1.html`)}">9.1 · Two variables</a>
         <a class="${e===`9.2`?`is-current`:``}" href="${t(`pages/sections/9-2.html`)}">9.2 · Three variables</a>

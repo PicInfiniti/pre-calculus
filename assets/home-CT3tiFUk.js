@@ -1,4 +1,4 @@
-import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,i=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`09`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`01`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`02`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`03`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`04`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`05`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`07`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],a=i.reduce((e,t)=>e+t.sections.length,0),o=`/pre-calculus/`,s=`https://picinfiniti.net/mathboard/`,c={"0.0":`${o}pages/sections/0-0.html`,9.1:`${o}pages/sections/9-1.html`,9.2:`${o}pages/sections/9-2.html`,1.9:`${o}pages/sections/1-9.html`,2.1:`${o}pages/sections/2-1.html`,2.2:`${o}pages/sections/2-2.html`,2.3:`${o}pages/sections/2-3.html`,2.6:`${o}pages/sections/2-6.html`,2.7:`${o}pages/sections/2-7.html`,2.8:`${o}pages/sections/2-8.html`},l={"0.0":`Open guide`};function u(e){let n=e.sections.map(e=>{let t=c[e];return t?`<a class="section-chip section-chip--available" href="${t}">${l[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),r=e.sections.filter(e=>c[e]).length,i=r?`${r} interactive lesson${r===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
+import{t as e}from"./magnifier-B0Wyiml3.js";import{r as t,t as n}from"./math-BBrN9Pw_.js";var r=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,i=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`09`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`01`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`02`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`03`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`04`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`05`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`07`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],a=i.reduce((e,t)=>e+t.sections.length,0),o=`/pre-calculus/`,s=`https://picinfiniti.net/mathboard/`,c={"0.0":`${o}pages/sections/0-0.html`,9.1:`${o}pages/sections/9-1.html`,9.2:`${o}pages/sections/9-2.html`,1.9:`${o}pages/sections/1-9.html`,2.1:`${o}pages/sections/2-1.html`,2.2:`${o}pages/sections/2-2.html`,2.3:`${o}pages/sections/2-3.html`,2.6:`${o}pages/sections/2-6.html`,2.7:`${o}pages/sections/2-7.html`,2.8:`${o}pages/sections/2-8.html`,3.1:`${o}pages/sections/3-1.html`,3.2:`${o}pages/sections/3-2.html`,3.6:`${o}pages/sections/3-6.html`,3.7:`${o}pages/sections/3-7.html`},l={"0.0":`Open guide`};function u(e){let t=e.sections.map(e=>{let t=c[e];return t?`<a class="section-chip section-chip--available" href="${t}">${l[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),r=e.sections.filter(e=>c[e]).length,i=r?`${r} interactive lesson${r===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
     <article class="unit-card unit-card--${e.accent}${e.layout?` unit-card--${e.layout}`:``}">
       <div class="unit-card__topline">
         <span class="unit-card__number">${e.number}</span>
@@ -7,16 +7,16 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
       <h3>${e.title}</h3>
       <p>${e.description}</p>
       <div class="unit-card__sections" aria-label="Included sections">
-        ${n}
+        ${t}
       </div>
       <span class="unit-card__note">${i}</span>
       ${e.layout===`primer`?`
         <div class="unit-card-primer-art" aria-hidden="true">
           <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--outer">
-            <span>${t(String.raw`\mathbb{R}`)}</span><span>${t(String.raw`f(x)`)}</span><span>${t(String.raw`\cup`)}</span>
+            <span>${n(String.raw`\mathbb{R}`)}</span><span>${n(String.raw`f(x)`)}</span><span>${n(String.raw`\cup`)}</span>
           </div>
           <div class="unit-card-primer-art__orbit unit-card-primer-art__orbit--inner">
-            <span>${t(String.raw`D_f`)}</span><span>${t(String.raw`(x,y)`)}</span><span>${t(String.raw`\le`)}</span>
+            <span>${n(String.raw`D_f`)}</span><span>${n(String.raw`(x,y)`)}</span><span>${n(String.raw`\le`)}</span>
           </div>
           <div class="unit-card-primer-art__center"><strong>?</strong></div>
         </div>
@@ -61,8 +61,8 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
           </div>
 
           <div class="hero__visual" aria-label="A coordinate graph representing the course journey">
-            <span class="formula formula--one">${t(String.raw`f(x)`)}</span>
-            <span class="formula formula--two">${t(String.raw`\sin\theta`)}</span>
+            <span class="formula formula--one">${n(String.raw`f(x)`)}</span>
+            <span class="formula formula--two">${n(String.raw`\sin\theta`)}</span>
             <div class="graph-card">
               <div class="graph-card__label"><span></span> From functions to calculus</div>
               <svg viewBox="0 0 520 390" role="img" aria-labelledby="graph-title graph-desc">
@@ -163,7 +163,7 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
                 <circle class="mathboard-promo__origin-fill" cx="320" cy="180" r="11" />
                 <circle class="mathboard-promo__origin-ring" cx="320" cy="180" r="11" />
               </svg>
-              <span class="mathboard-promo__note mathboard-promo__note--one">${t(String.raw`f(x)`)}</span>
+              <span class="mathboard-promo__note mathboard-promo__note--one">${n(String.raw`f(x)`)}</span>
               <span class="mathboard-promo__note mathboard-promo__note--two">test the shape</span>
             </div>
           </div>
@@ -220,4 +220,4 @@ import{i as e,n as t,t as n}from"./magnifier-DbmAZ0E0.js";var r=`/pre-calculus/a
           <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
         </nav>
       </footer>
-    `,e(this.root)}}({BASE_URL:`/pre-calculus/`,DEV:!1,MODE:`production`,PROD:!0,SSR:!1,VITE_SITE:`picinfiniti.net`}).init(),n();
+    `,t(this.root)}}({BASE_URL:`/pre-calculus/`,DEV:!1,MODE:`production`,PROD:!0,SSR:!1,VITE_SITE:`picinfiniti.net`}).init(),e();
