@@ -285,8 +285,17 @@ function vertexExpression(a, h, k) {
 }
 
 function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1, yStep = 1 }) {
-  const horizontalIntervals = (xMax - xMin) / xStep;
-  const verticalIntervals = (yMax - yMin) / yStep;
+  const insetBoundary = (value, step, direction) => (
+    nearlyEqual(value / step, Math.round(value / step))
+      ? value + direction * step * 0.5
+      : value
+  );
+  const plotXMin = insetBoundary(xMin, xStep, -1);
+  const plotXMax = insetBoundary(xMax, xStep, 1);
+  const plotYMin = insetBoundary(yMin, yStep, -1);
+  const plotYMax = insetBoundary(yMax, yStep, 1);
+  const horizontalIntervals = (plotXMax - plotXMin) / xStep;
+  const verticalIntervals = (plotYMax - plotYMin) / yStep;
   const gridSize = Math.min(
     (width - padding * 2) / horizontalIntervals,
     (height - padding * 2) / verticalIntervals,
@@ -299,8 +308,8 @@ function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1,
   const plotBottom = plotTop + plotHeight;
 
   return {
-    x: (value) => plotLeft + ((value - xMin) / xStep) * gridSize,
-    y: (value) => plotBottom - ((value - yMin) / yStep) * gridSize,
+    x: (value) => plotLeft + ((value - plotXMin) / xStep) * gridSize,
+    y: (value) => plotBottom - ((value - plotYMin) / yStep) * gridSize,
     width,
     height,
     padding,
@@ -313,10 +322,10 @@ function makeMapper({ width, height, padding, xMin, xMax, yMin, yMax, xStep = 1,
     gridSize,
     xStep,
     yStep,
-    xMin,
-    xMax,
-    yMin,
-    yMax,
+    xMin: plotXMin,
+    xMax: plotXMax,
+    yMin: plotYMin,
+    yMax: plotYMax,
   };
 }
 
@@ -360,12 +369,12 @@ function frameChart(chart, mapper, margin = 30) {
   );
 }
 
-function quadraticPath(mapper, fn, samples = 240) {
+function quadraticPath(mapper, fn, samples = 240, xMin = mapper.xMin, xMax = mapper.xMax) {
   let path = "";
   let drawing = false;
   const margin = (10 / mapper.gridSize) * mapper.yStep;
   for (let index = 0; index <= samples; index += 1) {
-    const x = mapper.xMin + ((mapper.xMax - mapper.xMin) * index) / samples;
+    const x = xMin + ((xMax - xMin) * index) / samples;
     const y = fn(x);
     const visible = y >= mapper.yMin - margin && y <= mapper.yMax + margin;
     if (visible) {
@@ -709,7 +718,7 @@ function renderModel() {
   frameChart(chart, mapper);
   chart.innerHTML = `
     ${graphScaffold(mapper, { xStep: selected.xStep, yStep: selected.yStep, xLabel: selected.xLabel, yLabel: selected.yLabel, clipId: "model-plot-clip" })}
-    <path d="${quadraticPath(mapper, selected.fn)}" class="quadratic-model-curve" clip-path="url(#model-plot-clip)"/>
+    <path d="${quadraticPath(mapper, selected.fn, 240, selected.xMin, selected.xMax)}" class="quadratic-model-curve" clip-path="url(#model-plot-clip)"/>
     <line x1="${mapper.x(selected.vertexX)}" y1="${mapper.y(selected.vertexY)}" x2="${mapper.x(selected.vertexX)}" y2="${mapper.y(selected.yMin)}" class="quadratic-model-guide"/>
     <circle cx="${mapper.x(selected.vertexX)}" cy="${mapper.y(selected.vertexY)}" r="10" class="quadratic-model-maximum"/>
     <circle cx="${mapper.x(x)}" cy="${mapper.y(y)}" r="9" class="quadratic-model-point"/>
