@@ -1,0 +1,696 @@
+.lesson-hero--exponentials
+  --hero-accent: var(--green)
+
+.exponential-hero-art
+  min-width: 0
+  padding: clamp(1rem, 3vw, 2.5rem)
+  display: grid
+  align-items: center
+
+.exponential-hero-art__sheet
+  padding: clamp(1.4rem, 3vw, 2.3rem)
+  border: 1px solid var(--line)
+  border-radius: .65rem
+  background: var(--white)
+  box-shadow: 12px 13px 0 var(--green), var(--shadow)
+  transform: rotate(1.2deg)
+
+  svg
+    width: 100%
+    margin-top: 1.5rem
+    overflow: visible
+
+  > b
+    display: block
+    margin-top: 1.1rem
+    color: var(--ink)
+    font-size: .87rem
+    line-height: 1.5
+
+.exponential-hero-art__eyebrow
+  color: var(--coral)
+  font-size: .74rem
+  font-weight: 700
+  letter-spacing: .1em
+  text-transform: uppercase
+
+.exponential-hero-art__sequence
+  margin-top: 1.2rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .25rem
+
+  span
+    min-width: 2.9rem
+    aspect-ratio: 1
+    display: grid
+    place-items: center
+    border-radius: 50%
+    background: var(--ink)
+    color: var(--white)
+    font-size: 1.25rem
+    font-weight: 700
+
+  i
+    color: var(--coral)
+    font-size: .85rem
+    font-style: normal
+    font-weight: 700
+
+.exponential-hero-art__axis
+  fill: none
+  stroke: rgba(7, 29, 51, .5)
+  stroke-width: 2
+
+.exponential-hero-art__curve
+  fill: none
+  stroke: var(--coral)
+  stroke-linecap: round
+  stroke-width: 6
+
+.exponential-hero-art__dot
+  fill: var(--gold)
+  stroke: var(--ink)
+  stroke-width: 3
+
+.exponential-studio
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.exponential-studio__controls
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+  background: var(--paper)
+
+.exponential-studio__formula
+  margin-top: .8rem
+  padding: 1rem
+  border-radius: .35rem
+  background: var(--ink)
+  color: var(--white)
+  text-align: center
+
+.exponential-presets
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+  gap: .4rem
+
+  button
+    min-height: 3.3rem
+    padding: .45rem .2rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font-size: .9rem
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--gold)
+
+.exponential-range-label, .interest-lab__controls > label
+  margin-top: 1.25rem
+  display: flex
+  align-items: baseline
+  justify-content: space-between
+  gap: 1rem
+  font-size: .87rem
+  font-weight: 700
+
+  output
+    padding: .2rem .65rem
+    border-radius: 999px
+    background: var(--gold)
+    color: var(--ink)
+
+.exponential-studio__controls input[type="range"], .interest-lab__controls input[type="range"]
+  width: 100%
+  margin-top: .7rem
+  accent-color: var(--coral)
+
+.exponential-studio__slider-note
+  margin-top: .6rem
+  color: var(--ink-soft)
+  font-size: .78rem
+  line-height: 1.5
+
+.exponential-reading
+  margin-top: 1.5rem
+  padding: 1rem
+  border-left: 4px solid var(--green)
+  background: var(--white)
+
+  span, strong
+    display: block
+
+  > span
+    font-size: .77rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-size: 1.15rem
+
+  p
+    margin-top: .6rem
+    color: var(--ink-soft)
+    font-size: .84rem
+    line-height: 1.5
+
+.exponential-studio__graph
+  min-width: 0
+  padding: clamp(1rem, 2.6vw, 2rem)
+
+  svg
+    width: 100%
+    height: auto
+    display: block
+
+.exponential-graph-heading
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  > span
+    color: var(--ink-soft)
+    font-size: .75rem
+    font-weight: 700
+
+.exponential-chart__grid
+  stroke: rgba(7, 29, 51, .1)
+  stroke-width: 1
+
+.exponential-chart__axis
+  stroke: rgba(7, 29, 51, .65)
+  stroke-width: 1.7
+
+.exponential-chart__label, .exponential-chart__asymptote
+  fill: rgba(7, 29, 51, .7)
+  font-family: Ubuntu, sans-serif
+  font-size: 12px
+  font-weight: 700
+
+.exponential-chart__asymptote
+  fill: #5b428d
+  font-size: 11px
+
+.exponential-chart__curve
+  fill: none
+  stroke: var(--coral)
+  stroke-width: 5
+  stroke-linecap: round
+
+.exponential-chart__guide
+  stroke: var(--violet)
+  stroke-width: 1.5
+  stroke-dasharray: 6 5
+
+.exponential-chart__anchor
+  fill: var(--white)
+  stroke: var(--ink)
+  stroke-width: 2
+
+.exponential-chart__point
+  fill: var(--gold)
+  stroke: var(--ink)
+  stroke-width: 2.5
+
+.exponential-table-wrap, .interest-ledger-wrap
+  max-width: 100%
+  overflow-x: auto
+
+.exponential-table, .interest-ledger
+  width: 100%
+  border-collapse: collapse
+  text-align: left
+
+  th, td
+    padding: .52rem .65rem
+    border-bottom: 1px solid var(--line)
+    font-size: .85rem
+    white-space: nowrap
+
+  thead th
+    font-size: .69rem
+    letter-spacing: .04em
+    text-transform: uppercase
+
+  tbody th
+    font-weight: 700
+
+.exponential-table tr.is-current
+  background: rgba(169, 223, 114, .25)
+
+.exponential-rule-strip
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .8rem
+
+  > div
+    padding: 1rem
+    border-top: 3px solid var(--coral)
+    background: var(--white)
+
+    &:nth-child(2)
+      border-color: var(--violet)
+
+    &:nth-child(3)
+      border-color: var(--gold)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .73rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .3rem
+    font-size: 1.1rem
+
+  p
+    margin-top: .3rem
+    font-size: .82rem
+
+.exponential-passport
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr)
+  overflow: hidden
+  border: 1px solid rgba(255, 255, 255, .2)
+  border-radius: .6rem
+  background: var(--white)
+  color: var(--ink)
+
+.exponential-passport__lead
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+  background: rgba(7, 29, 51, .06)
+
+  > strong
+    display: block
+    margin-top: 1rem
+    font-size: clamp(2.5rem, 5vw, 4rem)
+    line-height: 1
+
+  > p:not(.tool-label)
+    margin-top: 1rem
+    font-size: .9rem
+    line-height: 1.55
+
+.exponential-passport__direction
+  margin-top: 1.4rem
+  padding: .7rem .9rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .5rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: .72rem
+  font-weight: 700
+
+  b
+    color: var(--gold)
+    font-size: 1.6rem
+
+.exponential-passport__facts
+  padding: clamp(1.2rem, 3vw, 2.2rem)
+  display: grid
+  grid-template-columns: 1fr 1fr
+  align-content: center
+  gap: .6rem
+
+  > div
+    padding: .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .72rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .35rem
+
+.exponential-passport__limits
+  grid-column: 1 / -1
+  padding: 1.2rem
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  gap: 1rem
+  border-top: 1px solid var(--line)
+  background: var(--paper)
+  font-weight: 700
+
+.exponential-derivation
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: .7rem
+
+  > div
+    min-width: 0
+    padding: 1.2rem
+    border: 1px solid var(--line)
+    border-radius: .35rem
+    background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .73rem
+    font-weight: 700
+    letter-spacing: .07em
+    text-transform: uppercase
+
+  strong
+    margin-top: .65rem
+    font-size: 1.1rem
+
+  p
+    margin-top: .55rem
+    color: var(--ink-soft)
+    font-size: .82rem
+    line-height: 1.5
+
+.exponential-formula-card
+  margin-top: 1rem
+  padding: 1.5rem
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  gap: .8rem 1rem
+  border-radius: .4rem
+  background: var(--ink)
+  color: var(--white)
+
+  > div
+    min-width: 6.5rem
+    padding: .7rem
+    border: 1px solid rgba(255, 255, 255, .25)
+    border-radius: .25rem
+
+  span, strong
+    display: block
+
+  span
+    color: var(--green)
+    font-size: .7rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .3rem
+
+  i
+    color: var(--gold)
+    font-size: 1.5rem
+    font-style: normal
+
+  p
+    width: 100%
+    padding-top: 1rem
+    border-top: 1px solid rgba(255, 255, 255, .25)
+    font-size: .92rem
+    line-height: 1.7
+
+.interest-lab
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+.interest-lab__controls, .interest-lab__results
+  min-width: 0
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+
+.interest-lab__controls
+  background: var(--paper)
+
+  select
+    width: 100%
+    min-height: 2.8rem
+    margin-top: .65rem
+    padding: .5rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+
+.interest-lab__substitution
+  margin-top: 1.5rem
+  padding: 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+
+  > span, > strong
+    display: block
+
+  > span
+    color: var(--green)
+    font-size: .73rem
+    font-weight: 700
+    text-transform: uppercase
+
+  > strong
+    margin-top: .7rem
+    font-size: 1.08rem
+    overflow-wrap: anywhere
+
+.interest-lab__headline
+  padding: 1.2rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--green)
+    font-size: .75rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .4rem
+    color: var(--gold)
+    font-size: clamp(2rem, 4vw, 3.4rem)
+
+  p
+    margin-top: .3rem
+    font-size: .87rem
+
+.interest-metrics
+  margin: 1rem 0
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: .5rem
+
+  > div
+    padding: .7rem
+    border: 1px solid var(--line)
+    border-radius: .25rem
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .7rem
+    font-weight: 700
+    line-height: 1.35
+
+  strong
+    margin-top: .3rem
+    overflow-wrap: anywhere
+
+.interest-ledger
+  caption
+    margin-bottom: .6rem
+    font-size: .8rem
+    font-weight: 700
+    text-align: left
+
+.interest-lab__rounding
+  margin-top: .8rem
+  color: var(--ink-soft)
+  font-size: .75rem
+
+.interest-comparison
+  margin-top: 1rem
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+  display: grid
+  grid-template-columns: minmax(200px, .55fr) minmax(0, 1.45fr)
+  gap: 2rem
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: var(--white)
+
+  h3
+    margin-top: .6rem
+    font-size: 1.5rem
+
+  p:not(.tool-label)
+    margin-top: .5rem
+    color: var(--ink-soft)
+    font-size: .87rem
+    line-height: 1.5
+
+.interest-comparison__bars
+  display: grid
+  gap: .55rem
+
+.interest-comparison__row
+  display: grid
+  grid-template-columns: 7.5rem 1fr 6rem
+  align-items: center
+  gap: .6rem
+  font-size: .78rem
+
+  &.is-current
+    font-weight: 700
+
+  strong
+    text-align: right
+
+.interest-comparison__track
+  height: .75rem
+  border-radius: 999px
+  background: var(--paper)
+  overflow: hidden
+
+  i
+    height: 100%
+    display: block
+    border-radius: inherit
+    background: var(--green)
+
+.interest-comparison__row.is-current i
+  background: var(--coral)
+
+.exponential-checks
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+.exponential-check
+  padding: 1.4rem
+  border: 1px solid rgba(255, 255, 255, .2)
+  border-radius: .35rem
+  background: rgba(255, 255, 255, .06)
+
+  > span
+    color: var(--gold)
+    font-size: .74rem
+    font-weight: 700
+    letter-spacing: .06em
+    text-transform: uppercase
+
+  h3
+    min-height: 3.5rem
+    margin-top: .5rem
+    color: var(--white)
+    font-size: 1.05rem
+    line-height: 1.45
+
+  label
+    display: block
+    color: var(--white)
+    font-size: .78rem
+
+  select, input
+    width: 100%
+    min-height: 2.8rem
+    margin-top: .7rem
+    padding: .55rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+
+  button
+    min-height: 2.7rem
+    margin-top: .7rem
+    padding: .5rem .9rem
+    border: 0
+    border-radius: .3rem
+    background: var(--gold)
+    color: var(--ink)
+    font-weight: 700
+
+  .answer-feedback
+    color: var(--white)
+
+    &.is-correct
+      border-color: var(--green)
+      background: rgba(109, 207, 166, .15)
+
+    &.is-incorrect
+      border-color: var(--coral)
+      background: rgba(255, 107, 72, .15)
+
+.ready-banner--exponentials
+  color: var(--ink)
+
+@media (max-width: 1050px)
+  .exponential-studio, .interest-lab, .exponential-passport, .interest-comparison
+    grid-template-columns: 1fr
+
+  .exponential-passport__limits
+    grid-column: auto
+
+  .exponential-derivation
+    grid-template-columns: repeat(2, 1fr)
+
+@media (max-width: 620px)
+  .exponential-hero-art
+    padding: 1rem 1.3rem 1.8rem
+
+  .exponential-hero-art__sheet
+    box-shadow: 7px 8px 0 var(--green), var(--shadow)
+    transform: none
+
+  .exponential-rule-strip, .exponential-checks, .exponential-derivation, .interest-metrics
+    grid-template-columns: 1fr
+
+  .exponential-passport__facts
+    grid-template-columns: 1fr 1fr
+
+  .interest-comparison__row
+    grid-template-columns: 6.3rem 1fr
+
+    strong
+      grid-column: 2
+      text-align: left
+
+  .exponential-check h3
+    min-height: 0

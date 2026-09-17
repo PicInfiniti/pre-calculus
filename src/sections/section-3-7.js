@@ -239,7 +239,7 @@ root.innerHTML = `
   </main>
   ${renderLessonFooter({
     previous: { href: "pages/sections/3-6.html", label: "Section 3.6 · Rational functions" },
-    next: null,
+    next: { href: "pages/sections/4-1.html", label: "Section 4.1 · Exponential functions" },
   })}
 `;
 

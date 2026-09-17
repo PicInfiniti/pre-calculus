@@ -1,0 +1,638 @@
+.lesson-hero--natural
+  --hero-accent: var(--gold)
+
+.natural-hero-art
+  min-width: 0
+  padding: clamp(1rem, 3vw, 2.4rem)
+
+.natural-hero-art__sheet
+  padding: clamp(1.4rem, 3.5vw, 2.8rem)
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 13px 0 var(--violet), var(--shadow)
+  transform: rotate(-1deg)
+
+  > p
+    margin-top: 1.5rem
+    color: var(--ink-soft)
+    font-size: 1rem
+    line-height: 1.6
+
+  .tool-label
+    color: var(--coral)
+
+.natural-hero-art__formula
+  margin-top: 1.5rem
+  padding: 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: clamp(1.7rem, 3vw, 2.5rem)
+  text-align: center
+
+.natural-hero-art__steps
+  margin-top: 1.4rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .4rem
+
+  span, strong
+    min-width: 3.2rem
+    padding: .8rem .35rem
+    border-radius: .3rem
+    background: var(--paper)
+    font-size: clamp(.95rem, 1.6vw, 1.3rem)
+    text-align: center
+
+  strong
+    background: var(--gold)
+    font-family: Georgia, serif
+    font-style: italic
+
+  i
+    color: var(--coral)
+    font-size: 1.3rem
+    font-style: normal
+
+.natural-limit-lab, .natural-graph-lab, .natural-interest-lab
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(290px, .82fr) minmax(0, 1.18fr)
+  overflow: hidden
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  color: var(--ink)
+  box-shadow: var(--shadow)
+
+.natural-limit-lab__control, .natural-limit-lab__table-wrap, .natural-graph-lab__plot, .natural-graph-lab__controls, .natural-interest-lab__controls, .natural-interest-lab__results
+  min-width: 0
+  padding: clamp(1.25rem, 3vw, 2.4rem)
+
+.natural-limit-lab__control, .natural-graph-lab__controls, .natural-interest-lab__controls
+  background: var(--paper)
+
+.natural-limit-lab__definition
+  margin: 1rem 0 1.5rem
+  padding: 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: clamp(1.15rem, 2vw, 1.65rem)
+  text-align: center
+
+.native-limit
+  display: inline-flex
+  flex-direction: column
+  align-items: center
+  vertical-align: middle
+  line-height: .85
+
+  small
+    margin-top: .2rem
+    font-size: .48em
+
+.natural-limit-lab__control > label, .natural-graph-lab__controls > label, .natural-interest-lab__controls > label, .natural-symmetry > label, .natural-composition > label
+  display: flex
+  align-items: baseline
+  justify-content: space-between
+  gap: 1rem
+  font-size: .87rem
+  font-weight: 700
+
+  output
+    padding: .2rem .6rem
+    border-radius: 999px
+    background: var(--gold)
+
+.natural-limit-lab__control input[type='number']
+  width: 100%
+  min-height: 3rem
+  margin-top: .65rem
+  padding: .6rem .75rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+  font-size: 1rem
+
+.natural-limit-lab__hint, .natural-limit-lab__note, .natural-limit-lab__table-note
+  margin-top: .7rem
+  color: var(--ink-soft)
+  font-size: .85rem
+  line-height: 1.55
+
+.natural-limit-lab__note
+  margin-top: 1.4rem
+
+.natural-limit-lab__result, .natural-graph-lab__value
+  margin-top: 1.5rem
+  padding: 1rem
+  border-left: 4px solid var(--green)
+  background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .72rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  strong
+    margin-top: .45rem
+    font-size: clamp(1.35rem, 2.5vw, 2rem)
+
+  p
+    margin-top: .45rem
+    font-size: .84rem
+
+.natural-limit-table
+  width: 100%
+  border-collapse: collapse
+  font-variant-numeric: tabular-nums
+  text-align: left
+
+  caption
+    margin-bottom: .6rem
+    font-size: .8rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-align: left
+    text-transform: uppercase
+
+  th, td
+    padding: .65rem .45rem
+    border-bottom: 1px solid var(--line)
+    font-size: .82rem
+    white-space: nowrap
+
+  thead th
+    font-size: .68rem
+    line-height: 1.35
+
+  tr.is-current
+    background: rgba(169, 223, 114, .3)
+
+  button
+    width: 100%
+    padding: .25rem
+    border-radius: .2rem
+    background: transparent
+    font-weight: 700
+    text-align: left
+
+    &:hover, &:focus-visible
+      background: var(--gold)
+
+.natural-limit-lab__table-wrap
+  overflow-x: auto
+
+.natural-limit-lab__ruler
+  margin-top: 2rem
+  display: grid
+  grid-template-columns: auto 1fr auto
+  align-items: end
+  gap: .6rem
+  font-size: .75rem
+  font-weight: 700
+
+  > div
+    position: relative
+    height: 1rem
+    border-bottom: 4px solid var(--ink)
+
+    i
+      position: absolute
+      z-index: 2
+      width: .85rem
+      height: .85rem
+      bottom: -.55rem
+      border: 2px solid var(--ink)
+      border-radius: 50%
+      background: var(--gold)
+      transform: translateX(-50%)
+
+    b
+      position: absolute
+      right: 0
+      bottom: 1rem
+      color: var(--coral)
+      white-space: nowrap
+
+.natural-graph-lab
+  grid-template-columns: minmax(0, 1.2fr) minmax(290px, .8fr)
+
+.natural-graph-lab__heading
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  strong
+    color: var(--ink)
+
+.natural-graph-lab__plot svg, .natural-symmetry svg
+  width: 100%
+  height: auto
+  margin-top: 1rem
+  display: block
+
+.natural-graph-lab__controls input[type='range'], .natural-interest-lab__controls input[type='range'], .natural-symmetry input[type='range']
+  width: 100%
+  margin: .7rem 0 1.25rem
+  accent-color: var(--coral)
+
+.natural-graph-lab__facts
+  margin-top: 1.2rem
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .55rem
+
+  > div
+    padding: .75rem
+    border: 1px solid var(--line)
+    background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink-soft)
+    font-size: .72rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .25rem
+    font-size: .9rem
+
+.natural-chart__grid
+  stroke: rgba(7, 29, 51, .11)
+  stroke-width: 1
+
+.natural-chart__axis
+  stroke: rgba(7, 29, 51, .65)
+  stroke-width: 1.8
+
+.natural-chart__label
+  fill: rgba(7, 29, 51, .75)
+  font-family: Ubuntu, sans-serif
+  font-size: 12px
+  font-weight: 700
+
+.natural-chart__curve, .natural-symmetry__curve
+  fill: none
+  stroke: var(--coral)
+  stroke-width: 5
+  stroke-linecap: round
+
+.natural-chart__guide, .natural-symmetry__pair
+  stroke: var(--violet)
+  stroke-width: 1.7
+  stroke-dasharray: 6 5
+
+.natural-chart__anchor
+  fill: var(--white)
+  stroke: var(--ink)
+  stroke-width: 2
+
+.natural-chart__point, .natural-symmetry__point, .natural-symmetry__minimum
+  fill: var(--gold)
+  stroke: var(--ink)
+  stroke-width: 2.5
+
+.natural-symmetry__point
+  fill: var(--violet)
+
+.natural-limits
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+  > div
+    padding: 1.2rem
+    border: 1px solid rgba(255, 255, 255, .22)
+    border-radius: .3rem
+
+  span
+    display: block
+    color: var(--gold)
+    font-size: .75rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .5rem
+    display: block
+
+  p
+    margin-top: .5rem
+    color: rgba(255, 255, 255, .75)
+    font-size: .85rem
+
+.natural-derivation
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr)
+  align-items: center
+  gap: .6rem
+
+  > div
+    min-width: 0
+    min-height: 7rem
+    padding: 1rem
+    display: flex
+    flex-direction: column
+    justify-content: center
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .72rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .6rem
+    font-size: clamp(.9rem, 1.5vw, 1.15rem)
+    overflow-wrap: anywhere
+
+  > i
+    color: var(--coral)
+    font-size: 1.5rem
+    font-style: normal
+
+.natural-derivation-note
+  margin-top: .7rem
+  color: var(--ink-soft)
+  font-size: .85rem
+
+.natural-interest-lab
+  grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr)
+
+.natural-interest-lab__controls > label
+  margin-top: 1.2rem
+
+.natural-interest-lab__controls select, .natural-composition select, .natural-check select
+  width: 100%
+  min-height: 2.8rem
+  margin-top: .65rem
+  padding: .55rem .65rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+  color: var(--ink)
+
+.natural-interest-lab__headline
+  padding: 1.2rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--green)
+    font-size: .75rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .4rem
+    color: var(--gold)
+    font-size: clamp(2rem, 4vw, 3.3rem)
+
+  p
+    margin-top: .35rem
+    font-size: .92rem
+
+.natural-interest-bars
+  margin-top: 1.2rem
+
+.natural-interest-bars__row
+  padding: .45rem
+  display: grid
+  grid-template-columns: 6.5rem minmax(0, 1fr) 6rem
+  align-items: center
+  gap: .65rem
+  font-size: .8rem
+  font-variant-numeric: tabular-nums
+
+  &.is-current
+    background: var(--paper)
+    font-weight: 700
+
+  strong
+    text-align: right
+
+.natural-interest-bars__track
+  height: .7rem
+  border-radius: 999px
+  background: var(--paper-deep)
+
+  i
+    height: 100%
+    display: block
+    border-radius: inherit
+    background: var(--coral)
+
+.natural-interest-bars__row:last-child i
+  background: var(--green)
+
+.natural-interest-lab__difference
+  margin-top: 1rem
+  font-size: .85rem
+  line-height: 1.5
+
+.natural-thinking-grid
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+  > article
+    min-width: 0
+    padding: clamp(1.3rem, 3vw, 2rem)
+    border: 1px solid var(--line)
+    border-radius: .5rem
+    background: var(--white)
+    box-shadow: var(--shadow)
+
+  h3
+    margin-top: .6rem
+    font-size: clamp(1.25rem, 2vw, 1.65rem)
+
+.natural-composition > p:not(.tool-label):not(.answer-feedback)
+  margin: 1rem 0
+  color: var(--ink-soft)
+  font-size: .92rem
+  line-height: 1.5
+
+.natural-composition button, .natural-check button
+  margin-top: .9rem
+  padding: .72rem 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: .83rem
+  font-weight: 700
+
+.natural-composition__answer
+  margin-top: 1.3rem
+  padding: 1rem
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  gap: .55rem
+  border-left: 4px solid var(--green)
+  background: var(--paper)
+  font-size: .86rem
+  line-height: 1.5
+
+  > span:not(.native-math)
+    color: var(--coral)
+
+.natural-symmetry__options
+  margin-top: 1rem
+  display: flex
+  gap: .4rem
+
+  button
+    flex: 1
+    min-height: 2.5rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--paper)
+    font-weight: 700
+
+    &.is-active
+      border-color: var(--ink)
+      background: var(--gold)
+
+.natural-symmetry__reading
+  padding: .9rem
+  border-left: 4px solid var(--violet)
+  background: var(--paper)
+
+  strong, span
+    display: block
+
+  strong
+    font-size: .95rem
+
+  span
+    margin-top: .4rem
+    font-size: .82rem
+    line-height: 1.5
+
+.natural-minimum
+  margin-top: 1rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1rem
+
+  > div
+    padding: 1.2rem
+    border-top: 3px solid var(--violet)
+    background: var(--white)
+
+  span, strong
+    display: block
+
+  span
+    color: var(--coral)
+    font-size: .73rem
+    font-weight: 700
+    text-transform: uppercase
+
+  strong
+    margin-top: .5rem
+    font-size: .98rem
+    line-height: 1.55
+
+  p
+    margin-top: .6rem
+    color: var(--ink-soft)
+    font-size: .87rem
+    line-height: 1.55
+
+.natural-checks
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 1rem
+
+.natural-check
+  padding: clamp(1.3rem, 2.8vw, 2rem)
+  border: 1px solid rgba(255, 255, 255, .22)
+  border-radius: .4rem
+  background: rgba(255, 255, 255, .05)
+
+  > span
+    color: var(--gold)
+    font-size: .75rem
+    font-weight: 700
+    letter-spacing: .08em
+    text-transform: uppercase
+
+  h3
+    min-height: 4.5rem
+    margin-top: .6rem
+    font-size: 1.1rem
+    line-height: 1.4
+
+  .answer-feedback
+    margin-top: .8rem
+
+.ready-banner--natural
+  margin-top: 2rem
+  color: var(--ink)
+
+@media (max-width: 1050px)
+  .natural-limit-lab, .natural-graph-lab, .natural-interest-lab
+    grid-template-columns: 1fr
+
+  .natural-limit-lab__table-wrap
+    overflow-x: auto
+
+  .natural-derivation
+    grid-template-columns: 1fr
+
+    > i
+      text-align: center
+      transform: rotate(90deg)
+
+@media (max-width: 680px)
+  .natural-hero-art
+    padding: .5rem 1rem 1.5rem
+
+  .natural-limit-lab__definition
+    font-size: 1.2rem
+
+  .natural-limit-table
+    min-width: 480px
+
+  .natural-thinking-grid, .natural-minimum, .natural-checks, .natural-limits
+    grid-template-columns: 1fr
+
+  .natural-graph-lab__facts
+    grid-template-columns: 1fr 1fr
+
+  .natural-interest-bars__row
+    grid-template-columns: 5.4rem minmax(0, 1fr) 5.4rem
+    gap: .35rem
+    font-size: .72rem
+
+  .natural-check h3
+    min-height: 0

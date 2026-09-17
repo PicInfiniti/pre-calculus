@@ -28,6 +28,10 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "3.6" ? "is-current" : ""}" href="${sitePath("pages/sections/3-6.html")}">3.6 · Rational functions</a>
       <a class="${activeSection === "3.7" ? "is-current" : ""}" href="${sitePath("pages/sections/3-7.html")}">3.7 · Inequalities</a>
     `;
+  } else if (["4.1", "4.2"].includes(activeSection)) {
+    navigation = `
+      <a class="${activeSection === "4.1" ? "is-current" : ""}" href="${sitePath("pages/sections/4-1.html")}">4.1 · Exponential functions</a>
+      <a class="${activeSection === "4.2" ? "is-current" : ""}" href="${sitePath("pages/sections/4-2.html")}">4.2 · Natural exponential</a>`;
   } else {
     navigation = `
         <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>
