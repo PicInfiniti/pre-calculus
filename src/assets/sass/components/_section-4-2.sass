@@ -38,7 +38,7 @@
   justify-content: space-between
   gap: .4rem
 
-  span, strong
+  > span, > strong
     min-width: 3.2rem
     padding: .8rem .35rem
     border-radius: .3rem
@@ -46,7 +46,7 @@
     font-size: clamp(.95rem, 1.6vw, 1.3rem)
     text-align: center
 
-  strong
+  > strong
     background: var(--gold)
     font-family: Georgia, serif
     font-style: italic
@@ -132,17 +132,17 @@
   border-left: 4px solid var(--green)
   background: var(--white)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--ink-soft)
     font-size: .72rem
     font-weight: 700
     letter-spacing: .08em
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .45rem
     font-size: clamp(1.35rem, 2.5vw, 2rem)
 
@@ -177,16 +177,27 @@
   tr.is-current
     background: rgba(169, 223, 114, .3)
 
+  tbody tr[data-limit-m]
+    cursor: pointer
+
+    &:hover:not(.is-current)
+      background: rgba(169, 223, 114, .15)
+
   button
-    width: 100%
-    padding: .25rem
-    border-radius: .2rem
+    width: auto
+    padding: 0
+    border: 0
     background: transparent
     font-weight: 700
     text-align: left
 
     &:hover, &:focus-visible
-      background: var(--gold)
+      color: var(--coral)
+      text-decoration: underline
+      text-underline-offset: .2em
+
+    &:focus-visible
+      outline: none
 
 .natural-limit-lab__table-wrap
   overflow-x: auto
@@ -257,16 +268,16 @@
     border: 1px solid var(--line)
     background: var(--white)
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
-  span
+  > div > span
     color: var(--ink-soft)
     font-size: .72rem
     font-weight: 700
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .25rem
     font-size: .9rem
 
@@ -319,14 +330,14 @@
     border: 1px solid rgba(255, 255, 255, .22)
     border-radius: .3rem
 
-  span
+  > div > span
     display: block
     color: var(--gold)
     font-size: .75rem
     font-weight: 700
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .5rem
     display: block
 
@@ -353,16 +364,16 @@
     border-radius: .3rem
     background: var(--white)
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
-  span
+  > div > span
     color: var(--coral)
     font-size: .72rem
     font-weight: 700
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .6rem
     font-size: clamp(.9rem, 1.5vw, 1.15rem)
     overflow-wrap: anywhere
@@ -399,16 +410,16 @@
   background: var(--ink)
   color: var(--white)
 
-  span, strong
+  > span, > strong
     display: block
 
-  span
+  > span
     color: var(--green)
     font-size: .75rem
     font-weight: 700
     text-transform: uppercase
 
-  strong
+  > strong
     margin-top: .4rem
     color: var(--gold)
     font-size: clamp(2rem, 4vw, 3.3rem)
@@ -525,13 +536,13 @@
   border-left: 4px solid var(--violet)
   background: var(--paper)
 
-  strong, span
+  > strong, > span
     display: block
 
-  strong
+  > strong
     font-size: .95rem
 
-  span
+  > span
     margin-top: .4rem
     font-size: .82rem
     line-height: 1.5
@@ -547,16 +558,16 @@
     border-top: 3px solid var(--violet)
     background: var(--white)
 
-  span, strong
+  > div > span, > div > strong
     display: block
 
-  span
+  > div > span
     color: var(--coral)
     font-size: .73rem
     font-weight: 700
     text-transform: uppercase
 
-  strong
+  > div > strong
     margin-top: .5rem
     font-size: .98rem
     line-height: 1.55

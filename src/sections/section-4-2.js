@@ -38,10 +38,10 @@ document.querySelector("#app").innerHTML = `
     <section class="lesson-objectives" aria-label="Lesson objectives" data-reveal>
       <p>By the end, you can</p>
       <ol>
-        <li><span>01</span>Explain how a sequence approaches ${math("<var>e</var>")}</li>
-        <li><span>02</span>Read the graph and limits of ${math("<var>e</var><sup><var>x</var></sup>")}</li>
-        <li><span>03</span>Compare periodic and continuous compounding</li>
-        <li><span>04</span>Analyze composition and even symmetry</li>
+        <li><span>01</span><p>Explain how a sequence approaches ${math("<var>e</var>")}</p></li>
+        <li><span>02</span><p>Read the graph and limits of ${math("<var>e</var><sup><var>x</var></sup>")}</p></li>
+        <li><span>03</span><p>Compare periodic and continuous compounding</p></li>
+        <li><span>04</span><p>Analyze composition and even symmetry</p></li>
       </ol>
     </section>
 
@@ -123,6 +123,14 @@ document.querySelector("#app").innerHTML = `
 const limitInput = document.querySelector("#limit-m");
 const limitSamples = [1, 10, 50, 100, 10000, 100000];
 const sequenceValue = (m) => Math.exp(m * Math.log1p(1 / m));
+const limitRows = document.querySelector("#limit-rows");
+limitRows.innerHTML = limitSamples.map((sample) => `<tr data-limit-m="${sample}"><th scope="row"><button type="button" aria-label="Try ${sample.toLocaleString()} factors">${sample.toLocaleString()}</button></th><td>${sequenceValue(sample).toFixed(9)}</td><td>${(Math.E - sequenceValue(sample)).toFixed(9)}</td></tr>`).join("");
+limitRows.addEventListener("click", (event) => {
+  const row = event.target.closest("tr[data-limit-m]");
+  if (!row || !limitRows.contains(row)) return;
+  limitInput.value = row.dataset.limitM;
+  renderLimit();
+});
 function renderLimit() {
   const m = Number(limitInput.value);
   const valid = Number.isSafeInteger(m) && m >= 1 && m <= 10000000;
@@ -130,14 +138,14 @@ function renderLimit() {
   document.querySelector("#limit-gap").textContent = valid
     ? `${(Math.E - sequenceValue(m)).toFixed(9)} below e ≈ ${Math.E.toFixed(9)}`
     : "Choose a whole number from 1 to 10,000,000.";
-  document.querySelector("#limit-rows").innerHTML = limitSamples.map((sample) => `<tr class="${sample === m ? "is-current" : ""}"><th scope="row"><button type="button" data-limit-m="${sample}" aria-label="Try ${sample.toLocaleString()} factors">${sample.toLocaleString()}</button></th><td>${sequenceValue(sample).toFixed(9)}</td><td>${(Math.E - sequenceValue(sample)).toFixed(9)}</td></tr>`).join("");
+  limitRows.querySelectorAll("tr[data-limit-m]").forEach((row) => {
+    const selected = Number(row.dataset.limitM) === m;
+    row.classList.toggle("is-current", selected);
+    row.querySelector("button").setAttribute("aria-pressed", String(selected));
+  });
   const marker = document.querySelector("#limit-marker");
   marker.style.left = `${valid ? 100 * (sequenceValue(m) - 2) / (2.72 - 2) : 0}%`;
   marker.hidden = !valid;
-  document.querySelectorAll("[data-limit-m]").forEach((button) => button.addEventListener("click", () => {
-    limitInput.value = button.dataset.limitM;
-    renderLimit();
-  }));
 }
 limitInput.addEventListener("input", renderLimit);
 renderLimit();
