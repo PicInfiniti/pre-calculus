@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{n as e,r as t,t as n}from"./math-BBrN9Pw_.js";import{a as r,i,o as a,r as o,s}from"./shared-DVcn0svv.js";var c=document.querySelector(`#app`);c.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{n as e,r as t,t as n}from"./math-BBrN9Pw_.js";import{a as r,i,o as a,r as o,s}from"./shared-Cg4hcz2F.js";var c=document.querySelector(`#app`);c.innerHTML=`
   ${a(`2.6`)}
   <main>
     <section class="lesson-hero lesson-hero--transformations">

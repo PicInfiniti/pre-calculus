@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-DVcn0svv.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`,s=e=>`<span class="native-radical"><span>${e}</span></span>`;i.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-Cg4hcz2F.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`,s=e=>`<span class="native-radical"><span>${e}</span></span>`;i.innerHTML=`
   ${t(`3.2`)}
   <main>
     <section class="lesson-hero lesson-hero--polynomials">

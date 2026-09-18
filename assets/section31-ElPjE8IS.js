@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{a as e,i as t,o as n,r,s as i}from"./shared-DVcn0svv.js";var a=document.querySelector(`#app`),o=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`;a.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{a as e,i as t,o as n,r,s as i}from"./shared-Cg4hcz2F.js";var a=document.querySelector(`#app`),o=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`;a.innerHTML=`
   ${n(`3.1`)}
   <main>
     <section class="lesson-hero lesson-hero--quadratics">

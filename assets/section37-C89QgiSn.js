@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-DVcn0svv.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`;i.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-Cg4hcz2F.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`;i.innerHTML=`
   ${t(`3.7`)}
   <main>
     <section class="lesson-hero lesson-hero--inequalities">
@@ -223,7 +223,7 @@ import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared
       </aside>
     </section>
   </main>
-  ${e({previous:{href:`pages/sections/3-6.html`,label:`Section 3.6 · Rational functions`},next:null})}
+  ${e({previous:{href:`pages/sections/3-6.html`,label:`Section 3.6 · Rational functions`},next:{href:`pages/sections/4-1.html`,label:`Section 4.1 · Exponential functions`}})}
 `;var s=e=>{if(Math.abs(e)<1e-9)return`0`;let t=Math.round(e*100)/100;return String(t).replace(`-`,`−`)},c=document.querySelector(`#sign-test-value`),l=document.querySelector(`#polynomial-sign-track`);l.innerHTML=`
   <div class="sign-track__region sign-track__region--negative"><b>−</b><span>negative</span></div>
   <i class="sign-track__cut sign-track__cut--zero" aria-hidden="true"></i>

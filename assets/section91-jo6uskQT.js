@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{r as e,t}from"./math-BBrN9Pw_.js";import{a as n,c as r,i,n as a,o,r as s,s as c,t as l}from"./shared-DVcn0svv.js";var u=document.querySelector(`#app`);u.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{r as e,t}from"./math-BBrN9Pw_.js";import{a as n,c as r,i,n as a,o,r as s,s as c,t as l}from"./shared-Cg4hcz2F.js";var u=document.querySelector(`#app`);u.innerHTML=`
   ${o(`9.1`)}
   <main>
     <section class="lesson-hero lesson-hero--coral">

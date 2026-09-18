@@ -10,7 +10,9 @@ import{t as e}from"./magnifier-B0Wyiml3.js";function t(e=``){return`/pre-calculu
       <a class="${e===`3.2`?`is-current`:``}" href="${t(`pages/sections/3-2.html`)}">3.2 · Polynomials</a>
       <a class="${e===`3.6`?`is-current`:``}" href="${t(`pages/sections/3-6.html`)}">3.6 · Rational functions</a>
       <a class="${e===`3.7`?`is-current`:``}" href="${t(`pages/sections/3-7.html`)}">3.7 · Inequalities</a>
-    `:`
+    `:[`4.1`,`4.2`].includes(e)?`
+      <a class="${e===`4.1`?`is-current`:``}" href="${t(`pages/sections/4-1.html`)}">4.1 · Exponential functions</a>
+      <a class="${e===`4.2`?`is-current`:``}" href="${t(`pages/sections/4-2.html`)}">4.2 · Natural exponential</a>`:`
         <a class="${e===`9.1`?`is-current`:``}" href="${t(`pages/sections/9-1.html`)}">9.1 · Two variables</a>
         <a class="${e===`9.2`?`is-current`:``}" href="${t(`pages/sections/9-2.html`)}">9.2 · Three variables</a>
       `,`
