@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-Cg4hcz2F.js";var i=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,a=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`,o=e=>new Intl.NumberFormat(`en-US`,{style:`currency`,currency:`USD`}).format(e),s=(e,t=3)=>Number(e.toFixed(t)).toString().replaceAll(`-`,`−`);document.querySelector(`#app`).innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{a as e,o as t,r as n,s as r}from"./shared-zoT9zLqC.js";var i=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,a=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`,o=e=>new Intl.NumberFormat(`en-US`,{style:`currency`,currency:`USD`}).format(e),s=(e,t=3)=>Number(e.toFixed(t)).toString().replaceAll(`-`,`−`);document.querySelector(`#app`).innerHTML=`
   ${t(`4.2`)}
   <main>
     <section class="lesson-hero lesson-hero--natural">

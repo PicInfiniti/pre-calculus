@@ -1,4 +1,4 @@
-import"./magnifier-B0Wyiml3.js";import{n as e,r as t,t as n}from"./math-BBrN9Pw_.js";import{a as r,i,o as a,r as o,s}from"./shared-Cg4hcz2F.js";var c=document.querySelector(`#app`);function l(e,n,r){s(e,n,``),e.innerHTML=r,t(e)}c.innerHTML=`
+import"./magnifier-B0Wyiml3.js";import{n as e,r as t,t as n}from"./math-BBrN9Pw_.js";import{a as r,i,o as a,r as o,s}from"./shared-zoT9zLqC.js";var c=document.querySelector(`#app`);function l(e,n,r){s(e,n,``),e.innerHTML=r,t(e)}c.innerHTML=`
   ${a(`2.7`)}
   <main>
     <section class="lesson-hero lesson-hero--combinations">
