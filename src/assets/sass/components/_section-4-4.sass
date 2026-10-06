@@ -374,3 +374,80 @@
 
 .lesson-hero--laws .lesson-hero__copy h1 em
   color: #427326
+
+.laws-lab--dropdown
+  overflow: visible
+
+  > .laws-controls
+    border-radius: .6rem 0 0 .6rem
+
+@media (max-width: 1050px)
+  .laws-lab--dropdown > .laws-controls
+    border-radius: .6rem .6rem 0 0
+
+.laws-change-proof .laws-change-steps
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: .6rem .8rem
+  font-size: clamp(1.3rem, 2vw, 1.5rem)
+
+.laws-change-proof
+  display: grid
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr)
+  column-gap: 2rem
+
+  > p
+    grid-column: 1
+
+  .laws-change-result
+    grid-column: 2
+    grid-row: 1 / span 3
+    align-self: center
+    justify-self: center
+    max-width: 100%
+
+@media (max-width: 1050px)
+  .laws-change-proof
+    display: block
+
+    .laws-change-result
+      text-align: left
+
+.laws-change-proof .laws-change-result
+  justify-self: start
+  margin-left: .6rem
+  font-size: clamp(1.6rem, 2.7vw, 2.2rem)
+
+@media (max-width: 1050px)
+  .laws-change-proof .laws-change-result
+    margin-left: 0
+
+.laws-change-lead
+  padding-block: .5rem
+  font-size: clamp(2.1rem, 3vw, 2.7rem)
+
+.laws-change-equivalents
+  margin-top: .7rem
+  padding-block: .5rem
+  font-size: clamp(1.3rem, 2vw, 1.6rem)
+
+.laws-change-proof .laws-change-result
+  display: flex
+  align-items: center
+  gap: .6rem
+
+  .laws-change-equivalents
+    margin-top: 0
+
+.laws-check .log-expression-trigger > span,
+.laws-check .log-expression-option > span:not(.log-expression-check)
+  min-width: 0
+
+.laws-check .math-dropdown-text
+  white-space: normal
+  line-height: 1.5
+
+.laws-check .log-expression-option > .laws-math
+  overflow-x: auto
+  padding-block: .2rem
