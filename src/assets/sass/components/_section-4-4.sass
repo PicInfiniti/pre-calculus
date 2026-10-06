@@ -1,0 +1,376 @@
+.lesson-hero--laws
+  --hero-accent: var(--green)
+
+.laws-hero-art
+  margin: 2rem
+  padding: clamp(1.5rem, 4vw, 3rem)
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--green), var(--shadow)
+  text-align: center
+  transform: rotate(1deg)
+
+  .laws-equation
+    font-size: clamp(1.8rem, 3.7vw, 3rem)
+
+  > p:last-child
+    line-height: 1.65
+
+.laws-arrow
+  color: #60419b
+  font-size: .9rem
+
+.laws-math
+  display: inline-block
+  max-width: 100%
+
+  .katex
+    font-size: 1em
+
+.laws-equation
+  margin: 1.2rem 0
+  padding-block: .5rem
+  font-size: clamp(1.25rem, 2vw, 1.8rem)
+  line-height: 1.8
+  overflow-x: auto
+  overflow-y: hidden
+
+.laws-rule-cards, .laws-card-grid, .laws-check-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1.2rem
+  margin-top: 2.5rem
+
+.laws-rule-cards > article, .laws-card
+  min-width: 0
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-top: 4px solid var(--coral)
+  border-radius: .4rem
+  background: var(--white)
+  color: var(--ink)
+
+  .laws-equation
+    font-size: 1.2rem
+
+  p:not(.tool-label)
+    margin-top: .7rem
+    line-height: 1.65
+
+.laws-card-grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.laws-lab
+  display: grid
+  grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr)
+  margin-top: 2rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+  overflow: hidden
+
+.laws-controls, .laws-result
+  min-width: 0
+  padding: clamp(1.4rem, 3vw, 2.2rem)
+  color: var(--ink)
+
+  > p:not(.tool-label)
+    margin-top: 1rem
+    font-size: 1rem
+    line-height: 1.65
+
+.laws-controls
+  background: var(--paper)
+
+  > label
+    display: block
+    margin-top: 1.2rem
+    font-size: 1rem
+    font-weight: 700
+
+  output
+    float: right
+    color: #60419b
+
+.laws-result
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.laws-lesson select, .laws-lesson input[type=number]
+  width: 100%
+  min-height: 2.8rem
+  margin-top: .6rem
+  padding: .6rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+  color: var(--ink)
+  font: inherit
+
+.laws-lesson input[type=range]
+  width: 100%
+  margin-top: .8rem
+  accent-color: #60419b
+
+.laws-lesson :focus-visible
+  outline: 3px solid var(--violet)
+  outline-offset: 4px
+
+.laws-choices
+  min-width: 0
+  margin-top: 1.3rem
+  padding: 0
+  border: 0
+
+  legend
+    font-size: 1rem
+    font-weight: 700
+    margin-bottom: .5rem
+
+  label
+    display: flex
+    align-items: center
+    gap: .65rem
+    min-height: 3rem
+    margin-top: .65rem
+    padding: .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    cursor: pointer
+
+    &:has(input:checked)
+      border-color: #60419b
+      background: #f0ebfa
+      box-shadow: inset 3px 0 0 #60419b
+
+    > span
+      flex: 1
+      min-width: 0
+      padding-block: .35rem
+      overflow-x: auto
+      overflow-y: hidden
+
+  input
+    flex-shrink: 0
+    width: 1.1rem
+    height: 1.1rem
+    accent-color: #60419b
+
+.laws-button
+  min-height: 2.8rem
+  margin-top: 1rem
+  padding: .75rem 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: .9rem
+  font-weight: 700
+  cursor: pointer
+
+  &:disabled
+    opacity: .4
+    cursor: default
+
+.laws-step-buttons
+  display: flex
+  gap: .6rem
+  flex-wrap: wrap
+
+.laws-progress
+  font-size: .9rem !important
+
+.laws-note
+  margin-top: 1.4rem
+  padding: 1.2rem
+  border-left: 4px solid var(--violet)
+  background: var(--paper)
+  color: var(--ink)
+  font-size: 1rem
+  line-height: 1.75
+
+  p
+    margin-top: .7rem
+
+  &[hidden]
+    display: none
+
+.laws-note--coral
+  border-color: var(--coral)
+
+.laws-number-tiles
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 1rem
+
+  > div
+    padding: 1.2rem
+    background: var(--paper)
+    border-top: 3px solid var(--green)
+
+  span, strong
+    display: block
+
+  span
+    font-size: 1rem
+    line-height: 1.4
+
+  strong
+    margin-top: .6rem
+    font-size: clamp(1.5rem, 3vw, 2.2rem)
+    overflow-wrap: anywhere
+
+.laws-meter
+  position: relative
+  height: 1rem
+  margin: 2.2rem 0 .8rem
+  border-radius: 999px
+  background: linear-gradient(to right, var(--violet), var(--paper-deep) 50%, var(--green))
+
+  span
+    position: absolute
+    left: 50%
+    top: -1.5rem
+    transform: translateX(-50%)
+    font-size: .8rem
+
+  i
+    position: absolute
+    top: -.25rem
+    left: var(--meter-position)
+    width: 1.5rem
+    height: 1.5rem
+    border: 2px solid var(--ink)
+    border-radius: 50%
+    background: var(--gold)
+    transform: translateX(-50%)
+    transition: left .2s ease
+
+.laws-caption
+  color: var(--ink-soft)
+  font-size: .85rem !important
+
+.laws-change-proof
+  margin-top: 3rem
+  padding: clamp(1.4rem, 3vw, 2.4rem)
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: var(--paper)
+
+  p
+    margin-top: .7rem
+    line-height: 1.75
+    overflow-x: auto
+    padding-block: .3rem
+
+.laws-model-value
+  margin: .7rem 0
+
+  strong, span
+    display: block
+
+  strong
+    font-size: 3rem
+    color: #246240
+
+  span
+    margin-top: .5rem
+    font-size: 1rem
+
+.laws-model-bars
+  margin-top: 1rem
+
+  > div
+    margin-top: .7rem
+    display: grid
+    grid-template-columns: 6rem minmax(0, 1fr) 4.5rem
+    align-items: center
+    gap: .6rem
+    font-size: .85rem
+
+  i
+    height: .8rem
+    border-radius: 999px
+    background: var(--green)
+    transition: width .2s ease
+
+  b
+    text-align: right
+
+.laws-lesson .lesson-section--ink
+  .lesson-kicker
+    color: #e5deff
+
+  .lesson-section__intro > p:last-child
+    color: #d2dae3
+
+.laws-score
+  margin-top: 2rem
+  color: var(--gold)
+  font-weight: 700
+
+.laws-check-grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.laws-check
+  min-width: 0
+  padding: clamp(1.2rem, 3vw, 2rem)
+  border: 1px solid rgba(255, 255, 255, .25)
+  border-radius: .5rem
+  background: rgba(255, 255, 255, .04)
+
+  .tool-label
+    color: var(--gold)
+
+  h3
+    margin-top: .9rem
+    min-height: 4rem
+    font-size: 1.2rem
+    padding-block: .5rem
+    overflow-x: auto
+
+  .laws-button
+    background: var(--gold)
+    color: var(--ink)
+
+  .answer-feedback
+    margin-top: .9rem
+    color: #fff
+    line-height: 1.65
+
+    &.is-correct
+      background: rgba(169, 223, 114, .16)
+      color: #efffdf
+
+    &.is-incorrect
+      background: rgba(255, 107, 72, .16)
+      color: #ffe9e3
+
+@media (max-width: 1050px)
+  .laws-lab
+    grid-template-columns: 1fr
+
+  .laws-rule-cards
+    grid-template-columns: 1fr
+
+@media (max-width: 680px)
+  .laws-hero-art
+    margin: 1rem 1.5rem 2rem
+
+  .laws-card-grid, .laws-check-grid
+    grid-template-columns: 1fr
+
+  .laws-check h3
+    min-height: 0
+
+@media (prefers-reduced-motion: reduce)
+  .laws-meter i, .laws-model-bars i
+    transition: none
+
+.lesson-hero--laws .lesson-hero__copy h1 em
+  color: #427326

@@ -111,6 +111,7 @@ const sectionPages = {
   4.1: `${baseUrl}pages/sections/4-1.html`,
   4.2: `${baseUrl}pages/sections/4-2.html`,
   4.3: `${baseUrl}pages/sections/4-3.html`,
+  4.4: `${baseUrl}pages/sections/4-4.html`,
 };
 
 const sectionLabels = {

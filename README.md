@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -144,6 +144,13 @@ The mathboard is maintained and deployed as a separate app.
 - Domain gates for polynomial inputs, radicals, and nested logarithms
 - Guided inverse-function algebra, carbon-decay model, and readiness checks
 
+### 4.4 · Laws of Logarithms
+
+- Living product, quotient, and power rules with guided derivations
+- Counterexample detector and KaTeX-rendered expansion choices
+- Single-log assembler, exact evaluation, and change-of-base calculator
+- Domain-preserving expansions, power models, and readiness practice
+
 ## Course roadmap
 
 Every course topic has its own standalone page, beginning with the notation guide.
@@ -155,7 +162,7 @@ Every course topic has its own standalone page, beginning with the notation guid
 | The coordinate plane                  | 1.9                          | Available                                 |
 | Functions                             | 2.1, 2.2, 2.3, 2.6, 2.7, 2.8 | Available                                 |
 | Polynomial and rational functions     | 3.1, 3.2, 3.6, 3.7           | Available                                  |
-| Exponential and logarithmic functions | 4.1–4.5                      | 4.1–4.3 available; remaining sections planned |
+| Exponential and logarithmic functions | 4.1–4.5                      | 4.1–4.4 available; remaining sections planned |
 | Right-triangle trigonometry           | 6.1–6.4                      | Planned                                   |
 | Unit-circle trigonometry              | 5.1–5.5                      | Planned                                   |
 | Analytic trigonometry                 | 7.1–7.5                      | Planned                                   |
