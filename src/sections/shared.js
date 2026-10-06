@@ -35,6 +35,10 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "4.3" ? "is-current" : ""}" href="${sitePath("pages/sections/4-3.html")}">4.3 · Logarithmic functions</a>
       <a class="${activeSection === "4.4" ? "is-current" : ""}" href="${sitePath("pages/sections/4-4.html")}">4.4 · Logarithm laws</a>
       <a class="${activeSection === "4.5" ? "is-current" : ""}" href="${sitePath("pages/sections/4-5.html")}">4.5 · Equations</a>`;
+  } else if (["6.1", "6.2", "6.3"].includes(activeSection)) {
+    navigation = `<a class="${activeSection === "6.1" ? "is-current" : ""}" href="${sitePath("pages/sections/6-1.html")}">6.1 · Angle measure</a>
+      <a class="${activeSection === "6.2" ? "is-current" : ""}" href="${sitePath("pages/sections/6-2.html")}">6.2 · Right triangles</a>
+      <a class="${activeSection === "6.3" ? "is-current" : ""}" href="${sitePath("pages/sections/6-3.html")}">6.3 · General angles</a>`;
   } else {
     navigation = `
         <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>

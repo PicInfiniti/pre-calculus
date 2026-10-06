@@ -1,0 +1,234 @@
+.lesson-hero--trig
+  --hero-accent: var(--green)
+
+  .lesson-hero__copy h1 em
+    color: #327347
+
+.trig-hero-art
+  min-width: 0
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--green), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+
+  > p:last-child
+    margin-top: 1rem
+    line-height: 1.65
+
+.trig-hero-equation
+  padding-block: .5rem
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem)
+
+.trig-plot
+  min-width: 0
+  padding: clamp(1rem, 2vw, 1.5rem)
+  align-self: center
+
+  svg
+    display: block
+    width: 100%
+
+.trig-plot--compact
+  padding: 0
+
+.trig-svg-label
+  font: 20px Georgia, serif
+
+.trig-legend
+  display: flex
+  flex-wrap: wrap
+  gap: .8rem
+  justify-content: center
+  font-size: 1rem
+  line-height: 1.5
+
+  span:nth-child(1)
+    color: #b8341e
+
+  span:nth-child(2)
+    color: #28603a
+
+  span:nth-child(3)
+    color: #6844a6
+
+.trig-ratio-buttons
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: .6rem
+  margin-top: 1.4rem
+
+  button
+    min-width: 0
+    min-height: 3.6rem
+    padding: .7rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--paper)
+    color: var(--ink)
+    font-size: 1.15rem
+    cursor: pointer
+
+    &[aria-pressed=true]
+      background: #f0ebfa
+      border-color: #6844a6
+      box-shadow: inset 0 -3px 0 #6844a6
+
+    > span:last-child
+      display: block
+      margin-top: .4rem
+      font-size: .9rem
+
+.trig-ratio-detail
+  margin-top: 1.5rem
+  padding: 1.2rem
+  background: var(--paper)
+  border-left: 4px solid var(--violet)
+
+  .laws-equation
+    font-size: 1.25rem
+
+.trig-definition-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    background: var(--white)
+    border-top: 3px solid var(--coral)
+
+  strong
+    font-size: 1.3rem
+
+  .laws-equation
+    font-size: 1.15rem
+
+.trig-step
+  p:not(.tool-label)
+    margin-top: 1rem
+    line-height: 1.75
+
+.trig-exact-values
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: .7rem
+
+  > div
+    min-width: 0
+    padding: .8rem .4rem
+    background: var(--paper)
+    border-top: 2px solid var(--violet)
+    text-align: center
+    font-size: 1.2rem
+    overflow-x: auto
+
+.trig-table-wrap
+  overflow-x: auto
+  margin-top: 2rem
+  border: 1px solid var(--line)
+  border-radius: .4rem
+
+.trig-table
+  width: 100%
+  background: var(--white)
+  text-align: center
+  font-size: 1.3rem
+
+  caption
+    padding: 1rem
+    background: var(--ink)
+    color: var(--white)
+    font-size: 1rem
+    font-weight: 700
+
+  td, th
+    padding: 1.2rem .7rem
+    border-bottom: 1px solid var(--line)
+
+  thead th
+    background: var(--paper)
+
+.trig-caption
+  margin-top: 1rem
+  font-size: 1rem
+  line-height: 1.65
+  color: var(--ink-soft)
+
+.trig-presets
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-top: .5rem
+
+.trig-answer
+  padding: 1.2rem
+  border-left: 4px solid var(--green)
+  background: var(--paper)
+
+  strong, span
+    display: block
+
+  strong
+    font-size: 1.9rem
+    color: #28603a
+
+  span
+    margin-top: .7rem
+    line-height: 1.6
+
+#field-reading > p:not(.tool-label)
+  margin-top: 1rem
+  line-height: 1.65
+
+#field-reading .tool-label
+  margin-top: 1rem
+
+@media (max-width: 1050px)
+  .trig-definition-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .trig-plot > svg
+    max-height: 470px
+
+@media (max-width: 680px)
+  .trig-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1.2rem
+
+  .trig-plot
+    padding: 1rem
+
+  .trig-definition-grid
+    grid-template-columns: 1fr
+
+  .trig-exact-values
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .trig-table
+    font-size: 1.1rem
+
+  .trig-table td, .trig-table th
+    padding: 1rem .4rem
+
+  .trig-legend
+    justify-content: start
+
+  .trig-svg-label
+    font-size: 28px
+
+.laws-result > .trig-plot
+  width: 100%
+  padding: 0
+
+.trig-lesson .lesson-kicker > span
+  flex-shrink: 0
+  white-space: nowrap

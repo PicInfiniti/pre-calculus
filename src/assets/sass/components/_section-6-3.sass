@@ -1,0 +1,217 @@
+.lesson-hero--general
+  --hero-accent: var(--coral)
+
+  .lesson-hero__copy h1 em
+    color: #b83e25
+
+.general-hero-art
+  min-width: 0
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--coral), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+    max-height: 380px
+
+  > p:last-child
+    margin-top: 1rem
+    line-height: 1.65
+
+.general-hero-equation
+  padding-block: .5rem
+  font-size: clamp(1.3rem, 2vw, 1.7rem)
+
+.general-plot
+  min-width: 0
+  padding: 1.5rem
+  align-self: center
+
+  svg
+    display: block
+    width: 100%
+
+.general-plot--compact
+  padding: 0
+
+.general-svg-label
+  font: 19px Georgia, serif
+
+.general-caption
+  margin-top: 1rem
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.65
+
+.general-presets
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-top: 1rem
+
+  button
+    min-height: 2.8rem
+    padding: .6rem .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font-size: 1rem
+    cursor: pointer
+
+.general-ratio-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: .7rem
+  margin-top: 1rem
+
+  > div
+    min-width: 0
+    padding: .9rem .5rem
+    background: var(--paper)
+    border-top: 3px solid var(--violet)
+    text-align: center
+
+  > div > span, > div > strong, > div > small
+    display: block
+
+  > div > strong
+    padding: .5rem 0
+    font-size: 1.4rem
+    overflow-x: auto
+
+  > div > small
+    margin-top: .3rem
+    line-height: 1.4
+    font-size: .85rem
+    color: var(--ink-soft)
+
+  > div > span
+    font-size: 1.15rem
+
+.general-definitions
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 2rem
+
+  article
+    min-width: 0
+    padding: 1.3rem
+    border-top: 3px solid var(--coral)
+    background: var(--white)
+
+    p
+      font-size: 1rem
+      line-height: 1.6
+
+  .laws-equation
+    margin-top: 0
+    font-size: 1.6rem
+
+.general-sign-map, .general-reference-rules
+  display: grid
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 2rem
+
+  article
+    min-width: 0
+    padding: 1.3rem
+    border-top: 3px solid var(--green)
+    background: var(--white)
+
+  strong
+    font-size: 1.3rem
+
+  p
+    margin-top: .7rem
+    font-size: 1rem
+    line-height: 1.6
+
+  article > span
+    display: block
+    margin-top: .8rem
+    font-size: 1.05rem
+
+.general-reference-rules .laws-equation
+  font-size: 1.2rem
+
+.general-quadrant-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+  > div
+    padding: 1.6rem
+    border: 1px solid var(--line)
+    border-radius: .4rem
+    background: var(--paper)
+    text-align: center
+    color: var(--ink-soft)
+
+    &.is-match
+      border-color: #327347
+      background: #dcebcf
+      color: #214e30
+      box-shadow: inset 0 -4px 0 #327347
+
+  strong, span
+    display: block
+
+  strong
+    font-size: 2rem
+
+  span
+    margin-top: .6rem
+    font-size: 1rem
+
+#reference-degrees-controls, #reference-pi-controls, #reference-radians-controls
+  &[hidden]
+    display: none
+
+  label
+    display: block
+    margin-top: 1.2rem
+    font-size: 1rem
+    font-weight: 700
+
+  p
+    margin-top: 1rem
+    line-height: 1.6
+
+.general-lesson .lesson-kicker > span
+  flex-shrink: 0
+  white-space: nowrap
+
+@media (max-width: 1050px)
+  .general-plot > svg
+    max-height: 530px
+
+  .general-sign-map, .general-reference-rules
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width: 680px)
+  .general-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1.2rem
+
+  .general-plot
+    padding: 1rem
+
+  .general-ratio-grid, .general-definitions
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .general-sign-map
+    grid-template-columns: 1fr
+
+  .general-ratio-grid > div > strong
+    font-size: 1.3rem
+
+  .general-svg-label
+    font-size: 24px
