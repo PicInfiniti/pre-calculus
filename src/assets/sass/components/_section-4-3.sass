@@ -1,0 +1,447 @@
+.lesson-hero--logs
+  --hero-accent: var(--violet)
+
+.log-hero-art
+  margin: 2rem
+  padding: clamp(1.5rem, 4vw, 3rem)
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--violet), var(--shadow)
+  text-align: center
+  transform: rotate(1deg)
+
+  > p:last-of-type
+    margin: 1rem 0
+
+.log-hero-equation
+  margin-top: 1rem
+  font-size: clamp(2rem, 4vw, 3.2rem)
+
+  b
+    color: var(--coral)
+
+.log-hero-swap
+  display: block
+  margin-top: 1rem
+  color: var(--violet)
+  font-size: 2.3rem
+
+.log-roles
+  display: flex
+  justify-content: center
+  gap: 1rem
+
+  > span
+    flex: 1
+    padding: .8rem
+    border-radius: .4rem
+    background: var(--paper)
+    font-size: 1.5rem
+    font-weight: 700
+
+  small
+    font-size: .7rem
+    text-transform: uppercase
+    color: var(--ink-soft)
+
+.log-lab
+  margin-top: 2.5rem
+  display: grid
+  grid-template-columns: minmax(260px, .7fr) minmax(0, 1.3fr)
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+  overflow: hidden
+
+.log-controls, .log-result, .log-card
+  min-width: 0
+  padding: clamp(1.3rem, 3vw, 2.2rem)
+  color: var(--ink)
+
+  p:not(.tool-label), li
+    margin-top: .8rem
+    font-size: .95rem
+    line-height: 1.65
+
+  label
+    display: block
+    margin-top: 1.2rem
+    font-size: .9rem
+    font-weight: 700
+
+  output
+    float: right
+    color: var(--violet)
+
+.log-controls
+  background: var(--paper)
+
+.log-lesson select, .log-lesson input[type=number]
+  width: 100%
+  min-height: 2.8rem
+  margin-top: .6rem
+  padding: .6rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+  color: var(--ink)
+  font: inherit
+
+.log-lesson input[type=range]
+  width: 100%
+  margin-top: .8rem
+  accent-color: var(--violet)
+
+.log-lesson :focus-visible
+  outline: 3px solid var(--violet)
+  outline-offset: 4px
+
+.log-toggle
+  display: flex !important
+  gap: .65rem
+  align-items: center
+  line-height: 1.5
+
+  input
+    width: 1.2rem
+    height: 1.2rem
+    accent-color: var(--violet)
+
+.log-result
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.log-equation
+  margin: 1.2rem 0
+  font-size: clamp(1.25rem, 2.5vw, 2rem)
+  line-height: 1.8
+  overflow-wrap: anywhere
+
+.log-between
+  color: var(--violet)
+  font-weight: 700
+
+.log-card-grid
+  margin-top: 2rem
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 1.2rem
+
+.log-card-grid--three
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+
+.log-card
+  border: 1px solid var(--line)
+  border-radius: .5rem
+  background: var(--white)
+
+  h3
+    margin-top: 1rem
+    font-size: 1.2rem
+    line-height: 1.6
+
+.log-note
+  margin-top: 1.3rem
+  padding: 1rem 1.2rem
+  border-left: 4px solid var(--violet)
+  background: var(--paper)
+  color: var(--ink)
+  line-height: 1.7
+
+  p
+    margin-top: .6rem
+    font-size: .9rem
+
+.log-note[hidden]
+  display: none
+
+.log-button
+  min-height: 2.8rem
+  margin-top: 1rem
+  padding: .7rem 1rem
+  border-radius: .3rem
+  background: var(--ink)
+  color: var(--white)
+  font-size: .85rem
+  font-weight: 700
+  cursor: pointer
+
+  &:disabled
+    opacity: .4
+    cursor: default
+
+.log-step-buttons, .log-presets
+  display: flex
+  gap: .5rem
+  flex-wrap: wrap
+
+.log-plot
+  min-width: 0
+  padding: 1rem
+  align-self: center
+
+  svg
+    display: block
+    width: 100%
+
+  > p
+    margin-top: .6rem
+    padding: 0 .6rem
+    font-size: .8rem
+    line-height: 1.5
+    color: var(--ink-soft)
+
+.log-grid
+  stroke: rgba(7, 29, 51, .1)
+  stroke-width: 1
+
+.log-axis
+  stroke: var(--ink)
+  stroke-width: 1.5
+
+.log-tick
+  fill: var(--ink)
+  font: 12px Ubuntu, sans-serif
+
+.log-curve
+  fill: none
+  stroke-width: 3.5
+  stroke-linecap: round
+
+.log-dashed
+  stroke: var(--ink-soft)
+  stroke-width: 1.6
+  stroke-dasharray: 6 5
+
+.log-key
+  display: inline-block
+  width: .7rem
+  height: .7rem
+  margin-left: .4rem
+  border-radius: 50%
+
+.log-key--coral
+  background: var(--coral)
+
+.log-key--violet
+  background: var(--violet)
+
+.log-facts
+  display: grid
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 1.5rem
+
+  > div
+    padding: 1.5rem
+    border-top: 3px solid var(--coral)
+    background: var(--white)
+    min-width: 0
+
+  span, strong
+    display: block
+
+  span
+    color: var(--ink)
+    font-size: 1.05rem
+    line-height: 1.45
+
+  strong
+    margin-top: .8rem
+    font-size: 1.5rem
+    line-height: 1.4
+    overflow-wrap: anywhere
+
+.log-pass
+  color: #246240
+
+.log-fail
+  color: #a43724
+
+#domain-work ol
+  padding-left: 1.4rem
+
+#domain-line
+  width: 100%
+  margin-top: 1rem
+
+.log-carbon-track
+  height: 1.5rem
+  background: var(--paper-deep)
+  border-radius: 999px
+  overflow: hidden
+
+  i
+    display: block
+    height: 100%
+    background: var(--green)
+    transition: width .2s ease
+
+.log-check-grid
+  margin-top: 1.5rem
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+
+.log-check
+  min-width: 0
+  padding: 1.5rem
+  border: 1px solid rgba(255, 255, 255, .25)
+  border-radius: .5rem
+  background: rgba(255, 255, 255, .04)
+
+  .tool-label
+    color: var(--gold)
+
+  h3
+    min-height: 5.5rem
+    margin: .8rem 0
+    font-size: 1.1rem
+    line-height: 1.6
+
+  label
+    display: block
+    font-size: .8rem
+
+  .log-button
+    background: var(--gold)
+    color: var(--ink)
+
+  .answer-feedback
+    margin-top: .8rem
+    line-height: 1.6
+    color: #fff
+
+    &.is-correct
+      background: rgba(169, 223, 114, .16)
+      color: #efffdf
+
+    &.is-incorrect
+      background: rgba(255, 107, 72, .16)
+      color: #ffe9e3
+
+.log-score
+  margin-top: 2rem
+  color: var(--gold)
+  font-weight: 700
+
+@media (max-width: 1050px)
+  .log-lab
+    grid-template-columns: 1fr
+
+  .log-card-grid--three, .log-check-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width: 680px)
+  .log-hero-art
+    margin: 1rem 1.5rem 2rem
+
+  .log-card-grid, .log-check-grid
+    grid-template-columns: 1fr
+
+  .log-facts
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: .8rem
+
+    > div
+      padding: 1.1rem
+
+  .log-plot
+    padding: .4rem
+
+  .log-check h3
+    min-height: 0
+
+@media (prefers-reduced-motion: reduce)
+  .log-carbon-track i
+    transition: none
+
+.log-lesson .lesson-section--ink
+  .lesson-kicker
+    color: #e5deff
+
+  .lesson-section__intro > p:last-child
+    color: #d2dae3
+
+.log-controls output
+  color: #60419b
+
+.log-equation
+  overflow-x: auto
+  overflow-y: hidden
+  padding-block: .25rem
+
+.log-math
+  display: inline-block
+  max-width: 100%
+
+  .katex
+    font-size: 1em
+
+.log-hero-equation .katex
+  font-size: 1em
+
+.log-role--base
+  color: #60419b
+
+.log-role--input
+  color: #246240
+
+.log-role--exponent
+  color: #c5442d
+
+.log-domain-choices, .log-expression-choices
+  min-width: 0
+  margin-top: 1.2rem
+  padding: 0
+  border: 0
+
+  legend
+    margin-bottom: .65rem
+    font-size: .9rem
+    font-weight: 700
+
+  label
+    display: flex
+    align-items: center
+    gap: .65rem
+    min-height: 3.2rem
+    margin-top: .5rem
+    padding: .75rem .65rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    cursor: pointer
+    font-size: 1rem
+    font-weight: 400
+
+    &:has(input:checked)
+      border-color: #60419b
+      background: #f0ebfa
+      box-shadow: inset 3px 0 0 #60419b
+
+    > span
+      min-width: 0
+      overflow-x: auto
+      padding-block: .15rem
+
+  input
+    flex-shrink: 0
+    width: 1.1rem
+    height: 1.1rem
+    accent-color: #60419b
+
+.log-expression-choices
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  column-gap: .6rem
+
+  label
+    font-size: .95rem
+
+@media (max-width: 420px)
+  .log-expression-choices
+    grid-template-columns: 1fr

@@ -117,7 +117,7 @@ document.querySelector("#app").innerHTML = `
       <article class="natural-check" data-reveal><span>Symmetry and minimum</span><h3>For ${math("π(<var>e</var><sup><var>x</var></sup> + <var>e</var><sup>−<var>x</var></sup>)")}, what is the exact minimum?</h3><select id="check-minimum" aria-label="Exact minimum of the even exponential expression"><option value="">Choose…</option><option value="pi">π at x = 0</option><option value="correct">2π at x = 0</option><option value="none">No minimum</option></select><button type="button" id="check-minimum-button">Check minimum</button><p class="answer-feedback" id="feedback-minimum" aria-live="polite"></p></article>
     </div><aside class="ready-banner ready-banner--natural" data-reveal><span>You are natural-exponential-ready when</span><p>You can explain the limit defining e, trace e<sup>x</sup> on both ends, compare interest models, and use symmetry to find an exact minimum.</p><a href="#discover-e">Explore the limit again <span aria-hidden="true">↑</span></a></aside></section>
   </main>
-  ${renderLessonFooter({previous: {href: "pages/sections/4-1.html", label: "Section 4.1 · Exponential functions"}, next: null})}
+  ${renderLessonFooter({previous: {href: "pages/sections/4-1.html", label: "Section 4.1 · Exponential functions"}, next: {href: "pages/sections/4-3.html", label: "Section 4.3 · Logarithmic functions"}})}
 `;
 
 const limitInput = document.querySelector("#limit-m");
