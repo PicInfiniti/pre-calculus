@@ -1,0 +1,114 @@
+.lesson-hero--equations
+  --hero-accent: var(--coral)
+
+  .lesson-hero__copy h1 em
+    color: #bd432d
+
+.equation-hero-art
+  margin: 2rem
+  padding: clamp(1.5rem, 4vw, 3rem)
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--coral), var(--shadow)
+  text-align: center
+  transform: rotate(1deg)
+
+  .laws-equation
+    font-size: clamp(2rem, 4vw, 3.2rem)
+
+  > p:last-child
+    line-height: 1.7
+
+.equation-hero-arrow
+  color: #60419b
+  font-weight: 700
+
+.equation-method-list
+  list-style: none
+
+  li
+    padding: 1rem 0
+    border-bottom: 1px solid var(--line)
+
+  strong
+    font-size: 1.2rem
+
+  p
+    margin-top: .6rem
+    line-height: 1.65
+
+.equation-plot
+  min-width: 0
+  align-self: center
+  padding: 1.2rem
+
+  svg
+    display: block
+    width: 100%
+
+  p
+    padding: 0 .7rem
+    font-size: .9rem
+    line-height: 1.65
+    color: var(--ink-soft)
+
+.eq-grid
+  stroke: rgba(7, 29, 51, .12)
+  stroke-width: 1
+
+.eq-tick
+  fill: var(--ink)
+  font: 12px Ubuntu, sans-serif
+
+.equation-candidates
+  display: flex
+  flex-wrap: wrap
+  gap: .6rem
+
+.eq-pass
+  color: #246240
+
+.eq-fail
+  color: #a43724
+
+.eq-time-value
+  margin: 1rem 0
+
+  strong, span
+    display: block
+
+  strong
+    color: #246240
+    font-size: clamp(2rem, 4vw, 3rem)
+
+  span
+    margin-top: .6rem
+    font-size: 1.1rem
+
+#time-chart
+  display: block
+  width: 100%
+  margin-top: 1rem
+
+#candidate-reading > p
+  line-height: 1.65
+
+.equations-lesson .laws-check h3
+  min-height: 5rem
+
+@media (max-width: 680px)
+  .equation-hero-art
+    margin: 1rem 1.5rem 2rem
+
+  .equation-plot
+    padding: .6rem
+
+  .equations-lesson .laws-check h3
+    min-height: 0
+
+#time-controls > label
+  display: block
+  margin-top: 1.2rem
+  font-size: 1rem
+  font-weight: 700

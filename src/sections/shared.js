@@ -28,12 +28,13 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "3.6" ? "is-current" : ""}" href="${sitePath("pages/sections/3-6.html")}">3.6 · Rational functions</a>
       <a class="${activeSection === "3.7" ? "is-current" : ""}" href="${sitePath("pages/sections/3-7.html")}">3.7 · Inequalities</a>
     `;
-  } else if (["4.1", "4.2", "4.3", "4.4"].includes(activeSection)) {
+  } else if (["4.1", "4.2", "4.3", "4.4", "4.5"].includes(activeSection)) {
     navigation = `
       <a class="${activeSection === "4.1" ? "is-current" : ""}" href="${sitePath("pages/sections/4-1.html")}">4.1 · Exponential functions</a>
       <a class="${activeSection === "4.2" ? "is-current" : ""}" href="${sitePath("pages/sections/4-2.html")}">4.2 · Natural exponential</a>
       <a class="${activeSection === "4.3" ? "is-current" : ""}" href="${sitePath("pages/sections/4-3.html")}">4.3 · Logarithmic functions</a>
-      <a class="${activeSection === "4.4" ? "is-current" : ""}" href="${sitePath("pages/sections/4-4.html")}">4.4 · Logarithm laws</a>`;
+      <a class="${activeSection === "4.4" ? "is-current" : ""}" href="${sitePath("pages/sections/4-4.html")}">4.4 · Logarithm laws</a>
+      <a class="${activeSection === "4.5" ? "is-current" : ""}" href="${sitePath("pages/sections/4-5.html")}">4.5 · Equations</a>`;
   } else {
     navigation = `
         <a class="${activeSection === "9.1" ? "is-current" : ""}" href="${sitePath("pages/sections/9-1.html")}">9.1 · Two variables</a>
