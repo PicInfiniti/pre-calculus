@@ -528,3 +528,32 @@
 
   li, p
     font-size: 1.05rem
+
+.log-lab--dropdown
+  overflow: visible
+
+  > .log-controls
+    border-radius: .6rem 0 0 .6rem
+
+.log-expression-option > .log-math
+  min-width: 0
+  padding-block: .35rem
+  overflow: visible
+
+.log-answer-pair
+  min-width: 0
+  line-height: 1.8
+
+.log-check .log-expression-trigger
+  background: var(--white)
+  color: var(--ink)
+  text-align: left
+  font-size: 1.05rem
+  font-weight: 400
+
+.log-check .log-expression-label
+  color: var(--white)
+
+@media (max-width: 1050px)
+  .log-lab--dropdown > .log-controls
+    border-radius: .6rem .6rem 0 0

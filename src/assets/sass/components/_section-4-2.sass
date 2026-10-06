@@ -511,7 +511,7 @@
   font-size: .86rem
   line-height: 1.5
 
-  > span:not(.native-math)
+  > span:not(.natural-math)
     color: var(--coral)
 
 .natural-symmetry__options
@@ -658,3 +658,35 @@
 
   .natural-check h3
     min-height: 0
+
+// Typeset expressions and formula selectors share the lesson's math controls.
+.natural-math
+  display: inline-block
+  max-width: 100%
+
+  .katex
+    font-size: 1.1em
+
+  .katex-display
+    margin: .3rem 0
+
+.natural-lesson .log-expression-trigger
+  margin-top: 0
+  background: var(--white)
+  color: var(--ink)
+  font-size: 1.05rem
+  font-weight: 400
+
+.natural-lesson .log-expression-option > .natural-math
+  min-width: 0
+  padding-block: .35rem
+  overflow: visible
+
+.natural-composition, .natural-symmetry, .natural-check
+  .log-expression-picker
+    margin-top: 1rem
+
+.natural-minimum > div > strong, .natural-limits > div > strong
+  padding-block: .5rem
+  overflow-x: auto
+  overflow-y: hidden
