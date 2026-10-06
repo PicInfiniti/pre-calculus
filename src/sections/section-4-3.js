@@ -87,7 +87,7 @@ document.querySelector("#app").innerHTML = `${renderLessonHeader("4.3")}
 <div class="log-card-grid log-card-grid--three" data-reveal><article class="log-card"><p class="tool-label">Common logarithm</p><h3>${m('log(x) = log_{10}(x)')}</h3><p>No written base means 10. For example, log(1000) = 3.</p></article><article class="log-card"><p class="tool-label">Natural logarithm</p><h3>${m('ln(x) = log_{e}(x)')}</h3><p>The base is e ≈ 2.71828. For example, ln(e⁻¹) = −1.</p></article><article class="log-card"><p class="tool-label">Write a number as a log</p><h3>${m('3 = log_{a}(a^{3})')}</h3><p>Choose the base, then raise it to 3: 3 = log₂(8) = log(1000).</p></article></div>
 </section>
 <section class="lesson-section lesson-section--soft" id="evaluate">${intro("02", "Undo the operation.<br>Keep the input legal.", `Since logarithms and exponentials are inverses, ${m('a^{log_{a}(x)} = x')} for ${m('x > 0')}, and ${m('log_{a}(a^{y}) = y')} for every real ${m('y')}. Also ${m('log_{a}(1) = 0')} and ${m('log_{a}(a) = 1')}.`)}
-<div class="log-card-grid"><article class="log-card"><p class="tool-label">Exact-value workshop</p><fieldset class="log-expression-choices" id="eval-case"><legend>Choose an expression</legend>${evaluations.map((v,i)=>`<label><input type="radio" name="eval-expression" value="${i}" ${i===0?'checked':''}><span>${m(v[0])}</span></label>`).join("")}</fieldset><div class="log-equation" id="eval-expression"></div><button class="log-button" id="eval-reveal">Show the reasoning</button><div class="log-note" id="eval-answer" hidden></div></article><article class="log-card"><p class="tool-label">Solve the missing piece</p><h3>${m('log_{x}(6) = ½')}</h3><p>The unknown is the base. Translate first:</p><div class="log-equation">${m('x^{½} = 6 ⇒ √x = 6 ⇒ x = 36')}</div><p>Check the base: 36 is positive and is not 1.</p><h3>${m('ln(x) = −1 ⇒ x = e^{−1} = 1/e')}</h3><p>Here the unknown is the input. Exponentiation recovers it.</p></article></div></section>
+<div class="log-card-grid"><article class="log-card"><p class="tool-label">Exact-value workshop</p><div class="log-expression-picker" id="eval-case"><span class="log-expression-label" id="eval-label">Choose an expression</span><button type="button" class="log-expression-trigger" id="eval-trigger" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="eval-options" aria-labelledby="eval-label eval-selected"><span id="eval-selected">${m(evaluations[0][0])}</span><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m5 7 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><div class="log-expression-menu" id="eval-options" role="listbox" aria-labelledby="eval-label" hidden>${evaluations.map((v,i)=>`<div class="log-expression-option" id="eval-option-${i}" role="option" data-eval-option="${i}" aria-selected="${i===0}">${m(v[0])}<span class="log-expression-check" aria-hidden="true">✓</span></div>`).join("")}</div></div><div class="log-equation" id="eval-expression"></div><button class="log-button" id="eval-reveal">Show the reasoning</button><div class="log-note" id="eval-answer" hidden></div></article><article class="log-card log-missing-piece"><p class="tool-label">Solve the missing piece</p><h3>${m('log_{x}(6) = ½')}</h3><p>The unknown is the base. Translate first:</p><div class="log-equation">${m('x^{½} = 6 ⇒ √x = 6 ⇒ x = 36')}</div><p>Check the base: 36 is positive and is not 1.</p><h3>${m('ln(x) = −1 ⇒ x = e^{−1} = 1/e')}</h3><p>Here the unknown is the input. Exponentiation recovers it.</p></article></div></section>
 <section class="lesson-section" id="reflection">${intro("03", "Swap the coordinates.<br>See the inverse.", "Each exponential is strictly monotone and passes the horizontal-line test. Its inverse is a logarithm. Reflection across y = x swaps domain and range, intercepts, and horizontal and vertical asymptotes.")}
 <div class="log-lab" data-reveal><div class="log-controls"><p class="tool-label">Inverse mirror</p><label for="mirror-base">Choose a base</label><select id="mirror-base">${baseOptions}</select>${slider("mirror-t", "Exponent t", -2, 2, 0.1, 1)}<label class="log-toggle"><input type="checkbox" id="mirror-show" checked> Show the exponential partner</label><div class="log-note" id="mirror-reading" aria-live="polite"></div><p><span class="log-key log-key--coral"></span> Logarithm <span class="log-key log-key--violet"></span> Exponential</p></div><div class="log-plot"><svg id="mirror-chart" viewBox="0 0 560 560" role="img" aria-label="Logarithm and exponential reflected across y equals x"></svg></div></div>
 <div class="log-facts" id="parent-facts" aria-live="polite"></div></section>
@@ -114,9 +114,77 @@ listen(["translate-base", "translate-power"], () => {
   $("translate-power-value").textContent = fmt(y);
   $("translation-result").innerHTML = `<p class="tool-label">Exponential form</p><div class="log-equation">${m(`${name}^{${fmt(y)}} = ${fmt(x, 5)}`)}</div><p class="log-between">↕ Same base, input, and exponent</p><p class="tool-label">Logarithmic form</p><div class="log-equation">${m(`${log(name,fmt(x,5))} = ${fmt(y)}`)}</div><p>The logarithm asks: “What power of ${name} gives ${fmt(x,5)}?” ${Number.isInteger(y) && name !== "e" ? "" : "Displayed input decimals are rounded."}</p>`;
 });
-function renderEvaluation() { const q=evaluations[Number(document.querySelector('[name="eval-expression"]:checked').value)]; $("eval-expression").innerHTML=m(q[0]); $("eval-answer").hidden=true; $("eval-reveal").textContent="Show the reasoning"; }
-$("eval-case").addEventListener("change",renderEvaluation); renderEvaluation();
-$("eval-reveal").addEventListener("click",()=> { const q=evaluations[Number(document.querySelector('[name="eval-expression"]:checked').value)]; $("eval-answer").hidden=!$("eval-answer").hidden; $("eval-answer").innerHTML=`<strong>${m(q[0]+" = "+q[1])}</strong><p>${q[2]}</p>`; $("eval-reveal").textContent=$("eval-answer").hidden?"Show the reasoning":"Hide the reasoning"; });
+let evaluationIndex = 0;
+let activeEvaluation = 0;
+const evaluationOptions = [...document.querySelectorAll('[data-eval-option]')];
+function renderEvaluation() {
+  const q = evaluations[evaluationIndex];
+  $("eval-selected").innerHTML = m(q[0]);
+  $("eval-expression").innerHTML = m(q[0]);
+  $("eval-answer").hidden = true;
+  $("eval-reveal").textContent = "Show the reasoning";
+  evaluationOptions.forEach((option, i) => option.setAttribute("aria-selected", String(i === evaluationIndex)));
+}
+function setActiveEvaluation(index) {
+  activeEvaluation = index;
+  evaluationOptions.forEach((option, i) => option.classList.toggle("is-active", i === index));
+  $("eval-trigger").setAttribute("aria-activedescendant", `eval-option-${index}`);
+  evaluationOptions[index].scrollIntoView({ block: "nearest", behavior: "instant" });
+}
+function openEvaluation() {
+  $("eval-options").hidden = false;
+  $("eval-trigger").setAttribute("aria-expanded", "true");
+  setActiveEvaluation(evaluationIndex);
+}
+function closeEvaluation() {
+  $("eval-options").hidden = true;
+  $("eval-trigger").setAttribute("aria-expanded", "false");
+  $("eval-trigger").removeAttribute("aria-activedescendant");
+}
+function chooseEvaluation(index, restoreFocus = true) {
+  evaluationIndex = index;
+  renderEvaluation();
+  closeEvaluation();
+  if (restoreFocus) $("eval-trigger").focus({ preventScroll: true });
+}
+$("eval-trigger").addEventListener("click", () => {
+  if ($("eval-options").hidden) openEvaluation(); else closeEvaluation();
+});
+$("eval-trigger").addEventListener("keydown", event => {
+  const isOpen = !$("eval-options").hidden;
+  if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+    event.preventDefault();
+    if (!isOpen) openEvaluation();
+    if (event.key === "Home") setActiveEvaluation(0);
+    else if (event.key === "End") setActiveEvaluation(evaluations.length - 1);
+    else if (isOpen) setActiveEvaluation(Math.max(0, Math.min(evaluations.length - 1, activeEvaluation + (event.key === "ArrowDown" ? 1 : -1))));
+  } else if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    if (isOpen) chooseEvaluation(activeEvaluation); else openEvaluation();
+  } else if (event.key === "Escape" && isOpen) {
+    event.preventDefault();
+    event.stopPropagation();
+    closeEvaluation();
+  } else if (event.key === "Tab" && isOpen) {
+    chooseEvaluation(activeEvaluation, false);
+  }
+});
+$("eval-trigger").addEventListener("blur", closeEvaluation);
+$("eval-options").addEventListener("pointerdown", event => event.preventDefault());
+$("eval-options").addEventListener("click", event => {
+  const option = event.target.closest('[data-eval-option]');
+  if (option) chooseEvaluation(Number(option.dataset.evalOption));
+});
+document.addEventListener("pointerdown", event => {
+  if (!$("eval-case").contains(event.target)) closeEvaluation();
+});
+renderEvaluation();
+$("eval-reveal").addEventListener("click", () => {
+  const q = evaluations[evaluationIndex];
+  $("eval-answer").hidden = !$("eval-answer").hidden;
+  $("eval-answer").innerHTML = `<strong>${m(q[0] + " = " + q[1])}</strong><p>${q[2]}</p>`;
+  $("eval-reveal").textContent = $("eval-answer").hidden ? "Show the reasoning" : "Hide the reasoning";
+});
 
 // Graph windows use the same physical scale on both axes in the inverse mirror.
 function plot(svg, bounds, width, height) {
