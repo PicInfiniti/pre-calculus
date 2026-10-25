@@ -57,9 +57,15 @@
 .unit-tick-labels text
   fill: #73808a
   stroke: var(--white)
-  stroke-width: 4
+  stroke-width: 6
+  stroke-linejoin: round
   paint-order: stroke fill
-  font: 16px Georgia, serif
+  font: 18px Georgia, serif
+
+  &.unit-tick-endpoint
+    fill: #73808a
+    font-size: 24px
+    font-weight: 500
 
 .unit-axis-label, .unit-point-label
   fill: var(--ink)
@@ -226,6 +232,9 @@
 
   .unit-tick-labels text
     font-size: 20px
+
+    &.unit-tick-endpoint
+      font-size: 26px
 
   .unit-axis-label, .unit-point-label
     font-size: 24px

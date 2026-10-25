@@ -148,14 +148,25 @@ function arcPath(start,sweep,radius=unitScale) {
   }).join(" ");
 }
 function circleGrid(id) {
-  let minor="",major="",labels="";
+  let minor="",major="";
   for(let i=-5;i<=5;i++) {
     const p=center+i*unitScale/4,paths=`<path d="M${p} 40V480M40 ${p}H480"/>`;
     if(i%2) minor+=paths; else major+=paths;
-    if(i!==0 && i%2===0) labels+=`<text x="${p}" y="284" text-anchor="middle">${i/4}</text><text x="244" y="${520-p+6}" text-anchor="end">${i/4}</text>`;
   }
   const stops='<stop offset="0" stop-color="black"/><stop offset="12%" stop-color="white"/><stop offset="88%" stop-color="white"/><stop offset="100%" stop-color="black"/>';
-  return `<defs><linearGradient id="${id}-fade-x">${stops}</linearGradient><linearGradient id="${id}-fade-y" x1="0" y1="0" x2="0" y2="1">${stops}</linearGradient><mask id="${id}-mask-x"><rect x="40" y="40" width="440" height="440" fill="url(#${id}-fade-x)"/></mask><mask id="${id}-mask-y"><rect x="40" y="40" width="440" height="440" fill="url(#${id}-fade-y)"/></mask></defs><g class="unit-coordinate-grid" aria-hidden="true"><g mask="url(#${id}-mask-x)"><g mask="url(#${id}-mask-y)"><g class="unit-grid-minor">${minor}</g><g class="unit-grid-major">${major}</g></g></g><path class="unit-axes" d="M40 260H480M260 40V480"/><g class="unit-tick-labels">${labels}</g><text x="490" y="268" class="unit-axis-label">x</text><text x="271" y="32" class="unit-axis-label">y</text></g>`;
+  return `<defs><linearGradient id="${id}-fade-x">${stops}</linearGradient><linearGradient id="${id}-fade-y" x1="0" y1="0" x2="0" y2="1">${stops}</linearGradient><mask id="${id}-mask-x"><rect x="40" y="40" width="440" height="440" fill="url(#${id}-fade-x)"/></mask><mask id="${id}-mask-y"><rect x="40" y="40" width="440" height="440" fill="url(#${id}-fade-y)"/></mask></defs><g class="unit-coordinate-grid" aria-hidden="true"><g mask="url(#${id}-mask-x)"><g mask="url(#${id}-mask-y)"><g class="unit-grid-minor">${minor}</g><g class="unit-grid-major">${major}</g></g></g><path class="unit-axes" d="M40 260H480M260 40V480"/><text x="490" y="268" class="unit-axis-label">x</text><text x="271" y="32" class="unit-axis-label">y</text></g>`;
+}
+function circleTickLabels() {
+  let labels="";
+  for(const value of [-1,-.5,.5,1]) {
+    const endpoint=Math.abs(value)===1,p=center+value*unitScale,y=center-value*unitScale;
+    const className=endpoint?' class="unit-tick-endpoint"':"";
+    const text=String(value).replace("-","−");
+    // Place ±1 outside the circle, away from its stroke and terminal points.
+    labels+=`<text${className} x="${endpoint?p+Math.sign(value)*12:p}" y="286" text-anchor="${endpoint?(value<0?"end":"start"):"middle"}">${text}</text>`;
+    labels+=`<text${className} x="244" y="${endpoint?y+(value>0?-14:29):y+6}" text-anchor="end">${text}</text>`;
+  }
+  return `<g class="unit-tick-labels" aria-hidden="true">${labels}</g>`;
 }
 function circleScene(svg, points, {angle=null,arc=false,ref=false,atlas=false,fixed=null}={}) {
   let art=circleGrid(svg.id)+`<circle cx="260" cy="260" r="170" class="unit-circle"/>`;
@@ -183,7 +194,8 @@ function circleScene(svg, points, {angle=null,arc=false,ref=false,atlas=false,fi
     if(p.label && !same && !shared) art+=`<text x="${x+(p.x<-.8?-14:p.x>.8?14:0)}" y="${y+(p.y>=0?-15:27)}" text-anchor="${p.x<-.8?"end":p.x>.8?"start":"middle"}" class="unit-point-label">${p.label}</text>`;
     if(same) art+=`<text x="${x}" y="${y+(p.y>=0?-16:27)}" text-anchor="middle" class="unit-point-label">P = Q</text>`;
   });
-  svg.innerHTML=art;
+  // Keep tick labels above every arc, projection, and highlight.
+  svg.innerHTML=art+circleTickLabels();
   svg.setAttribute("aria-label",`Unit circle. ${points.map(p=>`${p.label||"Point"}: (${fmt(p.x)}, ${fmt(p.y)})`).join(". ")}${angle===null?"":`. ${location(angle)}.`}`);
 }
 circleScene($("unit-hero-chart"),[{x:1/2,y:Math.sqrt(3)/2,label:"P",triangle:true}],{angle:Math.PI/3,arc:true});
