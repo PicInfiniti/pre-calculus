@@ -1,0 +1,106 @@
+.lesson-hero--inverse
+  --hero-accent: var(--violet)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+  .lesson-hero__copy h1 em
+    color: #6844a6
+
+.inverse-trig-hero-art
+  min-width: 0
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--violet), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+
+  .laws-equation
+    font-size: clamp(1rem, 1.6vw, 1.4rem)
+
+  > p:last-child
+    line-height: 1.6
+
+.inverse-passports
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-block: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    border-top: 4px solid var(--violet)
+    background: var(--white)
+
+  h3
+    font-size: 1.6rem
+
+  p
+    margin-top: 1rem
+    color: var(--ink-soft)
+
+  .laws-equation
+    margin-block: .4rem
+    font-size: 1.4rem
+
+  small
+    line-height: 1.6
+
+.inverse-plot
+  min-width: 0
+  padding: clamp(1rem, 2vw, 1.5rem)
+  align-self: center
+
+  svg
+    display: block
+    width: 100%
+
+.inverse-svg-label
+  fill: var(--ink)
+  font: 20px Georgia, serif
+
+.inverse-coordinate-grid text[fill]
+  fill: #73808a
+
+.inverse-soft-grid
+  .inverse-grid-minor path
+    fill: none
+    stroke: rgba(7, 29, 51, .055)
+    stroke-width: 1
+
+  .inverse-grid-major path
+    stroke: rgba(7, 29, 51, .12)
+
+  .inverse-grid-tick
+    font-size: 17px
+    stroke: var(--white)
+    stroke-width: 5px
+    stroke-linejoin: round
+    paint-order: stroke fill
+
+.inverse-lesson .lesson-kicker > span
+  flex-shrink: 0
+  white-space: nowrap
+
+@media (max-width: 1050px)
+  .lesson-hero--inverse
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 680px)
+  .inverse-passports
+    grid-template-columns: 1fr
+
+  .inverse-trig-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .inverse-svg-label
+    font-size: 23px

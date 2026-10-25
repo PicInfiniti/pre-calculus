@@ -55,6 +55,7 @@ export default defineConfig({
         section41: fileURLToPath(
           new URL("./pages/sections/4-1.html", import.meta.url),
         ),
+        section64: fileURLToPath(new URL("./pages/sections/6-4.html", import.meta.url)),
         section63: fileURLToPath(new URL("./pages/sections/6-3.html", import.meta.url)),
         section62: fileURLToPath(new URL("./pages/sections/6-2.html", import.meta.url)),
         section61: fileURLToPath(new URL("./pages/sections/6-1.html", import.meta.url)),
