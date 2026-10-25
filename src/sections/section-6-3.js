@@ -240,7 +240,7 @@ initStepper('deduction','deduction-case',deductions,i=>{
   const {point:[x,y],targets}=deductions[i],task=$('deduction-task');
   if(task.dataset.case!==String(i)){
     task.dataset.case=String(i);
-    task.innerHTML=`<strong>Your task</strong><p>Find the exact ${targets.length>1?'values of these five functions':'value of'}:</p><div class="general-task-targets">${targets.map(tex=>M(tex)).join('')}</div>`;
+    task.innerHTML=`<strong>We are looking for the exact ${targets.length>1?'values of these five functions':'value of'}:</strong><div class="general-task-targets">${targets.map(tex=>M(tex)).join('')}</div>`;
   }
   scene($('deduction-chart'),x,y,Math.hypot(x,y),{unit:44,grid:true,extraGridUnit:0});
 });

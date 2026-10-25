@@ -27,17 +27,17 @@ const definition = (key, num, den) => String.raw`${command(key)}\theta=\frac{\te
 const stepper = id => `<div class="trig-step" id="${id}-step" aria-live="polite"></div><p class="laws-progress" id="${id}-progress"></p><div class="laws-step-buttons"><button type="button" class="laws-button" id="${id}-back">← Previous step</button><button type="button" class="laws-button" id="${id}-next">Next step →</button></div>`;
 
 const rebuilds = [
-  { title: 'A hypotenuse and one leg', task: 'Find all six trigonometric ratios for angle B.', prompt: String.raw`AB=25,\quad BC=15`, o: 15, a: 20, ref: 'B', steps: [
+  { title: 'A hypotenuse and one leg', task: 'all six trigonometric ratios for angle B.', prompt: String.raw`AB=25,\quad BC=15`, o: 15, a: 20, ref: 'B', steps: [
     ['Recover the missing leg', String.raw`AC=\sqrt{25^2-15^2}=\sqrt{400}=20`, 'The right angle is at C. AB is the hypotenuse; BC = 15 and AC = 20. Relative to B, AC is opposite and BC is adjacent.'],
     ['Read the three primary ratios', String.raw`\sin B=\frac45,\quad\cos B=\frac35,\quad\tan B=\frac43`, 'Use opposite = 20, adjacent = 15, hypotenuse = 25.'],
     ['Take their reciprocals', String.raw`\csc B=\frac54,\quad\sec B=\frac53,\quad\cot B=\frac34`, 'Invert each ratio, keeping its function name paired correctly.'],
   ]},
-  { title: 'Rebuild from sine', task: 'Find the exact value of', target: String.raw`\sec B\tan A`, prompt: String.raw`\sin A=\frac5{13}`, o: 5, a: 12, ref: 'A', steps: [
+  { title: 'Rebuild from sine', task: 'the exact value of', target: String.raw`\sec B\tan A`, prompt: String.raw`\sin A=\frac5{13}`, o: 5, a: 12, ref: 'A', steps: [
     ['Choose a representative triangle', String.raw`O_A=5,\quad H=13`, 'These are proportions. The actual lengths may be 5k and 13k for any positive scale k.'],
     ['Use Pythagoras', String.raw`A_A=\sqrt{13^2-5^2}=12`, 'The adjacent leg is 12k. Angles A and B are complementary, so their opposite and adjacent legs swap.'],
     ['Combine ratios from both angles', String.raw`\sec B\tan A=\frac{13}{5}\cdot\frac5{12}=\frac{13}{12}`, 'For B, adjacent = 5; for A, opposite = 5 and adjacent = 12.'],
   ]},
-  { title: 'Rebuild from tangent', task: 'Find the exact value of', target: String.raw`\tan B+\csc A`, prompt: String.raw`\tan A=\frac{24}{7}`, o: 24, a: 7, ref: 'A', steps: [
+  { title: 'Rebuild from tangent', task: 'the exact value of', target: String.raw`\tan B+\csc A`, prompt: String.raw`\tan A=\frac{24}{7}`, o: 24, a: 7, ref: 'A', steps: [
     ['Choose the two legs', String.raw`O_A=24,\quad A_A=7`, 'Tangent is opposite divided by adjacent. Any similar triangle has the same ratios.'],
     ['Recover the hypotenuse', String.raw`H=\sqrt{24^2+7^2}=25`, 'Pythagoras adds the squares of the legs when the hypotenuse is unknown.'],
     ['Use the complementary angle', String.raw`\tan B+\csc A=\frac7{24}+\frac{25}{24}=\frac43`, 'At B the opposite leg is 7 and the adjacent leg is 24.'],
@@ -58,12 +58,12 @@ const identityCases = [
     ['Use the quotient identity', String.raw`\tan\theta=\frac{\sin\theta}{\cos\theta}`, 'This identity follows by cancelling the hypotenuse in the sine/cosine quotient.'],
     ['Isolate sine', String.raw`\sin\theta=\tan\theta\cos\theta=\frac5{\sqrt{26}}`, 'Multiply both sides by cos θ.'],
     ['Rationalize if desired', String.raw`\sin\theta=\frac{5\sqrt{26}}{26}`, 'Both forms are exact and equivalent.'],
-  ]],
+  ], String.raw`\sin\theta`],
   [String.raw`\sin\theta=\frac35,\quad 0<\theta<90^\circ`, [
     ['Use the Pythagorean identity', String.raw`\sin^2\theta+\cos^2\theta=1`, 'The squares of sine and cosine sum to 1.'],
     ['Isolate the square', String.raw`\cos^2\theta=1-\frac9{25}=\frac{16}{25}`, 'Subtract the square of sine.'],
     ['Choose the positive root', String.raw`\cos\theta=\sqrt{\frac{16}{25}}=\frac45`, 'The angle is acute, so cosine is positive.'],
-  ]],
+  ], String.raw`\cos\theta`],
 ];
 const checks = [
   ['Name the sides', String.raw`\sin\theta=\ ?`, [String.raw`O/H`, String.raw`A/H`, String.raw`O/A`], 0, 'Sine is opposite divided by hypotenuse, with sides named relative to the chosen angle.'],
@@ -95,7 +95,7 @@ document.querySelector('#app').innerHTML = `${renderLessonHeader('6.2')}<main cl
 <div class="laws-lab" data-reveal><div class="laws-controls"><p class="tool-label">Exact expression builder</p>${choices('exact-case', 'Choose an expression', exactExpressions.map((c,i)=>[i,c[0]]))}<p>Substitute exact values before multiplying or combining terms. Use degrees or radians consistently.</p></div><div class="laws-result">${stepper('exact')}</div></div></section>
 <section class="lesson-section lesson-section--soft" id="identities">${intro('04', 'Connect the ratios', 'One ratio can<br>unlock another.', 'Divide sine by cosine to get tangent. Divide the Pythagorean equation by the square of the hypotenuse to get a second relationship. For an acute angle, all six ratios are positive.')}
 <div class="laws-card-grid"><article class="laws-card"><p class="tool-label">Quotient identity</p>${equation(String.raw`\frac{\sin\theta}{\cos\theta}=\tan\theta`)}${equation(String.raw`\frac{O/H}{A/H}=\frac OA`)}<p>The hypotenuse cancels.</p></article><article class="laws-card"><p class="tool-label">Pythagorean identity</p>${equation(String.raw`\sin^2\theta+\cos^2\theta=1`)}${equation(String.raw`\frac{O^2+A^2}{H^2}=1`)}<p>${M(String.raw`\sin^2\theta`)} means ${M(String.raw`(\sin\theta)^2`)}.</p></article></div>
-<div class="laws-lab" data-reveal><div class="laws-controls"><p class="tool-label">Identity solver</p>${choices('identity-case','Choose what you know',identityCases.map((c,i)=>[i,c[0]]))}<p>Use the identities directly, then explain why the positive answer is appropriate.</p></div><div class="laws-result">${stepper('identity')}</div></div></section>
+<div class="laws-lab" data-reveal><div class="laws-controls"><p class="tool-label">Identity solver</p>${choices('identity-case','Choose what you know',identityCases.map((c,i)=>[i,c[0]]))}<div class="laws-note" id="identity-task" aria-live="polite"></div><p>Use the identities directly, then explain why the positive answer is appropriate.</p></div><div class="laws-result">${stepper('identity')}</div></div></section>
 <section class="lesson-section" id="one-triangle">${intro('05','Measure the world','Start with the horizontal.<br>Choose the ratio.', 'An angle of <strong>elevation</strong> looks upward from a horizontal line; an angle of <strong>depression</strong> looks downward from a horizontal line. Parallel horizontals make the depression angle equal to the elevation angle at the lower point.')}
 <div class="laws-lab" data-reveal><div class="laws-controls"><p class="tool-label">Height and distance surveyor</p><label for="survey-mode">Measurement</label><select id="survey-mode"><option value="elevation">Elevation · find a height</option><option value="depression">Depression · find a ground distance</option><option value="components">Hypotenuse · find both legs</option></select>${range('survey-angle','Angle (degrees)',5,85,1,35)}${number('survey-length','Known length',60,.01,1000000)}<p id="survey-context"></p><div class="laws-note" id="survey-reading" aria-live="polite"></div></div><div class="trig-plot">${plot('survey-chart','Elevation or depression geometry')}<p class="trig-caption">Coral is the line of sight. Gold dashed lines are horizontal. Diagrams show the geometry; reported lengths use the entered units.</p></div></div><aside class="laws-note">Use degree mode when entering degree angles on a calculator. Keep full precision until the final rounding. If the observer is above the ground, add their eye height to the vertical rise to obtain the object's total height.</aside></section>
 <section class="lesson-section lesson-section--soft" id="two-triangles">${intro('06','Connect two triangles','Two lines of sight.<br>One shared height.', 'Draw a vertical to create two right triangles. Express each horizontal leg in terms of the same height. Then use the known separation: subtract distances on the same side, or add them on opposite sides.')}
@@ -168,10 +168,16 @@ function initStepper(id,name,cases,onCase=()=>{}) {
 initMathDropdown('rebuild-case',rebuilds.map(c=>c.prompt),M);
 initStepper('rebuild','rebuild-case',rebuilds.map(c=>c.steps),i=>{
   const c=rebuilds[i];triangle($('rebuild-chart'),c.o,c.a,{ref:c.ref});
-  $('rebuild-given').innerHTML=`<strong>Your task</strong><p>${c.task}${c.target?':':''}</p>${c.target?equation(c.target):''}<p>${i===0?'The right angle is at C. First find AC, then read each ratio relative to B.':'A and B are the acute angles; C is the right angle. Use a convenient representative triangle.'}</p>`;
+  $('rebuild-given').innerHTML=`<strong>We are looking for ${c.task}${c.target?':':''}</strong>${c.target?equation(c.target):''}<p>${i===0?'The right angle is at C. First find AC, then read each ratio relative to B.':'A and B are the acute angles; C is the right angle. Use a convenient representative triangle.'}</p>`;
 });
 initStepper('exact','exact-case',exactExpressions.map(c=>c[1]));
-initStepper('identity','identity-case',identityCases.map(c=>c[1]));
+initStepper('identity','identity-case',identityCases.map(c=>c[1]),i=>{
+  const task=$('identity-task');
+  if(task.dataset.case!==String(i)){
+    task.dataset.case=String(i);
+    task.innerHTML=`<strong>We are looking for the exact value of:</strong>${equation(identityCases[i][2])}`;
+  }
+});
 const specialValues={
   30:{o:1,a:Math.sqrt(3),labels:['√3','1','2'],values:[String.raw`\frac12`,String.raw`\frac{\sqrt3}{2}`,String.raw`\frac{\sqrt3}{3}`,'2',String.raw`\frac{2\sqrt3}{3}`,String.raw`\sqrt3`]},
   45:{o:1,a:1,labels:['1','1','√2'],values:[String.raw`\frac{\sqrt2}{2}`,String.raw`\frac{\sqrt2}{2}`,'1',String.raw`\sqrt2`,String.raw`\sqrt2`,'1']},
