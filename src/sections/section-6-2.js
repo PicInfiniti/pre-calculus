@@ -27,17 +27,17 @@ const definition = (key, num, den) => String.raw`${command(key)}\theta=\frac{\te
 const stepper = id => `<div class="trig-step" id="${id}-step" aria-live="polite"></div><p class="laws-progress" id="${id}-progress"></p><div class="laws-step-buttons"><button type="button" class="laws-button" id="${id}-back">← Previous step</button><button type="button" class="laws-button" id="${id}-next">Next step →</button></div>`;
 
 const rebuilds = [
-  { title: 'A hypotenuse and one leg', prompt: String.raw`AB=25,\quad BC=15`, o: 15, a: 20, ref: 'B', steps: [
+  { title: 'A hypotenuse and one leg', task: 'Find all six trigonometric ratios for angle B.', prompt: String.raw`AB=25,\quad BC=15`, o: 15, a: 20, ref: 'B', steps: [
     ['Recover the missing leg', String.raw`AC=\sqrt{25^2-15^2}=\sqrt{400}=20`, 'The right angle is at C. AB is the hypotenuse; BC = 15 and AC = 20. Relative to B, AC is opposite and BC is adjacent.'],
     ['Read the three primary ratios', String.raw`\sin B=\frac45,\quad\cos B=\frac35,\quad\tan B=\frac43`, 'Use opposite = 20, adjacent = 15, hypotenuse = 25.'],
     ['Take their reciprocals', String.raw`\csc B=\frac54,\quad\sec B=\frac53,\quad\cot B=\frac34`, 'Invert each ratio, keeping its function name paired correctly.'],
   ]},
-  { title: 'Rebuild from sine', prompt: String.raw`\sin A=\frac5{13}`, o: 5, a: 12, ref: 'A', steps: [
+  { title: 'Rebuild from sine', task: 'Find the exact value of', target: String.raw`\sec B\tan A`, prompt: String.raw`\sin A=\frac5{13}`, o: 5, a: 12, ref: 'A', steps: [
     ['Choose a representative triangle', String.raw`O_A=5,\quad H=13`, 'These are proportions. The actual lengths may be 5k and 13k for any positive scale k.'],
     ['Use Pythagoras', String.raw`A_A=\sqrt{13^2-5^2}=12`, 'The adjacent leg is 12k. Angles A and B are complementary, so their opposite and adjacent legs swap.'],
     ['Combine ratios from both angles', String.raw`\sec B\tan A=\frac{13}{5}\cdot\frac5{12}=\frac{13}{12}`, 'For B, adjacent = 5; for A, opposite = 5 and adjacent = 12.'],
   ]},
-  { title: 'Rebuild from tangent', prompt: String.raw`\tan A=\frac{24}{7}`, o: 24, a: 7, ref: 'A', steps: [
+  { title: 'Rebuild from tangent', task: 'Find the exact value of', target: String.raw`\tan B+\csc A`, prompt: String.raw`\tan A=\frac{24}{7}`, o: 24, a: 7, ref: 'A', steps: [
     ['Choose the two legs', String.raw`O_A=24,\quad A_A=7`, 'Tangent is opposite divided by adjacent. Any similar triangle has the same ratios.'],
     ['Recover the hypotenuse', String.raw`H=\sqrt{24^2+7^2}=25`, 'Pythagoras adds the squares of the legs when the hypotenuse is unknown.'],
     ['Use the complementary angle', String.raw`\tan B+\csc A=\frac7{24}+\frac{25}{24}=\frac43`, 'At B the opposite leg is 7 and the adjacent leg is 24.'],
@@ -168,7 +168,7 @@ function initStepper(id,name,cases,onCase=()=>{}) {
 initMathDropdown('rebuild-case',rebuilds.map(c=>c.prompt),M);
 initStepper('rebuild','rebuild-case',rebuilds.map(c=>c.steps),i=>{
   const c=rebuilds[i];triangle($('rebuild-chart'),c.o,c.a,{ref:c.ref});
-  $('rebuild-given').innerHTML=`<strong>${c.title}</strong><p>${i===0?`${M('AB=25')}, ${M('BC=15')}; find all six ratios for B.`:'The ratio fixes the shape, not the absolute size. Use a convenient representative triangle.'}</p>`;
+  $('rebuild-given').innerHTML=`<strong>Your task</strong><p>${c.task}${c.target?':':''}</p>${c.target?equation(c.target):''}<p>${i===0?'The right angle is at C. First find AC, then read each ratio relative to B.':'A and B are the acute angles; C is the right angle. Use a convenient representative triangle.'}</p>`;
 });
 initStepper('exact','exact-case',exactExpressions.map(c=>c[1]));
 initStepper('identity','identity-case',identityCases.map(c=>c[1]));
