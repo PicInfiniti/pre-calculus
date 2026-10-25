@@ -15,7 +15,7 @@ import{t as e}from"./magnifier-D7_23ky3.js";function t(e=``){return`/pre-calculu
       <a class="${e===`4.2`?`is-current`:``}" href="${t(`pages/sections/4-2.html`)}">4.2 · Natural exponential</a>
       <a class="${e===`4.3`?`is-current`:``}" href="${t(`pages/sections/4-3.html`)}">4.3 · Logarithmic functions</a>
       <a class="${e===`4.4`?`is-current`:``}" href="${t(`pages/sections/4-4.html`)}">4.4 · Logarithm laws</a>
-      <a class="${e===`4.5`?`is-current`:``}" href="${t(`pages/sections/4-5.html`)}">4.5 · Equations</a>`:[`6.1`,`6.2`,`6.3`,`6.4`].includes(e)?`<a class="${e===`6.1`?`is-current`:``}" href="${t(`pages/sections/6-1.html`)}">6.1 · Angle measure</a>
+      <a class="${e===`4.5`?`is-current`:``}" href="${t(`pages/sections/4-5.html`)}">4.5 · Equations</a>`:e===`5.1`?`<a class="is-current" href="${t(`pages/sections/5-1.html`)}">5.1 · Unit circle</a>`:[`6.1`,`6.2`,`6.3`,`6.4`].includes(e)?`<a class="${e===`6.1`?`is-current`:``}" href="${t(`pages/sections/6-1.html`)}">6.1 · Angle measure</a>
       <a class="${e===`6.2`?`is-current`:``}" href="${t(`pages/sections/6-2.html`)}">6.2 · Right triangles</a>
       <a class="${e===`6.3`?`is-current`:``}" href="${t(`pages/sections/6-3.html`)}">6.3 · General angles</a>
       <a class="${e===`6.4`?`is-current`:``}" href="${t(`pages/sections/6-4.html`)}">6.4 · Inverse trig</a>`:`

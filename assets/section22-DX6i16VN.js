@@ -1,4 +1,4 @@
-import"./magnifier-D7_23ky3.js";import{n as e,r as t,t as n}from"./math-uijgN4EI.js";import{a as r,i,n as a,o,r as s,s as c}from"./shared-CCvXGQhE.js";var l=document.querySelector(`#app`);l.innerHTML=`
+import"./magnifier-D7_23ky3.js";import{n as e,r as t,t as n}from"./math-uijgN4EI.js";import{a as r,i,n as a,o,r as s,s as c}from"./shared-D3MYUyyU.js";var l=document.querySelector(`#app`);l.innerHTML=`
   ${o(`2.2`)}
   <main>
     <section class="lesson-hero lesson-hero--graphs">

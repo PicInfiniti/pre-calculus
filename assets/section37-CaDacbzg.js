@@ -1,4 +1,4 @@
-import"./magnifier-D7_23ky3.js";import{a as e,o as t,r as n,s as r}from"./shared-CCvXGQhE.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`;i.innerHTML=`
+import"./magnifier-D7_23ky3.js";import{a as e,o as t,r as n,s as r}from"./shared-D3MYUyyU.js";var i=document.querySelector(`#app`),a=(e,t=!1)=>`<span class="native-math${t?` native-math--display`:``}">${e}</span>`,o=(e,t)=>`<span class="native-frac"><span>${e}</span><span>${t}</span></span>`;i.innerHTML=`
   ${t(`3.7`)}
   <main>
     <section class="lesson-hero lesson-hero--inequalities">
