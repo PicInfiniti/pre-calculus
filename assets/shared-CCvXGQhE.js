@@ -1,4 +1,4 @@
-import{t as e}from"./magnifier-B0Wyiml3.js";function t(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}var n=`https://picinfiniti.net/mathboard/`;function r(e){let r;return r=e===`0.0`?`<a class="is-current" href="${t(`pages/sections/0-0.html`)}">00 · Notation</a>`:e===`1.9`?`<a class="is-current" href="${t(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`].includes(e)?`
+import{t as e}from"./magnifier-D7_23ky3.js";function t(e=``){return`/pre-calculus/${e.replace(/^\/+/,``)}`}var n=`https://picinfiniti.net/mathboard/`;function r(e){let r;return r=e===`0.0`?`<a class="is-current" href="${t(`pages/sections/0-0.html`)}">00 · Notation</a>`:e===`1.9`?`<a class="is-current" href="${t(`pages/sections/1-9.html`)}">1.9 · Coordinate plane</a>`:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`].includes(e)?`
       <a class="${e===`2.1`?`is-current`:``}" href="${t(`pages/sections/2-1.html`)}">2.1 · Functions</a>
       <a class="${e===`2.2`?`is-current`:``}" href="${t(`pages/sections/2-2.html`)}">2.2 · Graphs</a>
       <a class="${e===`2.3`?`is-current`:``}" href="${t(`pages/sections/2-3.html`)}">2.3 · Information</a>
@@ -15,9 +15,10 @@ import{t as e}from"./magnifier-B0Wyiml3.js";function t(e=``){return`/pre-calculu
       <a class="${e===`4.2`?`is-current`:``}" href="${t(`pages/sections/4-2.html`)}">4.2 · Natural exponential</a>
       <a class="${e===`4.3`?`is-current`:``}" href="${t(`pages/sections/4-3.html`)}">4.3 · Logarithmic functions</a>
       <a class="${e===`4.4`?`is-current`:``}" href="${t(`pages/sections/4-4.html`)}">4.4 · Logarithm laws</a>
-      <a class="${e===`4.5`?`is-current`:``}" href="${t(`pages/sections/4-5.html`)}">4.5 · Equations</a>`:[`6.1`,`6.2`,`6.3`].includes(e)?`<a class="${e===`6.1`?`is-current`:``}" href="${t(`pages/sections/6-1.html`)}">6.1 · Angle measure</a>
+      <a class="${e===`4.5`?`is-current`:``}" href="${t(`pages/sections/4-5.html`)}">4.5 · Equations</a>`:[`6.1`,`6.2`,`6.3`,`6.4`].includes(e)?`<a class="${e===`6.1`?`is-current`:``}" href="${t(`pages/sections/6-1.html`)}">6.1 · Angle measure</a>
       <a class="${e===`6.2`?`is-current`:``}" href="${t(`pages/sections/6-2.html`)}">6.2 · Right triangles</a>
-      <a class="${e===`6.3`?`is-current`:``}" href="${t(`pages/sections/6-3.html`)}">6.3 · General angles</a>`:`
+      <a class="${e===`6.3`?`is-current`:``}" href="${t(`pages/sections/6-3.html`)}">6.3 · General angles</a>
+      <a class="${e===`6.4`?`is-current`:``}" href="${t(`pages/sections/6-4.html`)}">6.4 · Inverse trig</a>`:`
         <a class="${e===`9.1`?`is-current`:``}" href="${t(`pages/sections/9-1.html`)}">9.1 · Two variables</a>
         <a class="${e===`9.2`?`is-current`:``}" href="${t(`pages/sections/9-2.html`)}">9.2 · Three variables</a>
       `,`
