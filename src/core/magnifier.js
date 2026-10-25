@@ -74,6 +74,7 @@ export function initReadingMagnifier() {
   const lens = document.createElement("div");
   lens.className = "reading-lens";
   lens.setAttribute("aria-hidden", "true");
+  lens.inert = true;
   lens.innerHTML = `
     <div class="reading-lens__glass">
       <div class="reading-lens__viewport">
@@ -111,6 +112,10 @@ export function initReadingMagnifier() {
       element.remove();
     });
     copyLiveControls(document.body, bodyCopy);
+    // Copied radios must not join the live lesson's radio groups.
+    bodyCopy.querySelectorAll('input[type="radio"]').forEach((control) => {
+      control.removeAttribute("name");
+    });
 
     const fragment = document.createDocumentFragment();
     while (bodyCopy.firstChild) fragment.append(bodyCopy.firstChild);
