@@ -1,0 +1,137 @@
+// Both entries use these scoped styles for their shared inverse-function models.
+.inverse-lesson
+  .laws-equation .katex
+    white-space: nowrap
+
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .laws-controls > strong
+    display: block
+    margin-top: 1rem
+    line-height: 1.65
+
+  #inverse-input
+    min-width: 0
+
+  #inverse-graph-caption
+    min-height: 10rem
+
+  #inverse-reading
+    min-height: 14rem
+
+  #fold-reading
+    min-height: 18rem
+
+  #triangle-reading
+    min-height: 21rem
+
+  #model-reading
+    min-height: 25rem
+
+  .inverse-example-goal
+    min-height: 15rem
+
+  #inverse-example-trigger
+    height: 5rem
+
+  #exact-step
+    width: 100%
+    min-height: 23rem
+
+  .inverse-shift-reading
+    min-height: 23rem
+
+  .laws-check h3
+    font-size: clamp(.95rem, 1.3vw, 1.2rem)
+    overflow-x: auto
+    padding-block: .5rem
+
+  .laws-check > p:not(.tool-label)
+    font-size: 1rem
+    line-height: 1.6
+
+  .inverse-question-text
+    white-space: normal
+    font-size: 1.15rem
+    line-height: 1.6
+
+  .inverse-grid-tick
+    paint-order: stroke fill
+    stroke: var(--white)
+    stroke-width: 3px
+    stroke-linejoin: round
+
+.inverse-reflection-grid, .inverse-reflection-axis, .inverse-reflection-diagonal, .inverse-reflection-forward, .inverse-reflection-inverse, .inverse-reflection-swap
+  fill: none
+  vector-effect: non-scaling-stroke
+
+.inverse-reflection-grid
+  stroke: #bfc7cc
+  stroke-width: .7
+  opacity: .5
+
+.inverse-reflection-axis
+  stroke: var(--ink)
+  stroke-width: 1.3
+
+.inverse-reflection-diagonal
+  stroke: #a9a39b
+  stroke-width: 1.2
+  stroke-dasharray: 4 5
+
+.inverse-reflection-forward
+  stroke: var(--coral)
+  stroke-width: 2.5
+
+.inverse-reflection-inverse
+  stroke: var(--violet)
+  stroke-width: 2.5
+
+.inverse-reflection-swap
+  stroke: #b48a32
+  stroke-width: 1.3
+  stroke-dasharray: 4 4
+
+.inverse-reflection-labels
+  fill: #7c8d98
+  font-size: 19px
+  paint-order: stroke fill
+  stroke: var(--white)
+  stroke-width: 3px
+  stroke-linejoin: round
+
+@media (max-width: 680px)
+  .inverse-lesson
+    .inverse-soft-grid .inverse-grid-tick
+      font-size: 22px
+
+    #inverse-graph-caption
+      min-height: 20rem
+
+    #inverse-reading
+      min-height: 19rem
+
+    #fold-reading
+      min-height: 24rem
+
+    #triangle-reading
+      min-height: 25rem
+
+    #model-reading
+      min-height: 33rem
+
+    #exact-step
+      min-height: 27rem
+
+    .inverse-example-goal
+      min-height: 19rem
+
+    .inverse-shift-reading
+      min-height: 27rem
+
+  .inverse-reflection-labels
+    font-size: 24px

@@ -1,0 +1,318 @@
+.lesson-hero--other-trig
+  --hero-accent: var(--gold)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+  .lesson-hero__copy h1 em
+    color: #92691a
+
+.ot-hero-art
+  min-width: 0
+  align-self: center
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--gold), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+
+  > p:last-child
+    line-height: 1.7
+
+.ot-plot
+  min-width: 0
+  align-self: center
+  padding: clamp(1rem, 2vw, 1.5rem)
+
+  > svg
+    display: block
+    width: 100%
+    overflow: visible
+
+.ot-caption
+  margin-top: 1.4rem
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.7
+
+.ot-table-slot
+  display: flow-root
+  min-height: 12rem
+
+.ot-table-scroll
+  overflow-x: auto
+  margin-block: 1rem
+
+  table
+    width: 100%
+    border-collapse: collapse
+    text-align: center
+    font-size: 1rem
+
+  caption
+    text-align: left
+    margin-bottom: .8rem
+    font-size: .95rem
+    color: var(--ink-soft)
+
+  td, th
+    padding: .9rem .6rem
+    border-bottom: 1px solid var(--line)
+    font-weight: 400
+
+  th:first-child
+    font-weight: 700
+
+.ot-input-grid, .ot-properties
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+  > div
+    min-width: 0
+
+.ot-properties
+  p
+    margin-top: .5rem
+    font-size: .95rem
+
+  strong
+    display: block
+    margin-top: .6rem
+    font-size: 1.2rem
+
+.ot-property-cards
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-block: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    border-top: 3px solid var(--gold)
+    background: var(--white)
+
+  p
+    line-height: 1.7
+
+  .laws-equation
+    font-size: clamp(1rem, 1.5vw, 1.4rem)
+
+.ot-presets
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-block: 1rem
+
+  button
+    padding: .6rem .8rem
+    min-height: 2.8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font: inherit
+    cursor: pointer
+
+.ot-base-reading
+  min-height: 25rem
+
+.ot-studio-reading
+  min-height: 36rem
+
+.ot-optional-reading
+  min-height: 29rem
+
+.ot-step
+  min-height: 28rem
+
+.ot-extension
+  border-top: 1px solid var(--line)
+  border-bottom: 1px solid var(--line)
+  padding-block: 1.5rem
+
+  > summary
+    cursor: pointer
+    font-size: 1.3rem
+    font-weight: 700
+    line-height: 1.7
+    min-height: 44px
+
+.ot-optional-practice
+  padding: 1.5rem
+  margin-top: 2rem
+  border-radius: .5rem
+  color: var(--white)
+  background: var(--ink)
+
+  > h3
+    font-size: 1.8rem
+    margin-bottom: 1.5rem
+
+.ot-grid-minor, .ot-grid-major, .ot-axes, .ot-asymptote, .ot-wave, .ot-parent, .ot-marker-guide
+  fill: none
+  vector-effect: non-scaling-stroke
+
+.ot-grid-minor
+  stroke: #ccd1d3
+  stroke-width: .5
+  opacity: .4
+
+.ot-grid-major
+  stroke: #bac3c8
+  stroke-width: .7
+  opacity: .65
+
+.ot-axes
+  stroke: var(--ink)
+  stroke-width: 1.3
+
+.ot-asymptote
+  stroke: #b48a32
+  stroke-width: 1.4
+  stroke-dasharray: 5 5
+
+.ot-wave
+  stroke: var(--violet)
+  stroke-width: 2.8
+
+.ot-wave--context
+  stroke: #c4bfce
+  stroke-width: 1.5
+
+.ot-parent
+  stroke-width: 1.3
+  stroke-dasharray: 4 4
+  opacity: .6
+
+.ot-parent--sin
+  stroke: #cf674e
+
+.ot-parent--cos
+  stroke: #427b58
+
+.ot-forbidden
+  fill: #eee8df
+  opacity: .5
+
+.ot-key-point
+  fill: #8d70c9
+
+.ot-current
+  fill: var(--coral)
+
+.ot-marker-guide
+  stroke: var(--coral)
+  stroke-width: 1.3
+  stroke-dasharray: 4 4
+
+.ot-tick-labels
+  fill: #7c8d98
+  font-size: 19px
+  paint-order: stroke
+  stroke: var(--white)
+  stroke-width: 3px
+  stroke-linejoin: round
+
+.ot-axis-label
+  fill: var(--ink)
+  font-size: 23px
+
+.ot-unit-label
+  fill: var(--ink-soft)
+  font-size: 16px
+
+.other-trig-lesson
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .lesson-kicker > span
+    flex-shrink: 0
+    white-space: nowrap
+
+  .laws-controls > strong
+    display: block
+    margin-top: 1rem
+    line-height: 1.65
+
+  .laws-controls > p:not(.tool-label)
+    line-height: 1.7
+
+  .laws-controls > button
+    margin-top: 1rem
+
+  .ot-toggle
+    display: flex
+    align-items: center
+    gap: .65rem
+    line-height: 1.6
+
+    input
+      width: 1.2rem
+      height: 1.2rem
+      min-height: 0
+      flex-shrink: 0
+      margin: 0
+      accent-color: #6942b1
+
+  #ot-example-trigger
+    height: 5rem
+
+  .laws-check h3
+    font-size: clamp(.95rem, 1.3vw, 1.2rem)
+    overflow-x: auto
+    padding-block: .5rem
+
+  .laws-check > p:not(.tool-label)
+    font-size: 1rem
+    line-height: 1.6
+
+@media (max-width: 1050px)
+  .lesson-hero--other-trig
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 680px)
+  .ot-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .ot-property-cards, .ot-input-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .ot-tick-labels
+    font-size: 26px
+
+  .ot-x-tick
+    font-size: 29px
+
+  .ot-axis-label
+    font-size: 29px
+
+  .ot-unit-label
+    font-size: 21px
+
+  .ot-base-reading
+    min-height: 30rem
+
+  .ot-studio-reading
+    min-height: 44rem
+
+  .ot-optional-reading
+    min-height: 37rem
+
+  .ot-step
+    min-height: 35rem
+
+  .ot-optional-practice
+    padding: 1rem

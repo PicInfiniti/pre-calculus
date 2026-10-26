@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 5.4](https://picinfiniti.net/pre-calculus/pages/sections/5-4.html) · [Section 5.5](https://picinfiniti.net/pre-calculus/pages/sections/5-5.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -215,6 +215,28 @@ The mathboard is maintained and deployed as a separate app.
 
 Lesson scope follows the supplied section 5.3 notes, including the graph diagrams and variable-star model. The official [Stewart author concept-check supplement](https://www.stewartmath.com/media/25/Concept_Check_Answers.pdf) supports the sine/cosine transformation definitions; a full textbook copy was not available.
 
+### 5.4 · More Trigonometric Graphs
+
+- Tangent domain explorer with exact π inputs, denominator guides, and one-sided asymptote comparisons
+- Four guided tangent examples with explicit goals and exact branch landmarks
+- Transformation studio for period, phase shift, asymptotes, center, and branch direction
+- Graph-to-equation reconstruction and nine core readiness checks
+- Optional secant, cosecant, and cotangent explorer with separate optional practice
+- Analytically separated plot branches, input validation, and stable graph positions
+
+Scope follows the supplied section 5.4 notes; secant, cosecant, and cotangent remain optional. The official [Stewart author concept-check supplement](https://www.stewartmath.com/media/25/Concept_Check_Answers.pdf) supports the graph properties and branch intervals. Only this author supplement was accessible, not a full textbook copy; exercises referenced only by textbook page and number in the notes were not available. Worked explanations and interactive models are original.
+
+### 5.5 · Inverse Trigonometric Functions
+
+- Principal-angle explorer for arcsine, arccosine, and arctangent, with forward/inverse graph views
+- Composition studio that distinguishes the original angle from its returned principal angle
+- Twelve guided exact examples, including domain failures, algebraic composition, and sign choices
+- Restricted transformed-function inverse with an equal-scale reflection graph across y = x
+- Triangle and height-to-angle applications from the combined section 5.5/6.4 notes
+- Ten readiness checks, explicit exercise goals, and stable interactive layouts
+
+Sections 5.5 and 6.4 share the inverse-function lesson implementation while retaining their own headings and navigation. Scope and examples follow the supplied combined notes, including their diagrams. The official [Stewart author concept-check supplement](https://www.stewartmath.com/media/25/Concept_Check_Answers.pdf) supports principal inverse definitions and composition restrictions; a full textbook copy was not available.
+
 ## Course roadmap
 
 Every course topic has its own standalone page, beginning with the notation guide.
@@ -228,7 +250,7 @@ Every course topic has its own standalone page, beginning with the notation guid
 | Polynomial and rational functions     | 3.1, 3.2, 3.6, 3.7           | Available                                  |
 | Exponential and logarithmic functions | 4.1–4.5                      | Available |
 | Right-triangle trigonometry           | 6.1–6.4                      | Available                                   |
-| Unit-circle trigonometry              | 5.1–5.5                      | 5.1–5.3 available; 5.4–5.5 planned             |
+| Unit-circle trigonometry              | 5.1–5.5                      | Available             |
 | Analytic trigonometry                 | 7.1–7.5                      | Planned                                   |
 
 ## Built with
