@@ -1,0 +1,240 @@
+.lesson-hero--sine-graph
+  --hero-accent: var(--violet)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+  .lesson-hero__copy h1 em
+    color: #6942b1
+
+.sg-hero-art
+  min-width: 0
+  align-self: center
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--violet), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+
+  .laws-equation
+    font-size: clamp(1rem, 1.4vw, 1.4rem)
+
+.sg-plot
+  min-width: 0
+  align-self: center
+  padding: clamp(1rem, 2vw, 1.5rem)
+
+  > svg
+    display: block
+    width: 100%
+    overflow: visible
+
+  > div
+    display: flow-root
+    min-height: 11rem
+
+.sg-caption
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.7
+  margin-top: 1.4rem
+
+.sg-input-grid, .sg-properties
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+  > div
+    min-width: 0
+
+.sg-properties
+  p
+    margin-top: .5rem
+    font-size: .95rem
+
+  strong
+    display: block
+    margin-top: .4rem
+    font-size: 1.25rem
+
+.sg-studio-reading
+  min-height: 26rem
+
+.sg-base-reading
+  min-height: 15rem
+
+.sg-model-reading
+  min-height: 9rem
+
+.sg-step
+  min-height: 24rem
+
+.sg-table-scroll
+  overflow-x: auto
+  margin-block: 1rem
+
+  table
+    width: 100%
+    border-collapse: collapse
+    text-align: center
+    font-size: 1rem
+
+  caption
+    text-align: left
+    margin-bottom: .8rem
+    font-size: .95rem
+    color: var(--ink-soft)
+
+  td, th
+    padding: .9rem .6rem
+    border-bottom: 1px solid var(--line)
+    font-weight: 400
+
+  th:first-child
+    font-weight: 700
+
+.sg-grid-minor, .sg-grid-major, .sg-axes, .sg-midline, .sg-wave, .sg-wave-context, .sg-guide, .sg-unit-circle, .sg-circle-ray
+  fill: none
+  vector-effect: non-scaling-stroke
+
+.sg-grid-minor
+  stroke: #ccd1d3
+  stroke-width: .5
+  opacity: .4
+
+.sg-grid-major
+  stroke: #bac3c8
+  stroke-width: .7
+  opacity: .65
+
+.sg-axes
+  stroke: var(--ink)
+  stroke-width: 1.3
+
+.sg-midline
+  stroke: #b78a28
+  stroke-width: 1.3
+  stroke-dasharray: 5 5
+
+.sg-wave
+  stroke: var(--violet)
+  stroke-width: 3
+
+.sg-wave-context
+  stroke: #c4bfce
+  stroke-width: 1.5
+
+.sg-guide
+  stroke: var(--coral)
+  stroke-width: 1.5
+  stroke-dasharray: 4 4
+
+.sg-key-point
+  fill: #8d70c9
+
+.sg-current
+  fill: var(--coral)
+
+.sg-tick-labels
+  fill: #7c8d98
+  font-size: 19px
+  paint-order: stroke
+  stroke: var(--white)
+  stroke-width: 3px
+  stroke-linejoin: round
+
+.sg-axis-label
+  fill: var(--ink)
+  font-size: 23px
+
+.sg-unit-label
+  fill: var(--ink-soft)
+  font-size: 17px
+
+.sg-unit-circle
+  stroke: #9baab2
+  stroke-width: 1.5
+
+.sg-circle-ray
+  stroke: var(--violet)
+  stroke-width: 2.5
+
+.sine-graph-lesson
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .lesson-kicker > span
+    flex-shrink: 0
+    white-space: nowrap
+
+  .laws-controls > strong
+    display: block
+    margin-top: 1rem
+    line-height: 1.65
+
+  .laws-controls > p:not(.tool-label)
+    line-height: 1.7
+
+  .laws-controls > button
+    margin-top: 1rem
+
+  #sg-circle
+    display: block
+    width: 100%
+    max-width: 240px
+    margin: 0 auto
+
+  #sg-example-trigger
+    height: 5rem
+
+  .laws-check h3
+    font-size: clamp(.95rem, 1.3vw, 1.2rem)
+    overflow-x: auto
+    padding-block: .5rem
+
+  .laws-check > p:not(.tool-label)
+    font-size: 1rem
+    line-height: 1.6
+
+@media (max-width: 1050px)
+  .lesson-hero--sine-graph
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 680px)
+  .sg-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .sg-input-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .sg-tick-labels
+    font-size: 26px
+
+  .sg-x-tick
+    font-size: 30px
+
+  .sg-axis-label
+    font-size: 29px
+
+  .sg-unit-label
+    font-size: 24px
+
+  .sg-studio-reading
+    min-height: 33rem
+
+  .sg-step
+    min-height: 29rem
+
+  .sg-table-scroll
+    font-size: .9rem

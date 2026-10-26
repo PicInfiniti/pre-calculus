@@ -1,0 +1,237 @@
+.lesson-hero--real-trig
+  --hero-accent: var(--green)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+  .lesson-hero__copy h1 em
+    color: #28603a
+
+.rt-hero-art
+  min-width: 0
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--green), var(--shadow)
+  text-align: center
+
+  svg
+    display: block
+    width: 100%
+
+  > p:last-child
+    line-height: 1.65
+
+.rt-plot
+  min-width: 0
+  padding: clamp(1rem, 2vw, 1.5rem)
+  align-self: center
+
+  > svg
+    display: block
+    width: 100%
+    max-width: 520px
+    margin-inline: auto
+
+.rt-caption
+  margin-top: 1rem
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.7
+
+.rt-definition-grid, .rt-passport-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-top: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    border-top: 3px solid var(--green)
+    background: var(--white)
+
+  h3
+    font-size: 1.6rem
+    overflow-x: auto
+    padding-block: .4rem
+
+  p
+    margin-top: .7rem
+    font-size: 1rem
+    line-height: 1.65
+
+.rt-passport-grid
+  .laws-equation
+    margin-block: .5rem
+    font-size: clamp(1rem, 1.6vw, 1.3rem)
+
+.rt-value-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: .7rem
+  margin-top: 1rem
+
+.rt-ratio
+  min-width: 0
+  min-height: 8rem
+  padding: .8rem .5rem
+  display: grid
+  grid-template-rows: 1.5rem minmax(3.6rem, auto) 1.2rem
+  align-items: center
+  border-top: 3px solid var(--green)
+  background: var(--paper)
+  text-align: center
+
+  > span
+    font-size: 1.1rem
+
+  strong
+    display: block
+    max-width: 100%
+    font-size: clamp(1.2rem, 1.7vw, 1.5rem)
+    overflow: visible
+    padding-block: .2rem
+
+  small
+    color: var(--ink-soft)
+    font-size: .8rem
+    line-height: 1.4
+
+.rt-ratio--undefined
+  border-color: var(--coral)
+  background: #fff0e9
+
+.rt-presets
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-block: 1rem
+
+  button
+    min-height: 2.8rem
+    padding: .6rem .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font: inherit
+    cursor: pointer
+
+.rt-explorer-reading
+  min-height: 23rem
+
+.rt-point-reading
+  min-height: 28rem
+
+.rt-domain-reading
+  min-height: 40rem
+
+.rt-parity-reading
+  min-height: 32rem
+
+.rt-domain-status
+  padding: .7rem
+  border-left: 3px solid #327347
+  color: #28603a
+  background: #e9f1e3
+  font-weight: 700
+
+  &.is-blocked
+    border-color: #b83e25
+    color: #b83e25
+    background: #fff0e9
+
+.rt-stepper-result
+  justify-content: flex-start
+
+.rt-compact-plot
+  width: 100%
+  max-width: 340px
+  margin: 0 auto 1rem
+
+  svg
+    display: block
+    width: 100%
+
+.rt-nowrap
+  white-space: nowrap
+
+.rt-question-text
+  white-space: normal
+  font-size: 1.15rem
+  line-height: 1.5
+
+.rt-question-line
+  display: block
+  margin-block: .35rem
+
+.real-trig-lesson
+  #rt-point-trigger
+    height: 5rem
+
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .lesson-kicker > span
+    flex-shrink: 0
+    white-space: nowrap
+
+  .laws-controls > strong
+    display: block
+    margin-top: 1rem
+    line-height: 1.65
+
+  .laws-check h3
+    font-size: clamp(.95rem, 1.4vw, 1.2rem)
+
+  #rt-pi-controls, #rt-decimal-controls
+    &[hidden]
+      display: none
+
+    label
+      display: block
+      margin-top: 1.2rem
+      font-weight: 700
+
+@media (max-width: 1050px)
+  .lesson-hero--real-trig
+    grid-template-columns: minmax(0, 1fr)
+
+  .rt-passport-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+@media (max-width: 680px)
+  .rt-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .rt-definition-grid, .rt-value-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .rt-passport-grid
+    grid-template-columns: 1fr
+
+  .rt-definition-grid article
+    padding: 1rem
+
+  .rt-definition-grid h3
+    font-size: 1.35rem
+
+  .rt-domain-reading
+    min-height: 46rem
+
+  .rt-parity-reading
+    min-height: 40rem
+
+  .real-trig-lesson #rt-domain-t-value,
+  .real-trig-lesson #rt-parity-t-value
+    display: block
+    float: none
+    margin-top: .35rem
