@@ -336,6 +336,16 @@ npm run preview
 
 See the [course-wide consistency review](docs/app-review.md) for findings, corrections, and desktop/phone verification coverage.
 
+### Dropdown regression checks
+
+All lesson dropdowns share the same control and menu styles, including older native selects and mathematical expression pickers. To build and test them in Chrome:
+
+```bash
+npm run test:dropdowns
+```
+
+The browser checks require Node 22+ and Chrome (`google-chrome`, or a path supplied through `CHROME_BIN`). They cover visual consistency across lessons, original answer values and grading, keyboard and touch selection, dynamic controls, reset behavior, and magnifier isolation.
+
 ## Project structure
 
 ```text

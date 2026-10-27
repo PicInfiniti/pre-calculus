@@ -1,0 +1,174 @@
+
+.log-expression-picker
+  position: relative
+  margin-top: 1.2rem
+
+.log-expression-label
+  display: block
+  margin-bottom: .65rem
+  font-size: 1rem
+  font-weight: 700
+
+.log-expression-trigger
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .5rem
+  width: 100%
+  min-height: 3.3rem
+  padding: .8rem 1rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  background: var(--white)
+  color: var(--ink)
+  text-align: left
+  font-size: 1.1rem
+  cursor: pointer
+
+  &[aria-expanded=true]
+    border-color: #60419b
+
+  > svg
+    flex-shrink: 0
+
+.log-expression-menu
+  position: absolute
+  z-index: 10
+  top: calc(100% + .4rem)
+  left: 0
+  width: 100%
+  max-height: min(24rem, 50vh)
+  overflow-y: auto
+  overscroll-behavior: contain
+  padding: .35rem
+  border: 1px solid var(--line)
+  border-radius: .4rem
+  background: var(--white)
+  box-shadow: var(--shadow)
+
+  &[hidden]
+    display: none
+
+.log-expression-option
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .7rem
+  min-height: 3.2rem
+  padding: .8rem
+  border-radius: .25rem
+  color: var(--ink)
+  font-size: 1.1rem
+  cursor: pointer
+
+  &:hover, &.is-active
+    background: #f0ebfa
+
+  &[aria-selected=true]
+    box-shadow: inset 3px 0 0 #60419b
+
+    .log-expression-check
+      visibility: visible
+
+.log-expression-check
+  flex-shrink: 0
+  visibility: hidden
+  color: #60419b
+  font-weight: 700
+
+// Shared by authored math pickers and progressively enhanced selects.
+.lesson-native-select
+  display: none !important
+
+.log-expression-picker
+  min-width: 0
+
+.log-expression-picker > .log-expression-trigger
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: .5rem
+  width: 100%
+  min-height: 3.3rem
+  padding: .8rem 1rem
+  border: 1px solid var(--line)
+  border-radius: .3rem
+  box-shadow: none
+  margin-top: 0
+  min-width: 0
+  background: var(--white)
+  color: var(--ink)
+  font-family: inherit
+  font-size: 1.05rem !important
+  font-weight: 400
+  line-height: 1.5
+  text-align: left
+
+  > span
+    min-width: 0
+
+  &[aria-expanded=true]
+    border-color: #60419b
+
+  &:focus-visible
+    outline: 3px solid var(--violet)
+    outline-offset: 3px
+
+  &:disabled
+    cursor: not-allowed
+    opacity: .55
+
+.lesson-select
+  width: 100%
+  margin-top: .6rem
+
+  > .log-expression-label
+    position: absolute
+    width: 1px
+    height: 1px
+    padding: 0
+    margin: -1px
+    overflow: hidden
+    clip: rect(0, 0, 0, 0)
+    white-space: nowrap
+
+  > .log-expression-trigger
+    height: 3.3rem
+
+    > span
+      display: block
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+.log-expression-menu
+  font-family: inherit
+  font-weight: 400
+  text-align: left
+
+  .log-expression-option
+    font-size: 1.05rem
+    line-height: 1.5
+
+    > span:not(.log-expression-check)
+      min-width: 0
+
+    > .laws-math, > .log-math
+      padding-block: .35rem
+      overflow: visible
+
+    &[aria-disabled=true]
+      opacity: .45
+      cursor: not-allowed
+      box-shadow: none
+      background: transparent
+
+  .math-dropdown-text, .eq-answer-text, .mt-answer-text
+    white-space: normal
+    line-height: 1.5
+
+.lesson-dropdown-menu--floating
+  position: fixed
+  z-index: 1000
+  margin: 0
+  box-sizing: border-box

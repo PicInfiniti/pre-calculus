@@ -17,6 +17,12 @@ The review covers the course home and all 33 lessons, following the course map's
 | Low | Three notation checks and two polynomial controls lacked accessible names. | Added names matching the visible questions and fieldset legends. |
 | Low | Older numeric answer readers coerced an empty answer to zero; README links followed a different order from the course map and listed unused tool directories. | Updated the numeric answer reads, reordered the README shortcuts to match the course sequence, removed stale structure entries, and corrected the home page's Mathboard preview label. |
 
+## Follow-up: dropdown consistency
+
+The initial review missed a visual inconsistency: older lessons used browser-native select menus while newer lessons used custom math menus. Both now use the shared dropdown component and styles. Menus use the same typography, colors, spacing, chevrons, selection states, and keyboard behavior; they can open outside clipped cards while staying inside the viewport. The original select values, lesson event handlers, dynamic option labels, preset resets, and grading remain connected. Section 4.3's separate expression picker also uses the shared implementation.
+
+The section 2.1 domain and difference-quotient choices use explicit TeX metadata for mathematical typesetting. A retained browser regression suite is available through `npm run test:dropdowns`. The follow-up passed 1,692 checks across all 33 lessons at desktop and phone widths, including native and math choices, grading, keyboard controls, actual touch selection, dynamic option updates, preset resets, and magnifier isolation. Open-menu screenshots were inspected for sections 2.1, 4.3, and 6.3.
+
 ## Verification
 
 - Production build: `npm run build` passed.

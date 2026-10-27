@@ -1,3 +1,4 @@
+import { initLessonDropdowns } from './math-dropdown';
 import { initReadingMagnifier } from "../core/magnifier";
 
 export function sitePath(path = "") {
@@ -95,6 +96,7 @@ export function renderLessonFooter({ previous, next }) {
 }
 
 export function initLessonChrome() {
+  initLessonDropdowns();
   initReadingMagnifier();
   const progress = document.querySelector(".reading-progress span");
 

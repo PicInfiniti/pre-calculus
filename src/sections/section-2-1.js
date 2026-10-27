@@ -269,9 +269,9 @@ root.innerHTML = `
           <label for="check-quotient">${mathMarkup(String.raw`\frac{f(a+h)-f(a)}h=`)}</label>
           <select id="check-quotient">
             <option value="">Choose…</option>
-            <option value="correct">6a + 3h − 4</option>
-            <option value="missing">6a + 3h</option>
-            <option value="uncancelled">6ah + 3h² − 4h</option>
+            <option value="correct" data-tex="6a+3h-4">6a + 3h − 4</option>
+            <option value="missing" data-tex="6a+3h">6a + 3h</option>
+            <option value="uncancelled" data-tex="6ah+3h^2-4h">6ah + 3h² − 4h</option>
           </select>
           <button type="button" id="check-quotient-button">Check expression</button>
           <p id="feedback-quotient" class="answer-feedback" aria-live="polite"></p>
@@ -280,13 +280,13 @@ root.innerHTML = `
           <span>Domain restrictions</span>
           <h3>Match each function to its domain.</h3>
           <label>${mathMarkup(String.raw`\sqrt{7-3x}`)}
-            <select id="check-domain-one"><option value="">Choose…</option><option value="correct">(−∞, 7/3]</option><option value="wrong-a">[7/3, ∞)</option><option value="wrong-b">(−∞, 7/3)</option></select>
+            <select id="check-domain-one"><option value="">Choose…</option><option value="correct" data-tex="(-\\infty,\\frac73]">(−∞, 7/3]</option><option value="wrong-a" data-tex="[\\frac73,\\infty)">[7/3, ∞)</option><option value="wrong-b" data-tex="(-\\infty,\\frac73)">(−∞, 7/3)</option></select>
           </label>
           <label>${mathMarkup(String.raw`\frac{x}{2x^2+x-1}`)}
-            <select id="check-domain-two"><option value="">Choose…</option><option value="wrong-a">(−1, 1/2)</option><option value="correct">All reals except −1 and 1/2</option><option value="wrong-b">All real numbers</option></select>
+            <select id="check-domain-two"><option value="">Choose…</option><option value="wrong-a" data-tex="(-1,\\frac12)">(−1, 1/2)</option><option value="correct">All reals except −1 and 1/2</option><option value="wrong-b">All real numbers</option></select>
           </label>
           <label>${mathMarkup(String.raw`\frac{x}{\sqrt[4]{9-x^2}}`)}
-            <select id="check-domain-three"><option value="">Choose…</option><option value="wrong-a">[−3, 3]</option><option value="correct">(−3, 3)</option><option value="wrong-b">(−∞, −3) ∪ (3, ∞)</option></select>
+            <select id="check-domain-three"><option value="">Choose…</option><option value="wrong-a" data-tex="[-3,3]">[−3, 3]</option><option value="correct" data-tex="(-3,3)">(−3, 3)</option><option value="wrong-b" data-tex="(-\\infty,-3)\\cup(3,\\infty)">(−∞, −3) ∪ (3, ∞)</option></select>
           </label>
           <button type="button" id="check-domains">Check domains</button>
           <p id="feedback-domains" class="answer-feedback" aria-live="polite"></p>
