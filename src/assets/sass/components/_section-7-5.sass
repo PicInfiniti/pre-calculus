@@ -1,0 +1,242 @@
+.lesson-hero--more-equations
+  --hero-accent: var(--violet)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+.mt-hero-art
+  align-self: center
+  min-width: 0
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--violet), var(--shadow)
+  text-align: center
+  line-height: 1.7
+
+.mt-strategies
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 1rem
+  margin-block: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    background: var(--white)
+    border-top: 3px solid var(--green)
+    line-height: 1.7
+
+  h3
+    font-size: 1.35rem
+
+  .laws-equation
+    font-size: 1.1rem
+
+.mt-goal
+  min-height: 28rem
+
+  .laws-equation
+    font-size: 1.2rem
+    margin-block: .75rem
+
+.mt-note-number
+  color: var(--ink-soft)
+  font-size: .9rem
+
+.mt-step
+  min-height: 30rem
+
+  > p
+    line-height: 1.75
+
+.mt-rule
+  display: inline-block
+  margin-block: .5rem 1rem
+  padding: .5rem .75rem
+  border-left: 3px solid #5f8c46
+  background: #edf2e5
+  color: #31502d
+  font-size: 1rem
+  font-weight: 700
+
+.mt-input-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+  > div
+    min-width: 0
+
+  label
+    display: block
+    margin-top: 1.2rem
+    font-weight: 700
+    line-height: 1.6
+
+.mt-reading
+  min-height: 22rem
+
+  .laws-equation
+    font-size: 1.2rem
+
+.mt-plot
+  align-self: center
+  min-width: 0
+  padding: clamp(1rem, 2vw, 1.5rem)
+
+  svg
+    display: block
+    width: 100%
+
+.mt-caption
+  min-height: 10rem
+  margin-top: 1rem
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.7
+
+.mt-map
+  height: 18rem
+  overflow: auto
+  border-top: 1px solid var(--line)
+  line-height: 1.7
+
+  table
+    width: 100%
+    border-collapse: collapse
+    text-align: center
+    font-size: 1rem
+
+  caption
+    padding-block: .75rem
+    color: var(--ink-soft)
+    line-height: 1.7
+
+  th, td
+    padding: .65rem .4rem
+    border-bottom: 1px solid var(--line)
+
+.mt-grid-minor, .mt-grid-major, .mt-axes, .mt-target, .mt-wave
+  fill: none
+  vector-effect: non-scaling-stroke
+
+.mt-grid-minor
+  stroke: #ccd1d3
+  stroke-width: .5
+  opacity: .4
+
+.mt-grid-major
+  stroke: #bac3c8
+  stroke-width: .7
+  opacity: .65
+
+.mt-axes
+  stroke: var(--ink)
+  stroke-width: 1.3
+
+.mt-target
+  stroke: #b48a32
+  stroke-width: 1.5
+  stroke-dasharray: 5 5
+
+.mt-wave
+  stroke: #9979d6
+  stroke-width: 2.8
+
+.mt-root
+  fill: var(--coral)
+
+.mt-ticks
+  fill: #7c8d98
+  font-size: 20px
+  paint-order: stroke fill
+  stroke: var(--white)
+  stroke-width: 3px
+  stroke-linejoin: round
+
+.mt-axis-label
+  fill: var(--ink)
+  font-size: 23px
+
+.mt-unit
+  fill: var(--ink-soft)
+  font-size: 18px
+
+.mt-answer-text
+  white-space: normal
+  font-size: 1rem
+  line-height: 1.5
+
+.more-equations-lesson
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .lesson-kicker > span
+    flex-shrink: 0
+    white-space: nowrap
+
+  .laws-equation .katex
+    white-space: nowrap
+
+  .laws-controls > strong
+    display: block
+    margin-top: 1rem
+    line-height: 1.65
+
+  .laws-controls > p:not(.tool-label)
+    line-height: 1.7
+
+  #mt-identity-case-trigger, #mt-multiple-case-trigger, #mt-combined-case-trigger, #mt-explorer-case-trigger
+    height: 5.5rem
+
+  .laws-check h3
+    font-size: clamp(.9rem, 1.2vw, 1.1rem)
+    overflow-x: auto
+    padding-block: .5rem
+
+    .katex
+      white-space: nowrap
+
+  .laws-check > p:not(.tool-label)
+    font-size: 1rem
+    line-height: 1.6
+
+@media (max-width: 1050px)
+  .lesson-hero--more-equations
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 680px)
+  .mt-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .mt-strategies, .mt-input-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .mt-goal
+    min-height: 34rem
+
+  .mt-step
+    min-height: 36rem
+
+  .mt-reading
+    min-height: 27rem
+
+  .mt-caption
+    min-height: 14rem
+
+  .mt-ticks
+    font-size: 27px
+
+  .mt-axis-label
+    font-size: 28px
+
+  .mt-unit
+    font-size: 24px
