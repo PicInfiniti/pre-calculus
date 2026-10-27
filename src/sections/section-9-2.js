@@ -87,6 +87,7 @@ root.innerHTML = `
         <p>Choose one variable and eliminate that same variable from two different equation pairs.</p>
       </div>
 
+      <p class="system-exercise-goal"><strong>We are looking for the ordered triple (x, y, z) that satisfies all three original equations.</strong></p>
       <div class="funnel" data-reveal>
         <div class="funnel__stage funnel__stage--three">
           <span>Original system</span>
@@ -241,7 +242,7 @@ root.innerHTML = `
       </aside>
     </section>
   </main>
-  ${renderLessonFooter({ previous: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two variables" } })}
+  ${renderLessonFooter({ previous: { href: "pages/sections/9-1.html", label: "Section 9.1 · Two-variable systems" }, next: { href: "pages/sections/1-9.html", label: "Section 1.9 · Coordinate plane and circles" } })}
 `;
 
 typesetMath(root);
@@ -449,7 +450,7 @@ document.querySelectorAll("[data-plane-preset]").forEach((button) => {
 });
 
 function checkCombination(prefix, expected) {
-  const actual = ["x", "y", "c"].map((suffix) => Number(document.querySelector(`#${prefix}${suffix}`).value));
+  const actual = ["x", "y", "c"].map((suffix) => document.querySelector(`#${prefix}${suffix}`).valueAsNumber);
   const correct = actual.every((value, index) => nearlyEqual(value, expected[index]));
   const feedback = document.querySelector(`#feedback-${prefix}`);
   setFeedback(feedback, correct, correct ? "Correct—the z terms cancel completely." : "Recheck the multiplier on every coefficient and on the right side.");
@@ -459,9 +460,9 @@ document.querySelector("[data-check-combination='c3']").addEventListener("click"
 document.querySelector("[data-check-combination='c2']").addEventListener("click", () => checkCombination("c2", [-6, -53, 35]));
 
 document.querySelector("#check-triangle").addEventListener("click", () => {
-  const z = Number(document.querySelector("#triangle-z").value);
-  const y = Number(document.querySelector("#triangle-y").value);
-  const x = Number(document.querySelector("#triangle-x").value);
+  const z = document.querySelector("#triangle-z").valueAsNumber;
+  const y = document.querySelector("#triangle-y").valueAsNumber;
+  const x = document.querySelector("#triangle-x").valueAsNumber;
   const correct = nearlyEqual(z, -0.5) && nearlyEqual(y, 2) && nearlyEqual(x, 5);
   setFeedback(document.querySelector("#feedback-triangle"), correct, correct ? "Correct: start with z = −1/2, then y = 2, then x = 5." : "Work strictly bottom-up. A wrong z-value will travel into both rows above it.");
 });

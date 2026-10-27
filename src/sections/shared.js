@@ -67,7 +67,7 @@ export function renderLessonHeader(activeSection) {
         <span><strong>Precalculus</strong><small>MATH 1280</small></span>
       </a>
       <nav class="lesson-nav" aria-label="Lesson navigation">
-        ${navigation}
+        ${navigation.replaceAll('class="is-current"', 'class="is-current" aria-current="page"')}
       </nav>
       <div class="lesson-header__actions">
         <a class="lesson-header__tool" href="${mathboardUrl}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>

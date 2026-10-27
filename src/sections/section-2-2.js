@@ -634,12 +634,12 @@ document.querySelector("#check-functions").addEventListener("click", () => {
 });
 
 document.querySelector("#check-a").addEventListener("click", () => {
-  const correct = document.querySelector("#check-a-domain").value === "correct" && document.querySelector("#check-a-range").value === "correct" && nearlyEqual(Number(document.querySelector("#check-a-change").value), 2);
+  const correct = document.querySelector("#check-a-domain").value === "correct" && document.querySelector("#check-a-range").value === "correct" && nearlyEqual(document.querySelector("#check-a-change").valueAsNumber, 2);
   setFeedback(document.querySelector("#feedback-a-graph"), correct, correct ? "Correct. The ray continues right forever, its outputs fall below −1, and p(4) − p(−4) = 0 − (−2) = 2." : "Use the ray’s arrow for infinity, preserve the gap between −1 and 0 in the range, and compute final output minus initial output.");
 });
 
 document.querySelector("#check-b-values").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-b-negative-two").value), -4) && document.querySelector("#check-b-four").value === "correct" && nearlyEqual(Number(document.querySelector("#check-b-change").value), -4);
+  const correct = nearlyEqual(document.querySelector("#check-b-negative-two").valueAsNumber, -4) && document.querySelector("#check-b-four").value === "correct" && nearlyEqual(document.querySelector("#check-b-change").valueAsNumber, -4);
   setFeedback(document.querySelector("#feedback-b-values"), correct, correct ? "Correct. The filled point gives g(−2) = −4, both x = 4 points are open, and g(0) − g(−4) = −1 − 3 = −4." : "At a shared x-value, use the filled point. At x = 4 both visible points are open. Net change is g(0) − g(−4).");
 });
 

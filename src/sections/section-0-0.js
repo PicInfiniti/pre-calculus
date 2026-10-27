@@ -640,9 +640,9 @@ root.innerHTML = `
         <p>Translate each symbol into words first. Once the notation is clear, the calculation becomes much easier.</p>
       </div>
       <div class="notation-check-grid">
-        <article class="check-card" data-reveal><span>Number systems</span><h3>Smallest standard set containing −7</h3><select id="check-number"><option value="">Choose…</option><option value="a">ℕ</option><option value="correct">ℤ</option><option value="b">ℝ ∖ ℚ</option></select><button type="button" id="check-number-button">Check set</button><p id="feedback-number" class="answer-feedback" aria-live="polite"></p></article>
-        <article class="check-card" data-reveal><span>Functions</span><h3>What does D<sub>f</sub> name?</h3><select id="check-domain-symbol"><option value="">Choose…</option><option value="a">The derivative of f</option><option value="correct">The domain of f</option><option value="b">The range of f</option></select><button type="button" id="check-domain-button">Check meaning</button><p id="feedback-domain-symbol" class="answer-feedback" aria-live="polite"></p></article>
-        <article class="check-card" data-reveal><span>Sets</span><h3>A ∩ B keeps which elements?</h3><select id="check-intersection"><option value="">Choose…</option><option value="a">Everything in either set</option><option value="correct">Only elements shared by both</option><option value="b">Only elements outside both</option></select><button type="button" id="check-intersection-button">Check operation</button><p id="feedback-intersection" class="answer-feedback" aria-live="polite"></p></article>
+        <article class="check-card" data-reveal><span>Number systems</span><h3>Smallest standard set containing −7</h3><select id="check-number" aria-label="Smallest standard set containing −7"><option value="">Choose…</option><option value="a">ℕ</option><option value="correct">ℤ</option><option value="b">ℝ ∖ ℚ</option></select><button type="button" id="check-number-button">Check set</button><p id="feedback-number" class="answer-feedback" aria-live="polite"></p></article>
+        <article class="check-card" data-reveal><span>Functions</span><h3>What does D<sub>f</sub> name?</h3><select id="check-domain-symbol" aria-label="Meaning of the domain symbol"><option value="">Choose…</option><option value="a">The derivative of f</option><option value="correct">The domain of f</option><option value="b">The range of f</option></select><button type="button" id="check-domain-button">Check meaning</button><p id="feedback-domain-symbol" class="answer-feedback" aria-live="polite"></p></article>
+        <article class="check-card" data-reveal><span>Sets</span><h3>A ∩ B keeps which elements?</h3><select id="check-intersection" aria-label="Meaning of set intersection"><option value="">Choose…</option><option value="a">Everything in either set</option><option value="correct">Only elements shared by both</option><option value="b">Only elements outside both</option></select><button type="button" id="check-intersection-button">Check operation</button><p id="feedback-intersection" class="answer-feedback" aria-live="polite"></p></article>
         <article class="check-card" data-reveal><span>Coordinates</span><h3>(3, −1) − (−2, 4)</h3><div class="notation-coordinate-answer"><input id="check-coordinate-x" type="number" aria-label="x-coordinate" /><span aria-hidden="true">,</span><input id="check-coordinate-y" type="number" aria-label="y-coordinate" /></div><button type="button" id="check-coordinate-button">Check coordinates</button><p id="feedback-coordinate" class="answer-feedback" aria-live="polite"></p></article>
       </div>
       <aside class="ready-banner ready-banner--notation" data-reveal><span>You are notation-ready when</span><p>You can say a symbol aloud, explain its job, and use it correctly in a small example.</p><a href="#symbol-library">Open the symbol list <span aria-hidden="true">↑</span></a></aside>
@@ -1296,8 +1296,13 @@ function vectorMarkup(point, className, label) {
 
 function renderCoordinateLab() {
   const [px, py, qx, qy, k] = coordinateInputs.map(
-    (input) => Number(input.value) || 0,
+    (input) => input.valueAsNumber,
   );
+  if (![px, py, qx, qy, k].every(Number.isFinite) || coordinateInputs.some(input => input.validity.rangeUnderflow || input.validity.rangeOverflow)) {
+    coordinateChart.innerHTML = "";
+    document.querySelector("#coordinate-result").textContent = "Enter finite coordinates from −5 to 5 and a scalar from −3 to 3.";
+    return;
+  }
   const p = { x: px, y: py };
   const q = { x: qx, y: qy };
   let result;
@@ -1376,8 +1381,8 @@ document
   .querySelector("#check-coordinate-button")
   .addEventListener("click", () => {
     const correct =
-      Number(document.querySelector("#check-coordinate-x").value) === 5 &&
-      Number(document.querySelector("#check-coordinate-y").value) === -5;
+      document.querySelector("#check-coordinate-x").valueAsNumber === 5 &&
+      document.querySelector("#check-coordinate-y").valueAsNumber === -5;
     setFeedback(
       document.querySelector("#feedback-coordinate"),
       correct,

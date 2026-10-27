@@ -690,3 +690,17 @@
   padding-block: .5rem
   overflow-x: auto
   overflow-y: hidden
+
+@media (max-width: 1050px)
+  .natural-limit-lab, .natural-graph-lab, .natural-interest-lab
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 400px)
+  .natural-hero-art__steps
+    flex-direction: column
+
+    > span, > strong
+      width: 100%
+
+    i
+      transform: rotate(90deg)

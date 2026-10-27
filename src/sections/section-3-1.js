@@ -749,8 +749,8 @@ document.querySelector("#check-vertex-form-button").addEventListener("click", ()
 });
 
 document.querySelector("#check-graph-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-vertex-h").value), 1)
-    && nearlyEqual(Number(document.querySelector("#check-vertex-k").value), 1)
+  const correct = nearlyEqual(document.querySelector("#check-vertex-h").valueAsNumber, 1)
+    && nearlyEqual(document.querySelector("#check-vertex-k").valueAsNumber, 1)
     && document.querySelector("#check-extreme").value === "correct";
   setFeedback(document.querySelector("#feedback-graph"), correct, correct
     ? "Correct. The vertex is (1, 1), and the negative leading coefficient makes 1 the maximum value."
@@ -758,15 +758,15 @@ document.querySelector("#check-graph-button").addEventListener("click", () => {
 });
 
 document.querySelector("#check-fit-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-fit-a").value), -3);
+  const correct = nearlyEqual(document.querySelector("#check-fit-a").valueAsNumber, -3);
   setFeedback(document.querySelector("#feedback-fit"), correct, correct
     ? "Correct. −7 = a(−3 + 1)² + 5 gives −12 = 4a, so a = −3."
     : "Start with y = a(x + 1)² + 5 and substitute the point (−3, −7). Then solve for a.");
 });
 
 document.querySelector("#check-profit-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-profit-x").value), 1500)
-    && nearlyEqual(Number(document.querySelector("#check-profit-y").value), 450);
+  const correct = nearlyEqual(document.querySelector("#check-profit-x").valueAsNumber, 1500)
+    && nearlyEqual(document.querySelector("#check-profit-y").valueAsNumber, 450);
   setFeedback(document.querySelector("#feedback-profit"), correct, correct
     ? "Correct. The vertex is (1,500, 450): selling 1,500 cans produces a maximum daily profit of $450."
     : "First compute x = −b/(2a). Then substitute that x-value into P to find the maximum profit.");

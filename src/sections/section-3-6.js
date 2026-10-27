@@ -542,8 +542,12 @@ const horizonB = document.querySelector("#horizon-b");
 function renderHorizon() {
   const n = Number(horizonN.value);
   const m = Number(horizonM.value);
-  const a = Number(horizonA.value);
-  const b = Number(horizonB.value);
+  const a = horizonA.valueAsNumber;
+  const b = horizonB.valueAsNumber;
+  if (![a, b].every(Number.isFinite) || a === 0 || b === 0) {
+    document.querySelector("#horizon-result").textContent = "Enter finite, nonzero leading coefficients. A zero coefficient changes the degree, so the selected degree comparison would no longer apply.";
+    return;
+  }
   const equal = n === m;
   document.querySelector("#horizon-n-output").textContent = String(n);
   document.querySelector("#horizon-m-output").textContent = String(m);
@@ -621,15 +625,15 @@ document.querySelector("#check-two-walls-button").addEventListener("click", () =
 });
 
 document.querySelector("#check-hole-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-hole-x").value), 2)
-    && nearlyEqual(Number(document.querySelector("#check-hole-y").value), 4);
+  const correct = nearlyEqual(document.querySelector("#check-hole-x").valueAsNumber, 2)
+    && nearlyEqual(document.querySelector("#check-hole-y").valueAsNumber, 4);
   setFeedback(document.querySelector("#feedback-hole"), correct, correct
     ? "Correct. Canceling x − 2 leaves y = x + 2, and substituting the excluded input gives the missing point (2, 4)."
     : "Factor the numerator, cancel x − 2, then evaluate the simplified rule at the excluded input x = 2.");
 });
 
 document.querySelector("#check-horizontal-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-horizontal-value").value), 2.5);
+  const correct = nearlyEqual(document.querySelector("#check-horizontal-value").valueAsNumber, 2.5);
   setFeedback(document.querySelector("#feedback-horizontal"), correct, correct
     ? "Correct. Equal degrees use the ratio of leading coefficients: 5/2."
     : "Both polynomials have degree 2, so divide the numerator’s leading coefficient by the denominator’s.");

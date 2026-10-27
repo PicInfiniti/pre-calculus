@@ -638,8 +638,12 @@ function renderContext() {
 }
 
 function renderNetChange() {
-  const start = Math.max(0, Math.min(70, Number(contextStart.value)));
-  const end = Math.max(0, Math.min(70, Number(contextEnd.value)));
+  const start = contextStart.valueAsNumber;
+  const end = contextEnd.valueAsNumber;
+  if (![start, end].every(Number.isFinite) || start < 0 || end < 0 || start > 70 || end > 70) {
+    document.querySelector("#context-net-change").textContent = "Enter both ages as finite numbers from 0 to 70 years.";
+    return;
+  }
   const initial = contextValue(start);
   const final = contextValue(end);
   const change = final - initial;
@@ -707,7 +711,7 @@ document.querySelector("#check-projection").addEventListener("click", () => {
 });
 
 document.querySelector("#check-behavior").addEventListener("click", () => {
-  const correct = Number(document.querySelector("#check-minima").value) === 2 && document.querySelector("#check-increasing").value === "correct";
+  const correct = document.querySelector("#check-minima").valueAsNumber === 2 && document.querySelector("#check-increasing").value === "correct";
   setFeedback(document.querySelector("#feedback-behavior"), correct, correct ? "Correct. The curve has local minima at x = −1 and x = 3 and rises on three separate intervals." : "A local minimum occurs where decreasing changes to increasing. List intervals using x-values, not y-values.");
 });
 
@@ -717,7 +721,7 @@ document.querySelector("#check-radicals").addEventListener("click", () => {
 });
 
 document.querySelector("#check-change").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-net-change").value), 100) && document.querySelector("#check-turn-slope").value === "correct";
+  const correct = nearlyEqual(document.querySelector("#check-net-change").valueAsNumber, 100) && document.querySelector("#check-turn-slope").value === "correct";
   setFeedback(document.querySelector("#feedback-change"), correct, correct ? "Correct. W(20) − W(10) = 150 − 50 = 100, and a smooth local maximum has a horizontal tangent." : "Net change is final minus initial. At a smooth turning point, the tangent is horizontal.");
 });
 

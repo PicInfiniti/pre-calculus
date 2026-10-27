@@ -133,9 +133,9 @@ button, [role='button'], [role='slider'], canvas, svg
   margin: 0 auto
   padding: clamp(4rem, 8vw, 7.5rem) 0 clamp(5rem, 8vw, 7rem)
   display: grid
-  grid-template-columns: 1fr 1fr
+  grid-template-columns: repeat(2, minmax(0, 1fr))
   align-items: center
-  gap: clamp(3rem, 8vw, 8rem)
+  gap: clamp(3rem, 4vw, 4rem)
 
 .lesson-hero--blue
   --hero-accent: var(--blue)
@@ -144,7 +144,9 @@ button, [role='button'], [role='slider'], canvas, svg
   --hero-accent: var(--gold)
 
 .lesson-kicker
+  min-width: 0
   display: flex
+  flex-wrap: wrap
   align-items: center
   gap: .7rem
   color: var(--ink-soft)
@@ -154,14 +156,19 @@ button, [role='button'], [role='slider'], canvas, svg
   text-transform: uppercase
 
   span
+    flex-shrink: 0
+    white-space: nowrap
     padding: .38rem .55rem
     border-radius: 999px
     background: var(--hero-accent, var(--coral))
     color: var(--ink)
 
+.lesson-hero__copy
+  min-width: 0
+
 .lesson-hero h1
   margin-top: 1.35rem
-  font-size: clamp(3.6rem, 7vw, 6.8rem)
+  font-size: clamp(3.4rem, 5vw, 4.5rem)
   line-height: .9
   letter-spacing: -.075em
 
@@ -1020,6 +1027,7 @@ input[type='range']
   gap: 1rem
 
 .check-card
+  min-width: 0
   padding: 1.5rem
   display: flex
   flex-direction: column
@@ -3341,7 +3349,7 @@ input[type='range']
 
   .lesson-hero
     min-height: auto
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
 
   .lesson-hero__copy
     max-width: 48rem
@@ -3685,3 +3693,25 @@ input[type='range']
   [data-reveal]
     opacity: 1
     transform: none
+
+@media (min-width: 1101px) and (max-width: 1340px)
+  .lesson-header
+    grid-template-columns: 1fr auto
+    row-gap: 1rem
+
+  .lesson-nav
+    grid-row: 2
+    grid-column: 1 / -1
+    max-width: 100%
+    flex-wrap: wrap
+    justify-content: center
+    border-radius: 1.5rem
+
+.system-exercise-goal
+  max-width: 780px
+  margin-top: 1.5rem
+  line-height: 1.7
+
+.method-panel__summary > p
+  margin-block: 1rem
+  line-height: 1.7

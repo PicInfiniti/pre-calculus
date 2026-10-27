@@ -297,8 +297,8 @@ root.innerHTML = `
           <p class="tool-label">Minimum-degree detector</p>
           <label for="degree-turns"><span>Visible turning points</span><output id="degree-turns-output">4</output></label>
           <input id="degree-turns" type="range" min="0" max="6" step="1" value="4" />
-          <fieldset><legend>Tail relationship</legend><select id="degree-tail-relation"><option value="opposite">Opposite directions</option><option value="same">Same direction</option></select></fieldset>
-          <fieldset><legend>Right tail</legend><select id="degree-right-tail"><option value="up">Rises</option><option value="down">Falls</option></select></fieldset>
+          <fieldset><legend>Tail relationship</legend><select id="degree-tail-relation" aria-label="Tail relationship"><option value="opposite">Opposite directions</option><option value="same">Same direction</option></select></fieldset>
+          <fieldset><legend>Right tail</legend><select id="degree-right-tail" aria-label="Right-tail direction"><option value="up">Rises</option><option value="down">Falls</option></select></fieldset>
         </div>
         <div class="degree-lab__result" id="degree-result" aria-live="polite"></div>
       </div>
@@ -889,7 +889,7 @@ document.querySelector("#check-roots-button").addEventListener("click", () => {
 });
 
 document.querySelector("#check-degree-button").addEventListener("click", () => {
-  const correct = Number(document.querySelector("#check-degree").value) === 5
+  const correct = document.querySelector("#check-degree").valueAsNumber === 5
     && document.querySelector("#check-leading-sign").value === "correct";
   setFeedback(document.querySelector("#feedback-degree"), correct, correct
     ? "Correct. Four turns require degree at least 5; opposite tails require odd degree, and a rising right tail means a positive leading coefficient."

@@ -702,7 +702,7 @@ document.querySelector("#check-even").addEventListener("click", () => {
 });
 
 document.querySelector("#check-odd").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-odd-value").value), -7);
+  const correct = nearlyEqual(document.querySelector("#check-odd-value").valueAsNumber, -7);
   setFeedback(document.querySelector("#feedback-odd"), correct, correct ? "Correct. Odd symmetry gives f(2) = −f(−2) = −7." : "For an odd function, opposite inputs have opposite outputs.");
 });
 

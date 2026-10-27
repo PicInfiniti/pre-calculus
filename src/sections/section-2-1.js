@@ -538,17 +538,17 @@ document.querySelectorAll("[data-domain-case]").forEach((button) => button.addEv
 renderDomainCase("radical");
 
 document.querySelector("#check-piecewise").addEventListener("click", () => {
-  const two = Number(document.querySelector("#check-piecewise-two").value);
-  const three = Number(document.querySelector("#check-piecewise-three").value);
-  const piCoefficient = Number(document.querySelector("#check-piecewise-pi").value);
+  const two = document.querySelector("#check-piecewise-two").valueAsNumber;
+  const three = document.querySelector("#check-piecewise-three").valueAsNumber;
+  const piCoefficient = document.querySelector("#check-piecewise-pi").valueAsNumber;
   const correct = nearlyEqual(two, 3) && nearlyEqual(three, 2.25) && nearlyEqual(piCoefficient, -3);
   setFeedback(document.querySelector("#feedback-piecewise"), correct, correct ? "Correct. The conditions select the middle, upper, and lower rules respectively." : "Check the condition first: 2 uses x+1, 3.5 uses (x−2)², and −π uses 3x.");
 });
 
 document.querySelector("#check-models").addEventListener("click", () => {
-  const thirty = Number(document.querySelector("#check-fine-thirty").value);
-  const eightyFive = Number(document.querySelector("#check-fine-eightyfive").value);
-  const change = Number(document.querySelector("#check-net-change").value);
+  const thirty = document.querySelector("#check-fine-thirty").valueAsNumber;
+  const eightyFive = document.querySelector("#check-fine-eightyfive").valueAsNumber;
+  const change = document.querySelector("#check-net-change").valueAsNumber;
   const correct = nearlyEqual(thirty, 150) && nearlyEqual(eightyFive, 300) && nearlyEqual(change, -0.59, 0.001);
   setFeedback(document.querySelector("#feedback-models"), correct, correct ? "Correct. The fines are $150 and $300, and the pupil radius changes by approximately −0.590 mm." : "For fines, count miles outside the legal interval and multiply by 15. Net change is R(100) − R(10), including its sign.");
 });

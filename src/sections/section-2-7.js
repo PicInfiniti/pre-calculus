@@ -704,7 +704,7 @@ document.querySelector("#check-domain-button").addEventListener("click", () => {
 });
 
 document.querySelector("#check-composite-button").addEventListener("click", () => {
-  const correct = nearlyEqual(Number(document.querySelector("#check-composite").value), 19);
+  const correct = nearlyEqual(document.querySelector("#check-composite").valueAsNumber, 19);
   setMathFeedback(
     document.querySelector("#feedback-composite"),
     correct,

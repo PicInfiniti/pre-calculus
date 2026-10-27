@@ -140,6 +140,7 @@ root.innerHTML = `
           <p class="tool-label">Median practice</p>
           <h3 id="median-coordinates">A(1, −1), B(4, 5), C(−9, 3)</h3>
           <p class="drag-hint">Drag the green M point to move the whole triangle.</p>
+          <p><strong>We are looking for midpoint M of AC and the exact median length BM.</strong></p>
           <ol>
             <li><span>1</span><div><strong>Find midpoint M of AC.</strong><p>Average A and C—not A and B.</p></div></li>
             <li><span>2</span><div><strong>Measure BM.</strong><p>Use B and the midpoint you just found.</p></div></li>
@@ -310,7 +311,7 @@ root.innerHTML = `
       </aside>
     </section>
   </main>
-  ${renderLessonFooter({})}
+  ${renderLessonFooter({ previous: { href: "pages/sections/9-2.html", label: "Section 9.2 · Three-variable systems" }, next: { href: "pages/sections/2-1.html", label: "Section 2.1 · Functions" } })}
 `;
 
 typesetMath(root);
@@ -469,6 +470,12 @@ const coordinateInputs = {
 
 function renderCoordinateLab() {
   const { A, B } = coordinateState;
+  if (![A.x, A.y, B.x, B.y].every(Number.isFinite)) {
+    coordinateSvg.innerHTML = "";
+    document.querySelector("#coordinate-change").textContent = "Fill all four coordinates with finite numbers.";
+    ["coordinate-midpoint", "coordinate-distance", "coordinate-distance-decimal"].forEach(id => document.getElementById(id).textContent = "");
+    return;
+  }
   const midpoint = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
   const dx = B.x - A.x;
   const dy = B.y - A.y;
@@ -496,7 +503,7 @@ function renderCoordinateLab() {
 Object.entries(coordinateInputs).forEach(([name, axes]) => {
   Object.entries(axes).forEach(([axis, input]) => {
     input.addEventListener("input", () => {
-      coordinateState[name][axis] = clampCoordinate(Number(input.value));
+      coordinateState[name][axis] = clampCoordinate(input.valueAsNumber);
       renderCoordinateLab();
     });
   });
@@ -516,8 +523,8 @@ bindDraggableSvg(coordinateSvg, coordinateState, renderCoordinateLab, { M: ["A",
 renderCoordinateLab();
 
 document.querySelector("#check-missing-endpoint").addEventListener("click", () => {
-  const x = Number(document.querySelector("#missing-bx").value);
-  const y = Number(document.querySelector("#missing-by").value);
+  const x = document.querySelector("#missing-bx").valueAsNumber;
+  const y = document.querySelector("#missing-by").valueAsNumber;
   setFeedback(
     document.querySelector("#feedback-missing-endpoint"),
     nearlyEqual(x, -6) && nearlyEqual(y, -3),
@@ -553,10 +560,10 @@ bindDraggableSvg(medianSvg, medianPoints, renderMedianLab, { M: ["A", "B", "C", 
 renderMedianLab();
 
 document.querySelector("#check-median").addEventListener("click", () => {
-  const mx = Number(document.querySelector("#median-mx").value);
-  const my = Number(document.querySelector("#median-my").value);
-  const coefficient = Number(document.querySelector("#median-coefficient").value);
-  const radicand = Number(document.querySelector("#median-radicand").value);
+  const mx = document.querySelector("#median-mx").valueAsNumber;
+  const my = document.querySelector("#median-my").valueAsNumber;
+  const coefficient = document.querySelector("#median-coefficient").valueAsNumber;
+  const radicand = document.querySelector("#median-radicand").valueAsNumber;
   const correct = nearlyEqual(mx, medianPoints.M.x) && nearlyEqual(my, medianPoints.M.y) && nearlyEqual(coefficient, 4) && nearlyEqual(radicand, 5);
   setFeedback(
     document.querySelector("#feedback-median"),
@@ -584,6 +591,12 @@ const diameterInputs = {
 
 function renderDiameterLab() {
   const { P, Q } = diameterState;
+  if (![P.x, P.y, Q.x, Q.y].every(Number.isFinite) || (P.x === Q.x && P.y === Q.y)) {
+    diameterSvg.innerHTML = "";
+    document.querySelector("#diameter-center").textContent = "Enter finite coordinates for two different diameter endpoints.";
+    ["diameter-radius-squared", "diameter-equation"].forEach(id => document.getElementById(id).textContent = "");
+    return;
+  }
   const center = { x: (P.x + Q.x) / 2, y: (P.y + Q.y) / 2 };
   const radiusSquared = ((P.x - Q.x) ** 2 + (P.y - Q.y) ** 2) / 4;
   const radius = Math.sqrt(radiusSquared) * graphScale;
@@ -609,7 +622,7 @@ function renderDiameterLab() {
 Object.entries(diameterInputs).forEach(([name, axes]) => {
   Object.entries(axes).forEach(([axis, input]) => {
     input.addEventListener("input", () => {
-      diameterState[name][axis] = clampCoordinate(Number(input.value));
+      diameterState[name][axis] = clampCoordinate(input.valueAsNumber);
       renderDiameterLab();
     });
   });
@@ -685,9 +698,9 @@ document.querySelector("#next-square-step").addEventListener("click", (event) =>
 });
 
 document.querySelector("#check-complete-square").addEventListener("click", () => {
-  const h = Number(document.querySelector("#complete-h").value);
-  const k = Number(document.querySelector("#complete-k").value);
-  const radicand = Number(document.querySelector("#complete-radicand").value);
+  const h = document.querySelector("#complete-h").valueAsNumber;
+  const k = document.querySelector("#complete-k").valueAsNumber;
+  const radicand = document.querySelector("#complete-radicand").valueAsNumber;
   const correct = nearlyEqual(h, 5) && nearlyEqual(k, -6) && nearlyEqual(radicand, 7);
   setFeedback(
     document.querySelector("#feedback-complete-square"),
@@ -699,7 +712,7 @@ document.querySelector("#check-complete-square").addEventListener("click", () =>
 });
 
 document.querySelector("#check-tangent").addEventListener("click", () => {
-  const radius = Number(document.querySelector("#tangent-radius").value);
+  const radius = document.querySelector("#tangent-radius").valueAsNumber;
   const equation = document.querySelector("#tangent-equation").value;
   const correct = nearlyEqual(radius, 5) && equation === "correct";
   setFeedback(

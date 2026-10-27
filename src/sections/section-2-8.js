@@ -776,7 +776,7 @@ document.querySelector("#check-one-to-one").addEventListener("click", () => {
 });
 
 document.querySelector("#check-inverse-values").addEventListener("click", () => {
-  const correct = Number(document.querySelector("#check-inverse-value").value) === 4 && document.querySelector("#check-inverse-composition").value === "correct";
+  const correct = document.querySelector("#check-inverse-value").valueAsNumber === 4 && document.querySelector("#check-inverse-composition").value === "correct";
   setMathFeedback(
     document.querySelector("#feedback-inverse-values"),
     correct,
@@ -787,7 +787,7 @@ document.querySelector("#check-inverse-values").addEventListener("click", () => 
 });
 
 document.querySelector("#check-inverse-point").addEventListener("click", () => {
-  const correct = Number(document.querySelector("#check-inverse-point-x").value) === -3 && Number(document.querySelector("#check-inverse-point-y").value) === 2;
+  const correct = document.querySelector("#check-inverse-point-x").valueAsNumber === -3 && document.querySelector("#check-inverse-point-y").valueAsNumber === 2;
   setMathFeedback(
     document.querySelector("#feedback-inverse-point"),
     correct,

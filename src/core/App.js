@@ -312,7 +312,7 @@ export default class App {
               <span>Saved automatically on this device.</span>
             </div>
           </div>
-          <div class="mathboard-promo__visual" role="img" aria-label="A preview of the math mathboard with a curve drawn on coordinate axes">
+          <div class="mathboard-promo__visual" role="img" aria-label="A preview of the mathboard with a curve drawn on coordinate axes">
             <div class="mathboard-promo__toolbar" aria-hidden="true">
               <span class="is-active">Pen</span><span>Highlight</span><span>Eraser</span>
               <i></i><i></i><i></i><i></i>

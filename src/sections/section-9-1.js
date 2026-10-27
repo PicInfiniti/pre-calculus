@@ -136,7 +136,7 @@ root.innerHTML = `
           <div class="method-panel__summary">
             <span>Use it when</span>
             <h3>A variable is already isolated—or almost isolated.</h3>
-            <div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=4`)}</span><span>${mathMarkup(String.raw`-x+3y=-5`)}</span></div>
+            <p><strong>We are looking for the ordered pair (x, y) that satisfies both equations.</strong></p><div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=4`)}</span><span>${mathMarkup(String.raw`-x+3y=-5`)}</span></div>
           </div>
           <div class="stepper" data-stepper>
             <ol>
@@ -153,7 +153,7 @@ root.innerHTML = `
           <div class="method-panel__summary">
             <span>Use it when</span>
             <h3>Coefficients already match, or can match with small multipliers.</h3>
-            <div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=-8`)}</span><span>${mathMarkup(String.raw`-5x-3y=11`)}</span></div>
+            <p><strong>We are looking for the ordered pair (x, y) that satisfies both equations.</strong></p><div class="system-brace"><span>${mathMarkup(String.raw`3x+2y=-8`)}</span><span>${mathMarkup(String.raw`-5x-3y=11`)}</span></div>
           </div>
           <div class="stepper" data-stepper>
             <ol>
@@ -240,18 +240,19 @@ root.innerHTML = `
       </aside>
     </section>
   </main>
-  ${renderLessonFooter({ next: { href: "pages/sections/9-2.html", label: "Section 9.2 · Three variables" } })}
+  ${renderLessonFooter({ previous: { href: "pages/sections/0-0.html", label: "Notation guide · Mathematical language" }, next: { href: "pages/sections/9-2.html", label: "Section 9.2 · Three-variable systems" } })}
 `;
 
 typesetMath(root);
 
 function readCoefficients() {
   return ["a1", "b1", "c1", "a2", "b2", "c2"].map((id) =>
-    Number(document.querySelector(`#${id}`).value),
+    document.querySelector(`#${id}`).valueAsNumber,
   );
 }
 
 function classifySystem([a1, b1, c1, a2, b2, c2]) {
+  if (![a1, b1, c1, a2, b2, c2].every(Number.isFinite)) return { type: "invalid", missing: true };
   if ((nearlyEqual(a1, 0) && nearlyEqual(b1, 0)) || (nearlyEqual(a2, 0) && nearlyEqual(b2, 0))) {
     return { type: "invalid" };
   }
@@ -294,6 +295,14 @@ function renderLineGraph() {
   const [a1, b1, c1, a2, b2, c2] = coefficients;
   const result = classifySystem(coefficients);
   const svg = document.querySelector("#line-graph");
+  if (result.type === "invalid") {
+    svg.innerHTML = "";
+    document.querySelector("#result-badge").className = "result-badge--invalid";
+    document.querySelector("#result-badge").textContent = "Check coefficients";
+    document.querySelector("#result-title").textContent = result.missing ? "Fill all six fields with finite numbers." : "Each equation needs an x- or y-term.";
+    document.querySelector("#result-detail").textContent = "The graph will return when both equations are valid. The x- and y-coefficients of either equation cannot both be zero.";
+    return;
+  }
   const width = 560;
   const height = 400;
   const bound = 10;
@@ -379,6 +388,13 @@ function bindSteppers() {
     const steps = [...stepper.querySelectorAll("li")];
     const button = stepper.querySelector(".stepper__next");
     let visible = 1;
+    const initialLabel = button.innerHTML;
+    stepper.addEventListener("lesson-reset-steps", () => {
+      visible = 1;
+      steps.forEach((step, index) => step.classList.toggle("is-visible", index === 0));
+      button.innerHTML = initialLabel;
+      button.disabled = false;
+    });
     button.addEventListener("click", () => {
       if (visible < steps.length) {
         steps[visible].classList.add("is-visible");
@@ -414,9 +430,10 @@ quartersRange.addEventListener("input", updateCoinLab);
 
 const parameterInput = document.querySelector("#parameter-a");
 function updateParameterLab() {
-  const a = Number(parameterInput.value);
+  const a = parameterInput.valueAsNumber;
   const result = document.querySelector("#parameter-result");
-  if (nearlyEqual(a, 1)) {
+  if (!Number.isFinite(a)) { result.textContent = "Enter a finite parameter a to find the solution set."; return; }
+  if (a === 1) {
     result.innerHTML = `<span class="parameter-result__status">No solution</span><strong>${mathMarkup(String.raw`0=4`)} is a contradiction.</strong><p>When ${mathMarkup(String.raw`a=1`)}, both equations have the same left side but different constants.</p>`;
     typesetMath(result);
     return;
@@ -434,17 +451,23 @@ document.querySelector("[data-check='a']").addEventListener("click", () => {
 });
 
 document.querySelector("[data-check='b']").addEventListener("click", () => {
-  const value = Number(document.querySelector("#check-b").value);
+  const value = document.querySelector("#check-b").valueAsNumber;
   setFeedback(document.querySelector("#feedback-b"), nearlyEqual(value, -3), nearlyEqual(value, -3) ? "Correct. Both slopes become −3, while the intercepts remain different." : "Rewrite both equations as y = mx + b and make the slopes equal.");
 });
 
 document.querySelector("[data-check='f']").addEventListener("click", () => {
-  const value = Number(document.querySelector("#check-f").value);
+  const value = document.querySelector("#check-f").valueAsNumber;
   setFeedback(document.querySelector("#feedback-f"), nearlyEqual(value, 1), nearlyEqual(value, 1) ? "Correct. Then (a − 1)y becomes 0y, producing 0 = 4." : "Set the coefficient a − 1 equal to zero.");
 });
 
 bindTabs(document.querySelector(".method-lab"));
 bindSteppers();
+let selectedMethod = "substitution";
+document.querySelectorAll(".method-lab [data-tab]").forEach(button => button.addEventListener("click", () => {
+  if (selectedMethod === button.dataset.tab) return;
+  selectedMethod = button.dataset.tab;
+  document.querySelectorAll(".method-lab [data-stepper]").forEach(stepper => stepper.dispatchEvent(new Event("lesson-reset-steps")));
+}));
 renderLineGraph();
 updateCoinLab();
 updateParameterLab();

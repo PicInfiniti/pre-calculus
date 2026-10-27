@@ -350,7 +350,7 @@ checks.forEach(([name, explanation]) => {
   });
 });
 document.querySelector("#check-balance-button").addEventListener("click", () => {
-  const answer = Number(document.querySelector("#check-balance").value);
+  const answer = document.querySelector("#check-balance").valueAsNumber;
   const correct = document.querySelector("#check-balance").value !== "" && Math.abs(answer - 2000 * 1.05 ** 3) < 0.011;
   setFeedback(document.querySelector("#feedback-balance"), correct,
     correct ? "Correct. Multiply the $2,000 balance by 1.05 three times." : "Use A = 2000(1.05)³. The balance should be greater than the deposit; round only at the end.");

@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 5.4](https://picinfiniti.net/pre-calculus/pages/sections/5-4.html) · [Section 5.5](https://picinfiniti.net/pre-calculus/pages/sections/5-5.html) · [Section 7.1](https://picinfiniti.net/pre-calculus/pages/sections/7-1.html) · [Section 7.2](https://picinfiniti.net/pre-calculus/pages/sections/7-2.html) · [Section 7.3](https://picinfiniti.net/pre-calculus/pages/sections/7-3.html) · [Section 7.4](https://picinfiniti.net/pre-calculus/pages/sections/7-4.html) · [Section 7.5](https://picinfiniti.net/pre-calculus/pages/sections/7-5.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 5.4](https://picinfiniti.net/pre-calculus/pages/sections/5-4.html) · [Section 5.5](https://picinfiniti.net/pre-calculus/pages/sections/5-5.html) · [Section 7.1](https://picinfiniti.net/pre-calculus/pages/sections/7-1.html) · [Section 7.2](https://picinfiniti.net/pre-calculus/pages/sections/7-2.html) · [Section 7.3](https://picinfiniti.net/pre-calculus/pages/sections/7-3.html) · [Section 7.4](https://picinfiniti.net/pre-calculus/pages/sections/7-4.html) · [Section 7.5](https://picinfiniti.net/pre-calculus/pages/sections/7-5.html)
 
 ## Why this project exists
 
@@ -332,19 +332,21 @@ npm run build
 npm run preview
 ```
 
+## Quality review
+
+See the [course-wide consistency review](docs/app-review.md) for findings, corrections, and desktop/phone verification coverage.
+
 ## Project structure
 
 ```text
 .
 ├── index.html                  # Course home entry
 ├── pages/sections/             # One HTML entry per lesson
-├── pages/tools/                # Standalone student tools
 ├── public/                     # Static public assets
 ├── src/
 │   ├── assets/                 # Fonts, images, and Sass
 │   ├── core/App.js             # Home page and course roadmap
 │   ├── sections/               # Interactive lesson logic
-│   ├── tools/                  # Interactive tool logic
 │   └── main.js                 # Home page bootstrap
 ├── vite.config.js              # Multi-page Vite configuration
 └── package.json
