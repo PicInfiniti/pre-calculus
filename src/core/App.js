@@ -1,3 +1,4 @@
+import { initHeroRoll } from './hero-roll';
 import textbookCover from "../assets/img/precalculus-8e-cover.png";
 import { mathMarkup, typesetMath } from "../sections/math";
 
@@ -187,6 +188,7 @@ export default class App {
   }
 
   init() {
+    this.stopHeroAnimation?.();
     this.root.innerHTML = `
       <header class="site-header">
         <a class="brand" href="#top" aria-label="MATH 1280 home">
@@ -230,9 +232,12 @@ export default class App {
             <span class="formula formula--two">${mathMarkup(String.raw`\sin\theta`)}</span>
             <div class="graph-card">
               <div class="graph-card__label"><span></span> From functions to calculus</div>
+              <button class="graph-motion-toggle" type="button" aria-label="Pause graph animation" title="Pause animation" data-paused="false">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path class="graph-motion-toggle__pause" d="M7 5V15M13 5V15"/><path class="graph-motion-toggle__play" d="M7 4L15 10L7 16Z"/></svg>
+              </button>
               <svg viewBox="0 0 520 390" role="img" aria-labelledby="graph-title graph-desc">
                 <title id="graph-title">An increasing mathematical curve</title>
-                <desc id="graph-desc">A curve rises across a coordinate grid, connecting key learning points.</desc>
+                <desc id="graph-desc">A triangle rolls up the rising curve and gradually becomes a circle at the top. The circle rolls back down, reforms as a triangle, and repeats.</desc>
                 <defs>
                   <pattern id="small-grid" width="32" height="32" patternUnits="userSpaceOnUse">
                     <path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" stroke-width="1" />
@@ -250,6 +255,12 @@ export default class App {
                   <circle cx="207" cy="238" r="8" />
                   <circle cx="337" cy="157" r="8" />
                   <circle cx="443" cy="70" r="8" />
+                </g>
+                <g class="graph-roller" aria-hidden="true">
+                  <path class="graph-roller__body" />
+                  <path class="graph-roller__spoke" d="M0 0L0 -11" />
+                  <circle class="graph-roller__hub" r="2.5" />
+                  <circle class="graph-roller__mark" cx="0" cy="-11" r="2.5" />
                 </g>
               </svg>
               <div class="graph-card__caption">
@@ -387,5 +398,6 @@ export default class App {
       </footer>
     `;
     typesetMath(this.root);
+    this.stopHeroAnimation = initHeroRoll(this.root);
   }
 }
