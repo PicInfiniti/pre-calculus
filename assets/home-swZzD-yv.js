@@ -1,4 +1,4 @@
-import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-av3gSD.js";var r=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,i=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`09`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`01`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`02`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`03`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`04`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`05`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`07`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],a=i.reduce((e,t)=>e+t.sections.length,0),o=`/pre-calculus/`,s=`https://picinfiniti.net/mathboard/`,c={"0.0":`${o}pages/sections/0-0.html`,9.1:`${o}pages/sections/9-1.html`,9.2:`${o}pages/sections/9-2.html`,1.9:`${o}pages/sections/1-9.html`,2.1:`${o}pages/sections/2-1.html`,2.2:`${o}pages/sections/2-2.html`,2.3:`${o}pages/sections/2-3.html`,2.6:`${o}pages/sections/2-6.html`,2.7:`${o}pages/sections/2-7.html`,2.8:`${o}pages/sections/2-8.html`,3.1:`${o}pages/sections/3-1.html`,3.2:`${o}pages/sections/3-2.html`,3.6:`${o}pages/sections/3-6.html`,3.7:`${o}pages/sections/3-7.html`,4.1:`${o}pages/sections/4-1.html`,4.2:`${o}pages/sections/4-2.html`,4.3:`${o}pages/sections/4-3.html`,4.4:`${o}pages/sections/4-4.html`,4.5:`${o}pages/sections/4-5.html`,6.1:`${o}pages/sections/6-1.html`,6.2:`${o}pages/sections/6-2.html`,6.3:`${o}pages/sections/6-3.html`,6.4:`${o}pages/sections/6-4.html`,5.1:`${o}pages/sections/5-1.html`,5.2:`${o}pages/sections/5-2.html`,5.3:`${o}pages/sections/5-3.html`,5.4:`${o}pages/sections/5-4.html`,5.5:`${o}pages/sections/5-5.html`,7.1:`${o}pages/sections/7-1.html`,7.2:`${o}pages/sections/7-2.html`,7.3:`${o}pages/sections/7-3.html`,7.4:`${o}pages/sections/7-4.html`,7.5:`${o}pages/sections/7-5.html`},l={"0.0":`Open guide`};function u(e){let t=e.sections.map(e=>{let t=c[e];return t?`<a class="section-chip section-chip--available" href="${t}">${l[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),r=e.sections.filter(e=>c[e]).length,i=r?`${r} interactive lesson${r===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
+import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-av3gSD.js";var r=22,i=8e3,a=800,o=6e3,s=16e3,c=e=>e*e*(3-2*e),l=Array.from({length:96},(e,t)=>{let n=Math.floor(t/32),i=t%32/32,a=-Math.PI/2+n*2*Math.PI/3,o=a+2*Math.PI/3,s=r*((1-i)*Math.cos(a)+i*Math.cos(o)),c=r*((1-i)*Math.sin(a)+i*Math.sin(o)),l=Math.atan2(c,s);return{x:s,y:c,circleX:r*Math.cos(l),circleY:r*Math.sin(l)}});function u(e){let t=e%s;if(t<i){let e=c(t/i);return{travel:e,roundness:c(e)}}return t<8800?{travel:1,roundness:1}:t<14800?{travel:1-c((t-i-a)/o),roundness:1}:{travel:0,roundness:1-c(Math.max(0,(t-i-a-o-200)/1e3))}}function d(e){let t=e.querySelector(`.graph-curve`),n=e.querySelector(`.graph-roller`),i=n?.querySelector(`.graph-roller__body`),a=e.querySelector(`.graph-motion-toggle`);if(!t||!n||!i||!a)return()=>{};let o=t.getTotalLength(),s=t.getPointAtLength(0),c=t.getPointAtLength(1),d=Math.atan2(c.y-s.y,c.x-s.x),f=matchMedia(`(prefers-reduced-motion: reduce)`),p=null,m=null,h=0,g=!1,_=!1,v=!1,y=()=>_||f.matches&&!v;function b(e){let{travel:a,roundness:s}=u(e),c=o*a,f=t.getPointAtLength(c),p=t.getPointAtLength(Math.max(0,c-.5)),m=t.getPointAtLength(Math.min(o,c+.5)),h=m.x-p.x,g=m.y-p.y,_=Math.hypot(h,g),v=g/_,y=-h/_,b=d+c/r,x=Math.cos(b),S=Math.sin(b),C=l.map(e=>({x:e.x+(e.circleX-e.x)*s,y:e.y+(e.circleY-e.y)*s})),w=Math.max(...C.map(e=>-((e.x*x-e.y*S)*v+(e.x*S+e.y*x)*y))),T=f.x+v*(w+4),E=f.y+y*(w+4);i.setAttribute(`d`,C.map((e,t)=>`${t?`L`:`M`}${e.x.toFixed(3)} ${e.y.toFixed(3)}`).join(``)+`Z`),i.setAttribute(`fill`,`rgb(${Math.round(166+89*s)} ${Math.round(146+63*s)} ${Math.round(232-130*s)})`),n.setAttribute(`transform`,`translate(${T.toFixed(3)} ${E.toFixed(3)}) rotate(${(b*180/Math.PI).toFixed(3)})`)}function x(){p!==null&&cancelAnimationFrame(p),p=null,m=null}function S(e){if(p=null,y()||!g||document.hidden){m=null;return}m!==null&&(h+=e-m),m=e,b(h),p=requestAnimationFrame(S)}function C(){let e=y();a.dataset.paused=String(e),a.setAttribute(`aria-label`,e?`Play graph animation`:`Pause graph animation`),a.title=e?`Play animation`:`Pause animation`,e||!g||document.hidden?x():p===null&&(p=requestAnimationFrame(S))}function w(){y()?(_=!1,v=!0):_=!0,C()}function T(){v=!1,C()}let E=new IntersectionObserver(e=>{g=e[0].isIntersecting,C()});return E.observe(n.ownerSVGElement),a.addEventListener(`click`,w),f.addEventListener(`change`,T),document.addEventListener(`visibilitychange`,C),b(0),C(),()=>{x(),E.disconnect(),a.removeEventListener(`click`,w),f.removeEventListener(`change`,T),document.removeEventListener(`visibilitychange`,C)}}var f=`/pre-calculus/assets/precalculus-8e-cover-BRmfC0ye.png`,p=[{number:`00`,eyebrow:`Start here`,title:`Mathematical notation`,description:`Learn how to read the symbols, sets, function labels, and coordinate language used throughout the course.`,sections:[`0.0`],accent:`gold`,layout:`primer`},{number:`09`,eyebrow:`Opening week`,title:`Systems of linear equations`,description:`Solve linear systems in two variables, then extend the methods to larger systems.`,sections:[`9.1`,`9.2`],accent:`coral`},{number:`01`,eyebrow:`Coordinate foundations`,title:`The coordinate plane`,description:`Connect equations to their graphs and work with the geometry of circles.`,sections:[`1.9`],accent:`gold`},{number:`02`,eyebrow:`Function toolkit`,title:`Functions`,description:`Read, transform, combine, and invert functions with confidence.`,sections:[`2.1`,`2.2`,`2.3`,`2.6`,`2.7`,`2.8`],accent:`blue`},{number:`03`,eyebrow:`Shape & behavior`,title:`Polynomial & rational functions`,description:`Connect formulas, zeros, end behavior, and asymptotes to graphs.`,sections:[`3.1`,`3.2`,`3.6`,`3.7`],accent:`gold`},{number:`04`,eyebrow:`Growth & inverse thinking`,title:`Exponential & logarithmic functions`,description:`Move between exponential and logarithmic forms and solve their equations.`,sections:[`4.1`,`4.2`,`4.3`,`4.4`,`4.5`],accent:`green`},{number:`06`,eyebrow:`Angles in context`,title:`Right-triangle trigonometry`,description:`Measure angles, solve triangles, and interpret trigonometric ratios.`,sections:[`6.1`,`6.2`,`6.3`,`6.4`],accent:`violet`},{number:`05`,eyebrow:`Circular motion`,title:`Unit-circle trigonometry`,description:`Build trig functions from the unit circle, then study their graphs and inverses.`,sections:[`5.1`,`5.2`,`5.3`,`5.4`,`5.5`],accent:`blue`},{number:`07`,eyebrow:`Identity & proof`,title:`Analytic trigonometry`,description:`Use identities and formulas to rewrite expressions and solve equations.`,sections:[`7.1`,`7.2`,`7.3`,`7.4`,`7.5`],accent:`coral`}],m=p.reduce((e,t)=>e+t.sections.length,0),h=`/pre-calculus/`,g=`https://picinfiniti.net/mathboard/`,_={"0.0":`${h}pages/sections/0-0.html`,9.1:`${h}pages/sections/9-1.html`,9.2:`${h}pages/sections/9-2.html`,1.9:`${h}pages/sections/1-9.html`,2.1:`${h}pages/sections/2-1.html`,2.2:`${h}pages/sections/2-2.html`,2.3:`${h}pages/sections/2-3.html`,2.6:`${h}pages/sections/2-6.html`,2.7:`${h}pages/sections/2-7.html`,2.8:`${h}pages/sections/2-8.html`,3.1:`${h}pages/sections/3-1.html`,3.2:`${h}pages/sections/3-2.html`,3.6:`${h}pages/sections/3-6.html`,3.7:`${h}pages/sections/3-7.html`,4.1:`${h}pages/sections/4-1.html`,4.2:`${h}pages/sections/4-2.html`,4.3:`${h}pages/sections/4-3.html`,4.4:`${h}pages/sections/4-4.html`,4.5:`${h}pages/sections/4-5.html`,6.1:`${h}pages/sections/6-1.html`,6.2:`${h}pages/sections/6-2.html`,6.3:`${h}pages/sections/6-3.html`,6.4:`${h}pages/sections/6-4.html`,5.1:`${h}pages/sections/5-1.html`,5.2:`${h}pages/sections/5-2.html`,5.3:`${h}pages/sections/5-3.html`,5.4:`${h}pages/sections/5-4.html`,5.5:`${h}pages/sections/5-5.html`,7.1:`${h}pages/sections/7-1.html`,7.2:`${h}pages/sections/7-2.html`,7.3:`${h}pages/sections/7-3.html`,7.4:`${h}pages/sections/7-4.html`,7.5:`${h}pages/sections/7-5.html`},v={"0.0":`Open guide`};function y(e){let t=e.sections.map(e=>{let t=_[e];return t?`<a class="section-chip section-chip--available" href="${t}">${v[e]||e}</a>`:`<span class="section-chip">${e}</span>`}).join(``),r=e.sections.filter(e=>_[e]).length,i=r?`${r} interactive lesson${r===1?``:`s`} available now.`:`Individual lesson pages will be added here.`;return`
     <article class="unit-card unit-card--${e.accent}${e.layout?` unit-card--${e.layout}`:``}">
       <div class="unit-card__topline">
         <span class="unit-card__number">${e.number}</span>
@@ -22,7 +22,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
         </div>
       `:``}
     </article>
-  `}new class{constructor(e){this.env=e,this.root=document.querySelector(`#app`)}init(){this.root.innerHTML=`
+  `}new class{constructor(e){this.env=e,this.root=document.querySelector(`#app`)}init(){this.stopHeroAnimation?.(),this.root.innerHTML=`
       <header class="site-header">
         <a class="brand" href="#top" aria-label="MATH 1280 home">
           <span class="brand__mark" aria-hidden="true">ƒ</span>
@@ -37,7 +37,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
           <a href="#mathboard">Mathboard</a>
           <a href="#textbook">Textbook</a>
         </nav>
-        <a class="header-cta" href="${s}" target="_blank" rel="noreferrer">Open Mathboard <span aria-hidden="true">↗</span></a>
+        <a class="header-cta" href="${g}" target="_blank" rel="noreferrer">Open Mathboard <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="top">
@@ -54,8 +54,8 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
               <a class="text-link" href="#textbook">About the textbook <span aria-hidden="true">→</span></a>
             </div>
             <dl class="hero__stats" aria-label="Course overview">
-              <div><dt>${a}</dt><dd>sections</dd></div>
-              <div><dt>${i.length}</dt><dd>learning arcs</dd></div>
+              <div><dt>${m}</dt><dd>sections</dd></div>
+              <div><dt>${p.length}</dt><dd>learning arcs</dd></div>
               <div><dt>01</dt><dd>clear path</dd></div>
             </dl>
           </div>
@@ -65,9 +65,12 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
             <span class="formula formula--two">${n(String.raw`\sin\theta`)}</span>
             <div class="graph-card">
               <div class="graph-card__label"><span></span> From functions to calculus</div>
+              <button class="graph-motion-toggle" type="button" aria-label="Pause graph animation" title="Pause animation" data-paused="false">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path class="graph-motion-toggle__pause" d="M7 5V15M13 5V15"/><path class="graph-motion-toggle__play" d="M7 4L15 10L7 16Z"/></svg>
+              </button>
               <svg viewBox="0 0 520 390" role="img" aria-labelledby="graph-title graph-desc">
                 <title id="graph-title">An increasing mathematical curve</title>
-                <desc id="graph-desc">A curve rises across a coordinate grid, connecting key learning points.</desc>
+                <desc id="graph-desc">A triangle rolls up the rising curve and gradually becomes a circle at the top. The circle rolls back down, reforms as a triangle, and repeats.</desc>
                 <defs>
                   <pattern id="small-grid" width="32" height="32" patternUnits="userSpaceOnUse">
                     <path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" stroke-width="1" />
@@ -85,6 +88,12 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
                   <circle cx="207" cy="238" r="8" />
                   <circle cx="337" cy="157" r="8" />
                   <circle cx="443" cy="70" r="8" />
+                </g>
+                <g class="graph-roller" aria-hidden="true">
+                  <path class="graph-roller__body" />
+                  <path class="graph-roller__spoke" d="M0 0L0 -11" />
+                  <circle class="graph-roller__hub" r="2.5" />
+                  <circle class="graph-roller__mark" cx="0" cy="-11" r="2.5" />
                 </g>
               </svg>
               <div class="graph-card__caption">
@@ -109,7 +118,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
         </section>
 
         <section class="unit-grid" aria-label="Course units">
-          ${i.map(u).join(``)}
+          ${p.map(y).join(``)}
         </section>
 
         <section class="study-loop" id="study-loop" aria-labelledby="study-loop-title">
@@ -143,7 +152,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
               mathematical canvas. Choose a blank page, square grid, or coordinate plane.
             </p>
             <div class="mathboard-promo__actions">
-              <a class="button button--primary" href="${s}" target="_blank" rel="noreferrer">Open the Mathboard</a>
+              <a class="button button--primary" href="${g}" target="_blank" rel="noreferrer">Open the Mathboard</a>
               <span>Saved automatically on this device.</span>
             </div>
           </div>
@@ -173,7 +182,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
           <figure class="book">
             <img
               class="book__cover"
-              src="${r}"
+              src="${f}"
               alt="Cover of Precalculus: Mathematics for Calculus, eighth edition"
             />
           </figure>
@@ -204,7 +213,7 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
           <a href="https://picinfiniti.net" target="_blank" rel="noreferrer">PicInfiniti</a>
         </p>
         <nav class="footer-links" aria-label="Project links">
-          <a href="${s}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
+          <a href="${g}" target="_blank" rel="noreferrer">Mathboard <span aria-hidden="true">↗</span></a>
           <a
             class="github-link"
             href="https://github.com/PicInfiniti/pre-calculus"
@@ -220,4 +229,4 @@ import{t as e}from"./magnifier-CAaoxZKo.js";import{r as t,t as n}from"./math-B-a
           <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
         </nav>
       </footer>
-    `,t(this.root)}}({BASE_URL:`/pre-calculus/`,DEV:!1,MODE:`production`,PROD:!0,SSR:!1,VITE_SITE:`picinfiniti.net`}).init(),e();
+    `,t(this.root),this.stopHeroAnimation=d(this.root)}}({BASE_URL:`/pre-calculus/`,DEV:!1,MODE:`production`,PROD:!0,SSR:!1,VITE_SITE:`picinfiniti.net`}).init(),e();
