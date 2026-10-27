@@ -41,8 +41,9 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "5.3" ? "is-current" : ""}" href="${sitePath("pages/sections/5-3.html")}">5.3 · Sine & cosine graphs</a>
       <a class="${activeSection === "5.4" ? "is-current" : ""}" href="${sitePath("pages/sections/5-4.html")}">5.4 · Other trig graphs</a>
       <a class="${activeSection === "5.5" ? "is-current" : ""}" href="${sitePath("pages/sections/5-5.html")}">5.5 · Inverse trig</a>`;
-  } else if (activeSection === "7.1") {
-    navigation = `<a class="is-current" href="${sitePath("pages/sections/7-1.html")}">7.1 · Trigonometric identities</a>`;
+  } else if (["7.1", "7.2"].includes(activeSection)) {
+    navigation = `<a class="${activeSection === "7.1" ? "is-current" : ""}" href="${sitePath("pages/sections/7-1.html")}">7.1 · Trigonometric identities</a>
+      <a class="${activeSection === "7.2" ? "is-current" : ""}" href="${sitePath("pages/sections/7-2.html")}">7.2 · Addition & subtraction</a>`;
   } else if (["6.1", "6.2", "6.3", "6.4"].includes(activeSection)) {
     navigation = `<a class="${activeSection === "6.1" ? "is-current" : ""}" href="${sitePath("pages/sections/6-1.html")}">6.1 · Angle measure</a>
       <a class="${activeSection === "6.2" ? "is-current" : ""}" href="${sitePath("pages/sections/6-2.html")}">6.2 · Right triangles</a>

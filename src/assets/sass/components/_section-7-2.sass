@@ -1,0 +1,254 @@
+.lesson-hero--angle-sum
+  --hero-accent: var(--violet)
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .lesson-hero__copy
+    min-width: 0
+
+  .lesson-hero__copy h1 em
+    color: #6844a6
+
+.as-hero-art
+  min-width: 0
+  align-self: center
+  margin: 1.5rem
+  padding: 1.5rem
+  border: 1px solid var(--line)
+  border-radius: .6rem
+  background: var(--white)
+  box-shadow: 12px 12px 0 var(--violet), var(--shadow)
+  text-align: center
+
+  > p:last-of-type
+    line-height: 1.7
+
+.as-hero-sign
+  margin-top: 1.5rem
+  padding: 1rem
+  display: grid
+  gap: 1rem
+  border-block: 1px solid var(--line)
+  font-size: 1.2rem
+
+  > .laws-math
+    overflow-x: auto
+    padding-block: .3rem
+
+.as-formula-grid
+  display: grid
+  grid-template-columns: minmax(0, 1fr)
+  gap: 1rem
+  margin-block: 2rem
+
+  article
+    min-width: 0
+    padding: 1.5rem
+    border-left: 3px solid var(--violet)
+    background: var(--white)
+
+  h3
+    font-size: 1.5rem
+
+  .laws-equation
+    font-size: clamp(1.05rem, 2vw, 1.5rem)
+
+  p
+    line-height: 1.7
+
+.as-plot
+  min-width: 0
+  padding: clamp(1rem, 2vw, 1.5rem)
+  align-self: center
+
+  > svg
+    display: block
+    width: 100%
+    max-width: 520px
+    margin-inline: auto
+
+.as-studio-goal
+  min-height: 9rem
+  line-height: 1.7
+
+.as-compact-plot
+  max-width: 320px
+  margin-inline: auto
+
+  svg
+    display: block
+    width: 100%
+
+.as-caption
+  margin-top: 1rem
+  color: var(--ink-soft)
+  font-size: 1rem
+  line-height: 1.7
+
+.as-input-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: .8rem
+
+  > div
+    min-width: 0
+
+.as-presets
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+  margin-block: 1rem
+
+  button
+    min-height: 2.8rem
+    padding: .6rem .8rem
+    border: 1px solid var(--line)
+    border-radius: .3rem
+    background: var(--white)
+    color: var(--ink)
+    font: inherit
+    cursor: pointer
+
+.as-studio-reading
+  min-height: 40rem
+
+.as-work-goal
+  min-height: 20rem
+
+.as-proof-goal
+  min-height: 26rem
+
+.as-advanced-goal
+  min-height: 32rem
+
+  .laws-equation
+    font-size: 1.15rem
+    margin-block: .65rem
+
+.as-step
+  min-height: 28rem
+
+  > p
+    line-height: 1.75
+
+.as-rule
+  display: inline-block
+  margin-block: .5rem 1rem
+  padding: .5rem .75rem
+  border-left: 3px solid #6844a6
+  background: #eee9f6
+  color: #50317f
+  font-size: 1rem
+  font-weight: 700
+
+.as-domain-status
+  padding: .8rem
+  border-left: 3px solid #b48a32
+  background: #fff4d8
+  color: #78591e
+  line-height: 1.7
+
+.as-grid-minor, .as-grid-major, .as-axes, .as-circle, .as-ray
+  fill: none
+  vector-effect: non-scaling-stroke
+
+.as-grid-minor
+  stroke: #ccd1d3
+  stroke-width: .5
+  opacity: .4
+
+.as-grid-major
+  stroke: #bac3c8
+  stroke-width: .7
+  opacity: .65
+
+.as-axes
+  stroke: var(--ink)
+  stroke-width: 1.3
+
+.as-circle
+  stroke: #9baab2
+  stroke-width: 1.5
+
+.as-tick-labels
+  fill: #7c8d98
+  font-size: 20px
+  paint-order: stroke fill
+  stroke: var(--white)
+  stroke-width: 3px
+  stroke-linejoin: round
+
+.as-end-tick
+  font-size: 23px
+
+.as-axis-label, .as-point-label
+  fill: var(--ink)
+  font-size: 23px
+  paint-order: stroke fill
+  stroke: var(--white)
+  stroke-width: 3px
+
+.as-answer-text
+  white-space: normal
+  font-size: 1rem
+  line-height: 1.5
+
+.angle-sum-lesson
+  .lesson-section__intro
+    max-width: none
+
+    > p:last-child
+      max-width: 780px
+
+  .lesson-kicker > span
+    flex-shrink: 0
+    white-space: nowrap
+
+  .laws-equation .katex
+    white-space: nowrap
+
+  .laws-controls > p:not(.tool-label)
+    line-height: 1.7
+
+  .as-input-grid label
+    display: block
+    margin-top: 1.2rem
+    font-weight: 700
+
+  #as-example-trigger, #as-advanced-trigger
+    height: 5.5rem
+
+  .laws-check h3
+    font-size: clamp(.9rem, 1.2vw, 1.1rem)
+    overflow-x: auto
+    padding-block: .5rem
+
+    .katex
+      white-space: nowrap
+
+  .laws-check > p:not(.tool-label)
+    font-size: 1rem
+    line-height: 1.6
+
+@media (max-width: 1050px)
+  .lesson-hero--angle-sum
+    grid-template-columns: minmax(0, 1fr)
+
+@media (max-width: 680px)
+  .as-hero-art
+    margin: 1rem 1.5rem 2rem
+    padding: 1rem
+
+  .as-input-grid
+    grid-template-columns: minmax(0, 1fr)
+
+  .as-studio-reading
+    min-height: 48rem
+
+  .as-work-goal
+    min-height: 23rem
+
+  .as-step
+    min-height: 33rem
+
+  .as-advanced-goal
+    min-height: 38rem
