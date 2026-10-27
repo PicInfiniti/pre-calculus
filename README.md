@@ -2,7 +2,7 @@
 
 An interactive, student-focused companion for **MATH 1280**. The project turns textbook topics into visual explanations, guided examples, manipulable models, and practice with immediate feedback.
 
-**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 5.4](https://picinfiniti.net/pre-calculus/pages/sections/5-4.html) · [Section 5.5](https://picinfiniti.net/pre-calculus/pages/sections/5-5.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
+**[Open the course website](https://picinfiniti.net/pre-calculus/)** · [MathBoard](https://picinfiniti.net/mathboard/) · [Notation guide](https://picinfiniti.net/pre-calculus/pages/sections/0-0.html) · [Section 1.9](https://picinfiniti.net/pre-calculus/pages/sections/1-9.html) · [Section 2.1](https://picinfiniti.net/pre-calculus/pages/sections/2-1.html) · [Section 2.2](https://picinfiniti.net/pre-calculus/pages/sections/2-2.html) · [Section 2.3](https://picinfiniti.net/pre-calculus/pages/sections/2-3.html) · [Section 2.6](https://picinfiniti.net/pre-calculus/pages/sections/2-6.html) · [Section 2.7](https://picinfiniti.net/pre-calculus/pages/sections/2-7.html) · [Section 2.8](https://picinfiniti.net/pre-calculus/pages/sections/2-8.html) · [Section 3.1](https://picinfiniti.net/pre-calculus/pages/sections/3-1.html) · [Section 3.2](https://picinfiniti.net/pre-calculus/pages/sections/3-2.html) · [Section 3.6](https://picinfiniti.net/pre-calculus/pages/sections/3-6.html) · [Section 3.7](https://picinfiniti.net/pre-calculus/pages/sections/3-7.html) · [Section 4.1](https://picinfiniti.net/pre-calculus/pages/sections/4-1.html) · [Section 4.2](https://picinfiniti.net/pre-calculus/pages/sections/4-2.html) · [Section 4.3](https://picinfiniti.net/pre-calculus/pages/sections/4-3.html) · [Section 4.4](https://picinfiniti.net/pre-calculus/pages/sections/4-4.html) · [Section 4.5](https://picinfiniti.net/pre-calculus/pages/sections/4-5.html) · [Section 6.1](https://picinfiniti.net/pre-calculus/pages/sections/6-1.html) · [Section 6.2](https://picinfiniti.net/pre-calculus/pages/sections/6-2.html) · [Section 6.3](https://picinfiniti.net/pre-calculus/pages/sections/6-3.html) · [Section 6.4](https://picinfiniti.net/pre-calculus/pages/sections/6-4.html) · [Section 5.1](https://picinfiniti.net/pre-calculus/pages/sections/5-1.html) · [Section 5.2](https://picinfiniti.net/pre-calculus/pages/sections/5-2.html) · [Section 5.3](https://picinfiniti.net/pre-calculus/pages/sections/5-3.html) · [Section 5.4](https://picinfiniti.net/pre-calculus/pages/sections/5-4.html) · [Section 5.5](https://picinfiniti.net/pre-calculus/pages/sections/5-5.html) · [Section 7.1](https://picinfiniti.net/pre-calculus/pages/sections/7-1.html) · [Section 9.1](https://picinfiniti.net/pre-calculus/pages/sections/9-1.html) · [Section 9.2](https://picinfiniti.net/pre-calculus/pages/sections/9-2.html)
 
 ## Why this project exists
 
@@ -237,6 +237,17 @@ Scope follows the supplied section 5.4 notes; secant, cosecant, and cotangent re
 
 Sections 5.5 and 6.4 share the inverse-function lesson implementation while retaining their own headings and navigation. Scope and examples follow the supplied combined notes, including their diagrams. The official [Stewart author concept-check supplement](https://www.stewartmath.com/media/25/Concept_Check_Answers.pdf) supports principal inverse definitions and composition restrictions; a full textbook copy was not available.
 
+### 7.1 · Trigonometric Identities
+
+- Fundamental identity reference with domain restrictions
+- All five simplifications and ten proofs from the course notes, with original step-by-step explanations
+- Named justifications and persistent original-domain reminders for every guided step
+- Two interactive proof builders requiring both the next expression and a valid reason
+- Numerical comparison explorer separating counterexamples, single matches, and excluded inputs
+- Twelve readiness checks with immediate feedback
+
+Scope follows the supplied section 7.1 notes. The official [Stewart author concept-check supplement](https://www.stewartmath.com/media/25/Concept_Check_Answers.pdf) supports fundamental identities and proof strategy; a full textbook copy was not available.
+
 ## Course roadmap
 
 Every course topic has its own standalone page, beginning with the notation guide.
@@ -251,7 +262,7 @@ Every course topic has its own standalone page, beginning with the notation guid
 | Exponential and logarithmic functions | 4.1–4.5                      | Available |
 | Right-triangle trigonometry           | 6.1–6.4                      | Available                                   |
 | Unit-circle trigonometry              | 5.1–5.5                      | Available             |
-| Analytic trigonometry                 | 7.1–7.5                      | Planned                                   |
+| Analytic trigonometry                 | 7.1–7.5                      | 7.1 available; 7.2–7.5 planned                                   |
 
 ## Built with
 
