@@ -34,16 +34,13 @@ export function initHeroRoll(root) {
   const curve = root.querySelector('.graph-curve');
   const wheel = root.querySelector('.graph-roller');
   const body = wheel?.querySelector('.graph-roller__body');
-  const button = root.querySelector('.graph-motion-toggle');
-  if (!curve || !wheel || !body || !button) return () => {};
+  if (!curve || !wheel || !body) return () => {};
 
   const length = curve.getTotalLength();
   const start = curve.getPointAtLength(0), next = curve.getPointAtLength(1);
   const initialAngle = Math.atan2(next.y - start.y, next.x - start.x);
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = null, lastTime = null, elapsed = 0, visible = false;
-  let userPaused = false, allowMotion = false;
-  const paused = () => userPaused || (reducedMotion.matches && !allowMotion);
 
   function paint(time) {
     const {travel, roundness} = phase(time), distance = length * travel;
@@ -68,40 +65,28 @@ export function initHeroRoll(root) {
   }
   function tick(time) {
     frame = null;
-    if (paused() || !visible || document.hidden) { lastTime = null; return; }
+    if (reducedMotion.matches || !visible || document.hidden) { lastTime = null; return; }
     if (lastTime !== null) elapsed += time - lastTime;
     lastTime = time;
     paint(elapsed);
     frame = requestAnimationFrame(tick);
   }
   function update() {
-    const isPaused = paused();
-    button.dataset.paused = String(isPaused);
-    button.setAttribute('aria-label', isPaused ? 'Play graph animation' : 'Pause graph animation');
-    button.title = isPaused ? 'Play animation' : 'Pause animation';
-    if (isPaused || !visible || document.hidden) stop();
+    if (reducedMotion.matches || !visible || document.hidden) stop();
     else if (frame === null) frame = requestAnimationFrame(tick);
   }
-  function toggle() {
-    if (paused()) { userPaused = false; allowMotion = true; }
-    else userPaused = true;
-    update();
-  }
-  function motionChanged() { allowMotion = false; update(); }
   const observer = new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
     update();
   });
   observer.observe(wheel.ownerSVGElement);
-  button.addEventListener('click', toggle);
-  reducedMotion.addEventListener('change', motionChanged);
+  reducedMotion.addEventListener('change', update);
   document.addEventListener('visibilitychange', update);
   paint(0);
   update();
   return () => {
     stop(); observer.disconnect();
-    button.removeEventListener('click', toggle);
-    reducedMotion.removeEventListener('change', motionChanged);
+    reducedMotion.removeEventListener('change', update);
     document.removeEventListener('visibilitychange', update);
   };
 }

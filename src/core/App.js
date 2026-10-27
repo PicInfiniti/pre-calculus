@@ -232,9 +232,6 @@ export default class App {
             <span class="formula formula--two">${mathMarkup(String.raw`\sin\theta`)}</span>
             <div class="graph-card">
               <div class="graph-card__label"><span></span> From functions to calculus</div>
-              <button class="graph-motion-toggle" type="button" aria-label="Pause graph animation" title="Pause animation" data-paused="false">
-                <svg viewBox="0 0 20 20" aria-hidden="true"><path class="graph-motion-toggle__pause" d="M7 5V15M13 5V15"/><path class="graph-motion-toggle__play" d="M7 4L15 10L7 16Z"/></svg>
-              </button>
               <svg viewBox="0 0 520 390" role="img" aria-labelledby="graph-title graph-desc">
                 <title id="graph-title">An increasing mathematical curve</title>
                 <desc id="graph-desc">A triangle rolls up the rising curve and gradually becomes a circle at the top. The circle rolls back down, reforms as a triangle, and repeats.</desc>
