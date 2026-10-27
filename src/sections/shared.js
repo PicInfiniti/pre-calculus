@@ -41,10 +41,11 @@ export function renderLessonHeader(activeSection) {
       <a class="${activeSection === "5.3" ? "is-current" : ""}" href="${sitePath("pages/sections/5-3.html")}">5.3 · Sine & cosine graphs</a>
       <a class="${activeSection === "5.4" ? "is-current" : ""}" href="${sitePath("pages/sections/5-4.html")}">5.4 · Other trig graphs</a>
       <a class="${activeSection === "5.5" ? "is-current" : ""}" href="${sitePath("pages/sections/5-5.html")}">5.5 · Inverse trig</a>`;
-  } else if (["7.1", "7.2", "7.3"].includes(activeSection)) {
+  } else if (["7.1", "7.2", "7.3", "7.4"].includes(activeSection)) {
     navigation = `<a class="${activeSection === "7.1" ? "is-current" : ""}" href="${sitePath("pages/sections/7-1.html")}">7.1 · Trigonometric identities</a>
       <a class="${activeSection === "7.2" ? "is-current" : ""}" href="${sitePath("pages/sections/7-2.html")}">7.2 · Addition & subtraction</a>
-      <a class="${activeSection === "7.3" ? "is-current" : ""}" href="${sitePath("pages/sections/7-3.html")}">7.3 · Double & half angles</a>`;
+      <a class="${activeSection === "7.3" ? "is-current" : ""}" href="${sitePath("pages/sections/7-3.html")}">7.3 · Double & half angles</a>
+      <a class="${activeSection === "7.4" ? "is-current" : ""}" href="${sitePath("pages/sections/7-4.html")}">7.4 · Basic equations</a>`;
   } else if (["6.1", "6.2", "6.3", "6.4"].includes(activeSection)) {
     navigation = `<a class="${activeSection === "6.1" ? "is-current" : ""}" href="${sitePath("pages/sections/6-1.html")}">6.1 · Angle measure</a>
       <a class="${activeSection === "6.2" ? "is-current" : ""}" href="${sitePath("pages/sections/6-2.html")}">6.2 · Right triangles</a>
